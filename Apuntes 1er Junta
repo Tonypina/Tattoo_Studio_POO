@@ -1,0 +1,9 @@
+- El establecimiento cuenta con un tatuador principal, un tatuador secundario (ocasional) y ayudantes (aprendices).
+- El establicimiento cuenta con mercancía de dos proveedores de mecancía que se vende dentro del establemicimiento (chamarras, gorras, etc).
+- Las ganancias del establecimiento se dividen en tres socios principales.
+- Se necesita crear un mega usuario (super usuario) y un usuario para quien estará a cargo de controlar y usar el sotfware (Módulo de autentificación).
+- El profesor checará los requerimientos mínimos para un equipo de computo y poder utilizar una base de datos (probabloemente será MySQL).
+- Verificar el proceso por el cual se darán fe y legalidad de los anticipos y pagos (crear una agenda).
+- Se cuenta con CLIP para que los clientes puedan realizar sus pagos por medio de tarjeta (más adelante se darán los procentajes que se cobra por el uso del mismo).
+- La asginación del tatuador para realizar algún trabajo será por medio de 1) Como este libre el siguiente tatuador 2) Clientes con base a los tatuadores.
+- Se mandará posteriormente un catálogo de los tatuajes que se hacen dentro del estudio.
