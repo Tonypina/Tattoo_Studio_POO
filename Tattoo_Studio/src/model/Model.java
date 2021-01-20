@@ -49,7 +49,7 @@ public class Model {
     public static boolean autetnicacion( String usuario, String contrasena ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM usuario WHERE nombre = ?");
+            pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?");
             pst.setString(2, usuario); 
             
             ResultSet rs = pst.executeQuery();
