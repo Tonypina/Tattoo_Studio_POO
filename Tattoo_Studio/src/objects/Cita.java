@@ -10,24 +10,30 @@ import java.util.*;
  * @author 
  */
 public class Cita {
-    private Calendar fecha;
+    private Calendar fechaInicio;
+    private Calendar fechaFinal;
     private String nombreCliente;
     private float anticipo;
     private float precio;
     private int duración; //En minutos
 
-    public Cita(Calendar fecha, String nombreCliente, float anticipo, float precio, int duración) {
-        this.fecha = fecha;
+    public Cita(Calendar fechaFinal, Calendar fechaInicio, String nombreCliente, float anticipo, float precio, int duración) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
         this.nombreCliente = nombreCliente;
         this.anticipo = anticipo;
         this.precio = precio;
         this.duración = duración;
     }
 
-    public void setFecha(Calendar fecha) {
-        this.fecha = fecha;
+    public void setFechaInicio(Calendar fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
-
+    
+    public void setFechaFinal(Calendar fechaFinal){
+        this.fechaFinal = fechaFinal;
+    }
+    
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
@@ -44,8 +50,12 @@ public class Cita {
         this.duración = duración;
     }
 
-    public Calendar getFecha() {
-        return fecha;
+    public Calendar getFechaInicio() {
+        return fechaInicio;
+    }
+    
+    public Calendar getFechaFinal() {
+        return fechaFinal;
     }
 
     public String getNombreCliente() {
