@@ -46,10 +46,20 @@ public class Model {
     public static void eliminarTatuador( Tatuador t ){
     }
     
+    public static void insertarUsuario(){
+    }
+    
+    public static Usuario buscarUsuario() {    
+        return null;
+    }
+    
+    public static void eliminarUsuario(){
+    }
+    
     public static boolean autetnicacion( String usuario, String contrasena ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?");
+            pst = cn.prepareStatement("SELECT * FROM usuario WHERE nombre = ?");
             pst.setString(2, usuario); 
             
             ResultSet rs = pst.executeQuery();
