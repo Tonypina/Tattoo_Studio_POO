@@ -10,13 +10,15 @@ package objects;
  * @author
  */
 public class Tatuador {
+    private int id;
     private String nombre;
     private String ap_pat;
     private String ap_mat;
     private int contatco;
     private float comision;
 
-    public Tatuador(String nombre, String ap_pat, String ap_mat, int contatco, float comision) {
+    public Tatuador(int id, String nombre, String ap_pat, String ap_mat, int contatco, float comision) {
+        this.id = id;
         this.nombre = nombre;
         this.ap_pat = ap_pat;
         this.ap_mat = ap_mat;
