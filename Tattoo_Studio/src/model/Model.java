@@ -239,31 +239,21 @@ public class Model {
         return null;  
     }
 
-    public static void modificarUsuario(int id, String nombre, String apPaterno, String apMaterno){
+    public static void modificarUsuario(int id, String nombre, String apPaterno, String apMaterno,String pass, String username){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ? WHERE id = " + id);
+            pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + id);
             pst.setString(1, nombre.trim());
             pst.setString(2, apPat.trim());
             pst.setString(3, apMat.trim());
+            pst.setString(4, pass());
+            pst.setString(5, username.trim());
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
         }
 
    }
-
-    public static void modificarUsuario(String pass, String username){
-        try{
-            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE usuario SET pass = ?, username = ?);
-            pst.setString(1, pass());
-            pst.setString(2, username.trim());
-            pst.executeUpdate();
-        }catch(SQLException e){
-            e.getMessage();
-        }
-    }
     
     public static void eliminarUsuario(int id){
         try{
