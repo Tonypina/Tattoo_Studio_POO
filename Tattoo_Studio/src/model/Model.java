@@ -274,7 +274,7 @@ public class Model {
     public static Usuario buscarUsuario(int id) {  
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?"");
+            pst = cn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?");
             pst.setString(1, Integer.toString(id));
             
             ResultSet rs = pst.executeQuery();
@@ -317,7 +317,7 @@ public class Model {
     public static void eliminarUsuario(int id){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("DELETE FROM usuario WHERE idUsuario = " + id");
+            pst = cn.prepareStatement("DELETE FROM usuario WHERE idUsuario = " + id);
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
