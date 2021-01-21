@@ -128,6 +128,16 @@ public class Model {
         }
     }
     
+    public static void eliminarTatuador( int id ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("DELETE FROM tatuador WHERE id = ?" + id);
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
     public static void insertarUsuario(){
     }
     
