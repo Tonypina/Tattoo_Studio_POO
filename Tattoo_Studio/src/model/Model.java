@@ -179,7 +179,7 @@ public class Model {
             pst.setString(3, pro.getTipoPro());
             pst.setString(4, Integer.toString(pro.getCantidadPro()));
             pst.setString(5, Double.toString(pro.getPrecioPro()));
-            pst.setString(6, pro.getProvedor());
+            pst.setString(6, pro.getProveedor());
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
@@ -191,17 +191,33 @@ public class Model {
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("SELECT * FROM producto WHERE idProducto = ?");
-            pst.setString(1, Integer.toString(idPro));
+            pst.setString(1, Integer.toString(idProducto));
             
             ResultSet rs = pst.executeQuery();
             
             if(rs.next())
-                return new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), rs.getString("tipoPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro"), rs.getString("provedor"));
+                return new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), rs.getString("tipoPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro"), rs.getString("proveedor"));
   
         }catch(SQLException e){
             e.getMessage();
         }
         return null;
+    }
+    
+    
+    public static void modificarProducto( int idProducto, String modeloPro, String tipoPro, int cantidadPro, double precioPro, String proveedor,){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, proveedor = ? WHERE idProducto = " + idProducto);
+            pst.setString(1, modeloPro.trim());
+            pst.setString(2, tipoPro.trim());
+            pst.setString(3, Integer.toString(cantidadPro));
+            pst.setString(4, Double.toString(precioPro));
+            pst.setString(5, proveedor.trim());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
     }
     
     //Usuario
