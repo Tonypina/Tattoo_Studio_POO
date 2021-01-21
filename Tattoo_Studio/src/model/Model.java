@@ -239,13 +239,13 @@ public class Model {
     public static Producto buscarProducto( int idPro ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM producto WHERE id = ?");
+            pst = cn.prepareStatement("SELECT * FROM producto WHERE idProducto = ?");
             pst.setString(1, Integer.toString(idPro));
             
             ResultSet rs = pst.executeQuery();
             
             if(rs.next())
-                return new Producto(rs.getInt("id"), rs.getString("modelo"), rs.getString("tipo"), rs.getInt("cantidad"), rs.getDouble("precio"), rs.getString("Provedor"));
+                return new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), rs.getString("tipoPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro"), rs.getString("provedor"));
   
         }catch(SQLException e){
             e.getMessage();
