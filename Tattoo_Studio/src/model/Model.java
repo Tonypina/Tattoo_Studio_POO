@@ -10,7 +10,7 @@ public class Model {
     private static Connection cn;
     private static PreparedStatement pst;
     
-   public static ArrayList<Tatuador> getTatuadores(){
+    public static ArrayList<Tatuador> getTatuadores(){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("SELECT * FROM tatuador");
@@ -20,7 +20,7 @@ public class Model {
             ArrayList<Tatuador> at = new ArrayList<>();
             
             while(rs.next()){
-                at.add(new Tatuador(rs.getInt("id"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("celTatuador"), rs.getFloat("comisionTatuador")));
+                at.add(new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("contacto"), rs.getFloat("comision")));
             }
             
             return at;
@@ -39,8 +39,8 @@ public class Model {
             pst.setString(2, t.getNombre());
             pst.setString(3, t.getAp_pat());
             pst.setString(4, t.getAp_mat());
-            pst.setString(5, Float.toString(t.getComision()));
             pst.setString(6, Integer.toString(t.getContatco()));
+            pst.setString(5, Float.toString(t.getComision()));
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
@@ -56,7 +56,7 @@ public class Model {
             ResultSet rs = pst.executeQuery();
             
             if(rs.next())
-                return new Tatuador(rs.getInt("id"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("celuTatuador"), rs.getFloat("comisionTatuador"));
+                return new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("contacto"), rs.getFloat("comision"));
   
         }catch(SQLException e){
             e.getMessage();
@@ -67,7 +67,7 @@ public class Model {
     public static void modificarTatuador( int id, int contacto ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE tatuador SET celuTatuador = ? WHERE idTatuador = " + id);
+            pst = cn.prepareStatement("UPDATE tatuador SET contacto = ? WHERE idTatuador = " + id);
             pst.setString(1, Integer.toString(contacto));
             pst.executeUpdate();
         }catch(SQLException e){
@@ -78,7 +78,7 @@ public class Model {
     public static void modificarTatuador( int id, float comision ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE tatuador SET comisionTatuador = ? WHERE idTatuador = " + id);
+            pst = cn.prepareStatement("UPDATE tatuador SET comision = ? WHERE idTatuador = " + id);
             pst.setString(1, Float.toString(comision));
             pst.executeUpdate();
         }catch(SQLException e){
@@ -102,7 +102,7 @@ public class Model {
     public static void modificarTatuador( int id, String nombre, String apPat, String apMat, int contacto ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, celuTatuador = ? WHERE idTatuador = " + id);
+            pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ? WHERE idTatuador = " + id);
             pst.setString(1, nombre.trim());
             pst.setString(2, apPat.trim());
             pst.setString(3, apMat.trim());
@@ -116,7 +116,7 @@ public class Model {
     public static void modificarTatuador( int id, String nombre, String apPat, String apMat, int contacto, float comision ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, celuTatuador = ?, comisionTatuador = ? WHERE idTatuador = " + id);
+            pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ?, comision = ? WHERE idTatuador = " + id);
             pst.setString(1, nombre.trim());
             pst.setString(2, apPat.trim());
             pst.setString(3, apMat.trim());
@@ -198,20 +198,10 @@ public class Model {
     }
     
     
-    public static void insertarUsuario(){
-    }
-    
-    public static Usuario buscarUsuario() {    
-        return null;
-    }
-    
-    public static void eliminarUsuario(){
-    }
-    
     public static boolean autetnicacion( String usuario, String contrasena ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM usuario WHERE nombre = ?");
+            pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?");
             pst.setString(2, usuario); 
             
             ResultSet rs = pst.executeQuery();
