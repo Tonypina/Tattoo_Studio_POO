@@ -18,9 +18,9 @@ public class Cita {
     private String nombreCliente;
     private float anticipo;
     private float precio;
-    private int duración; //En minutos
+    private int duracion; //En minutos
 
-    public Cita(int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, String nombreCliente, float anticipo, float precio, int duración) {
+    public Cita(int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, String nombreCliente, float anticipo, float precio, int duracion) {
         this.diaInicio = diaInicio;
         this.mesInicio = mesInicio;
         this.anioInicio = anioInicio;
@@ -30,7 +30,7 @@ public class Cita {
         this.nombreCliente = nombreCliente;
         this.anticipo = anticipo;
         this.precio = precio;
-        this.duración = duración;
+        this.duracion = duracion;
     }
 
     public int getDiaInicio() {
@@ -69,8 +69,8 @@ public class Cita {
         return precio;
     }
 
-    public int getDuración() {
-        return duración;
+    public int getDuracion() {
+        return duracion;
     }
 
     public void setDiaInicio(int diaInicio) {
@@ -109,7 +109,7 @@ public class Cita {
         this.precio = precio;
     }
 
-    public void setDuración(int duración) {
-        this.duración = duración;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 }
