@@ -284,11 +284,11 @@ public class Model {
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + id);
-            pst.setString(1, nombre.trim());
-            pst.setString(2, apPaterno.trim());
-            pst.setString(3, apMaterno.trim());
+            pst.setString(1, Nombre.trim());
+            pst.setString(2, Ap_Paterno.trim());
+            pst.setString(3, Ap_Materno.trim());
             pst.setString(4, pass);
-            pst.setString(5, username.trim());
+            pst.setString(5, Username.trim());
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
@@ -306,16 +306,16 @@ public class Model {
         }
     }
     
-    public static boolean autetnicacion( String usuario, String contrasena ){
+    public static boolean autetnicacion( String username, String pass ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?");
-            pst.setString(2, usuario); 
+            pst.setString(2, username); 
             
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()){
-                if(contrasena.equals(rs.getString("constrasena"))){
+                if(pass.equals(rs.getString("pass"))){
                     return true;
                 }
             }
