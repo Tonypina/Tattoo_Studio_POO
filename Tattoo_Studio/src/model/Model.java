@@ -43,7 +43,68 @@ public class Model {
         return null;
     }
     
-    public static void eliminarTatuador( Tatuador t ){
+    public static void modificarTatuador( int id, int contacto ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE tatuador SET celuTatuador = ? WHERE id = " + id);
+            pst.setString(1, Integer.toString(contacto));
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    public static void modificarTatuador( int id, float comision ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE tatuador SET comisionTatuador = ? WHERE id = " + id);
+            pst.setString(1, Float.toString(comision));
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    public static void modificarTatuador( int id, String nombre, String apPat, String apMat ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ? WHERE id = " + id);
+            pst.setString(1, nombre.trim());
+            pst.setString(2, apPat.trim());
+            pst.setString(3, apMat.trim());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    public static void modificarTatuador( int id, String nombre, String apPat, String apMat, int contacto ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, celuTatuador = ? WHERE id = " + id);
+            pst.setString(1, nombre.trim());
+            pst.setString(2, apPat.trim());
+            pst.setString(3, apMat.trim());
+            pst.setString(4, Integer.toString(contacto));
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    public static void modificarTatuador( int id, String nombre, String apPat, String apMat, int contacto, float comision ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, celuTatuador = ?, comisionTatuador = ? WHERE id = " + id);
+            pst.setString(1, nombre.trim());
+            pst.setString(2, apPat.trim());
+            pst.setString(3, apMat.trim());
+            pst.setString(4, Integer.toString(contacto));
+            pst.setString(5, Float.toString(comision));
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
     }
     
     public static void insertarUsuario(){
