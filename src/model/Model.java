@@ -226,6 +226,27 @@ public class Model {
     
     //Usuario
     
+    public static ArrayList<Usuario> getUsuarios(){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("SELECT * FROM usuario");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            ArrayList<Usuario> at = new ArrayList<>();
+            
+            while(rs.next()){
+                at.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("pass"), rs.getFloat("username")));
+            }
+            
+            return at;
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
     public static void insertarUsuario(Usuario u){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
