@@ -139,10 +139,10 @@ CREATE TABLE `usuario` (
   `ap_paterno` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `ap_materno` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `super` tinyint DEFAULT '0',
-  `contrasena` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `pass` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idUsuario`),
-  UNIQUE KEY `password_UNIQUE` (`contrasena`),
+  UNIQUE KEY `password_UNIQUE` (`pass`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
