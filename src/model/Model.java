@@ -252,11 +252,11 @@ public class Model {
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("\"INSERT INTO usuario VALUES(?,?,?,?,?,?)\"");
             pst.setString(1, "");
-            pst.setString(2, u.getNombre());
-            pst.setString(3, u.getAp_paterno());
-            pst.setString(4, u.getAp_materno());
-            pst.setString(5, u.getPass());
-            pst.setString(6, u.getUsername());
+            pst.setString(2, u.getnombre());
+            pst.setString(3, u.getap_paterno());
+            pst.setString(4, u.getap_materno());
+            pst.setString(5, u.getpass());
+            pst.setString(6, u.getusername());
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
@@ -267,7 +267,7 @@ public class Model {
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?");
-            pst.setString(1, Integer.toString(id));
+            pst.setString(1, Integer.toString(idUsuario));
             
             ResultSet rs = pst.executeQuery();
             
@@ -280,15 +280,15 @@ public class Model {
         return null;  
     }
 
-    public static void modificarUsuario(int id, String nombre, String apPaterno, String apMaterno,String pass, String username){
+    public static void modificarUsuario(int idUsuario, String nombre, String ap_paterno, String ap_materno,String pass, String username){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + id);
-            pst.setString(1, Nombre.trim());
-            pst.setString(2, Ap_Paterno.trim());
-            pst.setString(3, Ap_Materno.trim());
+            pst.setString(1, nombre.trim());
+            pst.setString(2, ap_paterno.trim());
+            pst.setString(3, ap_materno.trim());
             pst.setString(4, pass);
-            pst.setString(5, Username.trim());
+            pst.setString(5, username.trim());
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
