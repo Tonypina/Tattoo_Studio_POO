@@ -27,6 +27,14 @@ public class Usuario {
         this.pass = pass;
     }
     
+    public Usuario(int id, String nombre, String ap_paterno, String ap_materno, String username) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ap_paterno = ap_paterno;
+        this.ap_materno = ap_materno;
+        this.username = username;
+    }
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
