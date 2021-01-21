@@ -253,6 +253,75 @@ public class Model {
         return null;
     }
     
+    //Usuario
     
+    public static void insertarUsuario(Usuario u){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("\"INSERT INTO usuario VALUES(?,?,?,?,?,?)\"");
+            pst.setString(1, "");
+            pst.setString(2, u.getnombre());
+            pst.setString(3, u.getAp_paterno());
+            pst.setString(4, u.getAp_materno());
+            pst.setString(5, u.getpass());
+            pst.setString(6, u.getusername());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    public static Usuario buscarUsuario(int id) {  
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?"");
+            pst.setString(1, Integer.toString(id));
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next())
+                return new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), rs.getString("ap_paterno"),rs.getString("ap_paterno"),rs.getString("username"));
+  
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;  
+    }
+
+    public static void modificarUsuario(int id, String nombre, String apPaterno, String apMaterno){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ? WHERE id = " + id);
+            pst.setString(1, nombre.trim());
+            pst.setString(2, apPat.trim());
+            pst.setString(3, apMat.trim());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+
+   }
+
+    public static void modificarUsuario(String pass, String username){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE usuario SET pass = ?, username = ?);
+            pst.setString(1, pass());
+            pst.setString(2, username.trim());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    public static void eliminarUsuario(int id){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("DELETE FROM usuario WHERE idUsuario = " + id");
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
     
 }
