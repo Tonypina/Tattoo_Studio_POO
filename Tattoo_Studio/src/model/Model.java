@@ -134,8 +134,27 @@ public class Model {
         }
     }
     
-    public static void modificarCita( int id ){
-        
+    public static void modificarCita( int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, float anticipo, float precio, int duracion ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
+                                    + "diaInicio = ?, mesInicio = ?, anioInicio = ?, "
+                                    + "diaFinal = ?, mesFinal = ?, anioFinal = ?, "
+                                    + "anticipo = ?, precio = ?, duracion = ? WHERE idTatuador = " + id);
+            pst.setString(1, nombreCliente);
+            pst.setString(2, Integer.toString(diaInicio));
+            pst.setString(3, Integer.toString(mesInicio));
+            pst.setString(4, Integer.toString(anioInicio));
+            pst.setString(5, Integer.toString(diaFinal));
+            pst.setString(6, Integer.toString(mesFinal));
+            pst.setString(7, Integer.toString(anioFinal));
+            pst.setString(8, Float.toString(anticipo));
+            pst.setString(9, Float.toString(precio));
+            pst.setString(10, Integer.toString(duracion));
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
     }
     
     public static void eliminarCita( int id ){
