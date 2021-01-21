@@ -9,18 +9,20 @@ package objects;
  * @author 
  */
 public class Cita {
+    private int idCita;
+    private String nombreCliente;
     private int diaInicio;
     private int mesInicio;
     private int anioInicio;
     private int diaFinal;
     private int mesFinal;
     private int anioFinal;
-    private String nombreCliente;
     private float anticipo;
     private float precio;
     private int duracion; //En minutos
 
-    public Cita(int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, String nombreCliente, float anticipo, float precio, int duracion) {
+    public Cita(int idCita, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, String nombreCliente, float anticipo, float precio, int duracion) {
+        this.idCita = idCita;
         this.diaInicio = diaInicio;
         this.mesInicio = mesInicio;
         this.anioInicio = anioInicio;
@@ -32,7 +34,11 @@ public class Cita {
         this.precio = precio;
         this.duracion = duracion;
     }
-
+    
+    public int getIdCita(){
+        return idCita;
+    }
+    
     public int getDiaInicio() {
         return diaInicio;
     }
@@ -73,6 +79,10 @@ public class Cita {
         return duracion;
     }
 
+    public void setIdCita(int idCita){
+        this.idCita = idCita;
+    }
+    
     public void setDiaInicio(int diaInicio) {
         this.diaInicio = diaInicio;
     }
