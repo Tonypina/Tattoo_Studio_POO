@@ -10,6 +10,27 @@ public class Model {
     private static Connection cn;
     private static PreparedStatement pst;
     
+    public static ArrayList<Tatuador> getTatuadores(){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("SELECT * FROM tatuador");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            ArrayList<Tatuador> at = new ArrayList<>();
+            
+            while(rs.next()){
+                at.add(new Tatuador(rs.getInt("id"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("celTatuador"), rs.getFloat("comisionTatuador")));
+            }
+            
+            return at;
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
     public static void insertarTatuador( Tatuador t ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
