@@ -166,4 +166,43 @@ public class Model {
         }
         return false;
     }
+    
+    // Producto
+    
+    public static void insertarProducto( Producto pro ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("INSERT INTO producto VALUES(?,?,?,?,?,?)");
+            pst.setString(1, "");
+            pst.setString(2, pro.getModeloPro());
+            pst.setString(3, pro.getTipoPro());
+            pst.setString(4, Integer.toString(pro.getCantidadPro()));
+            pst.setString(5, Double.toString(pro.getPrecioPro()));
+            pst.setString(6, pro.getProvedor());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+
+
+    public static Producto buscarProducto( int idPro ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("SELECT * FROM producto WHERE id = ?");
+            pst.setString(1, Integer.toString(idPro));
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next())
+                return new Producto(rs.getInt("id"), rs.getString("modelo"), rs.getString("tipo"), rs.getInt("cantidad"), rs.getDouble("precio"), rs.getString("Provedor"));
+  
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
+    
+    
 }
