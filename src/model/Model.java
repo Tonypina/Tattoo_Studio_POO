@@ -245,6 +245,19 @@ public class Model {
         }
     }
     
+    
+    public static void eliminarProducto( int idProducto ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = " + id);
+
+            pst.setString(1, idProducto.trim());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
     //Usuario
     
     public static ArrayList<Usuario> getUsuarios(){
