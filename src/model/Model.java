@@ -212,11 +212,11 @@ public class Model {
     }
 
 
-    public static Producto buscarProducto( int idProducto ){
+    public static Producto buscarProducto( int idPro ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("SELECT * FROM producto WHERE idProducto = ?");
-            pst.setString(1, Integer.toString(idProducto));
+            pst.setString(1, Integer.toString(idPro));
             
             ResultSet rs = pst.executeQuery();
             
@@ -230,10 +230,10 @@ public class Model {
     }
     
     
-    public static void modificarProducto( int idProducto, String modeloPro, String tipoPro, int cantidadPro, double precioPro, String proveedor){
+    public static void modificarProducto( int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, String proveedor){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, proveedor = ? WHERE idProducto = " + idProducto);
+            pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, proveedor = ? WHERE idProducto = " + idPro);
             pst.setString(1, modeloPro.trim());
             pst.setString(2, tipoPro.trim());
             pst.setString(3, Integer.toString(cantidadPro));
@@ -246,12 +246,10 @@ public class Model {
     }
     
     
-    public static void eliminarProducto( int idProducto ){
+    public static void eliminarProducto( int idPro ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = " + idProducto);
-
-            pst.setString(1, idProducto.trim());
+            pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = " + idPro);
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
@@ -259,13 +257,12 @@ public class Model {
     }
     
     
-    public static void actualizarStock(int idProducto, int cantidadPro){
+    public static void actualizarStock(int idPro, int cantidadPro){
         try {
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE producto SET cantidadPro = ? WHERE idProducto = " + idProducto);
+            pst = cn.prepareStatement("UPDATE producto SET cantidadPro = ? WHERE idProducto = " + idPro);
             
-            pst.setString(1, idProducto.trim());
-            pst.setString(2, Integer.toString(cantidadPro));
+            pst.setString(1, Integer.toString(cantidadPro));
 
         }catch(SQLException e ){
             e.getMessage();
