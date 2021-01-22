@@ -265,7 +265,6 @@ public class Model {
         }
     }
     
-    
     public static void eliminarProducto( int idPro ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
@@ -275,7 +274,6 @@ public class Model {
             e.getMessage();
         }
     }
-    
     
     public static void actualizarStock(int idPro, int cantidadPro){
         try {
@@ -288,7 +286,6 @@ public class Model {
             e.getMessage();
         }
     }
-    
     
     //Usuario
     
@@ -304,7 +301,7 @@ public class Model {
             while(rs.next()){
                 at.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
                                    rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                   rs.getString("username"), rs.getString("pass")));
+                                   rs.getString("username")));
             }
             
             return at;
@@ -318,7 +315,7 @@ public class Model {
     public static void insertarUsuario(Usuario u){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("\"INSERT INTO usuario VALUES(?,?,?,?,?,?)\"");
+            pst = cn.prepareStatement("INSERT INTO usuario VALUES(?,?,?,?,?,?)");
             pst.setString(1, "");
             pst.setString(2, u.getNombre());
             pst.setString(3, u.getAp_paterno());
@@ -340,7 +337,9 @@ public class Model {
             ResultSet rs = pst.executeQuery();
             
             if(rs.next())
-                return new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), rs.getString("ap_paterno"),rs.getString("ap_paterno"),rs.getString("username"));
+                return new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
+                                   rs.getString("ap_paterno"),rs.getString("ap_paterno"), 
+                                   rs.getString("username"));
   
         }catch(SQLException e){
             e.getMessage();
@@ -377,8 +376,7 @@ public class Model {
     public static boolean autetnicacion( String username, String pass ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?");
-            pst.setString(2, username); 
+            pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?" + username); 
             
             ResultSet rs = pst.executeQuery();
             
