@@ -181,19 +181,41 @@ public class Model {
             
             ResultSet rs = pst.executeQuery();
             
-            ArrayList<Producto> at = new ArrayList<>();
+            ArrayList<Producto> pd = new ArrayList<>();
             
             while(rs.next()){
-                at.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), rs.getString("tipoPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro"), rs.getString("proveedor")));
+                pd.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), rs.getString("tipoPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro"), rs.getString("proveedor")));
             }
             
-            return at;
+            return pd;
             
         }catch(SQLException e){
             e.getMessage();
         }
         return null;
     }
+    
+    
+    public static ArrayList<Producto> getTipos( String tipoPro ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("SELECT * FROM producto WHERE tipoPro = " + tipoPro + " ORDER BY tipoPro");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                ArrayList<Producto> tp = new ArrayList<>();
+                while(rs.next()){
+                    tp.add(new Producto(rs.getInt("idPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro")));
+                }
+                return tp;
+            }
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
     
     public static void insertarProducto( Producto pro ){
         try{
