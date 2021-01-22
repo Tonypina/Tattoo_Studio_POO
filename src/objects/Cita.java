@@ -17,11 +17,11 @@ public class Cita {
     private int diaFinal;
     private int mesFinal;
     private int anioFinal;
-    private float anticipo;
-    private float precio;
+    private double anticipo;
+    private double precio;
     private int duracion; //En minutos
 
-    public Cita(int idCita, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, String nombreCliente, float anticipo, float precio, int duracion) {
+    public Cita(int idCita, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, String nombreCliente, double anticipo, double precio, int duracion) {
         this.idCita = idCita;
         this.diaInicio = diaInicio;
         this.mesInicio = mesInicio;
@@ -67,11 +67,11 @@ public class Cita {
         return nombreCliente;
     }
 
-    public float getAnticipo() {
+    public double getAnticipo() {
         return anticipo;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 

@@ -14,15 +14,15 @@ public class Tatuador {
     private String nombre;
     private String ap_pat;
     private String ap_mat;
-    private int contatco;
-    private float comision;
+    private String contacto;
+    private double comision;
 
-    public Tatuador(int id, String nombre, String ap_pat, String ap_mat, int contatco, float comision) {
+    public Tatuador(int id, String nombre, String ap_pat, String ap_mat, String contacto, double comision) {
         this.id = id;
         this.nombre = nombre;
         this.ap_pat = ap_pat;
         this.ap_mat = ap_mat;
-        this.contatco = contatco;
+        this.contacto = contacto;
         this.comision = comision;
     }
     
@@ -38,11 +38,11 @@ public class Tatuador {
         return ap_mat;
     }
 
-    public int getContatco() {
-        return contatco;
+    public String getContacto() {
+        return contacto;
     }
 
-    public float getComision() {
+    public double getComision() {
         return comision;
     }
 
@@ -58,11 +58,11 @@ public class Tatuador {
         this.ap_mat = ap_mat;
     }
 
-    public void setContatco(int contatco) {
-        this.contatco = contatco;
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 
-    public void setComision(float comision) {
+    public void setComision(double comision) {
         this.comision = comision;
     }
 }
