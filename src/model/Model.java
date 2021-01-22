@@ -174,6 +174,27 @@ public class Model {
     
     // Producto
     
+    public static ArrayList<Producto> getProductos(){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("SELECT * FROM producto");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            ArrayList<Producto> at = new ArrayList<>();
+            
+            while(rs.next()){
+                at.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), rs.getString("tipoPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro"), rs.getString("proveedor")));
+            }
+            
+            return at;
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
     public static void insertarProducto( Producto pro ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
