@@ -177,7 +177,7 @@ public class Model {
     public static ArrayList<Producto> getProductos(){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM producto");
+            pst = cn.prepareStatement("SELECT * FROM producto ORDER BY tipoPro");
             
             ResultSet rs = pst.executeQuery();
             
@@ -212,11 +212,11 @@ public class Model {
     }
 
 
-    public static Producto buscarProducto( int idPro ){
+    public static Producto buscarProducto( int idProducto ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("SELECT * FROM producto WHERE idProducto = ?");
-            pst.setString(1, Integer.toString(idPro));
+            pst.setString(1, Integer.toString(idProducto));
             
             ResultSet rs = pst.executeQuery();
             
@@ -249,7 +249,7 @@ public class Model {
     public static void eliminarProducto( int idProducto ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = " + id);
+            pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = " + idProducto);
 
             pst.setString(1, idProducto.trim());
             pst.executeUpdate();
@@ -257,6 +257,21 @@ public class Model {
             e.getMessage();
         }
     }
+    
+    
+    public static void actualizarStock(int idProducto, int cantidadPro){
+        try {
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
+            pst = cn.prepareStatement("UPDATE producto SET cantidadPro = ? WHERE idProducto = " + idProducto);
+            
+            pst.setString(1, idProducto.trim());
+            pst.setString(2, Integer.toString(cantidadPro));
+
+        }catch(SQLException e ){
+            e.getMessage();
+        }
+    }
+    
     
     //Usuario
     
