@@ -195,7 +195,6 @@ public class Model {
         return null;
     }
     
-    
     public static ArrayList<Producto> getTipos( String tipoPro ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
@@ -206,7 +205,9 @@ public class Model {
             if(rs.next()){
                 ArrayList<Producto> tp = new ArrayList<>();
                 while(rs.next()){
-                    tp.add(new Producto(rs.getInt("idPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro")));
+                    tp.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), 
+                                        rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
+                                        rs.getDouble("precioPro"), rs.getString("proveedor")));
                 }
                 return tp;
             }
@@ -215,7 +216,6 @@ public class Model {
         }
         return null;
     }
-    
     
     public static void insertarProducto( Producto pro ){
         try{
@@ -233,7 +233,6 @@ public class Model {
         }
     }
 
-
     public static Producto buscarProducto( int idPro ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
@@ -250,8 +249,7 @@ public class Model {
         }
         return null;
     }
-    
-    
+        
     public static void modificarProducto( int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, String proveedor){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
@@ -304,7 +302,9 @@ public class Model {
             ArrayList<Usuario> at = new ArrayList<>();
             
             while(rs.next()){
-                at.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("pass"), rs.getFloat("username")));
+                at.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
+                                   rs.getString("ap_paterno"), rs.getString("ap_materno"), 
+                                   rs.getString("username"), rs.getString("pass")));
             }
             
             return at;
@@ -320,11 +320,11 @@ public class Model {
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("\"INSERT INTO usuario VALUES(?,?,?,?,?,?)\"");
             pst.setString(1, "");
-            pst.setString(2, u.getnombre());
-            pst.setString(3, u.getap_paterno());
-            pst.setString(4, u.getap_materno());
-            pst.setString(5, u.getpass());
-            pst.setString(6, u.getusername());
+            pst.setString(2, u.getNombre());
+            pst.setString(3, u.getAp_paterno());
+            pst.setString(4, u.getAp_materno());
+            pst.setString(5, u.getPass());
+            pst.setString(6, u.getUsername());
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
@@ -335,7 +335,7 @@ public class Model {
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
             pst = cn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?");
-            pst.setString(1, Integer.toString(idUsuario));
+            pst.setString(1, Integer.toString(id));
             
             ResultSet rs = pst.executeQuery();
             
@@ -351,7 +351,7 @@ public class Model {
     public static void modificarUsuario(int idUsuario, String nombre, String ap_paterno, String ap_materno,String pass, String username){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + id);
+            pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + idUsuario);
             pst.setString(1, nombre.trim());
             pst.setString(2, ap_paterno.trim());
             pst.setString(3, ap_materno.trim());
