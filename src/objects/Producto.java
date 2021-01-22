@@ -1,15 +1,15 @@
 package objects;
 
 public class Producto {
-    private int idPro;
+    private int idProducto;
     private String modeloPro;
     private String tipoPro;
     private int cantidadPro;
     private double precioPro;
     private String proveedor;
     
-    public Producto(int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, String proveedor){
-        this.idPro = idPro;
+    public Producto(int idProducto, String modeloPro, String tipoPro, int cantidadPro, double precioPro, String proveedor){
+        this.idProducto = idProducto;
         this.modeloPro = modeloPro;
         this.tipoPro = tipoPro;
         this.cantidadPro = cantidadPro;
@@ -18,8 +18,8 @@ public class Producto {
         
     }
     
-    public void setIdPro(int idPro){
-        this.idPro = idPro;
+    public void setIdProducto(int idProducto){
+        this.idProducto = idProducto;
     }
     
     public void setModeloPro(String modeloPro){
@@ -42,8 +42,8 @@ public class Producto {
         this.proveedor = proveedor;
     }
     
-    public int getIdPro() {
-        return idPro;
+    public int getIdProducto() {
+        return idProducto;
     }
     
     public String getModeloPro() {
