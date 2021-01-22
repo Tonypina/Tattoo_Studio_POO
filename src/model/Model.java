@@ -16,7 +16,7 @@ public class Model {
     public static ArrayList<Tatuador> getTatuadores(){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM tatuador");
+            pst = cn.prepareStatement("SELECT * FROM tatuador ORDER BY nombre");
             
             ResultSet rs = pst.executeQuery();
             
@@ -97,7 +97,7 @@ public class Model {
     public static ArrayList<Cita> getCitas( int idTatuador ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localost/tattoo_studio_db", "root", "toor");
-            pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuador = " + idTatuador);
+            pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuador = " + idTatuador + " ORDER BY nomClienteCita");
             
             ResultSet rs = pst.executeQuery();
             
