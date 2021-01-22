@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `tattoo_studio_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `tattoo_studio_db`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: localhost    Database: tatoo_studio_db
+-- Host: localhost    Database: tattoo_studio_db
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -24,7 +26,7 @@ DROP TABLE IF EXISTS `cita`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cita` (
   `idCita` int unsigned NOT NULL,
-  `nomClienteCita` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `nomClienteCita` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `diaInicio` int DEFAULT NULL,
   `mesInicio` int DEFAULT NULL,
   `anioInicio` int DEFAULT NULL,
@@ -57,11 +59,11 @@ DROP TABLE IF EXISTS `producto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `producto` (
   `idProducto` int NOT NULL,
-  `modeloPro` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `tipoPro` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `modeloPro` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tipoPro` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `cantidadPro` int DEFAULT NULL,
   `precioPro` double NOT NULL,
-  `proveedor` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `proveedor` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -84,8 +86,8 @@ DROP TABLE IF EXISTS `socio`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `socio` (
   `idSocio` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `comision` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `comision` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idSocio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -108,13 +110,13 @@ DROP TABLE IF EXISTS `tatuador`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tatuador` (
   `idTatuador` int unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `ap_paterno` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `ap_materno` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `contacto` int unsigned DEFAULT NULL,
-  `comision` float NOT NULL,
+  `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ap_paterno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ap_materno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `contacto` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comision` double NOT NULL,
   PRIMARY KEY (`idTatuador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,12 +137,12 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `idUsuario` int unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `ap_paterno` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `ap_materno` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ap_paterno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ap_materno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `super` tinyint DEFAULT '0',
-  `pass` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `username` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `pass` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `password_UNIQUE` (`pass`),
   UNIQUE KEY `username_UNIQUE` (`username`)
@@ -165,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-20 20:25:06
+-- Dump completed on 2021-01-22 16:08:37
