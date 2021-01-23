@@ -1,6 +1,7 @@
 package objects;
 
 public class Tatuador{
+  private int id;
   private String nombre;
   private String ap_pat;
   private String ap_mat;
@@ -28,6 +29,10 @@ public class Tatuador{
         this.Rango[2]=true;
         break;
     }
+  }
+  
+  public int getId(){
+        return id;
   }
   public String getNombre() {
         return nombre;
