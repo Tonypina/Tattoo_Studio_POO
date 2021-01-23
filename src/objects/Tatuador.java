@@ -1,16 +1,19 @@
 package objects;
 
 class Tatuador{
-  private String nombre;
+private String nombre;
   private String ap_pat;
   private String ap_mat;
   private String contacto;
   private int rangoInt;
-  private double total;
-  public boolean[] RangoArr = [Principal, Aprendiz, Secundario];
-
-  Tatuador(String nombre, String ap_pat, String ap_mat, String contacto, Int rangoInt){
-    this.nombre = nombre
+  private boolean Principal;
+  private boolean Aprendiz;
+  private boolean Secundario;
+  public boolean[] RangoArr = new boolean [3];
+  boolean[] Rango = {Principal, Aprendiz, Secundario};
+  
+  Tatuador(String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt){
+    this.nombre = nombre;
     this.ap_pat = ap_pat;
     this.ap_mat = ap_mat;
     this.contacto = contacto;
@@ -53,7 +56,7 @@ class Tatuador{
     public void setContacto(String contacto) {
       this.contacto = contacto;
   }
-    public void setRango(Int rango) {
+    public void setRango(int rango) {
       this.rangoInt = rango;
   }
 }
