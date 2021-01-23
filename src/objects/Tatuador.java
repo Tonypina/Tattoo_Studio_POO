@@ -12,7 +12,7 @@ public class Tatuador{
   public boolean[] RangoArr = new boolean [3];
   boolean[] Rango = {Principal, Aprendiz, Secundario};
   
-  Tatuador(String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt){
+  public Tatuador(String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt){
     this.nombre = nombre;
     this.ap_pat = ap_pat;
     this.ap_mat = ap_mat;
