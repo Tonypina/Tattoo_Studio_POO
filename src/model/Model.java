@@ -20,9 +20,9 @@ public class Model {
             ArrayList<Tatuador> at = new ArrayList<>();
             
             while(rs.next()){
-                at.add(new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
-                                    rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                    rs.getString("contacto"), rs.getDouble("comision"), rs.getDouble("total")));
+                at.add(new Tatuador( rs.getInt("idTatuador"), rs.getString("nombre"), 
+                                     rs.getString("ap_paterno"), rs.getString("ap_materno"), 
+                                     rs.getString("contacto"), rs.getInt("rango")));
             }
             
             return at;
@@ -37,14 +37,13 @@ public class Model {
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             System.out.println("Entré a la base");
-            PreparedStatement pst = cn.prepareStatement("insert into tatuador values(?,?,?,?,?,?,?)");
-            pst.setString(1, "0");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO tatuador VALUES(?,?,?,?,?,?)");
+            pst.setString(1, "");
             pst.setString(2, t.getNombre());
             pst.setString(3, t.getAp_pat());
             pst.setString(4, t.getAp_mat());
             pst.setString(5, t.getContacto());
-            pst.setString(6, Double.toString(t.getComision()));
-            pst.setString(7, Double.toString(t.getTotal()));
+            pst.setString(6, Integer.toString(t.getRango()));
             pst.executeUpdate();
         }catch(Exception e){
             e.getMessage();
@@ -62,7 +61,7 @@ public class Model {
             if(rs.next())
                 return new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
                                     rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                    rs.getString("contacto"), rs.getDouble("comision"), rs.getDouble("total"));
+                                    rs.getString("contacto"), rs.getInt("rango"));
   
         }catch(SQLException e){
             e.getMessage();
@@ -73,7 +72,7 @@ public class Model {
     public static ArrayList<Tatuador> buscarTatuador( String nombre ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador WHERE nombre = ?");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador WHERE nombre = ? ORDER BY nombre");
             pst.setString(1, nombre);
             
             ResultSet rs = pst.executeQuery();
@@ -83,7 +82,7 @@ public class Model {
             while(rs.next()){
                 at.add(new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
                                     rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                    rs.getString("contacto"), rs.getFloat("comision"), rs.getDouble("total")));
+                                    rs.getString("contacto"), rs.getInt("rango")));
             }
             
             return at;
@@ -96,13 +95,12 @@ public class Model {
     public static void modificarTatuador( Tatuador t ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ?, comision = ?, total = ? WHERE idTatuador = " + t.getId());
+            PreparedStatement pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ?, rango = ? WHERE idTatuador = " + t.getId());
             pst.setString(1, t.getNombre().trim());
             pst.setString(2, t.getAp_pat().trim());
             pst.setString(3, t.getAp_mat().trim());
             pst.setString(4, t.getContacto());
-            pst.setString(5, Double.toString(t.getComision()));
-            pst.setString(6, Double.toString(t.getTotal()));
+            pst.setString(5, Integer.toString(t.getRango()));
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
