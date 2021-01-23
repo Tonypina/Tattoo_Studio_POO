@@ -28,6 +28,10 @@ public class Tatuador {
         this.total = total;
     }
     
+    public int getId(){
+        return id;
+    }
+    
     public String getNombre() {
         return nombre;
     }
