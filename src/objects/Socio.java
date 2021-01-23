@@ -1,6 +1,7 @@
 package objects;
 
 public class Socio{
+  private int id;
   private String nombre;
   private String contacto;
   private boolean rango;
@@ -12,6 +13,19 @@ public class Socio{
 
   }
 
+  // Sobrecarga de constructor para base de datos
+  public Socio(int id, String nombre, String contacto, boolean rango){
+    this.id = id;
+    this.setNombre(nombre);
+    this.setContacto(contacto);
+    this.setRango(rango);
+
+  }
+
+	public int getId(){
+		return id;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
