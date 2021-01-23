@@ -31,6 +31,26 @@ public class Tatuador{
     }
   }
   
+  // Sobrecarga del contructor para la base de datos.
+  public Tatuador(int id, String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt){
+    this.id = id;
+    this.nombre = nombre;
+    this.ap_pat = ap_pat;
+    this.ap_mat = ap_mat;
+    this.contacto = contacto;
+    switch (rangoInt) {
+      case 1:
+        this.Rango[0]=true;
+        break;
+      case 2:
+        this.Rango[1]=true;
+        break;
+      case 3:
+        this.Rango[2]=true;
+        break;
+    }
+  }
+  
   public int getId(){
         return id;
   }
