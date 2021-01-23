@@ -4,6 +4,7 @@ public class Socio{
   private String nombre;
   private String contacto;
   private boolean rango;
+  private double total;
 
   public Socio(String nombre, String contacto, boolean rango){
     this.nombre = nombre;
