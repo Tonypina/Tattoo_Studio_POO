@@ -36,7 +36,6 @@ public class Model {
     public static void insertarTatuador( Tatuador t ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            System.out.println("Entré a la base");
             PreparedStatement pst = cn.prepareStatement("insert into tatuador values(?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, t.getNombre());
