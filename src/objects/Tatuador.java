@@ -1,7 +1,7 @@
 package objects;
 
 class Tatuador{
-private String nombre;
+  private String nombre;
   private String ap_pat;
   private String ap_mat;
   private String contacto;
