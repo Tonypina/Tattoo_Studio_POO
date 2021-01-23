@@ -5,7 +5,8 @@ class Tatuador{
   private String ap_pat;
   private String ap_mat;
   private String contacto;
-  private Int rangoInt;
+  private int rangoInt;
+  private double total;
   public boolean[] RangoArr = [Principal, Aprendiz, Secundario];
 
   Tatuador(String nombre, String ap_pat, String ap_mat, String contacto, Int rangoInt){
