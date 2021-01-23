@@ -41,7 +41,7 @@ public class Tatuador{
   public String getContacto() {
       return contacto;
   }
-    public double getRango() {
+    public int getRango() {
       return rangoInt;
   }
     public void setNombre(String nombre) {
