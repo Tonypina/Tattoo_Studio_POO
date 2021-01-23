@@ -1,6 +1,6 @@
 package objects;
 
-class Tatuador{
+public class Tatuador{
   private String nombre;
   private String ap_pat;
   private String ap_mat;
