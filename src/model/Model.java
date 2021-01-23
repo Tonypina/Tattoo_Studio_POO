@@ -22,7 +22,7 @@ public class Model {
             while(rs.next()){
                 at.add(new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
                                     rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                    rs.getString("contacto"), rs.getFloat("comision")));
+                                    rs.getString("contacto"), rs.getDouble("comision"), rs.getDouble("total")));
             }
             
             return at;
@@ -36,13 +36,15 @@ public class Model {
     public static void insertarTatuador( Tatuador t ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("insert into tatuador values(?,?,?,?,?,?)");
+            System.out.println("Entré a la base");
+            PreparedStatement pst = cn.prepareStatement("insert into tatuador values(?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, t.getNombre());
             pst.setString(3, t.getAp_pat());
             pst.setString(4, t.getAp_mat());
             pst.setString(5, t.getContacto());
             pst.setString(6, Double.toString(t.getComision()));
+            pst.setString(7, Double.toString(t.getTotal()));
             pst.executeUpdate();
         }catch(Exception e){
             e.getMessage();
@@ -60,7 +62,7 @@ public class Model {
             if(rs.next())
                 return new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
                                     rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                    rs.getString("contacto"), rs.getDouble("comision"));
+                                    rs.getString("contacto"), rs.getDouble("comision"), rs.getDouble("total"));
   
         }catch(SQLException e){
             e.getMessage();
@@ -81,7 +83,7 @@ public class Model {
             while(rs.next()){
                 at.add(new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
                                     rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                    rs.getString("contacto"), rs.getFloat("comision")));
+                                    rs.getString("contacto"), rs.getFloat("comision"), rs.getDouble("total")));
             }
             
             return at;
@@ -91,15 +93,16 @@ public class Model {
         return null;
     }
     
-    public static void modificarTatuador( int id, String nombre, String apPat, String apMat, int contacto, double comision ){
+    public static void modificarTatuador( Tatuador t ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ?, comision = ? WHERE idTatuador = " + id);
-            pst.setString(1, nombre.trim());
-            pst.setString(2, apPat.trim());
-            pst.setString(3, apMat.trim());
-            pst.setString(4, Integer.toString(contacto));
-            pst.setString(5, Double.toString(comision));
+            PreparedStatement pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ?, comision = ?, total = ? WHERE idTatuador = " + t.getId());
+            pst.setString(1, t.getNombre().trim());
+            pst.setString(2, t.getAp_pat().trim());
+            pst.setString(3, t.getAp_mat().trim());
+            pst.setString(4, t.getContacto());
+            pst.setString(5, Double.toString(t.getComision()));
+            pst.setString(6, Double.toString(t.getTotal()));
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
