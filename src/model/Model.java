@@ -428,7 +428,7 @@ public class Model {
             ArrayList<Socio> so = new ArrayList<>();
             
             while(rs.next()){
-                so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("comision")));
+                so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("contacto"), rs.getBoolean("rango")));
             }
             
             return so;
@@ -448,7 +448,8 @@ public class Model {
             PreparedStatement pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?)");
             pst.setString(1, "");
             pst.setString(2, s.getNombre());
-            pst.setString(3, s.getComision());
+            pst.setString(3, s.getContacto());
+            pst.setBoolean(4, Boolean.toString(rango));
             pst.executeUpdate();
         }catch(Exception e){
             e.getMessage();
@@ -465,7 +466,7 @@ public class Model {
             ResultSet rs = pst.executeQuery();
             
             if(rs.next())
-                return new Socio(rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("comision"));
+                return new Socio(rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("contacto"), rs.getBoolean("rango"));
   
         }catch(SQLException e){
             e.getMessage();
@@ -480,7 +481,8 @@ public class Model {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, comision = ? WHERE idSocio = " + s.getId());
             pst.setString(1, s.getNombre().trim());
-            pst.setString(2, s.getComision().trim());
+            pst.setString(2, s.getContacto().trim());
+            pst.setBoolean(3, s.getRango().trim());
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
