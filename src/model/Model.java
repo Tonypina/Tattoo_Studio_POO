@@ -415,5 +415,88 @@ public class Model {
         }
         return false;
     }
+    
+    
+    
+    public static ArrayList<Socio> getSocios(){
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM socio ORDER BY nombre");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            ArrayList<Socio> so = new ArrayList<>();
+            
+            while(rs.next()){
+                so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("comision")));
+            }
+            
+            return so;
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+
+    
+    //Socio
+
+    public static void insertarSocio( Socio s ){
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            System.out.println("Entré a la base");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?)");
+            pst.setString(1, "");
+            pst.setString(2, s.getNombre());
+            pst.setString(3, s.getComision());
+            pst.executeUpdate();
+        }catch(Exception e){
+            e.getMessage();
+        }
+    }
+
+
+    public static Socio buscarSocio( int id ){
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM socio WHERE idSocio = ?");
+            pst.setString(1, Integer.toString(id));
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next())
+                return new Socio(rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("comision"));
+  
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+
+
+
+    public static void modificarSocio( Socio s ){
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, comision = ? WHERE idSocio = " + s.getId());
+            pst.setString(1, s.getNombre().trim());
+            pst.setString(2, s.getComision().trim());
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+
+
+    public static void eliminarSocio( int id ){
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("DELETE FROM socio WHERE idSocio = " + id);
+            pst.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
 
 }
