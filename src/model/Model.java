@@ -416,7 +416,7 @@ public class Model {
         return false;
     }
     
-    
+    //Socio
     
     public static ArrayList<Socio> getSocios(){
         try{
@@ -440,8 +440,7 @@ public class Model {
     }
 
     
-    //Socio
-
+    
     public static void insertarSocio( Socio s ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
