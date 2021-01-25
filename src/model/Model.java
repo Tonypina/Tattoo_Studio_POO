@@ -45,7 +45,7 @@ public class Model {
             pst.setString(5, t.getContacto());
             pst.setString(6, Integer.toString(t.getRango()));
             pst.executeUpdate();
-        }catch(Exception e){
+        }catch(SQLException e){
             e.getMessage();
         }
     }
@@ -428,7 +428,8 @@ public class Model {
             ArrayList<Socio> so = new ArrayList<>();
             
             while(rs.next()){
-                so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("contacto"), rs.getBoolean("rango")));
+                so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), 
+                                  rs.getString("contacto"), rs.getBoolean("rango")));
             }
             
             return so;
@@ -445,13 +446,17 @@ public class Model {
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             System.out.println("Entré a la base");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?,?)");
             pst.setString(1, "");
             pst.setString(2, s.getNombre());
             pst.setString(3, s.getContacto());
-            pst.setBoolean(4, Boolean.toString(rango));
+            if( s.isRango() ){
+                pst.setString(4, "0");
+            } else {
+                pst.setString(4, "1");
+            }
             pst.executeUpdate();
-        }catch(Exception e){
+        }catch(SQLException e){
             e.getMessage();
         }
     }
@@ -482,7 +487,11 @@ public class Model {
             PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, comision = ? WHERE idSocio = " + s.getId());
             pst.setString(1, s.getNombre().trim());
             pst.setString(2, s.getContacto().trim());
-            pst.setBoolean(3, s.getRango().trim());
+            if( s.isRango() ){
+                pst.setString(3, "0");
+            } else {
+                pst.setString(3, "1");
+            }
             pst.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
