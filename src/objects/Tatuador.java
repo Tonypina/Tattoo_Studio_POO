@@ -12,12 +12,14 @@ public class Tatuador{
     private boolean Secundario;
     public boolean[] RangoArr = new boolean [3];
     boolean[] Rango = {Principal, Aprendiz, Secundario};
+    private double total;
   
-    public Tatuador(String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt){
+    public Tatuador(String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt, double total){
       this.nombre = nombre;
       this.ap_pat = ap_pat;
       this.ap_mat = ap_mat;
       this.contacto = contacto;
+      this.total = total;
       switch (rangoInt) {
         case 1:
           this.Rango[0]=true;
@@ -32,12 +34,13 @@ public class Tatuador{
     }
 
     // Sobrecarga del contructor para la base de datos.
-    public Tatuador(int id, String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt){
+    public Tatuador(int id, String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt, double total){
         this.id = id;
         this.nombre = nombre;
         this.ap_pat = ap_pat;
         this.ap_mat = ap_mat;
         this.contacto = contacto;
+        this.total = total;
         switch (rangoInt) {
           case 1:
             this.Rango[0]=true;
@@ -49,6 +52,10 @@ public class Tatuador{
             this.Rango[2]=true;
             break;
         }
+    }
+    
+    public double getTotal(){
+        return total;
     }
 
     public int getId(){
@@ -72,6 +79,9 @@ public class Tatuador{
     
     public int getRango() {
         return rangoInt;
+    }
+    public void setTotal(double total){
+        this.total = total;
     }
     
     public void setNombre(String nombre) {
