@@ -130,11 +130,14 @@ public class Cita {
     public boolean CompraClip(){
 	    return true;
     }
+
     public boolean CompraProducto(){
 	    return true;
     }
 
-
+    public Tatuador NombreTatuador(){
+        return NombreTatuador;
+    }
 
     public ArrayList<String> Ticket(Producto PC, String NombreTatuador, double Precio, Cita Datos, boolean Clip){
 	    ArrayList<String> Ticket= new ArrayList<>();
