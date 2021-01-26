@@ -135,7 +135,7 @@ public class Cita {
 	    return true;
     }
 
-    public Tatuador NombreTatuador(){
+    public Tatuador getNombreTatuador(){
         return NombreTatuador;
     }
 
