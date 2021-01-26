@@ -17,7 +17,8 @@ public class Model {
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             double ganancia = obtenerGanancia();
-            pst = cn.prepareStatement("UPDATE estudio SET ganancia = "+(ganancia+aumento));
+            pst = cn.prepareStatement("UPDATE estudio SET ganancia = ? WHERE idEstudio = 1");
+            pst.setString(1, Double.toString(aumento+ganancia));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -58,7 +59,36 @@ public class Model {
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             double reinversion = obtenerReinversion();
-            pst = cn.prepareStatement("UPDATE estudio SET reinversion = "+(reinversion+aumento));
+            pst = cn.prepareStatement("UPDATE estudio SET reinversion = ? WHERE idEstudio = 1");
+            pst.setString(1, Double.toString(reinversion+aumento));
+            pst.executeUpdate();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    public static double obtenerPagoProveedores(){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            pst = cn.prepareStatement("SELECT * FROM estudio WHERE idEstudio = 1");
+            rs = pst.executeQuery();
+            cn.close();
+            pst.close();
+            return rs.getDouble("pagoProveedores");
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return 0.0;
+    }
+    
+    public static void aumentarPagoProveedores( double aumento ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            double pagoProveedores = obtenerPagoProveedores();
+            pst = cn.prepareStatement("UPDATE estudio SET pagoProveedores = ? WHERE idEstudio = 1");
+            pst.setString(1, Double.toString(pagoProveedores+aumento));
             pst.executeUpdate();
             pst.close();
             cn.close();
