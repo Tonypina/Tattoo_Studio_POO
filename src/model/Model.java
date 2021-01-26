@@ -251,7 +251,8 @@ public class Model {
     public static void insertarCita( Cita c ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            pst = cn.prepareStatement("INSERT INTO cita VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            pst = cn.prepareStatement("INSERT INTO cita(idCita, nombreCliente, diaInicio, mesInicio, anioInicio, diaFinal, mesFinal, anioFinal, anticipo, duracion, idTatuador) "
+                                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, "");
             pst.setString(2, c.getNombreCliente());
             pst.setString(3, Integer.toString(c.getDiaInicio()));
@@ -263,6 +264,7 @@ public class Model {
             pst.setString(9, Double.toString(c.getAnticipo()));
             pst.setString(10, Double.toString(c.getPrecio()));
             pst.setString(11, Integer.toString(c.getDuracion()));
+            pst.setString(12, Integer.toString(c.getNombreTatuador().getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -271,13 +273,13 @@ public class Model {
         }
     }
     
-    public static void modificarCita( int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, float anticipo, float precio, int duracion ){
+    public static void modificarCita( int idCita, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, float anticipo, float precio, int duracion ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
                                     + "diaInicio = ?, mesInicio = ?, anioInicio = ?, "
                                     + "diaFinal = ?, mesFinal = ?, anioFinal = ?, "
-                                    + "anticipo = ?, precio = ?, duracion = ? WHERE idTatuador = " + id);
+                                    + "anticipo = ?, precio = ?, duracion = ? WHERE idTatuador = " + idCita);
             pst.setString(1, nombreCliente);
             pst.setString(2, Integer.toString(diaInicio));
             pst.setString(3, Integer.toString(mesInicio));
