@@ -220,6 +220,18 @@ public class Model {
         }
     }
     
+    public static void eliminarTatuador( int id ){
+        try{
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            pst = cn.prepareStatement("DELETE FROM tatuador WHERE idTatuador = " + id);
+            pst.executeUpdate();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
     // Citas
     
     public static ArrayList<Cita> getCitas( int idTatuador ){
@@ -450,20 +462,20 @@ public class Model {
     public static ArrayList<Usuario> getUsuarios(){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            pst = cn.prepareStatement("SELECT * FROM usuario");
+            pst = cn.prepareStatement("SELECT * FROM usuario ORDER BY nombre");
             
             rs = pst.executeQuery();
             
-            ArrayList<Usuario> at = new ArrayList<>();
+            ArrayList<Usuario> us = new ArrayList<>();
             
             while(rs.next()){
-                at.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
+                us.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
                                    rs.getString("ap_paterno"), rs.getString("ap_materno"), 
                                    rs.getString("username")));
             }
             pst.close();
             cn.close();
-            return at;
+            return us;
             
         }catch(SQLException e){
             e.getMessage();
@@ -577,7 +589,7 @@ public class Model {
             
             while(rs.next()){
                 so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), 
-                                  rs.getString("contacto"), rs.getBoolean("rango"), rs.getDouble("total")));
+                                  rs.getString("contacto"), rs.getBoolean("rango")));
             }
             pst.close();
             cn.close();
@@ -595,7 +607,7 @@ public class Model {
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             System.out.println("Entré a la base");
-            pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?,?,?)");
+            pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?,?)");
             pst.setString(1, "");
             pst.setString(2, s.getNombre());
             pst.setString(3, s.getContacto());
@@ -604,7 +616,6 @@ public class Model {
             } else {
                 pst.setString(4, "1");
             }
-            pst.setString(5, Double.toString(s.getTotal()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -625,7 +636,7 @@ public class Model {
             if(rs.next()){
                 pst.close();
                 cn.close();
-                return new Socio(rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("contacto"), rs.getBoolean("rango"), rs.getDouble("total"));
+                return new Socio(rs.getInt("idSocio"), rs.getString("nombre"), rs.getString("contacto"), rs.getBoolean("rango"));
             }
             pst.close();
             cn.close();
@@ -669,8 +680,4 @@ public class Model {
         }
     }
 
-    public static void main(String a[]){
-        Model.insertarTatuador(new Tatuador("a","b","c","d",1,2.5));
-    }
-    
 }
