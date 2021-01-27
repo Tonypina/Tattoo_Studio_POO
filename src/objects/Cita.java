@@ -13,8 +13,9 @@ public class Cita {
     private int diaFinal;
     private int mesFinal;
     private int anioFinal;
+    private Tatuador tatuador;
 
-    public Cita(int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal) {
+    public Cita(int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, Tatuador tatuador) {
         this.id = id;
         this.nombreCliente = nombreCliente;
         this.diaInicio = diaInicio;
@@ -23,10 +24,11 @@ public class Cita {
         this.diaFinal = diaFinal;
         this.mesFinal = mesFinal;
         this.anioFinal = anioFinal;
+        this.tatuador = tatuador;
     }
     
     // Sobrecarga de constructor para la base de datos.
-    public Cita(String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, int duracion, Ticket ticket) {
+    public Cita(String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, Tatuador tatuador) {
         this.nombreCliente = nombreCliente;
         this.diaInicio = diaInicio;
         this.mesInicio = mesInicio;
@@ -34,8 +36,13 @@ public class Cita {
         this.diaFinal = diaFinal;
         this.mesFinal = mesFinal;
         this.anioFinal = anioFinal;
+        this.tatuador = tatuador;
     }
 
+    public Tatuador geTatuador(){
+        return tatuador;
+    }
+    
     public int getIdCita() {
         return id;
     }
@@ -68,6 +75,10 @@ public class Cita {
         return anioFinal;
     }
 
+    public void setTatuador(Tatuador tatuador){
+        this.tatuador = tatuador;
+    }
+    
     public void setIdCita(int id) {
         this.id = id;
     }
