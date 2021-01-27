@@ -112,6 +112,7 @@ DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE `proveedor` (
   `idProveedor` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
+  `contacto` varchar(45) DEFAULT NULL,
   `total` double DEFAULT NULL,
   `margen` double DEFAULT NULL,
   PRIMARY KEY (`idProveedor`)
@@ -219,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-26 18:16:49
+-- Dump completed on 2021-01-26 18:45:23
