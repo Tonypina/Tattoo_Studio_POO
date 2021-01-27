@@ -127,39 +127,9 @@ public class Cita {
         this.duracion = duracion;
     }
 
-    public boolean CompraClip(){
-	    return true;
-    }
-
-    public boolean CompraProducto(){
-	    return true;
-    }
-
     public Tatuador getNombreTatuador(){
         return NombreTatuador;
     }
 
-    public ArrayList<String> Ticket(Producto PC, String NombreTatuador, double Precio, Cita Datos, boolean Clip){
-	    ArrayList<String> Ticket= new ArrayList<>();
-	    this.Clip=Clip;
-	    Ticket.add(NombreTatuador);
-	    // Para Verificar si la compra fue con clip
-	    if(Datos.CompraClip()){
-		    this.Clip=true;
-		    Ticket.add(this.Clip);
-	    }
-	    else{
-		    this.Clip=false;
-		    Ticket.add(this.Clip);
-
-	    }
-	    // Para Verificar si hubo compra de objeto
-	    if(Datos.CompraProducto()){
-		    Ticket.add(PC);
-	    }
-
-	    Ticket.add(Datos.getPrecio());
-
-	    return Ticket;
-    }
+    
 }
