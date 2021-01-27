@@ -13,10 +13,8 @@ public class Cita {
     private int diaFinal;
     private int mesFinal;
     private int anioFinal;
-    private int duracion;
-    private Ticket ticket;
 
-    public Cita(int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, int duracion, Ticket ticket) {
+    public Cita(int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal) {
         this.id = id;
         this.nombreCliente = nombreCliente;
         this.diaInicio = diaInicio;
@@ -25,8 +23,6 @@ public class Cita {
         this.diaFinal = diaFinal;
         this.mesFinal = mesFinal;
         this.anioFinal = anioFinal;
-        this.duracion = duracion;
-        this.ticket = ticket;
     }
     
     // Sobrecarga de constructor para la base de datos.
@@ -38,8 +34,6 @@ public class Cita {
         this.diaFinal = diaFinal;
         this.mesFinal = mesFinal;
         this.anioFinal = anioFinal;
-        this.duracion = duracion;
-        this.ticket = ticket;
     }
 
     public int getIdCita() {
@@ -74,14 +68,6 @@ public class Cita {
         return anioFinal;
     }
 
-    public int getDuracion() {
-        return duracion;
-    }
-
-    public Ticket getTicket() {
-        return ticket;
-    }
-
     public void setIdCita(int id) {
         this.id = id;
     }
@@ -112,14 +98,6 @@ public class Cita {
 
     public void setAnioFinal(int anioFinal) {
         this.anioFinal = anioFinal;
-    }
-
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
     }
     
 }
