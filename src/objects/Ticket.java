@@ -15,7 +15,7 @@ public class Ticket {
     private ArrayList<Producto> productos;
     
 
-    public Ticket(int id, boolean clip, boolean prod, double anticipo, double total, Tatuador tatuador) {
+    public Ticket(int id, boolean clip, boolean prod, double anticipo, double total, Tatuador tatuador, ArrayList<Producto> productos) {
         this.id = id;
         this.clip = clip;
         this.prod = prod;
@@ -26,7 +26,7 @@ public class Ticket {
     }
 
     // Sobrecarga de constructor para la Base de Datos.
-    public Ticket(boolean clip, boolean prod, double anticipo, double total, Tatuador tatuador) {
+    public Ticket(boolean clip, boolean prod, double anticipo, double total, Tatuador tatuador, ArrayList<Producto> productos) {
         this.clip = clip;
         this.prod = prod;
         this.anticipo = anticipo;
@@ -87,7 +87,7 @@ public class Ticket {
         this.tatuador = tatuador;
     }
 
-    public void setProductos() {
+    public void setProductos(ArrayList<Producto> productos) {
         this.productos = productos;
     }
 }
