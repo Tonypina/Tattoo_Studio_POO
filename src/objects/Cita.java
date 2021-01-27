@@ -39,7 +39,7 @@ public class Cita {
         this.idTatuador = idTatuador;
     }
 
-    public int geIdTatuador(){
+    public int getIdTatuador(){
         return idTatuador;
     }
     
@@ -75,7 +75,7 @@ public class Cita {
         return anioFinal;
     }
 
-    public void setTatuador(int idTatuador){
+    public void setIdTatuador(int idTatuador){
         this.idTatuador = idTatuador;
     }
     
