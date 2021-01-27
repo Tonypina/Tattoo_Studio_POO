@@ -17,6 +17,8 @@ public class Ticket {
     private double total;
     private Tatuador tatuador;
     private Producto compra;
+    private boolean visita;
+    
 
     public Ticket(int id, boolean clip, boolean prod, double anticipo, double total, Tatuador tatuador, Producto compra) {
         this.id = id;
