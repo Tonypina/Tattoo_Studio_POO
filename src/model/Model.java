@@ -225,18 +225,17 @@ public class Model {
     public static ArrayList<Cita> getCitas( int idTatuador ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuador = " + idTatuador + " ORDER BY nomClienteCita");
+            pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuadorCita = " + idTatuador + " ORDER BY nomClienteCita");
             
             rs = pst.executeQuery();
             
             if(rs.next()){
                 ArrayList<Cita> ac = new ArrayList<>();
                 while(rs.next()){
-                    ac.add(new Cita(rs.getInt("idCita"), rs.getInt("diaInicio"), rs.getInt("mesInicio"), 
+                    ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
+                            rs.getInt("diaInicio"), rs.getInt("mesInicio"), 
                             rs.getInt("anioInicio"), rs.getInt("diaFinal"), 
-                            rs.getInt("mesFinal"), rs.getInt("anioFinal"), 
-                            rs.getString("nomClienteCita"), rs.getDouble("anticipo"), 
-                            rs.getDouble("precio"), rs.getInt("duracion")));
+                            rs.getInt("mesFinal"), rs.getInt("anioFinal"), rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -253,8 +252,8 @@ public class Model {
     public static void insertarCita( Cita c ){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            pst = cn.prepareStatement("INSERT INTO cita(idCita, nombreCliente, diaInicio, mesInicio, anioInicio, diaFinal, mesFinal, anioFinal, anticipo, duracion, idTatuador) "
-                                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+            pst = cn.prepareStatement("INSERT INTO cita(idCita, nombreCliente, diaInicio, mesInicio, anioInicio, diaFinal, mesFinal, anioFinal, idTatuador) "
+                                    + "VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, "");
             pst.setString(2, c.getNombreCliente());
             pst.setString(3, Integer.toString(c.getDiaInicio()));
@@ -263,10 +262,7 @@ public class Model {
             pst.setString(6, Integer.toString(c.getDiaFinal()));
             pst.setString(7, Integer.toString(c.getMesFinal()));
             pst.setString(8, Integer.toString(c.getAnioFinal()));
-            pst.setString(9, Double.toString(c.getAnticipo()));
-            pst.setString(10, Double.toString(c.getPrecio()));
-            pst.setString(11, Integer.toString(c.getDuracion()));
-            pst.setString(12, Integer.toString(c.getNombreTatuador().getId()));
+            pst.setString(9, Integer.toString(c.getIdTatuador()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -280,8 +276,7 @@ public class Model {
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
                                     + "diaInicio = ?, mesInicio = ?, anioInicio = ?, "
-                                    + "diaFinal = ?, mesFinal = ?, anioFinal = ?, "
-                                    + "anticipo = ?, precio = ?, duracion = ? WHERE idTatuador = " + idCita);
+                                    + "diaFinal = ?, mesFinal = ?, anioFinal = ? WHERE idCita = "+idCita);
             pst.setString(1, nombreCliente);
             pst.setString(2, Integer.toString(diaInicio));
             pst.setString(3, Integer.toString(mesInicio));
@@ -289,9 +284,6 @@ public class Model {
             pst.setString(5, Integer.toString(diaFinal));
             pst.setString(6, Integer.toString(mesFinal));
             pst.setString(7, Integer.toString(anioFinal));
-            pst.setString(8, Float.toString(anticipo));
-            pst.setString(9, Float.toString(precio));
-            pst.setString(10, Integer.toString(duracion));
             pst.executeUpdate();
             pst.close();
             cn.close();
