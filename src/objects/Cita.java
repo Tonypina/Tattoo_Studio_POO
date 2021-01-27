@@ -1,13 +1,11 @@
 package objects;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author
  */
 public class Cita {
-    private int idCita;
+    private int id;
     private String nombreCliente;
     private int diaInicio;
     private int mesInicio;
@@ -15,32 +13,41 @@ public class Cita {
     private int diaFinal;
     private int mesFinal;
     private int anioFinal;
-    private double anticipo;
-    private double precio;
-    private int duracion; //En minutos
-    //Sirven para el metodo Ticket
-    private Tatuador NombreTatuador;
-    private Producto ProductoComp;
-    private boolean Clip;
-    private boolean Prod;
+    private int duracion;
+    private Ticket ticket;
 
-
-    public Cita(int idCita, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, String nombreCliente, double anticipo, double precio, int duracion) {
-        this.idCita = idCita;
+    public Cita(int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, int duracion, Ticket ticket) {
+        this.id = id;
+        this.nombreCliente = nombreCliente;
         this.diaInicio = diaInicio;
         this.mesInicio = mesInicio;
         this.anioInicio = anioInicio;
         this.diaFinal = diaFinal;
         this.mesFinal = mesFinal;
         this.anioFinal = anioFinal;
-        this.nombreCliente = nombreCliente;
-        this.anticipo = anticipo;
-        this.precio = precio;
         this.duracion = duracion;
+        this.ticket = ticket;
+    }
+    
+    // Sobrecarga de constructor para la base de datos.
+    public Cita(String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, int duracion, Ticket ticket) {
+        this.nombreCliente = nombreCliente;
+        this.diaInicio = diaInicio;
+        this.mesInicio = mesInicio;
+        this.anioInicio = anioInicio;
+        this.diaFinal = diaFinal;
+        this.mesFinal = mesFinal;
+        this.anioFinal = anioFinal;
+        this.duracion = duracion;
+        this.ticket = ticket;
     }
 
-    public int getIdCita(){
-        return idCita;
+    public int getIdCita() {
+        return id;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
     public int getDiaInicio() {
@@ -67,24 +74,20 @@ public class Cita {
         return anioFinal;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public double getAnticipo() {
-        return anticipo;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
     public int getDuracion() {
         return duracion;
     }
 
-    public void setIdCita(int idCita){
-        this.idCita = idCita;
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setIdCita(int id) {
+        this.id = id;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
     public void setDiaInicio(int diaInicio) {
@@ -111,25 +114,12 @@ public class Cita {
         this.anioFinal = anioFinal;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public void setAnticipo(float anticipo) {
-        this.anticipo = anticipo;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
-    }
-
     public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
-    public Tatuador getNombreTatuador(){
-        return NombreTatuador;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
-
     
 }
