@@ -21,6 +21,7 @@ class Controladora{
           monto += t.productos[count].precioPro*(1-margen);
           proveedorBLK += t.productos[count].precioPro*margen; //Es neceseria una clase proveedor que contenga un String name, double total, double margen.
           t.productos[count].cantidadPro -= 1;
+          actualizarStock()
         }
       }
     }
