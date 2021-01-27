@@ -64,7 +64,7 @@ public class Ticket {
         return tatuador;
     }
 
-    public ArrayList<Producto> getproductos() {
+    public ArrayList<Producto> getProductos() {
         return productos;
     }
 
@@ -92,7 +92,7 @@ public class Ticket {
         this.tatuador = tatuador;
     }
 
-    public void setproductos() {
+    public void setProductos() {
         this.productos = productos;
     }
 }
