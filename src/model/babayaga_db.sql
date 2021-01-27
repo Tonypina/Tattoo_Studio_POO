@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `tattoo_studio_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `tattoo_studio_db`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tattoo_studio_db
@@ -33,11 +31,8 @@ CREATE TABLE `cita` (
   `diaFinal` int DEFAULT NULL,
   `mesFinal` int DEFAULT NULL,
   `anioFinal` int DEFAULT NULL,
-  `anticipo` float DEFAULT NULL,
-  `precio` float DEFAULT NULL,
-  `duracion` int DEFAULT NULL,
   PRIMARY KEY (`idCita`),
-  CONSTRAINT `idTatuador` FOREIGN KEY (`idCita`) REFERENCES `tatuador` (`idTatuador`)
+  CONSTRAINT `idTatuadorCita` FOREIGN KEY (`idCita`) REFERENCES `tatuador` (`idTatuador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,13 +78,13 @@ DROP TABLE IF EXISTS `producto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `producto` (
-  `idProducto` int NOT NULL AUTO_INCREMENT,
+  `idProducto` int unsigned NOT NULL AUTO_INCREMENT,
   `modeloPro` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `tipoPro` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `cantidadPro` int DEFAULT NULL,
   `precioPro` double NOT NULL,
-  `proveedor` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idProducto`)
+  PRIMARY KEY (`idProducto`),
+  CONSTRAINT `idProveedorProdutcto` FOREIGN KEY (`idProducto`) REFERENCES `proveedor` (`idProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -110,7 +105,7 @@ DROP TABLE IF EXISTS `proveedor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proveedor` (
-  `idProveedor` int NOT NULL AUTO_INCREMENT,
+  `idProveedor` int unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `contacto` varchar(45) DEFAULT NULL,
   `total` double DEFAULT NULL,
@@ -182,6 +177,33 @@ LOCK TABLES `tatuador` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ticket`
+--
+
+DROP TABLE IF EXISTS `ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ticket` (
+  `idTicket` int unsigned NOT NULL AUTO_INCREMENT,
+  `clip` tinyint DEFAULT NULL,
+  `prod` tinyint DEFAULT NULL,
+  `anticipo` double DEFAULT NULL,
+  `total` double DEFAULT NULL,
+  PRIMARY KEY (`idTicket`),
+  CONSTRAINT `idTatuadorTicket` FOREIGN KEY (`idTicket`) REFERENCES `tatuador` (`idTatuador`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket`
+--
+
+LOCK TABLES `ticket` WRITE;
+/*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -210,6 +232,32 @@ LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `venta`
+--
+
+DROP TABLE IF EXISTS `venta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `venta` (
+  `idVenta` int unsigned NOT NULL AUTO_INCREMENT,
+  `cantidad` int DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`idVenta`),
+  CONSTRAINT `idProductoVenta` FOREIGN KEY (`idVenta`) REFERENCES `producto` (`idProducto`),
+  CONSTRAINT `idTicketVenta` FOREIGN KEY (`idVenta`) REFERENCES `ticket` (`idTicket`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `venta`
+--
+
+LOCK TABLES `venta` WRITE;
+/*!40000 ALTER TABLE `venta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `venta` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -220,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-26 18:45:23
+-- Dump completed on 2021-01-27 17:31:45
