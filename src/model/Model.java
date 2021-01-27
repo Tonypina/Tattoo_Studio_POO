@@ -744,7 +744,7 @@ public class Model {
         return null;
     }
 
-    public static void modificarProveedor( int idProveedor, String nombre, Double total, Double margen){
+    public static void modificarProveedor( int idProveedor, String nombre, String contacto, Double total, Double margen){
         try{
             cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             pst = cn.prepareStatement("UPDATE producto SET nombre = ?, contacto = ?, total = ?, margen = ?, WHERE idProveedor = " + idProveedor);
