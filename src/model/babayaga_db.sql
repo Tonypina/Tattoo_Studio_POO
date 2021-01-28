@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `tattoo_studio_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `tattoo_studio_db`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tattoo_studio_db
@@ -23,27 +25,20 @@ DROP TABLE IF EXISTS `cita`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cita` (
-  `idCita` int unsigned NOT NULL,
+  `idCita` int unsigned NOT NULL AUTO_INCREMENT,
   `nomClienteCita` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `diaInicio` int DEFAULT NULL,
-  `mesInicio` int DEFAULT NULL,
-  `anioInicio` int DEFAULT NULL,
-  `diaFinal` int DEFAULT NULL,
-  `mesFinal` int DEFAULT NULL,
-  `anioFinal` int DEFAULT NULL,
+  `diaInicio` int NOT NULL,
+  `mesInicio` int NOT NULL,
+  `anioInicio` int NOT NULL,
+  `diaFinal` int NOT NULL,
+  `mesFinal` int NOT NULL,
+  `anioFinal` int NOT NULL,
+  `idTatuadorCita` int NOT NULL,
   PRIMARY KEY (`idCita`),
+  UNIQUE KEY `idTatuadorCita_UNIQUE` (`idTatuadorCita`),
   CONSTRAINT `idTatuadorCita` FOREIGN KEY (`idCita`) REFERENCES `tatuador` (`idTatuador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cita`
---
-
-LOCK TABLES `cita` WRITE;
-/*!40000 ALTER TABLE `cita` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cita` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `estudio`
@@ -62,15 +57,6 @@ CREATE TABLE `estudio` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estudio`
---
-
-LOCK TABLES `estudio` WRITE;
-/*!40000 ALTER TABLE `estudio` DISABLE KEYS */;
-/*!40000 ALTER TABLE `estudio` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `producto`
 --
 
@@ -83,19 +69,12 @@ CREATE TABLE `producto` (
   `tipoPro` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `cantidadPro` int DEFAULT NULL,
   `precioPro` double NOT NULL,
+  `idProveedorProducto` int NOT NULL,
   PRIMARY KEY (`idProducto`),
+  UNIQUE KEY `idProveedorProducto_UNIQUE` (`idProveedorProducto`),
   CONSTRAINT `idProveedorProdutcto` FOREIGN KEY (`idProducto`) REFERENCES `proveedor` (`idProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `producto`
---
-
-LOCK TABLES `producto` WRITE;
-/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `proveedor`
@@ -115,15 +94,6 @@ CREATE TABLE `proveedor` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `proveedor`
---
-
-LOCK TABLES `proveedor` WRITE;
-/*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `socio`
 --
 
@@ -131,22 +101,14 @@ DROP TABLE IF EXISTS `socio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `socio` (
-  `idSocio` int NOT NULL AUTO_INCREMENT,
+  `idSocio` int unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `comision` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `rango` tinyint NOT NULL,
+  `total` double DEFAULT NULL,
   PRIMARY KEY (`idSocio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `socio`
---
-
-LOCK TABLES `socio` WRITE;
-/*!40000 ALTER TABLE `socio` DISABLE KEYS */;
-/*!40000 ALTER TABLE `socio` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tatuador`
@@ -164,17 +126,8 @@ CREATE TABLE `tatuador` (
   `rango` int DEFAULT NULL,
   `total` double DEFAULT NULL,
   PRIMARY KEY (`idTatuador`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tatuador`
---
-
-LOCK TABLES `tatuador` WRITE;
-/*!40000 ALTER TABLE `tatuador` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tatuador` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ticket`
@@ -187,21 +140,16 @@ CREATE TABLE `ticket` (
   `idTicket` int unsigned NOT NULL AUTO_INCREMENT,
   `clip` tinyint DEFAULT NULL,
   `prod` tinyint DEFAULT NULL,
-  `anticipo` double DEFAULT NULL,
+  `pagado` double DEFAULT NULL,
   `total` double DEFAULT NULL,
+  `idTatuadorTicket` int NOT NULL,
+  `visita` tinyint DEFAULT NULL,
+  `cambio` double DEFAULT NULL,
   PRIMARY KEY (`idTicket`),
+  UNIQUE KEY `idTatuadorTicket_UNIQUE` (`idTatuadorTicket`),
   CONSTRAINT `idTatuadorTicket` FOREIGN KEY (`idTicket`) REFERENCES `tatuador` (`idTatuador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ticket`
---
-
-LOCK TABLES `ticket` WRITE;
-/*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `usuario`
@@ -225,15 +173,6 @@ CREATE TABLE `usuario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `venta`
 --
 
@@ -244,20 +183,15 @@ CREATE TABLE `venta` (
   `idVenta` int unsigned NOT NULL AUTO_INCREMENT,
   `cantidad` int DEFAULT NULL,
   `fecha` date DEFAULT NULL,
+  `idProductoVenta` int DEFAULT NULL,
+  `idTicketVenta` int DEFAULT NULL,
   PRIMARY KEY (`idVenta`),
+  UNIQUE KEY `idProductoVenta_UNIQUE` (`idProductoVenta`),
+  UNIQUE KEY `idTicketVenta_UNIQUE` (`idTicketVenta`),
   CONSTRAINT `idProductoVenta` FOREIGN KEY (`idVenta`) REFERENCES `producto` (`idProducto`),
   CONSTRAINT `idTicketVenta` FOREIGN KEY (`idVenta`) REFERENCES `ticket` (`idTicket`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `venta`
---
-
-LOCK TABLES `venta` WRITE;
-/*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-/*!40000 ALTER TABLE `venta` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -268,4 +202,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-27 19:33:08
+-- Dump completed on 2021-01-27 23:46:55

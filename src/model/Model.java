@@ -29,9 +29,10 @@ public class Model {
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM estudio WHERE idEstudio = 1");
             ResultSet rs = pst.executeQuery();
+            Double ganancia = rs.getDouble("ganancia");
             cn.close();
             pst.close();
-            return rs.getDouble("ganancia");
+            return ganancia;
         }catch(SQLException e){
             e.getMessage();
         }
@@ -43,9 +44,10 @@ public class Model {
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM estudio WHERE idEstudio = 1");
             ResultSet rs = pst.executeQuery();
+            Double reinversion = rs.getDouble("reinversion");
             cn.close();
             pst.close();
-            return rs.getDouble("reinversion");
+            return reinversion;
         }catch(SQLException e){
             e.getMessage();
         }
@@ -71,9 +73,10 @@ public class Model {
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM estudio WHERE idEstudio = 1");
             ResultSet rs = pst.executeQuery();
+            Double pagoProveedores = rs.getDouble("pagoProveedores");
             cn.close();
             pst.close();
-            return rs.getDouble("pagoProveedores");
+            return pagoProveedores;
         }catch(SQLException e){
             e.getMessage();
         }
@@ -122,9 +125,9 @@ public class Model {
     
     public static void insertarTatuador( Tatuador t ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");            
             PreparedStatement pst = cn.prepareStatement("INSERT INTO tatuador VALUES(?,?,?,?,?,?,?)");
-            pst.setString(1, "");
+            pst.setString(1, "0");
             pst.setString(2, t.getNombre());
             pst.setString(3, t.getAp_pat());
             pst.setString(4, t.getAp_mat());
@@ -132,30 +135,28 @@ public class Model {
             pst.setString(6, Integer.toString(t.getRango()));
             pst.setString(7, Double.toString(t.getTotal()));
             pst.executeUpdate();
-            System.out.println("Entré a la base");
-
+            
             pst.close();
             cn.close();
         }catch(SQLException e){
-            System.out.println("No entré");
-            e.getCause();
+            e.getMessage();
         }
     }
     
     public static Tatuador buscarTatuador( int id ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM TATUADOR WHERE idTatuador = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador WHERE idTatuador = ?");
             pst.setString(1, Integer.toString(id));
-            
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()){
-                pst.close();
-                cn.close();
-                return new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
+                Tatuador t = new Tatuador(rs.getInt("idTatuador"), rs.getString("nombre"), 
                                     rs.getString("ap_paterno"), rs.getString("ap_materno"), 
                                     rs.getString("contacto"), rs.getInt("rango"), rs.getDouble("total"));
+                pst.close();
+                cn.close();
+                return t;
             }
             pst.close();
             cn.close();
@@ -193,9 +194,9 @@ public class Model {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ?, rango = ?, total = ? WHERE idTatuador = " + t.getId());
-            pst.setString(1, t.getNombre().trim());
-            pst.setString(2, t.getAp_pat().trim());
-            pst.setString(3, t.getAp_mat().trim());
+            pst.setString(1, t.getNombre());
+            pst.setString(2, t.getAp_pat());
+            pst.setString(3, t.getAp_mat());
             pst.setString(4, t.getContacto());
             pst.setString(5, Integer.toString(t.getRango()));
             pst.setString(6, Double.toString(t.getTotal()));
@@ -251,9 +252,9 @@ public class Model {
     public static void insertarCita( Cita c ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO cita(idCita, nombreCliente, diaInicio, mesInicio, anioInicio, diaFinal, mesFinal, anioFinal, idTatuador) "
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO cita(idCita, nomClienteCita, diaInicio, mesInicio, anioInicio, diaFinal, mesFinal, anioFinal, idTatuadorCita) "
                                     + "VALUES(?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, "");
+            pst.setString(1, "0");
             pst.setString(2, c.getNombreCliente());
             pst.setString(3, Integer.toString(c.getDiaInicio()));
             pst.setString(4, Integer.toString(c.getMesInicio()));
@@ -270,19 +271,19 @@ public class Model {
         }
     }
     
-    public static void modificarCita( int idCita, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, float anticipo, float precio, int duracion ){
+    public static void modificarCita( Cita c ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
                                     + "diaInicio = ?, mesInicio = ?, anioInicio = ?, "
-                                    + "diaFinal = ?, mesFinal = ?, anioFinal = ? WHERE idCita = "+idCita);
-            pst.setString(1, nombreCliente);
-            pst.setString(2, Integer.toString(diaInicio));
-            pst.setString(3, Integer.toString(mesInicio));
-            pst.setString(4, Integer.toString(anioInicio));
-            pst.setString(5, Integer.toString(diaFinal));
-            pst.setString(6, Integer.toString(mesFinal));
-            pst.setString(7, Integer.toString(anioFinal));
+                                    + "diaFinal = ?, mesFinal = ?, anioFinal = ? WHERE idCita = "+c.getIdCita());
+            pst.setString(1, c.getNombreCliente());
+            pst.setString(2, Integer.toString(c.getDiaInicio()));
+            pst.setString(3, Integer.toString(c.getMesInicio()));
+            pst.setString(4, Integer.toString(c.getAnioInicio()));
+            pst.setString(5, Integer.toString(c.getDiaFinal()));
+            pst.setString(6, Integer.toString(c.getMesFinal()));
+            pst.setString(7, Integer.toString(c.getAnioFinal()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -313,9 +314,14 @@ public class Model {
             ResultSet rs = pst.executeQuery();
             
             ArrayList<Producto> pd = new ArrayList<>();
-            Proveedor p = buscarProveedor(rs.getInt("idProveedorProducto"));
-            while(rs.next()){
-                pd.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), rs.getString("tipoPro"), rs.getInt("cantidadPro"), rs.getDouble("precioPro"), p));
+            
+            if(rs.next()){
+                Proveedor p = buscarProveedor(rs.getInt("idProveedorProducto"));
+                do{
+                    pd.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), 
+                            rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
+                            rs.getDouble("precioPro"), p));
+                }while(rs.next());
             }
             
             pst.close();
@@ -335,20 +341,21 @@ public class Model {
             
             ResultSet rs = pst.executeQuery();
             
+            ArrayList<Producto> pd = new ArrayList<>();
+            
             if(rs.next()){
                 Proveedor p = buscarProveedor(rs.getInt("idProveedorProducto"));
-                ArrayList<Producto> tp = new ArrayList<>();
-                while(rs.next()){
-                    tp.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), 
-                                        rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
-                                        rs.getDouble("precioPro"), p));
-                }
-                pst.close();
-                cn.close();
-                return tp;
+                do{
+                    pd.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), 
+                            rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
+                            rs.getDouble("precioPro"), p));
+                }while(rs.next());
             }
+            
             pst.close();
             cn.close();
+            return pd;
+            
         }catch(SQLException e){
             e.getMessage();
         }
@@ -359,7 +366,7 @@ public class Model {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("INSERT INTO producto VALUES(?,?,?,?,?,?)");
-            pst.setString(1, "");
+            pst.setString(1, "0");
             pst.setString(2, pro.getModeloPro());
             pst.setString(3, pro.getTipoPro());
             pst.setString(4, Integer.toString(pro.getCantidadPro()));
@@ -383,11 +390,12 @@ public class Model {
             
             if(rs.next()){
                 Proveedor p = buscarProveedor(rs.getInt("idProveedorProducto"));
-                pst.close();
-                cn.close();
-                return new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"),
+                Producto pr = new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"),
                         rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
                         rs.getDouble("precioPro"), p);
+                pst.close();
+                cn.close();
+                return pr;
             }
             pst.close();
             cn.close();
@@ -397,15 +405,15 @@ public class Model {
         return null;
     }
         
-    public static void modificarProducto( int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, String proveedor){
+    public static void modificarProducto(Producto p){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, proveedor = ? WHERE idProducto = " + idPro);
-            pst.setString(1, modeloPro.trim());
-            pst.setString(2, tipoPro.trim());
-            pst.setString(3, Integer.toString(cantidadPro));
-            pst.setString(4, Double.toString(precioPro));
-            pst.setString(5, proveedor.trim());
+            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, idProveedorProducto = ? WHERE idProducto = " + p.getIdPro());
+            pst.setString(1, p.getModeloPro());
+            pst.setString(2, p.getTipoPro());
+            pst.setString(3, Integer.toString(p.getCantidadPro()));
+            pst.setString(4, Double.toString(p.getPrecioPro()));
+            pst.setString(5, Integer.toString(p.getProveedor().getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -470,7 +478,7 @@ public class Model {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("INSERT INTO usuario VALUES(?,?,?,?,?,?)");
-            pst.setString(1, "");
+            pst.setString(1, "0");
             pst.setString(2, u.getNombre());
             pst.setString(3, u.getAp_paterno());
             pst.setString(4, u.getAp_materno());
@@ -493,11 +501,12 @@ public class Model {
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()){
-                pst.close();
-                cn.close();
-                return new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
+                Usuario u = new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
                                    rs.getString("ap_paterno"),rs.getString("ap_paterno"), 
                                    rs.getString("username"));
+                pst.close();
+                cn.close();
+                return u;
             }
             pst.close();
             cn.close();
@@ -507,15 +516,15 @@ public class Model {
         return null;  
     }
 
-    public static void modificarUsuario(int idUsuario, String nombre, String ap_paterno, String ap_materno,String pass, String username){
+    public static void modificarUsuario(Usuario u){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + idUsuario);
-            pst.setString(1, nombre.trim());
-            pst.setString(2, ap_paterno.trim());
-            pst.setString(3, ap_materno.trim());
-            pst.setString(4, pass);
-            pst.setString(5, username.trim());
+            PreparedStatement pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + u.getId());
+            pst.setString(1, u.getNombre());
+            pst.setString(2, u.getAp_paterno());
+            pst.setString(3, u.getAp_materno());
+            pst.setString(4, u.getPass());
+            pst.setString(5, u.getUsername());
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -587,8 +596,8 @@ public class Model {
     public static void insertarSocio( Socio s ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?,?)");
-            pst.setString(1, "");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?,?,?)");
+            pst.setString(1, "0");
             pst.setString(2, s.getNombre());
             pst.setString(3, s.getContacto());
             if( s.isRango() ){
@@ -596,6 +605,7 @@ public class Model {
             } else {
                 pst.setString(4, "1");
             }
+            pst.setString(4, Double.toString(s.getTotal()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -613,10 +623,11 @@ public class Model {
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()){
+                Socio s = new Socio(rs.getInt("idSocio"), rs.getString("nombre"), 
+                                 rs.getString("contacto"), rs.getBoolean("rango"), rs.getDouble("total"));
                 pst.close();
                 cn.close();
-                return new Socio(rs.getInt("idSocio"), rs.getString("nombre"), 
-                                 rs.getString("contacto"), rs.getBoolean("rango"), rs.getDouble("total"));
+                return s;
             }
             pst.close();
             cn.close();
@@ -629,7 +640,7 @@ public class Model {
     public static void modificarSocio( Socio s ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, comision = ? WHERE idSocio = " + s.getId());
+            PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, contacto = ?, rango = ?, total = ? WHERE idSocio = " + s.getId());
             pst.setString(1, s.getNombre().trim());
             pst.setString(2, s.getContacto().trim());
             if( s.isRango() ){
@@ -637,6 +648,8 @@ public class Model {
             } else {
                 pst.setString(3, "1");
             }
+            
+            pst.setString(4, Double.toString(s.getTotal()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -662,7 +675,7 @@ public class Model {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("INSERT INTO proveedor VALUES(?,?,?,?,?)");
-            pst.setString(1, "");
+            pst.setString(1, "0");
             pst.setString(2, p.getNombre());
             pst.setString(3, p.getContacto());
             pst.setString(4, Double.toString(p.getTotal()));
@@ -684,10 +697,11 @@ public class Model {
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()){
+                Proveedor p = new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), rs.getString("contacto"),
+                                    rs.getDouble("margen"), rs.getDouble("total"));
                 pst.close();
                 cn.close();
-                return new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), rs.getString("contacto"),
-                                    rs.getDouble("total"), rs.getDouble("margen"));
+                return p;
             }
             pst.close();
             cn.close();
@@ -729,8 +743,8 @@ public class Model {
     public static void insertarTicket( Ticket t ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?)");
-            pst.setString(1, "");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?)");
+            pst.setString(1, "0");
             if(t.isClip())
                 pst.setString(2, "1");
             else
@@ -741,8 +755,15 @@ public class Model {
             else
                 pst.setString(3, "0");
             
-            pst.setString(4, Double.toString(t.getAnticipo()));
+            pst.setString(4, Double.toString(t.getPagado()));
             pst.setString(5, Double.toString(t.getTotal()));
+            pst.setString(6, Integer.toString(t.getTatuador().getId()));
+            if(t.isVisita())
+                pst.setString(7, "1");
+            else
+                pst.setString(7, "0");
+            
+            pst.setString(8, Double.toString(t.getCambio()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -783,10 +804,13 @@ public class Model {
             if(rs.next()){
                 p = getVentas(rs.getInt("idTicket"));
                 Tatuador t = buscarTatuador(rs.getInt("idTatuadorTicket"));
-                
+                Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
+                        rs.getBoolean("prod"), rs.getDouble("pagado"), 
+                        rs.getDouble("total"), t, rs.getBoolean("visita"),
+                        rs.getDouble("cambio"), p);
                 pst.close();
                 cn.close();
-                return new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), rs.getBoolean("prod"), rs.getDouble("anticipo"), rs.getDouble("total"), t, p);
+                return ti;
             }
             pst.close();
             cn.close();
@@ -796,19 +820,4 @@ public class Model {
         return null;
     }
 
-    public static void main(String a[]){
-        Tatuador t = new Tatuador("a","b","c","d",2,2.0);
-        Cita c = new Cita("Marco",1,1,21,2,2,21,1);
-        Proveedor pr = new Proveedor("nombre", "c", 20, 12.8);
-        Producto p = new Producto(1,"chamarra","blk001",2,2.6,pr);
-        Socio s = new Socio("a","b",true,2.5);
-        Usuario u = new Usuario(1,"a","b","c","d","e");
-        
-        Model.insertarTatuador(t);
-        Model.insertarCita(c);
-        Model.insertarProducto(p);
-        Model.insertarProvedor(pr);
-        Model.insertarUsuario(u);
-        Model.insertarSocio(s);
-    }
 }
