@@ -20,6 +20,7 @@ public class Tatuador{
       this.ap_mat = ap_mat;
       this.contacto = contacto;
       this.total = total;
+      this.rangoInt = rangoInt;
       switch (rangoInt) {
         case 1:
           this.Rango[0]=true;
@@ -32,7 +33,7 @@ public class Tatuador{
           break;
       }
     }
-
+    
     // Sobrecarga del contructor para la base de datos.
     public Tatuador(int id, String nombre, String ap_pat, String ap_mat, String contacto, int rangoInt, double total){
         this.id = id;
@@ -41,6 +42,7 @@ public class Tatuador{
         this.ap_mat = ap_mat;
         this.contacto = contacto;
         this.total = total;
+        this.rangoInt = rangoInt;
         switch (rangoInt) {
           case 1:
             this.Rango[0]=true;

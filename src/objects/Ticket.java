@@ -12,31 +12,50 @@ public class Ticket {
     private double total;
     private Tatuador tatuador;
     private boolean visita;
-    private ArrayList<Producto> productos;
     private double cambio;
+    private ArrayList<Producto> productos;
     
-    public Ticket(int id, boolean clip, boolean prod, double pagado, double total, Tatuador tatuador, ArrayList<Producto> productos) {
+
+    public Ticket(int id, boolean clip, boolean prod, double pagado, double total, Tatuador tatuador, boolean visita, double cambio, ArrayList<Producto> productos) {
         this.id = id;
         this.clip = clip;
         this.prod = prod;
         this.pagado = pagado;
         this.total = total;
         this.tatuador = tatuador;
-        this.productos=productos;
-        this.cambio=cambio;
+        this.visita = visita;
+        this.cambio = cambio;
+        this.productos = productos;
     }
 
     // Sobrecarga de constructor para la Base de Datos.
-    public Ticket(boolean clip, boolean prod, double pagado, double total, Tatuador tatuador, ArrayList<Producto> productos) {
+    public Ticket(boolean clip, boolean prod, double pagado, double total, Tatuador tatuador, boolean visita, double cambio, ArrayList<Producto> productos) {
         this.clip = clip;
         this.prod = prod;
         this.pagado = pagado;
         this.total = total;
         this.tatuador = tatuador;
-        this.productos=productos;
-        this.cambio=cambio;
+        this.visita = visita;
+        this.cambio = cambio;
+        this.productos = productos;
     }
 
+    public boolean isVisita(){
+        return visita;
+    }
+    
+    public void setVisita(boolean visita){
+        this.visita = visita;
+    }
+    
+    public double getCambio(){
+        return cambio;
+    }
+    
+    public void setCambio(double cambio){
+        this.cambio = cambio;
+    }
+    
     public int getId() {
         return id;
     }
@@ -64,9 +83,7 @@ public class Ticket {
     public ArrayList<Producto> getProductos() {
         return productos;
     }
-    public double getCambio(){
-        return cambio;
-    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -93,8 +110,5 @@ public class Ticket {
 
     public void setProductos(ArrayList<Producto> productos) {
         this.productos = productos;
-    }
-    public void setCambio(double cambio) {
-        this.cambio = cambio;
     }
 }
