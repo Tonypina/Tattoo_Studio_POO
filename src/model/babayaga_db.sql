@@ -33,10 +33,11 @@ CREATE TABLE `cita` (
   `diaFinal` int NOT NULL,
   `mesFinal` int NOT NULL,
   `anioFinal` int NOT NULL,
-  `idTatuadorCita` int DEFAULT NULL,
+  `idTatuadorCita` int NOT NULL,
   PRIMARY KEY (`idCita`),
+  UNIQUE KEY `idTatuadorCita_UNIQUE` (`idTatuadorCita`),
   CONSTRAINT `idTatuadorCita` FOREIGN KEY (`idCita`) REFERENCES `tatuador` (`idTatuador`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +73,7 @@ CREATE TABLE `producto` (
   PRIMARY KEY (`idProducto`),
   UNIQUE KEY `idProveedorProducto_UNIQUE` (`idProveedorProducto`),
   CONSTRAINT `idProveedorProdutcto` FOREIGN KEY (`idProducto`) REFERENCES `proveedor` (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +90,7 @@ CREATE TABLE `proveedor` (
   `total` double DEFAULT NULL,
   `margen` double DEFAULT NULL,
   PRIMARY KEY (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,11 +122,11 @@ CREATE TABLE `tatuador` (
   `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ap_paterno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ap_materno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `contacto` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contacto` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `rango` int DEFAULT NULL,
   `total` double DEFAULT NULL,
   PRIMARY KEY (`idTatuador`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,8 +146,9 @@ CREATE TABLE `ticket` (
   `visita` tinyint DEFAULT NULL,
   `cambio` double DEFAULT NULL,
   PRIMARY KEY (`idTicket`),
+  UNIQUE KEY `idTatuadorTicket_UNIQUE` (`idTatuadorTicket`),
   CONSTRAINT `idTatuadorTicket` FOREIGN KEY (`idTicket`) REFERENCES `tatuador` (`idTatuador`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,4 +202,4 @@ CREATE TABLE `venta` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-28 14:39:27
+-- Dump completed on 2021-01-27 23:46:55
