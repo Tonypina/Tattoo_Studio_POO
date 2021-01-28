@@ -23,6 +23,7 @@ public class Ticket {
         this.total = total;
         this.tatuador = tatuador;
         this.productos=productos;
+        this.cambio=cambio;
     }
 
     // Sobrecarga de constructor para la Base de Datos.
@@ -33,6 +34,7 @@ public class Ticket {
         this.total = total;
         this.tatuador = tatuador;
         this.productos=productos;
+        this.cambio=cambio;
     }
 
     public int getId() {
@@ -62,7 +64,9 @@ public class Ticket {
     public ArrayList<Producto> getProductos() {
         return productos;
     }
-
+    public double getCambio(){
+        return cambio;
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -89,5 +93,8 @@ public class Ticket {
 
     public void setProductos(ArrayList<Producto> productos) {
         this.productos = productos;
+    }
+    public void setCambio(double cambio) {
+        this.cambio = cambio;
     }
 }
