@@ -3,10 +3,12 @@ import model.*;
 import view.*;
 import objects.*;
 
-class Controladora{
-  private double comiclip = getClip; //getClip debe regresar la comisión de clip;
-  public ProcesoTicket(Ticket ticket, Double Pago){
-    private double pagado = ticket.getPagado();
+class Controller{
+private static double getClip;
+private static double comiclip = getClip; //getClip debe regresar la comisión de clip;
+private static Ticket ticket;
+  public static void ProcesoTicket(Ticket ticket, Double Pago){
+    private static double pagado = ticket.getPagado();
     private Ticket ti;
     ti = Model.insertarTicket(ticket);
     pagado += pago;
@@ -28,7 +30,7 @@ class Controladora{
     }
   }
 
-  public void ProcesoPago(Ticket t){ //Ticket.costo debe ser la suma del monto correspondiente a la suma del costo del tatuaje y de la mercancía
+  public static void ProcesoPago(Ticket t){ //Ticket.costo debe ser la suma del monto correspondiente a la suma del costo del tatuaje y de la mercancía
     private double monto;
     private double comision;
     private double proveedor;
@@ -74,8 +76,8 @@ class Controladora{
     Model.modificarTatuador(t.getTatuador());
   }
 
-  public void procesoGanancias(){
-    private double pago;
+  public static void procesoGanancias(){
+    private static double pago;
     private double comision;
     private double total = Model.obtenerGanancia();
     private ArrayList<Socio> socios = Model.getSocios();
