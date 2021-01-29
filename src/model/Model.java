@@ -836,7 +836,7 @@ public class Model {
             else
                 pst.setString(2, "0");
 
-            pst.setString(3, Double.toString(p.getPagado()));
+            pst.setString(3, Double.toString(t.getPagado()));
             pst.setString(4, Double.toString(t.getTotal()));
             pst.setString(5, Integer.toString(t.getTatuador().getId()));
             
