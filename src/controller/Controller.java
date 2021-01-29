@@ -44,15 +44,15 @@ class Controller{
       ArrayList<Proveedor> proveedoresArr = Model.getProveedor();
       ArrayList<Producto> productosArr = t.getProductos();
       double totalProv;
-      for(int count = 0; count < productosArr.size(); count++){
-        for(int i = 0; i < proveedoresArr.size(); i++){
-          if (productosArr[count].getProveedor().getNombre().equals(proveedoresArr[i].getNombre())){ //El objeto Producto aún no contiene un objeto Proveedor.
-            t.setTotal(total-productosArr[count].getPrecioPro());  //Reducir Stock
-            monto += productosArr[count].getPrecioPro()*(proveedoresArr[i].getMargen()); //Se registra el margen de ganancia para BabaYaga
-            totalProv = proveedoresArr[i].getTotal();
-            proveedoresArr[i].setTotal(totalProv + productosArr[count].getPrecioPro()*(1-proveedoresArr[i].getMargen())); //Es necesario registrar los márgenes como 50, 60, etc. y mandarlos como 0.5, 0.6, etc.
-            Model.modificarProveedor(proveedoresArr[i]);
-            actualizarStock(productosArr[count].getIdPro(), productosArr[count].getCantidadPro()-1);
+      for(Producto prod:productosArr){
+        for(Proveedor prov:proveedoresArr){
+          if (prod.getProveedor().getNombre().equals(prov.getNombre())){ //El objeto Producto aún no contiene un objeto Proveedor.
+            t.setTotal(total-prod.getPrecioPro());  //Reducir Stock
+            monto += prod.getPrecioPro()*(prov.getMargen()); //Se registra el margen de ganancia para BabaYaga
+            totalProv = prov.getTotal();
+            prov.setTotal(totalProv + prod.getPrecioPro()*(1-prov.getMargen())); //Es necesario registrar los márgenes como 50, 60, etc. y mandarlos como 0.5, 0.6, etc.
+            Model.modificarProveedor(prov);
+            actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
           }
         }
       }
@@ -83,16 +83,16 @@ class Controller{
     double comisiones;
     double totales = Model.obtenerGanancia();
     ArrayList<Socio> socios = Model.getSocios();
-    for(int counter = 0; counter < socios.size(); counter++){
-      if(socios[counter].isRango()){
+    for(Socio s:socios){
+      if(s.isRango()){
         comisiones = 0.35;
       }else{
         comisiones = 0.15;
       }
       pago += pago*comisiones;
       pago -= pago;
-      socios[counter].setTotal(socios[counter].getTotal()+pago);
-      Model.modificarSocio(socios[counter]);
+      s.setTotal(s.getTotal()+pago);
+      Model.modificarSocio(s);
       Model.aumentarGanancia(-pago);
     }
     Model.aumentarReinversion(pago);
