@@ -41,9 +41,9 @@ class Controller{
       t.setTotal(total-total*comiclip);
     }
     if (t.isProd()){
-      private Arraylist<Proveedor> proveedoresArr = Model.getProveedor();
-      private Arraylist<Producto> productosArr = t.getProductos();
-      private double totalProv;
+      ArrayList<Proveedor> proveedoresArr = Model.getProveedor();
+      ArrayList<Producto> productosArr = t.getProductos();
+      double totalProv;
       for(int count = 0; count < productosArr.size(); count++){
         for(int i = 0; i < proveedoresArr.size(); i++){
           if (productosArr[count].getProveedor().getNombre().equals(proveedoresArr[i].getNombre())){ //El objeto Producto aún no contiene un objeto Proveedor.
