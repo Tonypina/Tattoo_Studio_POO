@@ -711,6 +711,22 @@ public class Model {
         return null;
     }
 
+    public static void modificarProveedor(Proveedor p){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("UPDATE proveedor SET nombre = ?, contacto = ?, total = ?, margen = ? WHERE idProveedor = " + p.getId());
+            pst.setString(1, p.getNombre());
+            pst.setString(2, p.getContacto());
+            pst.setString(3, Double.toString(p.getTotal()));
+            pst.setString(4, Double.toString(p.getMargen()));
+            pst.executeUpdate();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
     public static ArrayList<Proveedor> getProveedor(){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
