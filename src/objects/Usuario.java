@@ -7,10 +7,10 @@ package objects;
 
 /**
  *
- * @author
+ * @author Airam
  */
 public class Usuario {
-    
+     
     private int id;
     private String nombre;
     private String ap_paterno;
@@ -82,4 +82,5 @@ public class Usuario {
     public String getPass() {
         return pass;
     }
+
 }

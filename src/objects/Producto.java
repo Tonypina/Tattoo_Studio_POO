@@ -1,7 +1,16 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objects;
 
+/**
+ *
+ * @author Airam
+ */
 public class Producto {
-    private int idPro;
+ private int idPro;
     private String modeloPro;
     private String tipoPro;
     private int cantidadPro;
@@ -67,4 +76,3 @@ public class Producto {
    
 
 }
-

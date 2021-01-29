@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model;
 import java.sql.*;
 import objects.*;
@@ -893,7 +898,6 @@ public class Model {
         Proveedor pr1 = new Proveedor("BLK","BLK@outlook.com",2.5,67.9);
         Proveedor pr2 = new Proveedor("PLK","PLK@outlook.com",12.2,34.2);
         Proveedor pr3 = new Proveedor("ALK","ALK@outlook.com",6.5,45.2);
-
         Producto p1 = new Producto(1,"Chamarra","BLK0001",3,2.4,pr1);
         Producto p2 = new Producto(2,"Pantalon","BLK0002",5,2.4,pr2);
         Producto p3 = new Producto(3,"Playera","BLK0003",7,2.4,pr3);

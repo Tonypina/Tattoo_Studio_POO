@@ -5,7 +5,9 @@
  */
 
 package view;
-
+import objects.*;
+import model.*;
+import controller.*;
 /**
  *
  * @author Airam
@@ -163,12 +165,12 @@ public class Socios extends javax.swing.JFrame {
         String id      = jTextField2.getText();
         int iD         = Integer.parseInt(id);
         String contacto= jTextField3.getText();
-        Boolean rango;
+        Boolean rango = false;
+        double total=0;
         
-        Socio s =new Socio(iD, nombre, contacto, rango );
-        Model modelo=new Model();
-        
-        modelo.buscarSocio(s);
+        Socio s =new Socio(iD, nombre, contacto, rango, total );
+              
+        Model.buscarSocio(s.getId());
         
         }
         catch(Exception e){
@@ -183,12 +185,12 @@ public class Socios extends javax.swing.JFrame {
         String id      = jTextField2.getText();
         int iD         = Integer.parseInt(id);
         String contacto= jTextField3.getText();
-        Boolean rango;
+        Boolean rango=false;
+        double total=0;
         
-        Socio s =new Socio(iD, nombre, contacto, rango );
-        Model modelo=new Model();
-        
-        modelo.modificarSocio(s);
+        Socio s =new Socio(iD, nombre, contacto, rango, total );
+              
+        Model.modificarSocio(s);
         
         }
         catch(Exception e){
@@ -204,12 +206,12 @@ public class Socios extends javax.swing.JFrame {
         String id      = jTextField2.getText();
         int iD         = Integer.parseInt(id);
         String contacto= jTextField3.getText();
-        Boolean rango;
+        Boolean rango = false;
+        double total=0;      
         
-        Socio s =new Socio(iD, nombre, contacto, rango );
-        Model modelo=new Model();
-        
-        modelo.insertarSocio(s);
+        Socio s =new Socio(iD, nombre, contacto, rango, total );
+               
+        Model.insertarSocio(s);
         
         }
         catch(Exception e){
@@ -225,15 +227,11 @@ public class Socios extends javax.swing.JFrame {
         String id      = jTextField2.getText();
         int iD         = Integer.parseInt(id);
         String contacto= jTextField3.getText();
-        Boolean rango;
-        
-        Socio s =new Socio(iD, nombre, contacto, rango );
-        Model modelo=new Model();
-        
-        modelo.eliminarSocio(s);
-        
-        Controladora control = new Controladora();
-        control.EliminarSocio(s);
+        Boolean rango= false;
+        double total=0;        
+        Socio s =new Socio(iD, nombre, contacto, rango, total );
+             
+        Model.eliminarSocio(s.getId());
         
         }
         catch(Exception e){

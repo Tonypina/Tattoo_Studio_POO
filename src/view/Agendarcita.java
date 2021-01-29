@@ -250,6 +250,7 @@ public class Agendarcita extends javax.swing.JFrame {
         double anticipo= Double.parseDouble(as);
         //mejor float
         String tatuador=jTextField5.getText();
+        int idTatuador = Integer.parseInt(tatuador);
         String ds=jTextField6.getText();
         int duracion=Integer.parseInt(ds);
         
@@ -269,13 +270,10 @@ public class Agendarcita extends javax.swing.JFrame {
         int mesf=Integer.parseInt(msf);
         String ansf=jTextField12.getText();
         int annof=Integer.parseInt(ansf);
-        
-        
-        
-        Cita c=new Cita(idcita, dia, mes, anno,diaf, mesf, annof, nombre, anticipo, precio, duracion);
-        Model modelo=new Model();
-        
-        modelo.insertarCita(c);
+
+        Cita c = new Cita(idcita, nombre, dia, mes, anno, diaf, mesf, annof, idTatuador );
+       
+        Model.insertarCita(c);
         
         }
         catch(Exception e){
@@ -292,8 +290,7 @@ public class Agendarcita extends javax.swing.JFrame {
         try{
             String id=jTextField13.getText();
             int idcita=Integer.parseInt(id);
-            Model modelo=new Model();
-            modelo.eliminarCita(idcita);
+          Model.eliminarCita(idcita);
         }
         catch(Exception e){
             

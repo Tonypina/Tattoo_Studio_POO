@@ -42,15 +42,17 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(93, 25, 25));
+        jLabel1.setForeground(new java.awt.Color(244, 226, 226));
         jLabel1.setText("Bienvenid@");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 210, 50));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 3, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(244, 231, 231));
         jLabel2.setText("Usuario:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 3, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(244, 231, 231));
         jLabel3.setText("Contraseña:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
@@ -63,7 +65,7 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Old English Text MT", 1, 48)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(45, 11, 0));
+        jLabel4.setForeground(new java.awt.Color(244, 230, 226));
         jLabel4.setText("Studio Babayaga");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 378, -1));
 

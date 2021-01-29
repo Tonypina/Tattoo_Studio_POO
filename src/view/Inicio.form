@@ -40,7 +40,7 @@
           <Font name="Old English Text MT" size="36" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="19" green="19" red="5d" type="rgb"/>
+          <Color blue="e2" green="e2" red="f4" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Bienvenid@"/>
       </Properties>
@@ -55,6 +55,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Trebuchet MS" size="14" style="3"/>
         </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e7" green="e7" red="f4" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Usuario:"/>
       </Properties>
       <Constraints>
@@ -67,6 +70,9 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Trebuchet MS" size="14" style="3"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e7" green="e7" red="f4" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
       </Properties>
@@ -99,7 +105,7 @@
           <Font name="Old English Text MT" size="48" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="b" red="2d" type="rgb"/>
+          <Color blue="e2" green="e6" red="f4" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Studio Babayaga"/>
       </Properties>

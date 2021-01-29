@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 import java.util.ArrayList;
 
@@ -33,9 +38,9 @@ class Controller{
   }
 
   public static void ProcesoPago(Ticket t){
-    double monto;
-    double comision;
-    double proveedor;
+    double monto=0;
+    double comision=0;
+    double proveedor=0;
     double total = t.getTotal();
     if (t.isClip()){
       t.setTotal(total-total*comiclip);
@@ -52,7 +57,7 @@ class Controller{
             totalProv = prov.getTotal();
             prov.setTotal(totalProv + prod.getPrecioPro()*(1-prov.getMargen())); //Es necesario registrar los márgenes como 50, 60, etc. y mandarlos como 0.5, 0.6, etc.
             Model.modificarProveedor(prov);
-            actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
+            Model.actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
           }
         }
       }
@@ -79,8 +84,8 @@ class Controller{
   }
 
   public static void procesoGanancias(){
-    double pago;
-    double comisiones;
+    double pago=0;
+    double comisiones=0;
     double totales = Model.obtenerGanancia();
     ArrayList<Socio> socios = Model.getSocios();
     for(Socio s:socios){
