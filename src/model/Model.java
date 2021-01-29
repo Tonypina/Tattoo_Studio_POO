@@ -849,6 +849,40 @@ public class Model {
         return null;
     }
 
+    
+    public static void modificarTicket(Ticket t){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("UPDATE ticket SET clip = ?, prod = ?, pagado = ?, total = ?, idTatuadorTicket = ?, visita = ?, cambio = ? WHERE idProveedor = " + t.getId());
+            
+            if(t.isClip())
+                pst.setString(1, "1");
+            else
+                pst.setString(1, "0");
+            
+            if(t.isProd())
+                pst.setString(2, "1");
+            else
+                pst.setString(2, "0");
+
+            pst.setString(3, Double.toString(p.getPagado()));
+            pst.setString(4, Double.toString(t.getTotal()));
+            pst.setString(5, Integer.toString(t.getTatuador().getId()));
+            
+            if(t.isVisita())
+                pst.setString(6, "1");
+            else
+                pst.setString(6, "0");
+
+            pst.setString(7, Double.toString(t.getCambio()));
+
+            pst.executeUpdate();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
     /*
     public static void main(String a[]){
         Tatuador t1 = new Tatuador("Marco","Piña","Rossette","5530070601",1,7.4);
