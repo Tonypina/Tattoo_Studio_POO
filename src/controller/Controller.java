@@ -6,9 +6,9 @@ import view.*;
 import objects.*;
 
 class Controller{
-private static double getClip;
-private static double comiclip = getClip; //getClip debe regresar la comisión de clip;
-private static Ticket ticket;
+  private static double getClip;
+  private static double comiclip = getClip; //getClip debe regresar la comisión de clip;
+  private static Ticket ticket;
   public static void ProcesoTicket(Ticket ticket, Double Pago){
     double pagado = ticket.getPagado();
     Ticket ti;
@@ -32,7 +32,7 @@ private static Ticket ticket;
     }
   }
 
-  public static void ProcesoPago(Ticket t){ 
+  public static void ProcesoPago(Ticket t){
     double monto;
     double comision;
     double proveedor;
@@ -57,7 +57,7 @@ private static Ticket ticket;
         }
       }
     }
-    switch((t.getTatuador()).getRango()){
+    switch(t.getTatuador().getRango()){
       case 1:
         comision = 0.6;
         break;
@@ -77,7 +77,6 @@ private static Ticket ticket;
     t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*t.getTotal());
     Model.modificarTatuador(t.getTatuador());
   }
-  
 
   public static void procesoGanancias(){
     double pago;
