@@ -1,4 +1,6 @@
 package controller;
+import java.util.ArrayList;
+
 import model.*;
 import view.*;
 import objects.*;
@@ -8,33 +10,33 @@ private static double getClip;
 private static double comiclip = getClip; //getClip debe regresar la comisión de clip;
 private static Ticket ticket;
   public static void ProcesoTicket(Ticket ticket, Double Pago){
-    private static double pagado = ticket.getPagado();
-    private Ticket ti;
+    double pagado = ticket.getPagado();
+    Ticket ti;
     ti = Model.insertarTicket(ticket);
-    pagado += pago;
+    pagado += Pago;
     ti.setPagado(pagado);
     Model.modificarTicket(ti);
     if (ti.getTotal()-pagado > 0){
-      ti.setTotal(pago);
+      ti.setTotal(Pago);
       ProcesoPago(ti);
     }
     if (ti.getTotal()-pagado < 0){
       ti.setCambio((ti.getTotal()-pagado)*(-1));
       Model.modificarTicket(ti);
-      ti.setTotal(pago);
+      ti.setTotal(Pago);
       ProcesoPago(ti);
     }
     if (ti.getTotal()-pagado == 0){
-      ti.setTotal(pago);
+      ti.setTotal(Pago);
       ProcesoPago(ti);
     }
   }
 
-  public static void ProcesoPago(Ticket t){ //Ticket.costo debe ser la suma del monto correspondiente a la suma del costo del tatuaje y de la mercancía
-    private double monto;
-    private double comision;
-    private double proveedor;
-    private double total = t.getTotal();
+  public static void ProcesoPago(Ticket t){ 
+    double monto;
+    double comision;
+    double proveedor;
+    double total = t.getTotal();
     if (t.isClip()){
       t.setTotal(total-total*comiclip);
     }
@@ -55,7 +57,7 @@ private static Ticket ticket;
         }
       }
     }
-    switch(t.getTatuador().getRangoInt()){
+    switch((t.getTatuador()).getRango()){
       case 1:
         comision = 0.6;
         break;
@@ -75,26 +77,33 @@ private static Ticket ticket;
     t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*t.getTotal());
     Model.modificarTatuador(t.getTatuador());
   }
+  
 
   public static void procesoGanancias(){
-    private static double pago;
-    private double comision;
-    private double total = Model.obtenerGanancia();
-    private ArrayList<Socio> socios = Model.getSocios();
+    double pago;
+    double comisiones;
+    double totales = Model.obtenerGanancia();
+    ArrayList<Socio> socios = Model.getSocios();
     for(int counter = 0; counter < socios.size(); counter++){
       if(socios[counter].isRango()){
-        comision = 0.35;
+        comisiones = 0.35;
       }else{
-        comision = 0.15;
+        comisiones = 0.15;
       }
-      pago += total*comision;
-      total -= pago;
+      pago += pago*comisiones;
+      pago -= pago;
       socios[counter].setTotal(socios[counter].getTotal()+pago);
       Model.modificarSocio(socios[counter]);
       Model.aumentarGanancia(-pago);
     }
-    Model.aumentarReinversion(total);
+    Model.aumentarReinversion(pago);
   }
-/*Para hacer el programa dinámico, debemos pedir el porcentaje de cada socio.
-También necesitamos el margen de utilidad de cada proveedor si es que se desea
-registrar más de 2.
+
+public static Ticket getTicket() {
+	return ticket;
+}
+
+public static void setTicket(Ticket ticket) {
+	Controller.ticket = ticket;
+}
+}
