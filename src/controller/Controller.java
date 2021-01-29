@@ -102,12 +102,4 @@ class Controller{
     }
     Model.aumentarReinversion(pago);
   }
-
-public static Ticket getTicket() {
-	return ticket;
-}
-
-public static void setTicket(Ticket ticket) {
-	Controller.ticket = ticket;
-}
 }
