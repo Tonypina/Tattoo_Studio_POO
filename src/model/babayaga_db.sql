@@ -33,9 +33,8 @@ CREATE TABLE `cita` (
   `diaFinal` int NOT NULL,
   `mesFinal` int NOT NULL,
   `anioFinal` int NOT NULL,
-  `idTatuadorCita` int NOT NULL,
+  `idTatuadorCita` int DEFAULT NULL,
   PRIMARY KEY (`idCita`),
-  UNIQUE KEY `idTatuadorCita_UNIQUE` (`idTatuadorCita`),
   CONSTRAINT `idTatuadorCita` FOREIGN KEY (`idCita`) REFERENCES `tatuador` (`idTatuador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -52,6 +51,7 @@ CREATE TABLE `estudio` (
   `ganancia` double DEFAULT NULL,
   `reinversion` double DEFAULT NULL,
   `pagoProveedores` double DEFAULT NULL,
+  `clip` double NOT NULL,
   PRIMARY KEY (`idEstudio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -71,7 +71,6 @@ CREATE TABLE `producto` (
   `precioPro` double NOT NULL,
   `idProveedorProducto` int NOT NULL,
   PRIMARY KEY (`idProducto`),
-  UNIQUE KEY `idProveedorProducto_UNIQUE` (`idProveedorProducto`),
   CONSTRAINT `idProveedorProdutcto` FOREIGN KEY (`idProducto`) REFERENCES `proveedor` (`idProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -122,7 +121,7 @@ CREATE TABLE `tatuador` (
   `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ap_paterno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ap_materno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `contacto` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contacto` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `rango` int DEFAULT NULL,
   `total` double DEFAULT NULL,
   PRIMARY KEY (`idTatuador`)
@@ -146,7 +145,6 @@ CREATE TABLE `ticket` (
   `visita` tinyint DEFAULT NULL,
   `cambio` double DEFAULT NULL,
   PRIMARY KEY (`idTicket`),
-  UNIQUE KEY `idTatuadorTicket_UNIQUE` (`idTatuadorTicket`),
   CONSTRAINT `idTatuadorTicket` FOREIGN KEY (`idTicket`) REFERENCES `tatuador` (`idTatuador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -186,8 +184,6 @@ CREATE TABLE `venta` (
   `idProductoVenta` int DEFAULT NULL,
   `idTicketVenta` int DEFAULT NULL,
   PRIMARY KEY (`idVenta`),
-  UNIQUE KEY `idProductoVenta_UNIQUE` (`idProductoVenta`),
-  UNIQUE KEY `idTicketVenta_UNIQUE` (`idTicketVenta`),
   CONSTRAINT `idProductoVenta` FOREIGN KEY (`idVenta`) REFERENCES `producto` (`idProducto`),
   CONSTRAINT `idTicketVenta` FOREIGN KEY (`idVenta`) REFERENCES `ticket` (`idTicket`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -202,4 +198,4 @@ CREATE TABLE `venta` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-27 23:46:55
+-- Dump completed on 2021-01-30 16:52:15
