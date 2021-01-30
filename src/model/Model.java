@@ -40,6 +40,14 @@ public class Model {
         EstudioDB.aumentarPagoProveedores(aumento);
     }
     
+    public static double getClip(){
+        return EstudioDB.getClip();
+    }
+    
+    public static void setClip( double clip ){
+        EstudioDB.setClip(clip);
+    }
+    
     // Tatuador
     
     public static ArrayList<Tatuador> getTatuadores(){
