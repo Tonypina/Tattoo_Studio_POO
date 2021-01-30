@@ -100,4 +100,34 @@ public class EstudioDB {
         }
     }
     
+    public static double getClip(){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT clip FROM estudio WHERE idEstudio = 1");
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                pst.close();
+                cn.close();
+                return rs.getDouble(1);
+            }
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return 0.0;
+    }
+    
+    public static void setClip(double clip){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("UPDATE estudio SET clip = ? WHERE idEstudio = 1");
+            pst.setString(1, Double.toString(clip));
+            pst.executeUpdate();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
 }
