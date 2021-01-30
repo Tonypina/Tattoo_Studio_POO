@@ -5,14 +5,12 @@
  */
 package controller;
 import java.util.ArrayList;
-
 import model.*;
 import view.*;
 import objects.*;
 
 class Controller{
-  private static double getClip;
-  private static double comiclip = getClip; //getClip debe regresar la comisión de clip;
+  private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
   public static void ProcesoTicket(Ticket ticket, Double Pago){
     double pagado = ticket.getPagado();
@@ -84,22 +82,25 @@ class Controller{
   }
 
   public static void procesoGanancias(){
+    double sablazo=0;
     double pago=0;
-    double comisiones=0;
-    double totales = Model.obtenerGanancia();
+    double comisionS=0;
+    double totalG = 0;
     ArrayList<Socio> socios = Model.getSocios();
     for(Socio s:socios){
+      pago = 0;
+      totalG = Model.obtenerGanancia();
       if(s.isRango()){
-        comisiones = 0.35;
+        comisionS = 0.35;
       }else{
-        comisiones = 0.15;
+        comisionS = 0.15;
       }
-      pago += pago*comisiones;
-      pago -= pago;
+      pago += totalG*comisionS;
       s.setTotal(s.getTotal()+pago);
       Model.modificarSocio(s);
-      Model.aumentarGanancia(-pago);
+      sablazo+=pago;
     }
-    Model.aumentarReinversion(pago);
+    Model.aumentarReinversion(totalG-sablazo);
+    Model.aumentarGanancia(-sablazo);
   }
 }
