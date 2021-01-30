@@ -69,6 +69,7 @@ CREATE TABLE `producto` (
   `tipoPro` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `cantidadPro` int DEFAULT NULL,
   `precioPro` double NOT NULL,
+  `costoPro` double NOT NULL,
   `idProveedorProducto` int NOT NULL,
   PRIMARY KEY (`idProducto`),
   CONSTRAINT `idProveedorProdutcto` FOREIGN KEY (`idProducto`) REFERENCES `proveedor` (`idProveedor`)
@@ -87,7 +88,6 @@ CREATE TABLE `proveedor` (
   `nombre` varchar(45) DEFAULT NULL,
   `contacto` varchar(45) DEFAULT NULL,
   `total` double DEFAULT NULL,
-  `margen` double DEFAULT NULL,
   PRIMARY KEY (`idProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -198,4 +198,4 @@ CREATE TABLE `venta` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-30 16:52:15
+-- Dump completed on 2021-01-30 17:04:57
