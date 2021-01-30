@@ -28,7 +28,7 @@ public class ProductoDB {
                 do{
                     pd.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), 
                             rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
-                            rs.getDouble("precioPro"), p));
+                            rs.getDouble("precioPro"), rs.getDouble("costoPro"), p));
                 }while(rs.next());
             }
             
@@ -56,7 +56,7 @@ public class ProductoDB {
                 do{
                     pd.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), 
                             rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
-                            rs.getDouble("precioPro"), p));
+                            rs.getDouble("precioPro"), rs.getDouble("costoPro"), p));
                 }while(rs.next());
             }
             
@@ -73,13 +73,14 @@ public class ProductoDB {
     public static void insertar( Producto pro ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO producto VALUES(?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO producto VALUES(?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, pro.getModeloPro());
             pst.setString(3, pro.getTipoPro());
             pst.setString(4, Integer.toString(pro.getCantidadPro()));
             pst.setString(5, Double.toString(pro.getPrecioPro()));
-            pst.setString(6, Integer.toString(pro.getProveedor().getId()));
+            pst.setString(6, Double.toString(pro.getCostoPro()));
+            pst.setString(7, Integer.toString(pro.getProveedor().getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -100,7 +101,7 @@ public class ProductoDB {
                 Proveedor p = ProveedorDB.buscar(rs.getInt("idProveedorProducto"));
                 Producto pr = new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"),
                         rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
-                        rs.getDouble("precioPro"), p);
+                        rs.getDouble("precioPro"), rs.getDouble("costoPro"), p);
                 pst.close();
                 cn.close();
                 return pr;
@@ -116,12 +117,13 @@ public class ProductoDB {
     public static void modificar(Producto p){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, idProveedorProducto = ? WHERE idProducto = " + p.getIdPro());
+            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, costoPro = ?, idProveedorProducto = ? WHERE idProducto = " + p.getIdPro());
             pst.setString(1, p.getModeloPro());
             pst.setString(2, p.getTipoPro());
             pst.setString(3, Integer.toString(p.getCantidadPro()));
             pst.setString(4, Double.toString(p.getPrecioPro()));
-            pst.setString(5, Integer.toString(p.getProveedor().getId()));
+            pst.setString(5, Double.toString(p.getCostoPro()));
+            pst.setString(6, Integer.toString(p.getProveedor().getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();

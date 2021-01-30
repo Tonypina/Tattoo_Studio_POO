@@ -17,12 +17,11 @@ public class ProveedorDB {
     public static void insertar( Proveedor p ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO proveedor VALUES(?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO proveedor VALUES(?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, p.getNombre());
             pst.setString(3, p.getContacto());
             pst.setString(4, Double.toString(p.getTotal()));
-            pst.setString(5, Double.toString(p.getMargen()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -40,8 +39,8 @@ public class ProveedorDB {
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()){
-                Proveedor p = new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), rs.getString("contacto"),
-                                    rs.getDouble("margen"), rs.getDouble("total"));
+                Proveedor p = new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), 
+                        rs.getString("contacto"), rs.getDouble("total"));
                 pst.close();
                 cn.close();
                 return p;
@@ -57,11 +56,10 @@ public class ProveedorDB {
     public static void modificar(Proveedor p){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE proveedor SET nombre = ?, contacto = ?, total = ?, margen = ? WHERE idProveedor = " + p.getId());
+            PreparedStatement pst = cn.prepareStatement("UPDATE proveedor SET nombre = ?, contacto = ?, total = ? WHERE idProveedor = " + p.getId());
             pst.setString(1, p.getNombre());
             pst.setString(2, p.getContacto());
             pst.setString(3, Double.toString(p.getTotal()));
-            pst.setString(4, Double.toString(p.getMargen()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -79,7 +77,8 @@ public class ProveedorDB {
 
             if(rs.next()){
                 do{
-                    p.add(new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), rs.getString("contatco"), rs.getDouble("margen"), rs.getDouble("total")));
+                    p.add(new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), 
+                            rs.getString("contatco"), rs.getDouble("total")));
                 }while(rs.next());
             }
             
