@@ -12,73 +12,83 @@ import objects.*;
 class Controller{
   private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
-  public static void ProcesoTicket(Ticket ticket, Double Pago){
+  public static void ProcesoTicket(Ticket ticket, Double pago){
     double pagado = ticket.getPagado();
     Ticket ti;
     ti = Model.insertarTicket(ticket);
-    pagado += Pago;
+    pagado += pago;
     ti.setPagado(pagado);
     Model.modificarTicket(ti);
     if (ti.getTotal()-pagado > 0){
-      ti.setTotal(Pago);
-      ProcesoPago(ti);
+      ti.setTotal(pago);
+      ProcesoPago(ti, pago);
     }
     if (ti.getTotal()-pagado < 0){
       ti.setCambio((ti.getTotal()-pagado)*(-1));
       Model.modificarTicket(ti);
-      ti.setTotal(Pago);
-      ProcesoPago(ti);
+      ti.setTotal(pago);
+      ProcesoPago(ti, pago);
     }
     if (ti.getTotal()-pagado == 0){
-      ti.setTotal(Pago);
-      ProcesoPago(ti);
+      ti.setTotal(pago);
+      ProcesoPago(ti, pago);
     }
   }
 
   public static void ProcesoPago(Ticket t){
     double monto=0;
     double comision=0;
-    double proveedor=0;
+    double totalMerch=0;
+    double montoTatuaje=0;
+    double totalProv=0;
     double total = t.getTotal();
-    if (t.isClip()){
-      t.setTotal(total-total*comiclip);
-    }
     if (t.isProd()){
       ArrayList<Proveedor> proveedoresArr = Model.getProveedor();
       ArrayList<Producto> productosArr = t.getProductos();
-      double totalProv;
+      for(Producto produ:productosArr){
+        totalMerch += produ.getPrecioPro();
+      }
+      if (t.isClip()) {
+        montoTatuaje = (float)(t.getTotal()/(1+comiclip))-totalMerch;
+        montoTatuaje = (double)montoTatuaje;
+      }else{
+        montoTatuaje = (t.getTotal()/1)-totalMerch;
+      }
       for(Producto prod:productosArr){
         for(Proveedor prov:proveedoresArr){
-          if (prod.getProveedor().getNombre().equals(prov.getNombre())){ //El objeto Producto aún no contiene un objeto Proveedor.
-            t.setTotal(total-prod.getPrecioPro());  //Reducir Stock
-            monto += prod.getPrecioPro()*(prov.getMargen()); //Se registra el margen de ganancia para BabaYaga
+          if (prod.getProveedor().getNombre().equals(prov.getNombre())){
+            monto += prod.getPrecioPro()*(prov.getMargen());
             totalProv = prov.getTotal();
-            prov.setTotal(totalProv + prod.getPrecioPro()*(1-prov.getMargen())); //Es necesario registrar los márgenes como 50, 60, etc. y mandarlos como 0.5, 0.6, etc.
+            prov.setTotal(totalProv + prod.getPrecioPro()*(1-prov.getMargen()));
             Model.modificarProveedor(prov);
             Model.actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
           }
         }
       }
     }
-    switch(t.getTatuador().getRango()){
-      case 1:
+    if (montoTatuaje==0) {
+      Model.aumentarGanancia(monto);
+    }else{
+      switch(t.getTatuador().getRango()){
+        case 1:
         comision = 0.6;
         break;
-      case 2:
+        case 2:
         comision = 0.5;
         break;
-      case 3:         //Comentar con Vista
-        if(t.isVisita()){ //Necesitamos este booleano.
+        case 3:
+        if(t.isVisita()){
           comision = 0.6;
         }else{
           comision = 0.4;
         }
         break;
+      }
+      monto += montoTatuaje - montoTatuaje*comision;
+      Model.aumentarGanancia(monto);
+      t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*montoTatuaje);
+      Model.modificarTatuador(t.getTatuador());
     }
-    monto += t.getTotal() - t.getTotal()*comision;
-    Model.aumentarGanancia(monto);
-    t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*t.getTotal());
-    Model.modificarTatuador(t.getTatuador());
   }
 
   public static void procesoGanancias(){
