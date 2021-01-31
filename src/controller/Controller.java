@@ -12,27 +12,10 @@ import objects.*;
 class Controller{
   private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
-  public static void ProcesoTicket(Ticket ticket, Double pago){
-    double pagado = ticket.getPagado();
+  public static void ProcesoTicket(Ticket ticket){
     Ticket ti;
     ti = Model.insertarTicket(ticket);
-    pagado += pago;
-    ti.setPagado(pagado);
-    Model.modificarTicket(ti);
-    if (ti.getTotal()-pagado > 0){
-      ti.setTotal(pago);
-      ProcesoPago(ti, pago);
-    }
-    if (ti.getTotal()-pagado < 0){
-      ti.setCambio((ti.getTotal()-pagado)*(-1));
-      Model.modificarTicket(ti);
-      ti.setTotal(pago);
-      ProcesoPago(ti, pago);
-    }
-    if (ti.getTotal()-pagado == 0){
-      ti.setTotal(pago);
-      ProcesoPago(ti, pago);
-    }
+    ProcesoPago(ti);
   }
 
   public static void ProcesoPago(Ticket t){
