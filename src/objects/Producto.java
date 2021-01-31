@@ -16,83 +16,83 @@ public class Producto {
     private int cantidadPro;
     private double precioPro;
     private Proveedor proveedor;
-    private double CostoProd;
-    
-    public Producto(int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double CostoProd){
+    private double costoPro;
+
+    public Producto(int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro{
         this.idPro = idPro;
         this.modeloPro = modeloPro;
         this.tipoPro = tipoPro;
         this.cantidadPro = cantidadPro;
         this.precioPro = precioPro;
-        this.proveedor = proveedor;  
-        this.CostoProd = CostoProd;
+        this.proveedor = proveedor;
+        this.costoPro = costoPro;
     }
- 
+
     // Sobrecarga de Constructor
-    public Producto(String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double CostoProd){
+    public Producto(String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro){
         this.modeloPro = modeloPro;
         this.tipoPro = tipoPro;
         this.cantidadPro = cantidadPro;
         this.precioPro = precioPro;
-        this.proveedor = proveedor;  
-        this.CostoProd = CostoProd;
+        this.proveedor = proveedor;
+        this.costoPro = costoPro;
     }
- 
-    public void setCostoProd(double CostoProd){
-        this.CostoProd = CostoProd;
+
+    public void setCostoPro(double costoPro){
+        this.costoPro = costoPro;
     }
-    
+
     public void setIdPro(int idPro){
         this.idPro = idPro;
     }
-    
+
     public void setModeloPro(String modeloPro){
         this.modeloPro = modeloPro;
     }
-    
+
     public void setTipoPro(String tipoPro){
         this.tipoPro = tipoPro;
     }
-    
+
     public void setCantidadPro(int cantidadPro){
         this.cantidadPro = cantidadPro;
     }
-    
+
     public void setPrecioPro(double precioPro){
         this.precioPro = precioPro;
     }
-    
+
     public void setProveedor(Proveedor proveedor){
         this.proveedor = proveedor;
     }
- 
-    public double CostoProd(){
-        return CostoProd;
+
+    public double getCostoPro(){
+        return costoPro;
     }
-    
+
     public int getIdPro() {
         return idPro;
     }
-    
+
     public String getModeloPro() {
         return modeloPro;
     }
-    
+
     public String getTipoPro() {
         return tipoPro;
     }
-    
+
     public int getCantidadPro() {
         return cantidadPro;
     }
-    
+
     public double getPrecioPro() {
         return precioPro;
     }
-    
+
     public Proveedor getProveedor(){
         return proveedor;
     }
-   
+
 
 }

@@ -57,9 +57,9 @@ class Controller{
       for(Producto prod:productosArr){
         for(Proveedor prov:proveedoresArr){
           if (prod.getProveedor().getNombre().equals(prov.getNombre())){
-            monto += prod.getPrecioPro()*(prov.getMargen());
+            monto += prod.getPrecioPro()-(prod.getCostoPro());
             totalProv = prov.getTotal();
-            prov.setTotal(totalProv + prod.getPrecioPro()*(1-prov.getMargen()));
+            prov.setTotal(totalProv + prod.getCostoPro());
             Model.modificarProveedor(prov);
             Model.actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
           }
