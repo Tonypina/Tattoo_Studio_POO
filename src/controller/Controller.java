@@ -65,6 +65,13 @@ class Controller{
           }
         }
       }
+    }else{
+      if (t.isClip()) {
+        montoTatuaje = (float)(t.getTotal()/(1+comiclip));
+        montoTatuaje = (double)montoTatuaje;
+      }else{
+        montoTatuaje = t.getTotal();
+      }
     }
     if (montoTatuaje==0) {
       Model.aumentarGanancia(monto);
