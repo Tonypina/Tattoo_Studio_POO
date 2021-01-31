@@ -13,21 +13,18 @@ public class Proveedor {
     		private int id;
     	private String nombre;
     	private String contacto;
-    	private double margen;
     	private double total;
 
-	public Proveedor(String nombre, String contacto, double margen, double total){
+	public Proveedor(String nombre, String contacto, double total){
 		this.nombre = nombre;
        		this.contacto = contacto;
-        	this.margen = margen;
 		this.total=total;
 	}
 	//Sobrecarga de constructor
-	public Proveedor(int id, String nombre, String contacto, double margen, double total){
+	public Proveedor(int id, String nombre, String contacto, double total){
 		this.id =id;
 		this.nombre = nombre;
        		this.contacto = contacto;
-        	this.margen = margen;
 		this.total=total;
 	}
 	public double getTotal(){
@@ -57,11 +54,5 @@ public class Proveedor {
     		this.contacto = contacto;
     	}
 	
-    	public double getMargen() {
-    		return margen;
-    	}
-	
-    	public void setMargen(double margen) {
-    		this.margen = margen;
-    	}
+    	
 }
