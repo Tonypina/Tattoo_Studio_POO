@@ -13,28 +13,24 @@ public class Ticket {
     private int id;
     private boolean clip;
     private boolean prod;
-    private double pagado;
     private double total;
     private Tatuador tatuador;
     private boolean visita;
-    private double cambio;
     private ArrayList<Producto> productos;
     
 
-    public Ticket(int id, boolean clip, boolean prod, double pagado, double total, Tatuador tatuador, boolean visita, double cambio, ArrayList<Producto> productos) {
+    public Ticket(int id, boolean clip, boolean prod,  double total, Tatuador tatuador, boolean visita, ArrayList<Producto> productos) {
         this.id = id;
         this.clip = clip;
         this.prod = prod;
-        this.pagado = pagado;
         this.total = total;
         this.tatuador = tatuador;
         this.visita = visita;
-        this.cambio = cambio;
         this.productos = productos;
     }
 
     // Sobrecarga de constructor para la Base de Datos.
-    public Ticket(boolean clip, boolean prod, double pagado, double total, Tatuador tatuador, boolean visita, double cambio, ArrayList<Producto> productos) {
+    public Ticket(boolean clip, boolean prod,  double total, Tatuador tatuador, boolean visita, ArrayList<Producto> productos) {
         this.clip = clip;
         this.prod = prod;
         this.pagado = pagado;
@@ -53,13 +49,7 @@ public class Ticket {
         this.visita = visita;
     }
     
-    public double getCambio(){
-        return cambio;
-    }
     
-    public void setCambio(double cambio){
-        this.cambio = cambio;
-    }
     
     public int getId() {
         return id;
@@ -73,9 +63,7 @@ public class Ticket {
         return prod;
     }
 
-    public double getPagado() {
-        return pagado;
-    }
+   
 
     public double getTotal() {
         return total;
@@ -101,9 +89,6 @@ public class Ticket {
         this.prod = prod;
     }
 
-    public void setPagado(double pagado) {
-        this.pagado = pagado;
-    }
 
     public void setTotal(double total) {
         this.total = total;
