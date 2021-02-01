@@ -12,19 +12,15 @@ import objects.*;
 class Controller{
   private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
-  public static void ProcesoTicket(Ticket ticket){
-    Ticket ti;
-    ti = Model.insertarTicket(ticket);
-    ProcesoPago(ti);
-  }
-
-  public static void ProcesoPago(Ticket t){
+  public static void procesoPago(Ticket ticket){
     double monto=0;
     double comision=0;
     double totalMerch=0;
     double montoTatuaje=0;
     double totalProv=0;
     double total = t.getTotal();
+    Ticket ti;
+    t = Model.insertarTicket(ticket);
     if (t.isProd()){
       ArrayList<Proveedor> proveedoresArr = Model.getProveedor();
       ArrayList<Producto> productosArr = t.getProductos();
