@@ -17,8 +17,9 @@ public class Producto {
     private double precioPro;
     private Proveedor proveedor;
     private double costoPro;
+    private boolean perfo;
 
-    public Producto(int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro{
+    public Producto(int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro boolean perfo{
         this.idPro = idPro;
         this.modeloPro = modeloPro;
         this.tipoPro = tipoPro;
@@ -26,16 +27,22 @@ public class Producto {
         this.precioPro = precioPro;
         this.proveedor = proveedor;
         this.costoPro = costoPro;
+        this.perfo = perfo;
     }
 
     // Sobrecarga de Constructor
-    public Producto(String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro){
+    public Producto(String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro, boolean perfo){
         this.modeloPro = modeloPro;
         this.tipoPro = tipoPro;
         this.cantidadPro = cantidadPro;
         this.precioPro = precioPro;
         this.proveedor = proveedor;
         this.costoPro = costoPro;
+        this.perfo = perfo;
+    }
+
+    public void setPerfo(boolean perfo){
+      this.perfo = perfo;
     }
 
     public void setCostoPro(double costoPro){
@@ -64,6 +71,10 @@ public class Producto {
 
     public void setProveedor(Proveedor proveedor){
         this.proveedor = proveedor;
+    }
+
+    public boolean isPerfo(){
+      return perfo;
     }
 
     public double getCostoPro(){

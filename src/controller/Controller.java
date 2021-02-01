@@ -19,7 +19,7 @@ class Controller{
     double montoTatuaje=0;
     double totalProv=0;
     double total = t.getTotal();
-    Ticket ti;
+    Ticket t;
     t = Model.insertarTicket(ticket);
     if (t.isProd()){
       ArrayList<Proveedor> proveedoresArr = Model.getProveedor();
@@ -36,11 +36,17 @@ class Controller{
       for(Producto prod:productosArr){
         for(Proveedor prov:proveedoresArr){
           if (prod.getProveedor().getNombre().equals(prov.getNombre())){
-            monto += prod.getPrecioPro()-(prod.getCostoPro());
-            totalProv = prov.getTotal();
-            prov.setTotal(totalProv + prod.getCostoPro());
-            Model.modificarProveedor(prov);
-            Model.actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
+            if (prod.isPerfo()){
+              monto += prod.getPrecioPro()*0.3;
+              totalProv = prov.getTotal();
+              prov.setTotal(totalProv + prod.getPrecioPro()*0.7);
+            }else{
+              monto += prod.getPrecioPro()-(prod.getCostoPro());
+              totalProv = prov.getTotal();
+              prov.setTotal(totalProv + prod.getCostoPro());
+              Model.modificarProveedor(prov);
+              Model.actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
+            }
           }
         }
       }
