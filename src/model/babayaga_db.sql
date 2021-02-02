@@ -70,6 +70,7 @@ CREATE TABLE `producto` (
   `cantidadPro` int DEFAULT NULL,
   `precioPro` double NOT NULL,
   `costoPro` double NOT NULL,
+  `perfo` tinyint NOT NULL,
   `idProveedorProducto` int NOT NULL,
   PRIMARY KEY (`idProducto`),
   CONSTRAINT `idProveedorProdutcto` FOREIGN KEY (`idProducto`) REFERENCES `proveedor` (`idProveedor`)
@@ -139,11 +140,9 @@ CREATE TABLE `ticket` (
   `idTicket` int unsigned NOT NULL AUTO_INCREMENT,
   `clip` tinyint DEFAULT NULL,
   `prod` tinyint DEFAULT NULL,
-  `pagado` double DEFAULT NULL,
   `total` double DEFAULT NULL,
   `idTatuadorTicket` int NOT NULL,
   `visita` tinyint DEFAULT NULL,
-  `cambio` double DEFAULT NULL,
   PRIMARY KEY (`idTicket`),
   CONSTRAINT `idTatuadorTicket` FOREIGN KEY (`idTicket`) REFERENCES `tatuador` (`idTatuador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -198,4 +197,4 @@ CREATE TABLE `venta` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-30 17:04:57
+-- Dump completed on 2021-02-02 16:24:06
