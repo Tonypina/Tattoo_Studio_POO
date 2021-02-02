@@ -33,11 +33,9 @@ public class Ticket {
     public Ticket(boolean clip, boolean prod,  double total, Tatuador tatuador, boolean visita, ArrayList<Producto> productos) {
         this.clip = clip;
         this.prod = prod;
-        this.pagado = pagado;
         this.total = total;
         this.tatuador = tatuador;
         this.visita = visita;
-        this.cambio = cambio;
         this.productos = productos;
     }
 
