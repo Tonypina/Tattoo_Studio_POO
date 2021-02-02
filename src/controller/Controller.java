@@ -18,9 +18,9 @@ class Controller{
     double totalMerch=0;
     double montoTatuaje=0;
     double totalProv=0;
-    double total = t.getTotal();
     Ticket t;
     t = Model.insertarTicket(ticket);
+    double total = t.getTotal();
     if (t.isProd()){
       ArrayList<Proveedor> proveedoresArr = Model.getProveedor();
       ArrayList<Producto> productosArr = t.getProductos();
