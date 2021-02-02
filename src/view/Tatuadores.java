@@ -4,8 +4,19 @@
  * and open the template in the editor.
  */
 package view;
-
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import objects.*;
+import model.*;
+import model.util.*;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /**
  *
@@ -18,9 +29,51 @@ public class Tatuadores extends javax.swing.JFrame {
      */
     public Tatuadores() {
         initComponents();
-       setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         bloquear();
         bloquear2();
+        jComboBox2.removeAllItems();
+       
+        
+    }
+    
+    public void llenarT (){
+        try{
+          DefaultTableModel modelo = new DefaultTableModel();
+          jTable3.setModel(modelo);
+          
+          Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+          String sql= "SELECT idTatuador, nombre, ap_paterno, ap_materno, contacto, rango, total FROM tatuador";
+          PreparedStatement pst = cn.prepareStatement(sql);
+          ResultSet rs = pst.executeQuery();
+          
+          ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
+          int cantidadColumnas =rsMd.getColumnCount();
+          
+          modelo.addColumn("ID");
+          modelo.addColumn("Nombre");
+          modelo.addColumn("Apellido Paterno");
+          modelo.addColumn("Apellido Materno");
+          modelo.addColumn("Contacto");
+          modelo.addColumn("Rango");
+          modelo.addColumn("Total");  
+           int[] anchos ={40,150,150,150,100,50,40};
+          
+          for (int x =0; x< cantidadColumnas;x++  ){
+          jTable3.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+          }
+          while (rs.next()){
+             
+              Object[] filas = new Object[cantidadColumnas];
+              for (int i =0; i< cantidadColumnas; i++){
+                  filas[i]= rs.getObject(i+1);
+              }
+             modelo.addRow(filas);
+          }
+          
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
     }
     
     public void desbloquear (){
@@ -48,7 +101,16 @@ public class Tatuadores extends javax.swing.JFrame {
             af.setEnabled(false);
         } 
     }
-
+    
+    public void combo2(){
+        
+        jComboBox2.removeAllItems();
+        ArrayList <String> lista = new ArrayList <String>();
+        lista = TatuadorDB.llenarC();
+        for(int i = 0; i < lista.size(); i++){
+             jComboBox2.addItem(lista.get(i));
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,6 +154,9 @@ public class Tatuadores extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,7 +250,7 @@ public class Tatuadores extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel13.setText("Contacto:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principal", "Aprendiz", "Secundario" }));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +260,11 @@ public class Tatuadores extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Sitka Small", 0, 11)); // NOI18N
         jButton7.setText("OK");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Sitka Small", 0, 11)); // NOI18N
         jButton8.setText("CANCELAR");
@@ -214,14 +284,17 @@ public class Tatuadores extends javax.swing.JFrame {
             .addGroup(panel_1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel_1Layout.createSequentialGroup()
+                        .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panel_1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -262,11 +335,11 @@ public class Tatuadores extends javax.swing.JFrame {
                         .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
@@ -278,7 +351,12 @@ public class Tatuadores extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel6.setText("Tatuador:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item1", "Item2", "Item3", " " }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel9.setText("Total:");
@@ -349,16 +427,35 @@ public class Tatuadores extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido Paterno", "Apellido Materno", "Rango", "Total $"
+                "ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Contacto", "Rango", "Total $"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable3);
+
+        jButton4.setFont(new java.awt.Font("Sitka Small", 0, 11)); // NOI18N
+        jButton4.setText("Buscar Tatuador");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Sitka Small", 0, 11)); // NOI18N
+        jLabel7.setText("Nombre:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -371,11 +468,19 @@ public class Tatuadores extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jButton1)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(1, 1, 1)
+                                .addComponent(jTextField5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panel_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -386,25 +491,34 @@ public class Tatuadores extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(panel_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(panel_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(panel_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(panel_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
+                        .addComponent(jButton3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addComponent(jButton6)
                 .addContainerGap())
         );
@@ -422,11 +536,12 @@ public class Tatuadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+       
+         llenarT();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+       
          dispose();
         MenuP m=new MenuP();
         m.setVisible(true);
@@ -437,12 +552,16 @@ public class Tatuadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+      
         bloquear();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        dispose();
+        MoETatuador c=new MoETatuador();
+        c.setVisible(true);        
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -456,7 +575,104 @@ public class Tatuadores extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        String nombre = jComboBox2.getSelectedItem().toString();
+        String tot = jTextField4.getText();
+        int total = Integer.parseInt(tot);
+        
+        TatuadorDB.buscar(nombre);
+        
+        //agregar un metodo para añadir las ganancias de tatuajes o pedir ayuda a modelo
+        
+        
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String nombre= jTextField1.getText();
+        String apellidop= jTextField2.getText();
+        String apellidom= jTextField3.getText();
+        String contacto = jTextField6.getText();
+        String rango = jComboBox1.getSelectedItem().toString();
+        int rangoI=0;
+        int total=0;
+        if ("Principal".equals(rango)){
+           rangoI=0;
+        }
+        
+        else if ("Aprendiz".equals(rango)){
+            rangoI=1;
+        }
+        
+        else if ("Secundario".equals(rango)){
+            rangoI=2;
+        }
+        
+        Tatuador t = new Tatuador(nombre, apellidop,apellidom, contacto, rangoI,total);
+        TatuadorDB.insertar(t);
+        
+        combo2();
+        JOptionPane.showMessageDialog(null, "Registro Exitoso" );
+        bloquear();
+                
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+      
+          String campo = jTextField5.getText();
+             String where ="";
+        
+            if(!"".equals(campo)){
+                    where = "WHERE nombre = '" + campo + "'";
+                     try{
+            
+        
+          DefaultTableModel modelo = new DefaultTableModel();
+          jTable3.setModel(modelo);
+          
+          Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+          String sql= "SELECT idTatuador, nombre, ap_paterno, ap_materno, contacto, rango, total FROM tatuador " + where;
+          System.out.println(sql);
+          PreparedStatement pst = cn.prepareStatement(sql);
+          ResultSet rs = pst.executeQuery();
+          
+          ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
+          int cantidadColumnas =rsMd.getColumnCount();
+          
+          modelo.addColumn("ID");
+          modelo.addColumn("Nombre");
+          modelo.addColumn("Apellido Paterno");
+          modelo.addColumn("Apellido Materno");
+          modelo.addColumn("Contacto");
+          modelo.addColumn("Rango");
+          modelo.addColumn("Total");  
+          
+          int[] anchos ={40,150,150,150,100,50,40};
+          
+          for (int x =0; x< cantidadColumnas;x++  ){
+          jTable3.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+          }
+          
+          while (rs.next()){
+             
+              Object[] filas = new Object[cantidadColumnas];
+              for (int i =0; i< cantidadColumnas; i++){
+                  filas[i]= rs.getObject(i+1);
+              }
+             modelo.addRow(filas);
+          }
+          
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+            }else{
+              JOptionPane.showMessageDialog(null, "OPCIÓN INVALIDA" );
+            }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -498,6 +714,7 @@ public class Tatuadores extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -513,6 +730,7 @@ public class Tatuadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -524,6 +742,7 @@ public class Tatuadores extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JPanel panel_1;
     private javax.swing.JPanel panel_2;

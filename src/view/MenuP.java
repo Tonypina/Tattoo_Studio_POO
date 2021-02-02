@@ -142,7 +142,7 @@ public class MenuP extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 154, Short.MAX_VALUE)))
+                        .addGap(0, 169, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

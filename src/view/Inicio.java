@@ -7,7 +7,7 @@ package view;
 import objects.*;
 import javax.swing.JOptionPane;
 import model.*;
-import model.util.*;
+
 
 
 /**
@@ -17,7 +17,7 @@ import model.util.*;
 public class Inicio extends javax.swing.JFrame {
 
     //se instancia la conexion
-    UsuarioDB cc = new UsuarioDB();
+    
     
     
     
@@ -110,7 +110,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,12 +143,12 @@ public class Inicio extends javax.swing.JFrame {
         String username = jTextField1.getText();
         char[] arrayA = jPasswordField1.getPassword();
         String pass = new String(arrayA);
-   //  if (UsuarioDB.autenticacion(username, pass)){
+    //if (Model.autenticacion(username, pass)){
         dispose();
         MenuP m=new MenuP();
         m.setVisible(true);
            
-  /*   }else{
+    /* }else{
             JOptionPane.showMessageDialog(null, "Los datos no son correctos" );
         }*/
 
