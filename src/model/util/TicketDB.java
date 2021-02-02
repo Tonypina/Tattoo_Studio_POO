@@ -38,7 +38,15 @@ public class TicketDB {
             pst.executeUpdate();
             ResultSet rs = pst.executeQuery("SELECT MAX(idTicket) FROM ticket");
             rs.next();
-            t = buscar( rs.getInt(1) );
+            Ticket ti = buscar( rs.getInt(1) );
+            for (Producto p : t.getProductos()) {
+                pst.executeUpdate("INSERT INTO venta VALUES(?,?,?,?,?)");
+                pst.setString(1, "0");
+                pst.setString(2, "1");
+                pst.setString(3, "NULL");
+                pst.setString(4, Integer.toString(p.getIdPro()));
+                pst.setString(5, Integer.toString(ti.getId()));
+            }
             pst.close();
             cn.close();
             return t;
