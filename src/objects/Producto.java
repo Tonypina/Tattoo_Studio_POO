@@ -19,7 +19,7 @@ public class Producto {
     private double costoPro;
     private boolean perfo;
 
-    public Producto(int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro boolean perfo{
+    public Producto(int idPro, String modeloPro, String tipoPro, int cantidadPro, double precioPro, Proveedor proveedor, double costoPro, boolean perfo){
         this.idPro = idPro;
         this.modeloPro = modeloPro;
         this.tipoPro = tipoPro;
