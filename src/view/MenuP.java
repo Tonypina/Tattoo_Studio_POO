@@ -179,7 +179,7 @@ public class MenuP extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          dispose();
-       Tatuadores t=new Tatuadores();
+       TatuadorM t=new TatuadorM();
         t.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -193,7 +193,7 @@ public class MenuP extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
          dispose();
-        Citas c=new Citas();
+        CitasM c=new CitasM();
         c.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
