@@ -27,10 +27,10 @@ public class TatuadorMoE extends javax.swing.JFrame {
      */
     public TatuadorMoE() {
         initComponents();
-        llenarT();
+        llenarTablaTatuadores();
     }
 
-    public DefaultTableModel llenarT (){
+    private void llenarTablaTatuadores (){
       
         DefaultTableModel modelo = new DefaultTableModel();
         ArrayList <Tatuador> lista= Model.getTatuadores();
@@ -45,7 +45,7 @@ public class TatuadorMoE extends javax.swing.JFrame {
         modelo.addColumn("Contacto");
         modelo.addColumn("Rango");
         modelo.addColumn("Total");  
-        int[] anchos ={40,150,150,150,100,50,40};
+        int[] anchos ={40,100,100,100,100,100,40};
           
         for (int x =0; x< cantidadColumnas;x++  ){
             jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
@@ -57,11 +57,20 @@ public class TatuadorMoE extends javax.swing.JFrame {
             fila[2] = t.getAp_pat();
             fila[3] = t.getAp_mat();
             fila[4] = t.getContacto();
-            fila[5] = t.getRango();
+            switch(t.getRango()){
+                case 0:
+                    fila[5] = "Principal";
+                    break;
+                case 1:
+                    fila[5] = "Aprendiz";
+                    break;
+                case 2:
+                    fila[5] = "Secundario";
+                    break;
+            }
             fila[6] = t.getTotal();
             modelo.addRow(fila);
         }
-        return modelo;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -313,32 +322,18 @@ public class TatuadorMoE extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        PreparedStatement pst=null;
-        ResultSet rs = null;
-        try{
+        int Fila = jTable1.getSelectedRow();
+        int idTatuador = Integer.parseInt(jTable1.getValueAt(Fila, 0).toString());
 
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-
-            int Fila = jTable1.getSelectedRow();
-            String idTatuador =jTable1.getValueAt(Fila, 0).toString();
-            pst = cn.prepareStatement("SELECT idTatuador, nombre, ap_paterno, ap_materno, contacto, rango, total FROM tatuador WHERE idTatuador=?");
-            pst.setString(1, idTatuador);
-            rs = pst.executeQuery();
-
-            while (rs.next()){
-                jTextField1.setText(rs.getString("idTatuador"));
-                jTextField2.setText(rs.getString("nombre"));
-                jTextField3.setText(rs.getString("ap_paterno"));
-                jTextField4.setText(rs.getString("ap_materno"));
-                jTextField5.setText(rs.getString("contacto"));
-                jTextField7.setText(rs.getString("rango"));
-                
-                jTextField6.setText(rs.getString("total"));
-            }
-        }catch(SQLException ex){
-            System.out.println(ex.toString());
-        }
+        Tatuador t = Model.buscarTatuador(idTatuador);
+        
+        jTextField1.setText(Integer.toString(t.getId()));
+        jTextField2.setText(t.getNombre());
+        jTextField3.setText(t.getAp_pat());
+        jTextField4.setText(t.getAp_mat());
+        jTextField5.setText(t.getContacto());
+        jTextField6.setText(Integer.toString(t.getRango()));
+        jTextField6.setText(Double.toString(t.getTotal()));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -347,7 +342,7 @@ public class TatuadorMoE extends javax.swing.JFrame {
         int id = Integer.parseInt(iD);
         
         Model.eliminarTatuador(id);
-        llenarT();
+        llenarTablaTatuadores();
     
        
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -367,7 +362,7 @@ public class TatuadorMoE extends javax.swing.JFrame {
         
         Tatuador t = new Tatuador(iD, nombre, apellidop, apellidom, contacto, r, tot );
         Model.modificarTatuador(t);
-        llenarT();
+        llenarTablaTatuadores();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed

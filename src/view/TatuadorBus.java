@@ -4,16 +4,9 @@
  * and open the template in the editor.
  */
 package view;
-
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.*;
+import javax.swing.table.*;
 import model.Model;
 import objects.*;
 
@@ -29,15 +22,13 @@ public class TatuadorBus extends javax.swing.JFrame {
     public TatuadorBus() {
         setLocationRelativeTo(null);
         initComponents();
-        llenarT();
+        ArrayList<Tatuador> lista = Model.getTatuadores();
+        llenarTablaTatuadores( lista );
     }
     
-    public void llenarT(){
+    private void llenarTablaTatuadores( ArrayList<Tatuador> lista ){
         DefaultTableModel modelo = new DefaultTableModel();
         jTable1.setModel(modelo);
-        
-        ArrayList<Tatuador> lista = Model.getTatuadores();
-           
         int cantidadColumnas = 7;
           
         modelo.addColumn("ID");
@@ -47,7 +38,7 @@ public class TatuadorBus extends javax.swing.JFrame {
         modelo.addColumn("Contacto");
         modelo.addColumn("Rango");
         modelo.addColumn("Total");  
-        int[] anchos ={40,150,150,150,100,50,40};
+        int[] anchos ={40,100,100,100,100,100,40};
           
         for (int x =0; x< cantidadColumnas;x++  ){
             jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
@@ -60,7 +51,17 @@ public class TatuadorBus extends javax.swing.JFrame {
             fila[2] = t.getAp_pat();
             fila[3] = t.getAp_mat();
             fila[4] = t.getContacto();
-            fila[5] = t.getRango();
+            switch(t.getRango()){
+                case 0:
+                    fila[5] = "Principal";
+                    break;
+                case 1:
+                    fila[5] = "Aprendiz";
+                    break;
+                case 2:
+                    fila[5] = "Secundario";
+                    break;
+            }
             fila[6] = t.getTotal();
             modelo.addRow(fila);
         }
@@ -92,6 +93,11 @@ public class TatuadorBus extends javax.swing.JFrame {
         jLabel2.setText("Ingrese el nombre del tatuador que desee buscar:");
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
         jButton1.setText("BUSCAR");
@@ -190,41 +196,12 @@ public class TatuadorBus extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        DefaultTableModel modelo = new DefaultTableModel();
-        jTable1.setModel(modelo);
-     
-        String nombre = jTextField1.getText();
-        ArrayList <Tatuador> lista;
-        lista = Model.buscarTatuador(nombre);
-     
-        int cantidadColumnas = 7;
-          
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellido Paterno");
-        modelo.addColumn("Apellido Materno");
-        modelo.addColumn("Contacto");
-        modelo.addColumn("Rango");
-        modelo.addColumn("Total");  
-        int[] anchos ={40,150,150,150,100,50,40};
-           
-        for (int x =0; x < cantidadColumnas;x++  ){
-          jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
-        }
-        for(Tatuador t : lista){
-            Object[] fila = new Object[cantidadColumnas];
-            fila[0] = t.getId();
-            fila[1] = t.getNombre();
-            fila[2] = t.getAp_pat();
-            fila[3] = t.getAp_mat();
-            fila[4] = t.getContacto();
-            fila[5] = t.getRango();
-            fila[6] = t.getTotal();
-            modelo.addRow(fila);
-        }
-     
+        llenarTablaTatuadores( Model.buscarTatuador( jTextField1.getText() ) );
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
