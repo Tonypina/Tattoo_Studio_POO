@@ -30,40 +30,39 @@ public class TatuadorMoE extends javax.swing.JFrame {
         llenarT();
     }
 
-      public DefaultTableModel llenarT (){
-           DefaultTableModel modelo = new DefaultTableModel();
-           ArrayList <Tatuador> lista= Model.getTatuadores();
+    public DefaultTableModel llenarT (){
       
-          jTable1.setModel(modelo);
+        DefaultTableModel modelo = new DefaultTableModel();
+        ArrayList <Tatuador> lista= Model.getTatuadores();
+        jTable1.setModel(modelo);
           
+        int cantidadColumnas =7;
           
-          int cantidadColumnas =7;
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido Paterno");
+        modelo.addColumn("Apellido Materno");
+        modelo.addColumn("Contacto");
+        modelo.addColumn("Rango");
+        modelo.addColumn("Total");  
+        int[] anchos ={40,150,150,150,100,50,40};
           
-          modelo.addColumn("ID");
-          modelo.addColumn("Nombre");
-          modelo.addColumn("Apellido Paterno");
-          modelo.addColumn("Apellido Materno");
-          modelo.addColumn("Contacto");
-          modelo.addColumn("Rango");
-          modelo.addColumn("Total");  
-           int[] anchos ={40,150,150,150,100,50,40};
-          
-          for (int x =0; x< cantidadColumnas;x++  ){
-          jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
-        
-          for (Tatuador t : lista){
-             
-              Object[] filas = new Object[cantidadColumnas];
-              for (int i =0; i< cantidadColumnas; i++){
-                  filas[i]= t;
-              }
-             modelo.addRow(filas);
-          }
-          
+        for (int x =0; x< cantidadColumnas;x++  ){
+            jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
         }
-            return modelo;
-
-      }
+        for(Tatuador t : lista){
+            Object[] fila = new Object[cantidadColumnas];
+            fila[0] = t.getId();
+            fila[1] = t.getNombre();
+            fila[2] = t.getAp_pat();
+            fila[3] = t.getAp_mat();
+            fila[4] = t.getContacto();
+            fila[5] = t.getRango();
+            fila[6] = t.getTotal();
+            modelo.addRow(fila);
+        }
+        return modelo;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
