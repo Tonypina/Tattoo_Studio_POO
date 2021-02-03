@@ -6,6 +6,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 import model.*;
 import objects.*;
@@ -32,7 +33,7 @@ public class CitaNC extends javax.swing.JFrame {
         ArrayList <String> lista = new ArrayList <>();
         
         for(Tatuador t : Model.getTatuadores())
-            lista.add(t.getNombre());
+            lista.add(t.getNombre()+" "+t.getAp_pat()+" "+t.getAp_mat());
         
         for(int i = 0; i < lista.size(); i++){
              jComboBox2.addItem(lista.get(i));
@@ -84,6 +85,11 @@ public class CitaNC extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jComboBox3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
@@ -231,9 +237,18 @@ public class CitaNC extends javax.swing.JFrame {
         int mI = Integer.parseInt(mesI);
         String anI = jComboBox4.getSelectedItem().toString();
         int aI = Integer.parseInt(anI);
+        
+        
         String tatuador = jComboBox2.getSelectedItem().toString();
-        int idT=17;
-        //¿Como sacar el id del tatuador? A partir de aquí
+        StringTokenizer st = new StringTokenizer(tatuador, " ");
+        ArrayList<Tatuador> listaT = Model.buscarTatuador(st.nextToken());
+        int idT = 0;
+        for(Tatuador t : listaT){
+            if(tatuador.equals(t.getNombre()+" "+t.getAp_pat()+" "+t.getAp_mat())){
+                idT = t.getId();
+            }
+        }
+        
         String diaF = jComboBox5.getSelectedItem().toString();
         int dF= Integer.parseInt(diaF);
         String mesF = jComboBox6.getSelectedItem().toString();
@@ -253,6 +268,10 @@ public class CitaNC extends javax.swing.JFrame {
     private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox7ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
