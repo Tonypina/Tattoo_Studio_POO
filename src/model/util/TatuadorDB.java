@@ -16,7 +16,7 @@ public class TatuadorDB {
     public static ArrayList<Tatuador> get(){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador ORDER BY nombre");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador ORDER BY idTatuador");
             
             ResultSet rs = pst.executeQuery();
             
