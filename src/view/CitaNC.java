@@ -29,8 +29,11 @@ public class CitaNC extends javax.swing.JFrame {
     public void combo2(){
         
         jComboBox2.removeAllItems();
-        ArrayList <String> lista = new ArrayList <String>();
-        lista = Model.llenar();
+        ArrayList <String> lista = new ArrayList <>();
+        
+        for(Tatuador t : Model.getTatuadores())
+            lista.add(t.getNombre());
+        
         for(int i = 0; i < lista.size(); i++){
              jComboBox2.addItem(lista.get(i));
         }

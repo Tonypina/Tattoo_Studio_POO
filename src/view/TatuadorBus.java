@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Model;
@@ -32,42 +32,37 @@ public class TatuadorBus extends javax.swing.JFrame {
         llenarT();
     }
     
-       public void llenarT (){
-        try{
-          DefaultTableModel modelo = new DefaultTableModel();
-          jTable1.setModel(modelo);
+    public void llenarT(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
+        
+        ArrayList<Tatuador> lista = Model.getTatuadores();
+           
+        int cantidadColumnas = 7;
           
-          Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-          String sql= "SELECT idTatuador, nombre, ap_paterno, ap_materno, contacto, rango, total FROM tatuador";
-          PreparedStatement pst = cn.prepareStatement(sql);
-          ResultSet rs = pst.executeQuery();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido Paterno");
+        modelo.addColumn("Apellido Materno");
+        modelo.addColumn("Contacto");
+        modelo.addColumn("Rango");
+        modelo.addColumn("Total");  
+        int[] anchos ={40,150,150,150,100,50,40};
           
-          ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
-          int cantidadColumnas =rsMd.getColumnCount();
-          
-          modelo.addColumn("ID");
-          modelo.addColumn("Nombre");
-          modelo.addColumn("Apellido Paterno");
-          modelo.addColumn("Apellido Materno");
-          modelo.addColumn("Contacto");
-          modelo.addColumn("Rango");
-          modelo.addColumn("Total");  
-           int[] anchos ={40,150,150,150,100,50,40};
-          
-          for (int x =0; x< cantidadColumnas;x++  ){
-          jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
-          }
-          while (rs.next()){
-             
-              Object[] filas = new Object[cantidadColumnas];
-              for (int i =0; i< cantidadColumnas; i++){
-                  filas[i]= rs.getObject(i+1);
-              }
-             modelo.addRow(filas);
-          }
-          
-        }catch(SQLException ex){
-            System.err.println(ex.toString());
+        for (int x =0; x< cantidadColumnas;x++  ){
+            jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+        }
+        
+        for(Tatuador t : lista){
+            Object[] fila = new Object[cantidadColumnas];
+            fila[0] = t.getId();
+            fila[1] = t.getNombre();
+            fila[2] = t.getAp_pat();
+            fila[3] = t.getAp_mat();
+            fila[4] = t.getContacto();
+            fila[5] = t.getRango();
+            fila[6] = t.getTotal();
+            modelo.addRow(fila);
         }
     }
 
@@ -195,61 +190,40 @@ public class TatuadorBus extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     /*  String campo = jTextField1.getText();
-             String where ="";
-        
-            if(!"".equals(campo)){
-                    where = "WHERE nombre = '" + campo + "'";
-                     try{
-            
-        
-          DefaultTableModel modelo = new DefaultTableModel();
-          jTable1.setModel(modelo);
-          
-          Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-          String sql= "SELECT idTatuador, nombre, ap_paterno, ap_materno, contacto, rango, total FROM tatuador " + where;
-          System.out.println(sql);
-          PreparedStatement pst = cn.prepareStatement(sql);
-          ResultSet rs = pst.executeQuery();
-          
-          ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
-          int cantidadColumnas =rsMd.getColumnCount();
-          
-          modelo.addColumn("ID");
-          modelo.addColumn("Nombre");
-          modelo.addColumn("Apellido Paterno");
-          modelo.addColumn("Apellido Materno");
-          modelo.addColumn("Contacto");
-          modelo.addColumn("Rango");
-          modelo.addColumn("Total");  
-          
-          int[] anchos ={40,150,150,150,100,50,40};
-          
-          for (int x =0; x< cantidadColumnas;x++  ){
-          jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
-          }
-          
-          while (rs.next()){
-             
-              Object[] filas = new Object[cantidadColumnas];
-              for (int i =0; i< cantidadColumnas; i++){
-                  filas[i]= rs.getObject(i+1);
-              }
-             modelo.addRow(filas);
-             llenarT();
-          }
-          
-        }catch(SQLException ex){
-            System.err.println(ex.toString());
-        }
-            }else{
-              JOptionPane.showMessageDialog(null, "OPCIÓN INVALIDA" );
-            }*/
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
      
-     String nombre = jTextField1.getText();
-     ArrayList <Tatuador> t = new ArrayList<>() ;
-     t = Model.buscarTatuador(nombre);
-     llenarT();
+        String nombre = jTextField1.getText();
+        ArrayList <Tatuador> lista;
+        lista = Model.buscarTatuador(nombre);
+     
+        int cantidadColumnas = 7;
+          
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido Paterno");
+        modelo.addColumn("Apellido Materno");
+        modelo.addColumn("Contacto");
+        modelo.addColumn("Rango");
+        modelo.addColumn("Total");  
+        int[] anchos ={40,150,150,150,100,50,40};
+           
+        for (int x =0; x < cantidadColumnas;x++  ){
+          jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+        }
+        for(Tatuador t : lista){
+            Object[] fila = new Object[cantidadColumnas];
+            fila[0] = t.getId();
+            fila[1] = t.getNombre();
+            fila[2] = t.getAp_pat();
+            fila[3] = t.getAp_mat();
+            fila[4] = t.getContacto();
+            fila[5] = t.getRango();
+            fila[6] = t.getTotal();
+            modelo.addRow(fila);
+        }
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
