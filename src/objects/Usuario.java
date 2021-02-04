@@ -17,30 +17,32 @@ public class Usuario {
     private String ap_materno;
     private String username;
     private String pass;
-    private int rango;
+    private boolean rango;
     
-    public Usuario(int id, String nombre, String ap_paterno, String ap_materno, String username, String pass) {
+    public Usuario(int id, String nombre, String ap_paterno, String ap_materno, boolean rango, String username, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.ap_paterno = ap_paterno;
         this.ap_materno = ap_materno;
+        this.rango = rango;
         this.username = username;
         this.pass = pass;
     }
     
-    public Usuario(int id, String nombre, String ap_paterno, String ap_materno, String username) {
+    public Usuario(int id, String nombre, String ap_paterno, String ap_materno, boolean rango, String username) {
         this.id = id;
         this.nombre = nombre;
         this.ap_paterno = ap_paterno;
         this.ap_materno = ap_materno;
+        this.rango = rango;
         this.username = username;
     }
     
-     public Usuario( String nombre, String ap_paterno, String ap_materno,int rango, String username, String pass) {
+     public Usuario( String nombre, String ap_paterno, String ap_materno, boolean rango, String username, String pass) {
         this.nombre = nombre;
         this.ap_paterno = ap_paterno;
         this.ap_materno = ap_materno;
-        this.rango= rango;
+        this.rango = rango;
         this.username = username;
         this.pass= pass;
     }
@@ -81,8 +83,8 @@ public class Usuario {
         this.pass = pass;
     }
         
-    public void setRango (int rango){
-        this.rango=rango;
+    public void setRango (boolean rango){
+        this.rango = rango;
     }
 
     public int getId() {
@@ -97,7 +99,7 @@ public class Usuario {
         return pass;
     }
     
-    public int getRango(){
+    public boolean getRango(){
         return rango;
     }
 }
