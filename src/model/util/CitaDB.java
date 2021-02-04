@@ -40,6 +40,33 @@ public class CitaDB {
         return null;
     }
     
+    public static ArrayList<Cita> get( ){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita ORDER BY nomClienteCita");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                ArrayList<Cita> ac = new ArrayList<>();
+                while(rs.next()){
+                    ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
+                            rs.getInt("diaInicio"), rs.getInt("mesInicio"), 
+                            rs.getInt("anioInicio"), rs.getInt("diaFinal"), 
+                            rs.getInt("mesFinal"), rs.getInt("anioFinal"), rs.getInt("idTatuador")));
+                }
+                pst.close();
+                cn.close();
+                return ac;
+            }
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
     public static void insertar( Cita c ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
