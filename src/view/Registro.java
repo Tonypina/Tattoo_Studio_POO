@@ -247,14 +247,14 @@ public class Registro extends javax.swing.JFrame {
         char[] arrayB = jPasswordField2.getPassword();
         String pass = new String(arrayA);
         String rango = jComboBox1.getSelectedItem().toString();
-        int rangoI=0;
+        boolean rangoI = false;
      
         if ("Jefe".equals(rango)){
-           rangoI=0;
+           rangoI = true;
         }
         
         else if ("Gerente".equals(rango)){
-            rangoI=1;
+            rangoI = false;
         }
         
           
