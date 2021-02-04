@@ -152,15 +152,14 @@ public class Inicio extends javax.swing.JFrame {
         String username = jTextField1.getText();
         char[] arrayA = jPasswordField1.getPassword();
         String pass = new String(arrayA);
-   // if (Model.autetnicacion(username, pass)){
-        dispose();
-        MenuP m=new MenuP();
-        m.setVisible(true);
-           
- //}else{
-          
- //JOptionPane.showMessageDialog(null, "No existe este usuario " );
+        if (Model.autetnicacion(username, pass)){
+            dispose();
+            MenuP m=new MenuP();
+            m.setVisible(true);
+        }else{
 
+            JOptionPane.showMessageDialog(null, "No existe este usuario " );
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
