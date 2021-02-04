@@ -52,10 +52,13 @@ public class UsuarioDB {
             }
             pst.setString(6, u.getPass());
             pst.setString(7, u.getUsername());
+            System.out.println("Antes del update.");
             pst.executeUpdate();
+            
             pst.close();
             cn.close();
         }catch(SQLException e){
+            System.out.println("No se pudo insertar");
             e.getMessage();
         }
     }
