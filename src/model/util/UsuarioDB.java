@@ -50,8 +50,8 @@ public class UsuarioDB {
             } else {
                 pst.setString(5, "0");
             }
-            pst.setString(5, u.getPass());
-            pst.setString(6, u.getUsername());
+            pst.setString(6, u.getPass());
+            pst.setString(7, u.getUsername());
             pst.executeUpdate();
             pst.close();
             cn.close();
