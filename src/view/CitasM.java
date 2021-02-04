@@ -15,7 +15,9 @@ public class CitasM extends javax.swing.JFrame {
      * Creates new form CitasM
      */
     public CitasM() {
-        initComponents();
+          initComponents();
+        setLocationRelativeTo(null);
+        setSize(914,523);
         setLocationRelativeTo(null);
     }
 
@@ -40,7 +42,8 @@ public class CitasM extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 55)); // NOI18N
         jLabel1.setText("Agenda de Citas");
 
-        jButton1.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Sitka Small", 0, 20)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevaC.png"))); // NOI18N
         jButton1.setText("Agendar Nueva Cita");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,7 +51,8 @@ public class CitasM extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Sitka Small", 0, 20)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         jButton2.setText("Buscar Cita");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +60,8 @@ public class CitasM extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Sitka Small", 0, 20)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
         jButton3.setText("Modificar o Eliminar Cita");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,11 +69,12 @@ public class CitasM extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Sitka Small", 0, 20)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/leer.jpg"))); // NOI18N
         jButton4.setText("Ver Agenda de Citas");
 
         jButton5.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
-        jButton5.setText("Regresar al Menú Principal");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha_r.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -83,26 +89,24 @@ public class CitasM extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jButton5)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 234, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(223, 223, 223))
+                        .addGap(326, 326, 326)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(77, 77, 77)
+                .addGap(92, 92, 92)
                 .addComponent(jButton1)
                 .addGap(29, 29, 29)
                 .addComponent(jButton2)
@@ -110,7 +114,7 @@ public class CitasM extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(29, 29, 29)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
         );
@@ -127,7 +131,7 @@ public class CitasM extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
-        CitaBs bs = new CitaBs();
+        CitaBusc bs = new CitaBusc();
         bs.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

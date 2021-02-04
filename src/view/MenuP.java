@@ -20,6 +20,8 @@ public class MenuP extends javax.swing.JFrame {
         
         initComponents();
         setLocationRelativeTo(null);
+        setSize(914,523);
+        setResizable(false);
 
     }
 
@@ -51,6 +53,7 @@ public class MenuP extends javax.swing.JFrame {
         jLabel1.setText("Studio Babayaga");
 
         jButton1.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tatuador.jpg"))); // NOI18N
         jButton1.setText("Tatuadores");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +62,7 @@ public class MenuP extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agendar cita.jpg"))); // NOI18N
         jButton2.setText("Agenda de Citas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +71,7 @@ public class MenuP extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventario.jpg"))); // NOI18N
         jButton3.setText("Inventario");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +80,7 @@ public class MenuP extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proveedor1.jpg"))); // NOI18N
         jButton4.setText("Proveedores ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +89,7 @@ public class MenuP extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.png"))); // NOI18N
         jButton5.setText("Reportes");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +97,10 @@ public class MenuP extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo (1).jpg"))); // NOI18N
+
         jButton6.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Socios.png"))); // NOI18N
         jButton6.setText("Socios");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +111,7 @@ public class MenuP extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton7.setText("Perforadores");
 
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar (1).jpg"))); // NOI18N
         jButton8.setText("CERRAR SESIÓN");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,8 +135,8 @@ public class MenuP extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(129, 129, 129)
+                                .addComponent(jLabel2)
+                                .addGap(142, 142, 142)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(396, 396, 396)
@@ -134,17 +145,16 @@ public class MenuP extends javax.swing.JFrame {
                                 .addGap(122, 122, 122)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(73, 73, 73)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 169, Short.MAX_VALUE)))
+                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 88, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -157,22 +167,21 @@ public class MenuP extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton6)))
-                .addGap(58, 58, 58)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton6)
+                    .addComponent(jButton5))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton5))
-                .addGap(30, 30, 30)
-                .addComponent(jButton7)
-                .addGap(28, 28, 28)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jButton8)
-                .addGap(52, 52, 52))
+                .addContainerGap())
         );
 
         pack();

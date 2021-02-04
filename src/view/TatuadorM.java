@@ -16,6 +16,10 @@ public class TatuadorM extends javax.swing.JFrame {
      */
     public TatuadorM() {
         initComponents();
+        setLocationRelativeTo(null);
+        setSize(914,523);
+        setResizable(false);
+
     }
 
     TatuadorM(String nombre, String apellidop, String apellidom, String contacto, int rangoI, int total) {
@@ -44,6 +48,7 @@ public class TatuadorM extends javax.swing.JFrame {
         jLabel1.setText("Tatuadores");
 
         jButton1.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registrar.jpg"))); // NOI18N
         jButton1.setText("Registrar Nuevo Tatuador");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +57,7 @@ public class TatuadorM extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         jButton2.setText("Buscar Tatuador");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +66,7 @@ public class TatuadorM extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
         jButton3.setText("Modificar o Eliminar Tatuador");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +75,7 @@ public class TatuadorM extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/leer.jpg"))); // NOI18N
         jButton4.setText("Ver Registro de Tatuadores");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +84,7 @@ public class TatuadorM extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
-        jButton5.setText("Volver al Menú Principal");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha_r.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -87,23 +95,23 @@ public class TatuadorM extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 368, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(203, 203, 203))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(27, 27, 27)
                         .addComponent(jButton5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 206, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(203, 203, 203))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +126,9 @@ public class TatuadorM extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(60, 60, 60)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jButton5)
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -134,7 +142,7 @@ public class TatuadorM extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         dispose();
         TatuadorBus bt = new TatuadorBus();
         bt.setVisible(true);

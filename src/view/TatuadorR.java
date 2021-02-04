@@ -20,6 +20,10 @@ public class TatuadorR extends javax.swing.JFrame {
      */
     public TatuadorR() {
         initComponents();
+        setLocationRelativeTo(null);
+        setSize(914,523);
+        setResizable(false);
+
     }
 
     /**
@@ -47,25 +51,26 @@ public class TatuadorR extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 44)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 50)); // NOI18N
         jLabel1.setText("Registro de Tatuadores");
 
-        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel2.setText("Nombre:");
 
-        jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel3.setText("Apellido Paterno:");
 
-        jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel4.setText("Apellido Materno:");
 
-        jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel5.setText("Rango:");
 
-        jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel6.setText("Contacto:");
 
-        jButton1.setFont(new java.awt.Font("Sitka Small", 0, 13)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Sitka Small", 0, 20)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/check.png"))); // NOI18N
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,87 +79,89 @@ public class TatuadorR extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Sitka Small", 0, 13)); // NOI18N
-        jButton2.setText("Volver al Menú de Tatuadores");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha_r.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField5.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principal", "Aprendiz", "Secundario" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(95, 95, 95))
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(46, 46, 46))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextField5)
-                            .addComponent(jComboBox1, 0, 236, Short.MAX_VALUE)))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel1)))
-                .addContainerGap(170, Short.MAX_VALUE))
+                        .addGap(83, 83, 83)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel1))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(42, 42, 42)
-                .addComponent(jButton2)
-                .addContainerGap())
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(31, 31, 31))
         );
 
         pack();
