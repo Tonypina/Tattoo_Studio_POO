@@ -10,13 +10,14 @@ package objects;
  * @author Airam
  */
 public class Usuario {
-     
+       
     private int id;
     private String nombre;
     private String ap_paterno;
     private String ap_materno;
     private String username;
     private String pass;
+    private int rango;
     
     public Usuario(int id, String nombre, String ap_paterno, String ap_materno, String username, String pass) {
         this.id = id;
@@ -33,6 +34,15 @@ public class Usuario {
         this.ap_paterno = ap_paterno;
         this.ap_materno = ap_materno;
         this.username = username;
+    }
+    
+     public Usuario( String nombre, String ap_paterno, String ap_materno,int rango, String username, String pass) {
+        this.nombre = nombre;
+        this.ap_paterno = ap_paterno;
+        this.ap_materno = ap_materno;
+        this.rango= rango;
+        this.username = username;
+        this.pass= pass;
     }
     
     public void setNombre(String nombre) {
@@ -71,6 +81,10 @@ public class Usuario {
         this.pass = pass;
     }
         
+    public void setRango (int rango){
+        this.rango=rango;
+    }
+
     public int getId() {
         return id;
     }
@@ -82,5 +96,8 @@ public class Usuario {
     public String getPass() {
         return pass;
     }
-
+    
+    public int getRango(){
+        return rango;
+    }
 }
