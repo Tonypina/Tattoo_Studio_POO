@@ -120,8 +120,8 @@ public class UsuarioDB {
     public static boolean autenticacion( String username, String pass ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?" + username); 
-            
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?"); 
+            pst.setString(1, username);
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()){
