@@ -25,7 +25,7 @@ public class UsuarioDB {
             while(rs.next()){
                 us.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
                                    rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                   rs.getString("username")));
+                                   rs.getBoolean("super"), rs.getString("username")));
             }
             pst.close();
             cn.close();
@@ -66,7 +66,7 @@ public class UsuarioDB {
             if(rs.next()){
                 Usuario u = new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
                                    rs.getString("ap_paterno"),rs.getString("ap_paterno"), 
-                                   rs.getString("username"));
+                                   rs.getBoolean("super"), rs.getString("username"));
                 pst.close();
                 cn.close();
                 return u;
