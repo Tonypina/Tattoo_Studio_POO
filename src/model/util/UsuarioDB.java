@@ -40,11 +40,16 @@ public class UsuarioDB {
     public static void insertar(Usuario u){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO usuario VALUES(?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO usuario VALUES(?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, u.getNombre());
             pst.setString(3, u.getAp_paterno());
             pst.setString(4, u.getAp_materno());
+            if(u.getRango()){
+                pst.setString(5, "1");
+            } else {
+                pst.setString(5, "0");
+            }
             pst.setString(5, u.getPass());
             pst.setString(6, u.getUsername());
             pst.executeUpdate();
