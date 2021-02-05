@@ -102,6 +102,10 @@ public class Model {
         return ProductoDB.get();
     }
     
+    public static ArrayList<Producto> getProductos( int idProveedor ){
+        return ProductoDB.get(idProveedor);
+    }
+    
     public static ArrayList<Producto> getTipos( String tipoPro ){
         return ProductoDB.get(tipoPro);
     }
