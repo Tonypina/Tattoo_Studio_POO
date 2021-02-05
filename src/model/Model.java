@@ -186,6 +186,10 @@ public class Model {
     public static Proveedor buscarProveedor( int idProveedor ){
         return ProveedorDB.buscar(idProveedor);
     }
+    
+    public static Proveedor buscarProveedor( String nombre ){
+        return ProveedorDB.buscar(nombre);
+    }
 
     public static void modificarProveedor(Proveedor p){
         ProveedorDB.modificar(p);
