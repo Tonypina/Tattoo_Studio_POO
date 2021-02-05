@@ -78,7 +78,7 @@ public class ProveedorDB {
             if(rs.next()){
                 do{
                     p.add(new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), 
-                            rs.getString("contatco"), rs.getDouble("total")));
+                            rs.getString("contacto"), rs.getDouble("total")));
                 }while(rs.next());
             }
             

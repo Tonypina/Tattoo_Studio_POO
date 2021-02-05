@@ -17,7 +17,7 @@ public class ProductoDB {
     public static ArrayList<Producto> get(){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto ORDER BY tipoPro");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto ORDER BY modeloPro");
             
             ResultSet rs = pst.executeQuery();
             
@@ -45,8 +45,36 @@ public class ProductoDB {
     public static ArrayList<Producto> get( String tipoPro ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE tipoPro = " + tipoPro + " ORDER BY tipoPro");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE tipoPro = ? ORDER BY tipoPro");
+            pst.setString(1, tipoPro);
+            ResultSet rs = pst.executeQuery();
             
+            ArrayList<Producto> pd = new ArrayList<>();
+            
+            if(rs.next()){
+                Proveedor p = ProveedorDB.buscar(rs.getInt("idProveedorProducto"));
+                do{
+                    pd.add(new Producto(rs.getInt("idProducto"), rs.getString("modeloPro"), 
+                            rs.getString("tipoPro"), rs.getInt("cantidadPro"), 
+                            rs.getDouble("precioPro"), p, rs.getDouble("costoPro"), rs.getBoolean("perfo")));
+                }while(rs.next());
+            }
+            
+            pst.close();
+            cn.close();
+            return pd;
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
+    public static ArrayList<Producto> get( int idProveedor ){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE idProveedorProducto = ?");
+            pst.setString(1, Integer.toString(idProveedor));
             ResultSet rs = pst.executeQuery();
             
             ArrayList<Producto> pd = new ArrayList<>();
