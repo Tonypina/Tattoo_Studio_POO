@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `tattoo_studio_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `tattoo_studio_db`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tattoo_studio_db
@@ -34,8 +32,7 @@ CREATE TABLE `cita` (
   `mesFinal` int NOT NULL,
   `anioFinal` int NOT NULL,
   `idTatuadorCita` int DEFAULT NULL,
-  PRIMARY KEY (`idCita`),
-  CONSTRAINT `idTatuadorCita` FOREIGN KEY (`idCita`) REFERENCES `tatuador` (`idTatuador`)
+  PRIMARY KEY (`idCita`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -71,9 +68,8 @@ CREATE TABLE `producto` (
   `precioPro` double NOT NULL,
   `costoPro` double NOT NULL,
   `perfo` tinyint NOT NULL,
-  `idProveedorProducto` int NOT NULL,
-  PRIMARY KEY (`idProducto`),
-  CONSTRAINT `idProveedorProdutcto` FOREIGN KEY (`idProducto`) REFERENCES `proveedor` (`idProveedor`)
+  `idProveedorProducto` int DEFAULT NULL,
+  PRIMARY KEY (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,11 +82,11 @@ DROP TABLE IF EXISTS `proveedor`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proveedor` (
   `idProveedor` int unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
-  `contacto` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `contacto` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `total` double DEFAULT NULL,
   PRIMARY KEY (`idProveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,4 +193,4 @@ CREATE TABLE `venta` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-02 16:24:06
+-- Dump completed on 2021-02-05 14:03:44
