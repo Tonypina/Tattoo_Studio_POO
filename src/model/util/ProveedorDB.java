@@ -52,6 +52,29 @@ public class ProveedorDB {
         }
         return null;
     }
+    
+    public static Proveedor buscar( String nombre ){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM proveedor WHERE nombre = ?");
+            pst.setString(1, nombre);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                Proveedor p = new Proveedor(rs.getInt("idProveedor"), rs.getString("nombre"), 
+                        rs.getString("contacto"), rs.getDouble("total"));
+                pst.close();
+                cn.close();
+                return p;
+            }
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
 
     public static void modificar(Proveedor p){
         try{
