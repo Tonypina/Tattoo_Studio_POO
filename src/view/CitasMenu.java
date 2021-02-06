@@ -4,13 +4,19 @@
  * and open the template in the editor.
  */
 package view;
-
+import model.*;
+import objects.*;
 /**
  *
  * @author Airam
  */
 public class CitasMenu extends javax.swing.JFrame {
 int vp, vp1, vp2, vp3 =0;
+CitaBusc busqueda;
+CitaNC nuevacita;
+CitasAgenda agenda;
+CitasElim elim;
+
 
     /**
      * Creates new form CitasM
@@ -19,40 +25,55 @@ int vp, vp1, vp2, vp3 =0;
         initComponents();
         setLocationRelativeTo(null);
         setSize(1050, 650);    
+        Abrir_Registro();
+        Buscar_y_Mostrar();
+        Eliminar_o_M();
+        Agebda();
+        
     }
     
      private void Abrir_Registro(){
-        /* if (vp == 0){
+         if (vp == 0){
          
-         principal.addTab("Nueva Cita",);
-         principal.setSelectedComponent();
+         principal.addTab("Nueva Cita",nuevacita);
+         principal.setSelectedComponent(nuevacita);
          }else{
-             principal.setSelectedComponent();
+             principal.setSelectedComponent(nuevacita);
          }
-         vp = 1;*/
+         vp = 1;
       }
      
      private void Buscar_y_Mostrar(){
-        /* if (vp1 == 0){
+         if (vp1 == 0){
          
-         principal.addTab("Todos",);
-         principal.setSelectedComponent();
+         principal.addTab("Todos",busqueda);
+         principal.setSelectedComponent(busqueda);
          }else{
-             principal.setSelectedComponent();
+             principal.setSelectedComponent(busqueda);
          }
-         vp1 = 1;*/
+         vp1 = 1;
       }
      
      private void Eliminar_o_M(){
-        /* if (vp2 == 0){
+         if (vp2 == 0){
          
-         principal.addTab("Modificar o Eliminar",);
-         principal.setSelectedComponent();
+         principal.addTab("Modificar o Eliminar",elim);
+         principal.setSelectedComponent(elim);
          }else{
-             principal.setSelectedComponent();
+             principal.setSelectedComponent(elim);
          }
-         vp2 = 1;*/
+         vp2 = 1;
       }
+     private void Agebda(){
+         if (vp3 == 0){
+         
+         principal.addTab("Modificar o Eliminar",agenda);
+         principal.setSelectedComponent(agenda);
+         }else{
+             principal.setSelectedComponent(agenda);
+         }
+         vp3 = 1;
+     }
     
     /**
      * This method is called from within the constructor to initialize the form.
