@@ -16,13 +16,14 @@ CitasBusca busqueda;
 CitasNuevaC nuevacita;
 CitasAgenda agenda;
 CitasEliminar elim;
-
+private Usuario u;
 
     /**
      * Creates new form CitasM
      */
-    public CitasMenu() {
+    public CitasMenu( Usuario u ) {
         initComponents();
+        this.u = u;
         setLocationRelativeTo(null);
         setSize(1050, 650);    
         Abrir_Registro();
@@ -30,6 +31,14 @@ CitasEliminar elim;
         Eliminar_o_M();
         Agebda();*/
         
+    }
+    
+    public CitasMenu( ) {
+        initComponents();
+        this.u = new Usuario(0, null, null, null, true, null, null);
+        setLocationRelativeTo(null);
+        setSize(1050, 650);    
+        Abrir_Registro();
     }
     
      private void Abrir_Registro(){
@@ -132,10 +141,13 @@ CitasEliminar elim;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       dispose();
-       MenuP m = new MenuP();
-       m.setVisible(true);
-       
+        dispose();
+        if(this.u.getRango()){
+            MenuP m = new MenuP();
+            m.setVisible(true);
+        } else {
+            new MenuS(u).setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

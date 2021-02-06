@@ -305,6 +305,11 @@ public class Usuarios extends javax.swing.JFrame {
         
         pass.setText(u.getPass());
         username.setText(u.getUsername());
+        if(u.getRango()){
+            eliminar.setEnabled(false);
+        } else {
+            eliminar.setEnabled(true);
+        }
     }//GEN-LAST:event_tablaMouseClicked
 
     /**

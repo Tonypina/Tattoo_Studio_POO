@@ -16,11 +16,14 @@ import model.*;
  */
 public class RegistroProducto extends javax.swing.JFrame {
 
+    private Usuario u;
+    
     /**
      * Creates new form Inventario
      */
-    public RegistroProducto() {
+    public RegistroProducto( Usuario u ) {
         initComponents();
+        this.u = u;
         setLocationRelativeTo(null);
         setResizable(false);
         Proveedor pr = null;
@@ -222,7 +225,7 @@ public class RegistroProducto extends javax.swing.JFrame {
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         dispose();
-        new Inventario().setVisible(true);
+        new Inventario(this.u).setVisible(true);
     }//GEN-LAST:event_salirActionPerformed
 
     private void proveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedoresActionPerformed
@@ -256,6 +259,7 @@ public class RegistroProducto extends javax.swing.JFrame {
             false
         );
         Model.insertarProducto(p);
+        JOptionPane.showMessageDialog(null, "Se insertó un nuevo producto." );
         limpiar();
     }//GEN-LAST:event_registrarActionPerformed
 
@@ -290,7 +294,7 @@ public class RegistroProducto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroProducto().setVisible(true);
+                new RegistroProducto(null).setVisible(true);
             }
         });
     }

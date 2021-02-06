@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+import objects.*;
 
 /**
  *
@@ -11,11 +12,19 @@ package view;
  */
 public class Tickets extends javax.swing.JFrame {
 
+    private Usuario u;
+    
     /**
      * Creates new form Ticket
      */
     public Tickets() {
         initComponents();
+        this.u = new Usuario(0, null, null, null, true, null, null);
+    }
+    
+    public Tickets(Usuario u) {
+        initComponents();
+        this.u = u;
     }
 
     /**
@@ -269,8 +278,12 @@ public class Tickets extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
-        MenuP m=new MenuP();
-        m.setVisible(true);
+        if(this.u.getRango()){
+            MenuP m=new MenuP();
+            m.setVisible(true);
+        } else {
+            new MenuS(u).setVisible(true);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

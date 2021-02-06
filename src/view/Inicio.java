@@ -116,7 +116,7 @@ public class Inicio extends javax.swing.JFrame {
                     new MenuP().setVisible(true);
                 } else {
                     dispose();
-                    new MenuS().setVisible(true);
+                    new MenuS(u).setVisible(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No existe este usuario o sus datos son incorrectos " );

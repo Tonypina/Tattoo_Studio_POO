@@ -12,13 +12,14 @@ import javax.swing.JOptionPane;
  * @author Airam
  */
 public class MenuP extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form MenuP
      */
     public MenuP() {
         
         initComponents();
+        
         setLocationRelativeTo(null);
         setSize(969, 500);
         setResizable(false);
@@ -256,7 +257,7 @@ public class MenuP extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
          dispose();
-       Inventario i=new Inventario();
+       Inventario i = new Inventario();
        i.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

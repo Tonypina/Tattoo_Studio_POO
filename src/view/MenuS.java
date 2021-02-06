@@ -6,19 +6,23 @@
 package view;
 
 import javax.swing.JOptionPane;
+import objects.*;
 
 /**
  *
  * @author Airam
  */
 public class MenuS extends javax.swing.JFrame {
-
+    
+    private Usuario u;
+    
     /**
      * Creates new form MenuP
      */
-    public MenuS() {
+    public MenuS( Usuario u ) {
         
         initComponents();
+        this.u = u;
         setLocationRelativeTo(null);
         setSize(969, 500);
         setResizable(false);
@@ -146,14 +150,14 @@ public class MenuS extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
          dispose();
-        CitasMenu c=new CitasMenu();
+        CitasMenu c=new CitasMenu(u);
         c.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
          dispose();
-       Inventario i=new Inventario();
+       Inventario i=new Inventario(u);
        i.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -168,7 +172,7 @@ public class MenuS extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         dispose();
-        Tickets t = new Tickets();
+        Tickets t = new Tickets(u);
         t.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -203,7 +207,7 @@ public class MenuS extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuS().setVisible(true);
+                new MenuS(null).setVisible(true);
             }
         });
     }
