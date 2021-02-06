@@ -39,6 +39,15 @@ CREATE TABLE `cita` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `cita`
+--
+
+LOCK TABLES `cita` WRITE;
+/*!40000 ALTER TABLE `cita` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cita` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `estudio`
 --
 
@@ -54,6 +63,15 @@ CREATE TABLE `estudio` (
   PRIMARY KEY (`idEstudio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estudio`
+--
+
+LOCK TABLES `estudio` WRITE;
+/*!40000 ALTER TABLE `estudio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estudio` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `producto`
@@ -76,6 +94,15 @@ CREATE TABLE `producto` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `producto`
+--
+
+LOCK TABLES `producto` WRITE;
+/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `proveedor`
 --
 
@@ -90,6 +117,15 @@ CREATE TABLE `proveedor` (
   PRIMARY KEY (`idProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `proveedor`
+--
+
+LOCK TABLES `proveedor` WRITE;
+/*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `socio`
@@ -107,6 +143,15 @@ CREATE TABLE `socio` (
   PRIMARY KEY (`idSocio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `socio`
+--
+
+LOCK TABLES `socio` WRITE;
+/*!40000 ALTER TABLE `socio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `socio` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tatuador`
@@ -128,6 +173,15 @@ CREATE TABLE `tatuador` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tatuador`
+--
+
+LOCK TABLES `tatuador` WRITE;
+/*!40000 ALTER TABLE `tatuador` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tatuador` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ticket`
 --
 
@@ -146,6 +200,15 @@ CREATE TABLE `ticket` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `ticket`
+--
+
+LOCK TABLES `ticket` WRITE;
+/*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -154,17 +217,26 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `idUsuario` int unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ap_paterno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ap_materno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ap_paterno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ap_materno` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `super` tinyint DEFAULT '0',
   `pass` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idUsuario`),
-  UNIQUE KEY `password_UNIQUE` (`pass`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,NULL,NULL,NULL,1,'toor','root');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `venta`
@@ -182,6 +254,15 @@ CREATE TABLE `venta` (
   PRIMARY KEY (`idVenta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `venta`
+--
+
+LOCK TABLES `venta` WRITE;
+/*!40000 ALTER TABLE `venta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `venta` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -192,4 +273,4 @@ CREATE TABLE `venta` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-05 17:49:31
+-- Dump completed on 2021-02-06  0:06:07

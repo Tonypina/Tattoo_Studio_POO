@@ -143,6 +143,10 @@ public class Model {
     public static Usuario buscarUsuario(int id) {  
         return UsuarioDB.buscar(id);
     }
+    
+    public static Usuario buscarUsuario(String username) {  
+        return UsuarioDB.buscar(username);
+    }
 
     public static void modificarUsuario(Usuario u){
         UsuarioDB.modificar(u);
