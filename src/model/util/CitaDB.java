@@ -25,8 +25,7 @@ public class CitaDB {
                 while(rs.next()){
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("diaInicio"), rs.getInt("mesInicio"), 
-                            rs.getInt("anioInicio"), rs.getInt("diaFinal"), 
-                            rs.getInt("mesFinal"), rs.getInt("anioFinal"), rs.getInt("idTatuador")));
+                            rs.getInt("anioInicio"), rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -52,8 +51,33 @@ public class CitaDB {
                 while(rs.next()){
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("diaInicio"), rs.getInt("mesInicio"), 
-                            rs.getInt("anioInicio"), rs.getInt("diaFinal"), 
-                            rs.getInt("mesFinal"), rs.getInt("anioFinal"), rs.getInt("idTatuador")));
+                            rs.getInt("anioInicio"), rs.getInt("idTatuador")));
+                }
+                pst.close();
+                cn.close();
+                return ac;
+            }
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
+    public static ArrayList<Cita> get( int dia, int mes, int anio ){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE diaInicio = ? AND mesInicio = ? AND anioInicio = ?");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                ArrayList<Cita> ac = new ArrayList<>();
+                while(rs.next()){
+                    ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
+                            rs.getInt("dia"), rs.getInt("mes"), 
+                            rs.getInt("anio"), rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -70,16 +94,13 @@ public class CitaDB {
     public static void insertar( Cita c ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO cita VALUES(?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO cita VALUES(?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, c.getNombreCliente());
             pst.setString(3, Integer.toString(c.getDiaInicio()));
             pst.setString(4, Integer.toString(c.getMesInicio()));
             pst.setString(5, Integer.toString(c.getAnioInicio()));
-            pst.setString(6, Integer.toString(c.getDiaFinal()));
-            pst.setString(7, Integer.toString(c.getMesFinal()));
-            pst.setString(8, Integer.toString(c.getAnioFinal()));
-            pst.setString(9, Integer.toString(c.getIdTatuador()));
+            pst.setString(6, Integer.toString(c.getIdTatuador()));
             pst.executeUpdate();
             
             pst.close();
@@ -93,15 +114,12 @@ public class CitaDB {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
-                                    + "diaInicio = ?, mesInicio = ?, anioInicio = ?, "
-                                    + "diaFinal = ?, mesFinal = ?, anioFinal = ? WHERE idCita = "+c.getIdCita());
+                                    + "diaInicio = ?, mesInicio = ?, anioInicio = ? "
+                                    + "WHERE idCita = "+c.getIdCita());
             pst.setString(1, c.getNombreCliente());
             pst.setString(2, Integer.toString(c.getDiaInicio()));
             pst.setString(3, Integer.toString(c.getMesInicio()));
             pst.setString(4, Integer.toString(c.getAnioInicio()));
-            pst.setString(5, Integer.toString(c.getDiaFinal()));
-            pst.setString(6, Integer.toString(c.getMesFinal()));
-            pst.setString(7, Integer.toString(c.getAnioFinal()));
             pst.executeUpdate();
             pst.close();
             cn.close();
