@@ -25,6 +25,18 @@ public class CitasElim extends javax.swing.JFrame {
         setSize(914,523);
         setLocationRelativeTo(null);
     }
+    
+    public String[] Annous(){
+        String[] annous = new String[6];
+        Date d=new Date();  
+        int year=d.getYear();
+        for(int i=0; i<5;i++){
+	    String s=String.valueOf(year+i);
+            annous[i]=s;
+        }
+        return annous;
+    }
+
     public ArrayList<String> listat(){
         ArrayList<String> nombres= new ArrayList<String>();
         ArrayList<Tatuador> tat=Model.getTatuadores();
@@ -63,7 +75,7 @@ public class CitasElim extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-
+	
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 36)); // NOI18N
@@ -83,17 +95,22 @@ public class CitasElim extends javax.swing.JFrame {
 
         jLabel7.setText("Año");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04","05", "06", "07", "08", "09","10", "11", "12",
+										"13", "14", "15", "16","17", "18", "19", "20", "21","22", "23", "24",
+										"25", "26", "27", "28","29", "30"}));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04","05", "06", "07", "08", "09","10", "11", "12" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"2020"}));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"01", "02", "03", "04","05", "06", "07", "08", "09","10", "11", "12",
+										"13", "14", "15", "16","17", "18", "19", "20", "21","22", "23", "24",
+										"25", "26", "27", "28","29", "30" }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04","05", "06", "07", "08", "09","10", "11", "12"}));
+
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"2020"}));
 
         jLabel8.setText("Nombre tatuador");
 
