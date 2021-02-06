@@ -86,6 +86,30 @@ public class UsuarioDB {
         }
         return null;  
     }
+    
+    public static Usuario buscar(String username) {  
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?");
+            pst.setString(1, username);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                Usuario u = new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
+                                   rs.getString("ap_paterno"),rs.getString("ap_paterno"), 
+                                   rs.getBoolean("super"), rs.getString("username"), rs.getString("pass"));
+                pst.close();
+                cn.close();
+                return u;
+            }
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;  
+    }
 
     public static void modificar(Usuario u){
         try{
