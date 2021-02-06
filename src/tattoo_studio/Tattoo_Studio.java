@@ -11,9 +11,9 @@ public class Tattoo_Studio {
      */
     public static void main(String[] args) {
         
-        MenuP m=new MenuP();
+        Inicio i m=new Inicio();
         
-        m.setVisible(true);
+        i.setVisible(true);
       /*  Prueba p=new Prueba();
         p.setVisible(true);
 */
