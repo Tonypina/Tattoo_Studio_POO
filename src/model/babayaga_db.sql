@@ -27,12 +27,9 @@ DROP TABLE IF EXISTS `cita`;
 CREATE TABLE `cita` (
   `idCita` int unsigned NOT NULL AUTO_INCREMENT,
   `nomClienteCita` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `diaInicio` int NOT NULL,
-  `mesInicio` int NOT NULL,
-  `anioInicio` int NOT NULL,
-  `diaFinal` int NOT NULL,
-  `mesFinal` int NOT NULL,
-  `anioFinal` int NOT NULL,
+  `dia` int NOT NULL,
+  `mes` int NOT NULL,
+  `anio` int NOT NULL,
   `idTatuadorCita` int DEFAULT NULL,
   PRIMARY KEY (`idCita`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -225,7 +222,7 @@ CREATE TABLE `usuario` (
   `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-06  0:06:07
+-- Dump completed on 2021-02-06 11:13:30
