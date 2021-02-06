@@ -12,35 +12,26 @@ package objects;
 public class Cita {
  private int id;
     private String nombreCliente;
-    private int diaInicio;
-    private int mesInicio;
-    private int anioInicio;
-    private int diaFinal;
-    private int mesFinal;
-    private int anioFinal;
+    private int dia;
+    private int mes;
+    private int anio;
     private int idTatuador;
 
-    public Cita(int id, String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, int idTatuador) {
+    public Cita(int id, String nombreCliente, int dia, int mes, int anio, int idTatuador) {
         this.id = id;
         this.nombreCliente = nombreCliente;
-        this.diaInicio = diaInicio;
-        this.mesInicio = mesInicio;
-        this.anioInicio = anioInicio;
-        this.diaFinal = diaFinal;
-        this.mesFinal = mesFinal;
-        this.anioFinal = anioFinal;
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
         this.idTatuador = idTatuador;
     }
     
     // Sobrecarga de constructor para la base de datos.
-    public Cita(String nombreCliente, int diaInicio, int mesInicio, int anioInicio, int diaFinal, int mesFinal, int anioFinal, int idTatuador) {
+    public Cita(String nombreCliente, int dia, int mes, int anio, int idTatuador) {
         this.nombreCliente = nombreCliente;
-        this.diaInicio = diaInicio;
-        this.mesInicio = mesInicio;
-        this.anioInicio = anioInicio;
-        this.diaFinal = diaFinal;
-        this.mesFinal = mesFinal;
-        this.anioFinal = anioFinal;
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
         this.idTatuador = idTatuador;
     }
 
@@ -57,27 +48,15 @@ public class Cita {
     }
 
     public int getDiaInicio() {
-        return diaInicio;
+        return dia;
     }
 
     public int getMesInicio() {
-        return mesInicio;
+        return mes;
     }
 
     public int getAnioInicio() {
-        return anioInicio;
-    }
-
-    public int getDiaFinal() {
-        return diaFinal;
-    }
-
-    public int getMesFinal() {
-        return mesFinal;
-    }
-
-    public int getAnioFinal() {
-        return anioFinal;
+        return anio;
     }
 
     public void setIdTatuador(int idTatuador){
@@ -92,28 +71,16 @@ public class Cita {
         this.nombreCliente = nombreCliente;
     }
 
-    public void setDiaInicio(int diaInicio) {
-        this.diaInicio = diaInicio;
+    public void setDiaInicio(int dia) {
+        this.dia = dia;
     }
 
-    public void setMesInicio(int mesInicio) {
-        this.mesInicio = mesInicio;
+    public void setMesInicio(int mes) {
+        this.mes = mes;
     }
 
-    public void setAnioInicio(int anioInicio) {
-        this.anioInicio = anioInicio;
+    public void setAnioInicio(int anio) {
+        this.anio = anio;
     }
 
-    public void setDiaFinal(int diaFinal) {
-        this.diaFinal = diaFinal;
-    }
-
-    public void setMesFinal(int mesFinal) {
-        this.mesFinal = mesFinal;
-    }
-
-    public void setAnioFinal(int anioFinal) {
-        this.anioFinal = anioFinal;
-    }
-    
 }
