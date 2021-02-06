@@ -24,8 +24,8 @@ public class CitaDB {
                 ArrayList<Cita> ac = new ArrayList<>();
                 while(rs.next()){
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
-                            rs.getInt("diaInicio"), rs.getInt("mesInicio"), 
-                            rs.getInt("anioInicio"), rs.getInt("idTatuador")));
+                            rs.getInt("dia"), rs.getInt("mes"), 
+                            rs.getInt("anio"), rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -50,8 +50,8 @@ public class CitaDB {
                 ArrayList<Cita> ac = new ArrayList<>();
                 while(rs.next()){
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
-                            rs.getInt("diaInicio"), rs.getInt("mesInicio"), 
-                            rs.getInt("anioInicio"), rs.getInt("idTatuador")));
+                            rs.getInt("dia"), rs.getInt("mes"), 
+                            rs.getInt("anio"), rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -68,7 +68,7 @@ public class CitaDB {
     public static ArrayList<Cita> get( int dia, int mes, int anio ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE diaInicio = ? AND mesInicio = ? AND anioInicio = ?");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE dia = ? AND mes = ? AND anio = ?");
             
             ResultSet rs = pst.executeQuery();
             
@@ -114,7 +114,7 @@ public class CitaDB {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
-                                    + "diaInicio = ?, mesInicio = ?, anioInicio = ? "
+                                    + "dia = ?, mes = ?, anio = ? "
                                     + "WHERE idCita = "+c.getIdCita());
             pst.setString(1, c.getNombreCliente());
             pst.setString(2, Integer.toString(c.getDiaInicio()));
