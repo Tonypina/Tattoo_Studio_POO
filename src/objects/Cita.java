@@ -15,23 +15,29 @@ public class Cita {
     private int dia;
     private int mes;
     private int anio;
+    private int hora;
+    private int minutos;
     private int idTatuador;
 
-    public Cita(int id, String nombreCliente, int dia, int mes, int anio, int idTatuador) {
+    public Cita(int id, String nombreCliente, int dia, int mes, int anio, int hora, int minutos, int idTatuador) {
         this.id = id;
         this.nombreCliente = nombreCliente;
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
+        this.hora = hora;
+        this.minutos = minutos;
         this.idTatuador = idTatuador;
     }
     
     // Sobrecarga de constructor para la base de datos.
-    public Cita(String nombreCliente, int dia, int mes, int anio, int idTatuador) {
+    public Cita(String nombreCliente, int dia, int mes, int anio, int hora, int minutos, int idTatuador) {
         this.nombreCliente = nombreCliente;
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
+        this.hora = hora;
+        this.minutos = minutos;
         this.idTatuador = idTatuador;
     }
 
@@ -45,6 +51,14 @@ public class Cita {
 
     public String getNombreCliente() {
         return nombreCliente;
+    }
+
+    public int getHora() {
+        return hora;
+    }
+
+    public int getMinutos() {
+        return minutos;
     }
 
     public int getDiaInicio() {
@@ -83,4 +97,13 @@ public class Cita {
         this.anio = anio;
     }
 
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public void setMinutos(int minutos) {
+        this.minutos = minutos;
+    }
+    
+    
 }
