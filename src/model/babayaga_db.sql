@@ -30,6 +30,8 @@ CREATE TABLE `cita` (
   `dia` int NOT NULL,
   `mes` int NOT NULL,
   `anio` int NOT NULL,
+  `hora` int DEFAULT NULL,
+  `minutos` int DEFAULT NULL,
   `idTatuadorCita` int DEFAULT NULL,
   PRIMARY KEY (`idCita`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -222,7 +224,7 @@ CREATE TABLE `usuario` (
   `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +233,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,NULL,NULL,NULL,1,'toor','root');
+INSERT INTO `usuario` VALUES (1,NULL,NULL,NULL,1,'toor','root'),(2,'Marco','Piña','Rossette',0,' ','tonypina');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,4 +272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-06 11:13:30
+-- Dump completed on 2021-02-06 15:11:11
