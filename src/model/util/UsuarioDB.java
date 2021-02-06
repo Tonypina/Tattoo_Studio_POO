@@ -114,12 +114,13 @@ public class UsuarioDB {
     public static void modificar(Usuario u){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = " + u.getId());
+            PreparedStatement pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = ?");
             pst.setString(1, u.getNombre());
             pst.setString(2, u.getAp_paterno());
             pst.setString(3, u.getAp_materno());
             pst.setString(4, u.getPass());
             pst.setString(5, u.getUsername());
+            pst.setString(6, Integer.toString(u.getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -132,7 +133,7 @@ public class UsuarioDB {
     public static void eliminar(int id){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM usuario WHERE idUsuario = " + id);
+            PreparedStatement pst = cn.prepareStatement("DELETE FROM usuario WHERE idUsuario = " + Integer.toString(id));
             pst.executeUpdate();
             pst.close();
             cn.close();

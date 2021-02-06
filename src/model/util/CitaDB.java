@@ -16,7 +16,7 @@ public class CitaDB {
     public static ArrayList<Cita> get( int idTatuador ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuadorCita = " + idTatuador + " ORDER BY nomClienteCita");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuadorCita = " + Integer.toString(idTatuador) + " ORDER BY nomClienteCita");
             
             ResultSet rs = pst.executeQuery();
             
@@ -25,7 +25,8 @@ public class CitaDB {
                 while(rs.next()){
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("dia"), rs.getInt("mes"), 
-                            rs.getInt("anio"), rs.getInt("idTatuador")));
+                            rs.getInt("anio"), rs.getInt("hora"), rs.getInt("minutos"), 
+                            rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -51,7 +52,8 @@ public class CitaDB {
                 while(rs.next()){
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("dia"), rs.getInt("mes"), 
-                            rs.getInt("anio"), rs.getInt("idTatuador")));
+                            rs.getInt("anio"), rs.getInt("hora"), rs.getInt("minutos"), 
+                            rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -77,7 +79,8 @@ public class CitaDB {
                 while(rs.next()){
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("dia"), rs.getInt("mes"), 
-                            rs.getInt("anio"), rs.getInt("idTatuador")));
+                            rs.getInt("anio"), rs.getInt("hora"), rs.getInt("minutos"), 
+                            rs.getInt("idTatuador")));
                 }
                 pst.close();
                 cn.close();
@@ -94,13 +97,15 @@ public class CitaDB {
     public static void insertar( Cita c ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO cita VALUES(?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO cita VALUES(?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, c.getNombreCliente());
             pst.setString(3, Integer.toString(c.getDiaInicio()));
             pst.setString(4, Integer.toString(c.getMesInicio()));
             pst.setString(5, Integer.toString(c.getAnioInicio()));
-            pst.setString(6, Integer.toString(c.getIdTatuador()));
+            pst.setString(6, Integer.toString(c.getHora()));
+            pst.setString(7, Integer.toString(c.getMinutos()));
+            pst.setString(8, Integer.toString(c.getIdTatuador()));
             pst.executeUpdate();
             
             pst.close();
@@ -114,12 +119,14 @@ public class CitaDB {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
-                                    + "dia = ?, mes = ?, anio = ? "
-                                    + "WHERE idCita = "+c.getIdCita());
+                                    + "dia = ?, mes = ?, anio = ?, hora = ?, minutos = ? "
+                                    + "WHERE idCita = "+ Integer.toString(c.getIdCita()));
             pst.setString(1, c.getNombreCliente());
             pst.setString(2, Integer.toString(c.getDiaInicio()));
             pst.setString(3, Integer.toString(c.getMesInicio()));
             pst.setString(4, Integer.toString(c.getAnioInicio()));
+            pst.setString(5, Integer.toString(c.getHora()));
+            pst.setString(6, Integer.toString(c.getMinutos()));
             pst.executeUpdate();
             pst.close();
             cn.close();
