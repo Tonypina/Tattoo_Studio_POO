@@ -80,6 +80,10 @@ public class Model {
         return CitaDB.get(idTatuador);
     }
     
+    public static ArrayList<Cita> getCitas( int dia, int mes, int anio ){
+        return CitaDB.get(dia, mes, anio);
+    }
+    
     public static ArrayList<Cita> getCitas( ){
         return CitaDB.get();
     }
