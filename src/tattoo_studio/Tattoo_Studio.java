@@ -11,7 +11,7 @@ public class Tattoo_Studio {
      */
     public static void main(String[] args) {
         
-        Inicio i m=new Inicio();
+        Inicio i =new Inicio();
         
         i.setVisible(true);
       /*  Prueba p=new Prueba();
