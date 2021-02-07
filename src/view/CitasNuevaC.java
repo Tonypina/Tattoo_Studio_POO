@@ -58,8 +58,8 @@ public class CitasNuevaC extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        hora = new javax.swing.JTextField();
-        minutos = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
         jComboBox9 = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 55)); // NOI18N
@@ -118,9 +118,9 @@ public class CitasNuevaC extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel7.setText(":");
 
-        hora.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
-        minutos.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
         jComboBox9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM ", "PM" }));
@@ -142,11 +142,11 @@ public class CitasNuevaC extends javax.swing.JPanel {
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
                                 .addGap(23, 23, 23)
-                                .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,8 +185,8 @@ public class CitasNuevaC extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
@@ -219,7 +219,9 @@ public class CitasNuevaC extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        try{
+           
+        
         String nombreC = jTextField1.getText();
         String diaI = jComboBox1.getSelectedItem().toString();
         int dI= Integer.parseInt(diaI);
@@ -227,9 +229,10 @@ public class CitasNuevaC extends javax.swing.JPanel {
         int mI = Integer.parseInt(mesI);
         String anI = jComboBox4.getSelectedItem().toString();
         int aI = Integer.parseInt(anI);
-        int h = Integer.parseInt(hora.getText());
-        int m = Integer.parseInt(minutos.getText());
-
+        String min=jTextField2.getText();
+        int minuto=Integer.parseInt(min);
+        String ho=jTextField3.getText();
+        int hora=Integer.parseInt(ho);
         String tatuador = jComboBox2.getSelectedItem().toString();
         StringTokenizer st = new StringTokenizer(tatuador, " ");
         ArrayList<Tatuador> listaT = Model.buscarTatuador(st.nextToken());
@@ -239,21 +242,22 @@ public class CitasNuevaC extends javax.swing.JPanel {
                 idT = t.getId();
             }
         }
-
+        
        
 
-        Cita c = new Cita(nombreC, dI, mI, aI, h, m, idT);
+        Cita c = new Cita(nombreC, dI, mI, aI,hora,minuto, idT);
         Model.insertarCita(c);
 
         JOptionPane.showMessageDialog(null, "Cita Agendada Exitosamente" );
 
         jTextField1.setText("");
-
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Algo salió mal" );
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField hora;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -267,6 +271,7 @@ public class CitasNuevaC extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField minutos;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
