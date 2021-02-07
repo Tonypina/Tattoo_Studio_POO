@@ -16,11 +16,14 @@ import model.*;
  */
 public class Inventario extends javax.swing.JFrame {
 
+    private Usuario u;
+    
     /**
      * Creates new form Inventario
      */
-    public Inventario() {
+    public Inventario( Usuario u ) {
         initComponents();
+        this.u = u;
         setLocationRelativeTo(null);
         setResizable(false);
         Proveedor pr = null;
@@ -28,10 +31,18 @@ public class Inventario extends javax.swing.JFrame {
         llenarTablaProductos( Model.getProductos() );
     }
 
+    public Inventario( ) {
+        initComponents();
+        this.u = new Usuario(0, null, null, null, true, null, null);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        Proveedor pr = null;
+        proveedores();
+        llenarTablaProductos( Model.getProductos() );
+    }
+    
     private ArrayList<Proveedor> proveedores(){
-        proveedores.removeAllItems();
         ArrayList<Proveedor> pl = new ArrayList<>();
-        
         for(Proveedor p : Model.getProveedor()){
             proveedores.addItem(p.getNombre());
             pl.add(p);
@@ -106,7 +117,6 @@ public class Inventario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         eliminar = new javax.swing.JToggleButton();
-        buscar = new javax.swing.JToggleButton();
         editar = new javax.swing.JToggleButton();
         nuevo = new javax.swing.JToggleButton();
 
@@ -130,7 +140,7 @@ public class Inventario extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel11.setText("Proveedor:");
 
-        proveedores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        proveedores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Proveedor" }));
         proveedores.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 proveedoresItemStateChanged(evt);
@@ -188,13 +198,6 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
-            }
-        });
-
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,9 +222,7 @@ public class Inventario extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,12 +265,10 @@ public class Inventario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11)
-                        .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -318,8 +317,13 @@ public class Inventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        dispose();
-        new MenuP().setVisible(true);
+        if(this.u.getRango()){
+            dispose();
+            new MenuP().setVisible(true);
+        } else {
+            dispose();
+            new MenuS(u).setVisible(true);
+        }
     }//GEN-LAST:event_salirActionPerformed
 
     private void proveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedoresActionPerformed
@@ -339,7 +343,12 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_proveedoresMouseClicked
 
     private void proveedoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_proveedoresItemStateChanged
-
+        for( Proveedor pr : Model.getProveedor() ){
+            if(proveedores.getSelectedItem().toString().equals(pr.getNombre())){
+                llenarTablaProductos(Model.getProductos(pr.getId()));
+            }
+        }
+        limpiar();
     }//GEN-LAST:event_proveedoresItemStateChanged
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -351,15 +360,6 @@ public class Inventario extends javax.swing.JFrame {
         }
         limpiar();
     }//GEN-LAST:event_eliminarActionPerformed
-
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        for( Proveedor pr : Model.getProveedor() ){
-            if(proveedores.getSelectedItem().toString().equals(pr.getNombre())){
-                llenarTablaProductos(Model.getProductos(pr.getId()));
-            }
-        }
-        limpiar();
-    }//GEN-LAST:event_buscarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         Producto p = new Producto(
@@ -383,7 +383,7 @@ public class Inventario extends javax.swing.JFrame {
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         dispose();
-        new RegistroProducto().setVisible(true);
+        new RegistroProducto(this.u).setVisible(true);
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
@@ -435,7 +435,6 @@ public class Inventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton buscar;
     private javax.swing.JTextField cantidad;
     private javax.swing.JTextField costo;
     private javax.swing.JToggleButton editar;
