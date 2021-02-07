@@ -5,6 +5,12 @@
  */
 package view;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Model;
+import objects.Cita;
+import objects.Tatuador;
+
 /**
  *
  * @author Airam
@@ -16,11 +22,43 @@ public class CitasAgenda extends javax.swing.JFrame {
      */
     public CitasAgenda() {
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setSize(914,523);
+        ArrayList<Cita> lista = Model.getCitas();
+        llenarTablaCitas(lista);
         
     }
-
+    private void llenarTablaCitas( ArrayList<Cita> lista ){
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
+        int cantidadColumnas = 7;
+          
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Dia");
+        modelo.addColumn("Mes");
+        modelo.addColumn("Año");
+        modelo.addColumn("Hora");
+        modelo.addColumn("Minutos");
+        modelo.addColumn("ID tatuador");  
+        int[] anchos ={100,100,100,100,100,100,100};
+          
+        for (int x =0; x< cantidadColumnas;x++  ){
+            jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+        }
+        
+        for(Cita c : lista){
+            Object[] fila = new Object[cantidadColumnas];
+            fila[0] = c.getNombreCliente();
+            fila[1] = c.getDiaInicio();
+            fila[2] = c.getMesInicio();
+            fila[3] = c.getAnioInicio();
+            fila[4] = c.getHora();
+            fila[5] = c.getMinutos();
+            fila[6] = c.getIdTatuador();
+                     
+            modelo.addRow(fila);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
