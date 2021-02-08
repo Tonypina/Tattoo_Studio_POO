@@ -19,48 +19,50 @@ public class CitaDB {
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuadorCita = " + Integer.toString(idTatuador) + " ORDER BY nomClienteCita");
             
             ResultSet rs = pst.executeQuery();
-            
+
+            ArrayList<Cita> ac = new ArrayList<>();
+
             if(rs.next()){
-                ArrayList<Cita> ac = new ArrayList<>();
-                while(rs.next()){
+                do{
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("dia"), rs.getInt("mes"), 
-                            rs.getInt("anio"), rs.getInt("hora"), rs.getInt("minutos"), 
-                            rs.getInt("idTatuador")));
-                }
-                pst.close();
-                cn.close();
-                return ac;
+                            rs.getInt("anio"), rs.getInt("hora"), 
+                            rs.getInt("minutos"), rs.getInt("idTatuadorCita")));
+                }while(rs.next());
             }
+            
             pst.close();
             cn.close();
+            return ac;
+            
         }catch(SQLException e){
             e.getMessage();
         }
         return null;
     }
     
-    public static ArrayList<Cita> get( ){
+    public static ArrayList<Cita> get(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita ORDER BY nomClienteCita");
-            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita");
+
             ResultSet rs = pst.executeQuery();
-            
+
+            ArrayList<Cita> ac = new ArrayList<>();
+
             if(rs.next()){
-                ArrayList<Cita> ac = new ArrayList<>();
-                while(rs.next()){
+                do{
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("dia"), rs.getInt("mes"), 
-                            rs.getInt("anio"), rs.getInt("hora"), rs.getInt("minutos"), 
-                            rs.getInt("idTatuador")));
-                }
-                pst.close();
-                cn.close();
-                return ac;
+                            rs.getInt("anio"), rs.getInt("hora"), 
+                            rs.getInt("minutos"), rs.getInt("idTatuadorCita")));
+                }while(rs.next());
             }
+            
             pst.close();
             cn.close();
+            return ac;
+            
         }catch(SQLException e){
             e.getMessage();
         }
@@ -73,21 +75,22 @@ public class CitaDB {
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE dia = ? AND mes = ? AND anio = ?");
             
             ResultSet rs = pst.executeQuery();
-            
+
+            ArrayList<Cita> ac = new ArrayList<>();
+
             if(rs.next()){
-                ArrayList<Cita> ac = new ArrayList<>();
-                while(rs.next()){
+                do{
                     ac.add(new Cita(rs.getInt("idCita"), rs.getString("nomClienteCita"), 
                             rs.getInt("dia"), rs.getInt("mes"), 
-                            rs.getInt("anio"), rs.getInt("hora"), rs.getInt("minutos"), 
-                            rs.getInt("idTatuador")));
-                }
-                pst.close();
-                cn.close();
-                return ac;
+                            rs.getInt("anio"), rs.getInt("hora"), 
+                            rs.getInt("minutos"), rs.getInt("idTatuadorCita")));
+                }while(rs.next());
             }
+            
             pst.close();
             cn.close();
+            return ac;
+        
         }catch(SQLException e){
             e.getMessage();
         }
@@ -138,7 +141,8 @@ public class CitaDB {
     public static void eliminar( int id ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM cita WHERE idCita = ?" + id);
+            PreparedStatement pst = cn.prepareStatement("DELETE FROM cita WHERE idCita = ?");
+            pst.setString(1, Integer.toString(id));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -146,4 +150,5 @@ public class CitaDB {
             e.getMessage();
         }
     }
+    
 }
