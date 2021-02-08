@@ -17,16 +17,19 @@ public class SocioDB {
     public static ArrayList<Socio> get(){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM socio ORDER BY nombre");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM socio");
             
             ResultSet rs = pst.executeQuery();
             
             ArrayList<Socio> so = new ArrayList<>();
             
-            while(rs.next()){
-                so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), 
-                                  rs.getString("contacto"), rs.getBoolean("rango"), rs.getDouble("total")));
+            if(rs.next()){                
+                do{
+                    so.add(new Socio( rs.getInt("idSocio"), rs.getString("nombre"), 
+                                      rs.getString("contacto"), rs.getBoolean("rango"), rs.getDouble("total")));
+                }while(rs.next());
             }
+            
             pst.close();
             cn.close();
             return so;
@@ -49,7 +52,7 @@ public class SocioDB {
             } else {
                 pst.setString(4, "1");
             }
-            pst.setString(4, Double.toString(s.getTotal()));
+            pst.setString(5, Double.toString(s.getTotal()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -84,7 +87,7 @@ public class SocioDB {
     public static void modificar( Socio s ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, contacto = ?, rango = ?, total = ? WHERE idSocio = " + s.getId());
+            PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, contacto = ?, rango = ?, total = ? WHERE idSocio = " + Integer.toString(s.getId()));
             pst.setString(1, s.getNombre().trim());
             pst.setString(2, s.getContacto().trim());
             if( s.isRango() ){
@@ -105,7 +108,7 @@ public class SocioDB {
     public static void eliminar( int id ){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM socio WHERE idSocio = " + id);
+            PreparedStatement pst = cn.prepareStatement("DELETE FROM socio WHERE idSocio = " + Integer.toString(id));
             pst.executeUpdate();
             pst.close();
             cn.close();
