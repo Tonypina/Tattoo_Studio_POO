@@ -73,7 +73,9 @@ public class CitaDB {
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE dia = ? AND mes = ? AND anio = ?");
-            
+            pst.setString(1, Integer.toString(dia));
+            pst.setString(2, Integer.toString(mes));
+            pst.setString(3, Integer.toString(anio));
             ResultSet rs = pst.executeQuery();
 
             ArrayList<Cita> ac = new ArrayList<>();
