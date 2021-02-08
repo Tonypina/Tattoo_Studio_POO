@@ -23,7 +23,7 @@ public class PerfElimiModif extends javax.swing.JPanel {
         llenarTablaPerforadores( lista );
     }
     
-      private void llenarTablaPerforadores( ArrayList<Proveedor> lista ){
+    private void llenarTablaPerforadores( ArrayList<Proveedor> lista ){
         DefaultTableModel modelo = new DefaultTableModel();
         jTable1.setModel(modelo);
         int cantidadColumnas = 4;
@@ -40,12 +40,14 @@ public class PerfElimiModif extends javax.swing.JPanel {
         }
         
         for(Proveedor p : lista){
-            Object[] fila = new Object[cantidadColumnas];
-            fila[0] = p.getId();
-            fila[1] = p.getNombre();
-            fila[2] = p.getContacto();
-            fila[3] = p.getTotal();
-            modelo.addRow(fila);
+            if(p.getNombre().endsWith("-P")){    
+                Object[] fila = new Object[cantidadColumnas];
+                fila[0] = p.getId();
+                fila[1] = p.getNombre().substring(0, p.getNombre().length()-2);
+                fila[2] = p.getContacto();
+                fila[3] = p.getTotal();
+                modelo.addRow(fila);
+            }
         }
     }
 
@@ -259,7 +261,7 @@ public class PerfElimiModif extends javax.swing.JPanel {
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

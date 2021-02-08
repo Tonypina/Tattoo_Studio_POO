@@ -5,6 +5,11 @@
  */
 package view;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Model;
+import objects.Proveedor;
+
 /**
  *
  * @author Airam
@@ -16,6 +21,35 @@ public class PerfRegistros extends javax.swing.JPanel {
      */
     public PerfRegistros() {
         initComponents();
+        llenarTablaPerforadores(Model.getProveedor());
+    }
+    
+    private void llenarTablaPerforadores( ArrayList<Proveedor> lista ){
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
+        int cantidadColumnas = 4;
+          
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+       
+        modelo.addColumn("Contacto");
+        modelo.addColumn("Total");  
+        int[] anchos ={40,200,100,40};
+          
+        for (int x =0; x< cantidadColumnas;x++  ){
+            jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+        }
+        
+        for(Proveedor p : lista){
+            if(p.getNombre().endsWith("-P")){    
+                Object[] fila = new Object[cantidadColumnas];
+                fila[0] = p.getId();
+                fila[1] = p.getNombre().substring(0, p.getNombre().length()-2);
+                fila[2] = p.getContacto();
+                fila[3] = p.getTotal();
+                modelo.addRow(fila);
+            }
+        }
     }
 
     /**

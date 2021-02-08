@@ -23,7 +23,7 @@ public class PerfBuscar extends javax.swing.JPanel {
         llenarTablaPerforadores( lista );
     }
     
-      private void llenarTablaPerforadores( ArrayList<Proveedor> lista ){
+    private void llenarTablaPerforadores( ArrayList<Proveedor> lista ){
         DefaultTableModel modelo = new DefaultTableModel();
         jTable1.setModel(modelo);
         int cantidadColumnas = 4;
@@ -40,12 +40,14 @@ public class PerfBuscar extends javax.swing.JPanel {
         }
         
         for(Proveedor p : lista){
-            Object[] fila = new Object[cantidadColumnas];
-            fila[0] = p.getId();
-            fila[1] = p.getNombre();
-            fila[2] = p.getContacto();
-            fila[3] = p.getTotal();
-            modelo.addRow(fila);
+            if(p.getNombre().endsWith("-P")){    
+                Object[] fila = new Object[cantidadColumnas];
+                fila[0] = p.getId();
+                fila[1] = p.getNombre().substring(0, p.getNombre().length()-2);
+                fila[2] = p.getContacto();
+                fila[3] = p.getTotal();
+                modelo.addRow(fila);
+            }
         }
     }
 
