@@ -136,7 +136,7 @@ DROP TABLE IF EXISTS `socio`;
 CREATE TABLE `socio` (
   `idSocio` int unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `comision` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `contacto` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `rango` tinyint NOT NULL,
   `total` double DEFAULT NULL,
   PRIMARY KEY (`idSocio`)
@@ -272,4 +272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-06 15:11:11
+-- Dump completed on 2021-02-08 16:49:06
