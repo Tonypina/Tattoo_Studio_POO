@@ -131,7 +131,7 @@ public class PerfRegistrar extends javax.swing.JPanel {
             String apellidoP = jTextField2.getText();
             String apellidoM = jTextField3.getText();
 
-            String nombreC = nombre+" " + apellidoP + " " + apellidoM;
+            String nombreC = nombre+" " + apellidoP + " " + apellidoM + "-P";
 
             String contacto = jTextField4.getText();
             double total =0;
