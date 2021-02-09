@@ -20,7 +20,7 @@ public class TicketDB {
             
             ResultSet rs = pst.executeQuery();
             
-            ArrayList<Ticket> lti = null;
+            ArrayList<Ticket> lti = new ArrayList<>();
             ArrayList<Producto> p;
             
             if(rs.next()){
@@ -30,6 +30,7 @@ public class TicketDB {
                     Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
                             rs.getBoolean("prod"), rs.getDouble("total"), 
                             t, rs.getBoolean("visita"), p);
+                    lti.add(ti);
                 }while(rs.next());
             }
             
@@ -162,4 +163,5 @@ public class TicketDB {
             e.getMessage();
         }
     }
+
 }
