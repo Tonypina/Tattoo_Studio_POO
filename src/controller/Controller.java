@@ -46,7 +46,6 @@ class Controller{
               totalProv = prov.getTotal();
               prov.setTotal(totalProv + prod.getCostoPro());
               Model.modificarProveedor(prov);
-              Model.actualizarStock(prod.getIdPro(), prod.getCantidadPro()-1);
             }
           }
         }
