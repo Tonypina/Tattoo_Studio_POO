@@ -23,7 +23,7 @@ public class CitasAgenda extends javax.swing.JFrame {
     public CitasAgenda() {
         initComponents();
         setLocationRelativeTo(null);
-        setSize(914,523);
+        setSize(920, 590);
         ArrayList<Cita> lista = Model.getCitas();
         llenarTablaCitas(lista);
         
