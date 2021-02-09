@@ -59,23 +59,23 @@ public class APATicket extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AGREGAR PRODUCTOS");
-        setBackground(new java.awt.Color(0, 204, 51));
+        setMaximumSize(new java.awt.Dimension(920, 590));
         setMinimumSize(new java.awt.Dimension(920, 590));
+        setPreferredSize(new java.awt.Dimension(920, 590));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel4.setBackground(new java.awt.Color(255, 51, 102));
         jLabel4.setFont(new java.awt.Font("Old English Text MT", 0, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Agregar Productos");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(269, 37, 402, 62);
+        jLabel4.setBounds(294, 37, 379, 49);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Proveedor:");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(48, 142, 85, 22);
+        jLabel11.setBounds(48, 129, 85, 22);
 
         proveedores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         proveedores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Proveedor" }));
@@ -101,7 +101,7 @@ public class APATicket extends javax.swing.JFrame {
             }
         });
         getContentPane().add(proveedores);
-        proveedores.setBounds(151, 141, 207, 26);
+        proveedores.setBounds(151, 128, 207, 26);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/check.png"))); // NOI18N
@@ -112,37 +112,37 @@ public class APATicket extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(677, 514, 201, 37);
+        jButton2.setBounds(679, 501, 201, 37);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Modelo:");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(527, 269, 63, 22);
+        jLabel12.setBounds(527, 256, 63, 22);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Precio:");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(527, 353, 53, 22);
+        jLabel13.setBounds(527, 340, 53, 22);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Tipo:");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(527, 311, 41, 22);
+        jLabel14.setBounds(527, 298, 41, 22);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(600, 270, 189, 23);
+        jTextField1.setBounds(602, 257, 189, 23);
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(600, 312, 189, 23);
+        jTextField2.setBounds(602, 299, 189, 23);
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(600, 354, 189, 23);
+        jTextField3.setBounds(602, 341, 189, 23);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,12 +178,12 @@ public class APATicket extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(38, 185, 452, 269);
+        jScrollPane2.setBounds(38, 172, 452, 269);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 920, 750);
+        jLabel1.setBounds(-9, -14, 950, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
