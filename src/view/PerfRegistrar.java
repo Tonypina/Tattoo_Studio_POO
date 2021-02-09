@@ -77,12 +77,8 @@ public class PerfRegistrar extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(314, 314, 314))
             .addGroup(layout.createSequentialGroup()
-                .addGap(276, 276, 276)
+                .addGap(280, 280, 280)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
@@ -96,14 +92,18 @@ public class PerfRegistrar extends javax.swing.JPanel {
                         .addComponent(jTextField2)
                         .addComponent(jTextField3)
                         .addComponent(jTextField4)))
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(279, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(323, 323, 323))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,7 +121,7 @@ public class PerfRegistrar extends javax.swing.JPanel {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jButton1)
-                .addGap(58, 58, 58))
+                .addGap(80, 80, 80))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,14 +131,20 @@ public class PerfRegistrar extends javax.swing.JPanel {
         String apellidoP = jTextField2.getText();
         String apellidoM = jTextField3.getText();
         
-        String nombreC = nombre+ " " + apellidoP + " " + apellidoM + "-P";
+        String nombreC = nombre+" " + apellidoP + " " + apellidoM;
         
         String contacto = jTextField4.getText();
         double total =0;
                 
         Proveedor p = new Proveedor (nombreC, contacto, total);
-        Model.insertarProveedor(p);
+        Model.insertarProvedor(p);
          JOptionPane.showMessageDialog(null, "Registro Exitoso" );
+         
+         jTextField1.setText("");
+         jTextField2.setText("");
+         jTextField3.setText("");
+         jTextField4.setText("");
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

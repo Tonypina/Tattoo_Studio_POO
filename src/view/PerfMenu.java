@@ -10,9 +10,11 @@ package view;
  * @author Airam
  */
 public class PerfMenu extends javax.swing.JFrame {
-int vp, vp1, vp2 = 0;
+int vp, vp1, vp2, vp3 = 0;
 PerfRegistrar pr;
 PerfBuscar  pb;
+PerfElimiModif pm;
+PerfRegistros prs;
    
     public PerfMenu() {
         initComponents();
@@ -21,6 +23,9 @@ PerfBuscar  pb;
            
         Abrir_Registro();
         Buscar();
+        Modificar();
+        Registros();
+        
     }
 
      private void Abrir_Registro(){
@@ -45,7 +50,27 @@ PerfBuscar  pb;
          vp1 = 1;
      }
      
+     private void Modificar(){
+         if (vp2 == 0){
+          pm = new PerfElimiModif();
+         principal.addTab("Modificar y Eliminar",pm);
+         principal.setSelectedComponent(pm);
+         }else{
+             principal.setSelectedComponent(pm);
+         }
+         vp2 = 1;
+    } 
      
+      private void Registros(){
+         if (vp3 == 0){
+          prs = new PerfRegistros();
+         principal.addTab("Todos",prs);
+         principal.setSelectedComponent(prs);
+         }else{
+             principal.setSelectedComponent(prs);
+         }
+         vp3 = 1;
+     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
