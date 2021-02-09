@@ -44,8 +44,10 @@ public class Inventario extends javax.swing.JFrame {
     private ArrayList<Proveedor> proveedores(){
         ArrayList<Proveedor> pl = new ArrayList<>();
         for(Proveedor p : Model.getProveedor()){
-            proveedores.addItem(p.getNombre());
-            pl.add(p);
+            if(!p.getNombre().endsWith("-P")){    
+                proveedores.addItem(p.getNombre());
+                pl.add(p);
+            }
         }
         return pl;
     }
@@ -352,33 +354,43 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_proveedoresItemStateChanged
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        Model.eliminarProducto(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()));
-        for( Proveedor pr : Model.getProveedor() ){
-            if(proveedores.getSelectedItem().toString().equals(pr.getNombre())){
-                llenarTablaProductos(Model.getProductos(pr.getId()));
+        try{    
+            Model.eliminarProducto(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()));
+            for( Proveedor pr : Model.getProveedor() ){
+                if(proveedores.getSelectedItem().toString().equals(pr.getNombre())){
+                    llenarTablaProductos(Model.getProductos(pr.getId()));
+                }
             }
+            limpiar();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
         }
-        limpiar();
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        Producto p = new Producto(
-            Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()),
-            modelo.getText(),
-            tipo.getText(),
-            Integer.parseInt(cantidad.getText()),
-            Double.parseDouble(precio.getText()),
-            Model.buscarProveedor(proveedores.getSelectedItem().toString()),
-            Double.parseDouble(costo.getText()),
-            false
-        );
-        Model.modificarProducto(p);
-        for( Proveedor pr : Model.getProveedor() ){
-            if(proveedores.getSelectedItem().toString().equals(pr.getNombre())){
-                llenarTablaProductos(Model.getProductos(pr.getId()));
+        try{    
+            Producto p = new Producto(
+                Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()),
+                modelo.getText(),
+                tipo.getText(),
+                Integer.parseInt(cantidad.getText()),
+                Double.parseDouble(precio.getText()),
+                Model.buscarProveedor(proveedores.getSelectedItem().toString()),
+                Double.parseDouble(costo.getText()),
+                false
+            );
+            Model.modificarProducto(p);
+            for( Proveedor pr : Model.getProveedor() ){
+                if(proveedores.getSelectedItem().toString().equals(pr.getNombre())){
+                    llenarTablaProductos(Model.getProductos(pr.getId()));
+                }
             }
+            limpiar();
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
         }
-        limpiar();
     }//GEN-LAST:event_editarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed

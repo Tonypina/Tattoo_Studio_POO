@@ -249,18 +249,22 @@ public class RegistroProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_proveedoresItemStateChanged
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        Producto p = new Producto(
-            modelo.getText(),
-            tipo.getText(),
-            Integer.parseInt(cantidad.getText()),
-            Double.parseDouble(precio.getText()),
-            Model.buscarProveedor(proveedores.getSelectedItem().toString()),
-            Double.parseDouble(costo.getText()),
-            false
-        );
-        Model.insertarProducto(p);
-        JOptionPane.showMessageDialog(null, "Se insertó un nuevo producto." );
-        limpiar();
+        try{
+            Producto p = new Producto(
+                modelo.getText(),
+                tipo.getText(),
+                Integer.parseInt(cantidad.getText()),
+                Double.parseDouble(precio.getText()),
+                Model.buscarProveedor(proveedores.getSelectedItem().toString()),
+                Double.parseDouble(costo.getText()),
+                false
+            );
+            Model.insertarProducto(p);
+            JOptionPane.showMessageDialog(null, "Se insertó un nuevo producto." );
+            limpiar();
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El formato de los campos no es correcto." );
+        }
     }//GEN-LAST:event_registrarActionPerformed
 
     /**
