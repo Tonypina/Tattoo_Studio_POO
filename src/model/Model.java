@@ -187,7 +187,7 @@ public class Model {
     }
     
      //Proveedor
-    public static void insertarProvedor( Proveedor p ){
+    public static void insertarProveedor( Proveedor p ){
         ProveedorDB.insertar(p);
     }
     
