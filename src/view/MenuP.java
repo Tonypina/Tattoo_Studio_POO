@@ -48,14 +48,19 @@ public class MenuP extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MENÚ PRINCIPAL");
         setMinimumSize(new java.awt.Dimension(969, 500));
         setPreferredSize(new java.awt.Dimension(914, 523));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 60)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Studio Babayaga");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(279, 35, 428, 61);
 
         jButton1.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chair.png"))); // NOI18N
@@ -65,6 +70,8 @@ public class MenuP extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(109, 239, 213, 41);
 
         jButton2.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/portapapeles.png"))); // NOI18N
@@ -74,6 +81,8 @@ public class MenuP extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(109, 365, 213, 41);
 
         jButton3.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/storage.png"))); // NOI18N
@@ -83,6 +92,8 @@ public class MenuP extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(387, 298, 200, 41);
 
         jButton4.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventario.png"))); // NOI18N
@@ -92,6 +103,8 @@ public class MenuP extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(387, 365, 200, 41);
 
         jButton5.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registrar.jpg"))); // NOI18N
@@ -101,8 +114,12 @@ public class MenuP extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(652, 366, 166, 39);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo (1).jpg"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(12, 13, 120, 111);
 
         jButton6.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comunidad.png"))); // NOI18N
@@ -112,6 +129,8 @@ public class MenuP extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(387, 239, 200, 41);
 
         jButton7.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/auger.png"))); // NOI18N
@@ -121,6 +140,8 @@ public class MenuP extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(109, 298, 213, 41);
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -128,9 +149,14 @@ public class MenuP extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton8);
+        jButton8.setBounds(862, 430, 97, 61);
 
         jLabel3.setFont(new java.awt.Font("Old English Text MT", 0, 54)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Menú");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(422, 114, 133, 55);
 
         jButton9.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proyecto-de-ley.png"))); // NOI18N
@@ -140,6 +166,8 @@ public class MenuP extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton9);
+        jButton9.setBounds(652, 239, 166, 41);
 
         jButton11.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.png"))); // NOI18N
@@ -149,79 +177,13 @@ public class MenuP extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton11);
+        jButton11.setBounds(652, 299, 166, 39);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(147, 147, 147)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(290, 290, 290)
-                                        .addComponent(jLabel3))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(109, 109, 109)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(65, 65, 65)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(65, 65, 65)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 141, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton8)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton6)
-                    .addComponent(jButton9))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton11)))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4)
-                        .addComponent(jButton5)))
-                .addGap(24, 24, 24)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(-10, -10, 1000, 530);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -343,5 +305,6 @@ public class MenuP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
