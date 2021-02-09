@@ -285,7 +285,7 @@ public class Usuarios extends javax.swing.JFrame {
                 nombre.getText(),
                 ap_pat.getText(),
                 ap_mat.getText(),
-                Model.buscarUsuario(username.getText()).getRango(),
+                Model.buscarUsuario(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString())).getRango(),
                 username.getText(),
                 pass.getText()
             );
