@@ -50,7 +50,7 @@ public class PerfElimiModif extends javax.swing.JPanel {
         }
         
         for(Proveedor p : lista){
-            if(!p.getNombre().endsWith("-P")){
+            if(p.getNombre().endsWith("-P")){
                 Object[] fila = new Object[cantidadColumnas];
                 fila[0] = p.getId();
                 fila[1] = p.getNombre().substring(0, p.getNombre().length()-2);
