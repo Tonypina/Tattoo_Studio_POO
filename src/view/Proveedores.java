@@ -124,7 +124,7 @@ public class Proveedores extends javax.swing.JFrame {
         });
 
         nombre1.setFont(new java.awt.Font("Old English Text MT", 0, 36)); // NOI18N
-        nombre1.setText("Inventario");
+        nombre1.setText("Proveedores");
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,6 +281,7 @@ public class Proveedores extends javax.swing.JFrame {
                 Double.parseDouble(total.getText())
             );
             Model.modificarProveedor(p);
+            llenarTablaProveedores(Model.getProveedor());
             limpiar();
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
@@ -295,10 +296,10 @@ public class Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-        Producto p = Model.buscarProducto(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()));
-        nombre.setText(p.getModeloPro());
-        contacto.setText(p.getTipoPro());
-        total.setText(Double.toString(p.getCostoPro()));
+        Proveedor p = Model.buscarProveedor(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()));
+        nombre.setText(p.getNombre());
+        contacto.setText(p.getContacto());
+        total.setText(Double.toString(p.getTotal()));
     }//GEN-LAST:event_tablaMouseClicked
 
     private void contactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactoActionPerformed
