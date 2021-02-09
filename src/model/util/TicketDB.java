@@ -111,6 +111,20 @@ public class TicketDB {
         }
         return 0;
     }
+    
+    public static int getMaxAnio(){
+        try{
+            Connection cn = Conexion.getConnection();
+            PreparedStatement pst = cn.prepareStatement("SELECT MAX(anio) FROM ticket");
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            int anio = rs.getInt(1);
+            return anio;
+        }catch(Exception e){
+            e.getMessage();
+        }
+        return 0;
+    }
 
     public static ArrayList<Producto> getVentas( int idTicket ){
         try{
@@ -167,7 +181,7 @@ public class TicketDB {
             Connection cn = Conexion.getConnection();
             PreparedStatement pst;
             
-            if(dia == 0){
+            if(dia == 0 && mes != 0){
                 pst = cn.prepareStatement("SELECT * FROM ticket WHERE mes  = ? AND anio = ?");
                 pst.setString(1, Integer.toString(mes));
                 pst.setString(2, Integer.toString(anio));
@@ -203,7 +217,7 @@ public class TicketDB {
             
             return lti;
         }catch(SQLException e){
-            e.getMessage();
+            System.out.println(e);
         }
         return null;
     }
