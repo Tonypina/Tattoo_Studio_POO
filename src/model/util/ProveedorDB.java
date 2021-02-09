@@ -16,7 +16,7 @@ public class ProveedorDB {
     
     public static void insertar( Proveedor p ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("INSERT INTO proveedor VALUES(?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, p.getNombre());
@@ -32,7 +32,7 @@ public class ProveedorDB {
     
     public static Proveedor buscar( int idProveedor ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM proveedor WHERE idProveedor = ?");
             pst.setString(1, Integer.toString(idProveedor));
             
@@ -55,7 +55,7 @@ public class ProveedorDB {
     
     public static Proveedor buscar( String nombre ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM proveedor WHERE nombre = ?");
             pst.setString(1, nombre);
             
@@ -78,7 +78,7 @@ public class ProveedorDB {
 
     public static void modificar(Proveedor p){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE proveedor SET nombre = ?, contacto = ?, total = ? WHERE idProveedor = " + p.getId());
             pst.setString(1, p.getNombre());
             pst.setString(2, p.getContacto());
@@ -93,7 +93,7 @@ public class ProveedorDB {
     
     public static ArrayList<Proveedor> get(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM proveedor");
             ResultSet rs = pst.executeQuery();
             ArrayList<Proveedor> p = new ArrayList<>();
@@ -116,7 +116,7 @@ public class ProveedorDB {
 
     public static void eliminar( int id ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("DELETE FROM proveedor WHERE idProveedor = " + id);
             pst.executeUpdate();
             pst.close();

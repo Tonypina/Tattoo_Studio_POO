@@ -16,7 +16,7 @@ public class SocioDB {
     
     public static ArrayList<Socio> get(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM socio");
             
             ResultSet rs = pst.executeQuery();
@@ -42,7 +42,7 @@ public class SocioDB {
 
     public static void insertar( Socio s ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("INSERT INTO socio VALUES(?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, s.getNombre());
@@ -63,7 +63,7 @@ public class SocioDB {
 
     public static Socio buscar( int id ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM socio WHERE idSocio = ?");
             pst.setString(1, Integer.toString(id));
             
@@ -86,7 +86,7 @@ public class SocioDB {
 
     public static void modificar( Socio s ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, contacto = ?, rango = ?, total = ? WHERE idSocio = " + Integer.toString(s.getId()));
             pst.setString(1, s.getNombre().trim());
             pst.setString(2, s.getContacto().trim());
@@ -107,7 +107,7 @@ public class SocioDB {
 
     public static void eliminar( int id ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("DELETE FROM socio WHERE idSocio = " + Integer.toString(id));
             pst.executeUpdate();
             pst.close();

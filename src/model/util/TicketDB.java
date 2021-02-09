@@ -15,7 +15,7 @@ public class TicketDB {
     
     public static ArrayList<Ticket> get(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM ticket");
             
             ResultSet rs = pst.executeQuery();
@@ -45,8 +45,10 @@ public class TicketDB {
     
     public static Ticket insertar( Ticket t ){
         try{
+            Calendar c = Calendar.getInstance();
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, "");
             if(t.isClip()){
                 pst.setString(2, "1");
@@ -59,23 +61,25 @@ public class TicketDB {
                 pst.setString(3, "0");
             }
             pst.setString(4, Double.toString(t.getTotal()));
-            pst.setString(5, Integer.toString(t.getTatuador().getId()));
             if(t.isVisita()){
-                pst.setString(6, "1");
+                pst.setString(5, "1");
             }else{
-                pst.setString(6, "0");
+                pst.setString(5, "0");
             }
+            pst.setString(6, Integer.toString(c.get(Calendar.DATE)));
+            pst.setString(7, Integer.toString(c.get(Calendar.MONTH)));
+            pst.setString(8, Integer.toString(c.get(Calendar.YEAR)));
+            pst.setString(9, Integer.toString(t.getTatuador().getId()));
             pst.executeUpdate();
             ResultSet rs = pst.executeQuery("SELECT MAX(idTicket) FROM ticket");
             rs.next();
             Ticket ti = buscar( rs.getInt(1) );
             for (Producto p : t.getProductos()) {
-                pst.executeUpdate("INSERT INTO venta VALUES(?,?,?,?,?)");
+                pst.executeUpdate("INSERT INTO venta VALUES(?,?,?,?)");
                 pst.setString(1, "0");
                 pst.setString(2, "1");
-                pst.setString(3, "NULL");
-                pst.setString(4, Integer.toString(p.getIdPro()));
-                pst.setString(5, Integer.toString(ti.getId()));
+                pst.setString(3, Integer.toString(p.getIdPro()));
+                pst.setString(4, Integer.toString(ti.getId()));
             }
             pst.close();
             cn.close();
@@ -88,7 +92,7 @@ public class TicketDB {
 
     public static ArrayList<Producto> getVentas( int idTicket ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT idProductoVenta FROM venta WHERE idTicketVenta = "+idTicket);
             ResultSet rs = pst.executeQuery();
             
@@ -107,7 +111,7 @@ public class TicketDB {
     
     public static Ticket buscar( int idTicket ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM ticket WHERE idTicket = ?");
             pst.setString(1, Integer.toString(idTicket));
             
@@ -132,10 +136,53 @@ public class TicketDB {
         }
         return null;
     }
+    
+    public static ArrayList<Ticket> get( int dia, int mes, int anio ){
+        try{
+            Connection cn = Conexion.getConnection();
+            PreparedStatement pst;
+            
+            if(dia == 0){
+                pst = cn.prepareStatement("SELECT * FROM ticket WHERE mes  = ? AND anio = ?");
+                pst.setString(1, Integer.toString(mes));
+                pst.setString(2, Integer.toString(anio));
+            } else if(dia == 0 && mes == 0){
+                pst = cn.prepareStatement("SELECT * FROM ticket WHERE anio = ?");
+                pst.setString(1, Integer.toString(anio));
+            } else {
+                pst = cn.prepareStatement("SELECT * FROM ticket WHERE dia = ? AND mes = ? AND anio = ?");
+                pst.setString(1, Integer.toString(dia));
+                pst.setString(2, Integer.toString(mes));
+                pst.setString(3, Integer.toString(anio));
+            }
+            
+            ResultSet rs = pst.executeQuery();
+            
+            ArrayList<Producto> p;
+            ArrayList<Ticket> lti = new ArrayList<>();
+            if(rs.next()){
+                do{
+                    p = getVentas(rs.getInt("idTicket"));
+                    Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
+                    Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
+                            rs.getBoolean("prod"), rs.getDouble("total"), 
+                            t, rs.getBoolean("visita"), p);
+                    lti.add(ti);
+                }while(rs.next());
+            }
+            pst.close();
+            cn.close();
+            
+            return lti;
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
  
     public static void modificar(Ticket t){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE ticket SET clip = ?, prod = ?, total = ?, idTatuadorTicket = ?, visita = ? WHERE idTicket = " + t.getId());
             
             if(t.isClip())

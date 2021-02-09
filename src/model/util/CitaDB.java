@@ -15,7 +15,7 @@ public class CitaDB {
     
     public static ArrayList<Cita> get( int idTatuador ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE idTatuadorCita = " + Integer.toString(idTatuador) + " ORDER BY nomClienteCita");
             
             ResultSet rs = pst.executeQuery();
@@ -71,7 +71,7 @@ public class CitaDB {
     
     public static ArrayList<Cita> get( int dia, int mes, int anio ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita WHERE dia = ? AND mes = ? AND anio = ?");
             pst.setString(1, Integer.toString(dia));
             pst.setString(2, Integer.toString(mes));
@@ -122,7 +122,7 @@ public class CitaDB {
     
     public static void modificar( Cita c ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
                                     + "dia = ?, mes = ?, anio = ?, hora = ?, minutos = ? "
                                     + "WHERE idCita = "+ Integer.toString(c.getIdCita()));
@@ -142,7 +142,7 @@ public class CitaDB {
     
     public static void eliminar( int id ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("DELETE FROM cita WHERE idCita = ?");
             pst.setString(1, Integer.toString(id));
             pst.executeUpdate();

@@ -15,7 +15,7 @@ public class UsuarioDB {
     
     public static ArrayList<Usuario> get(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM usuario ORDER BY nombre");
             
             ResultSet rs = pst.executeQuery();
@@ -39,7 +39,7 @@ public class UsuarioDB {
     
     public static void insertar(Usuario u){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("INSERT INTO usuario VALUES(?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, u.getNombre());
@@ -65,7 +65,7 @@ public class UsuarioDB {
     
     public static Usuario buscar(int id) {  
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?");
             pst.setString(1, Integer.toString(id));
             
@@ -89,7 +89,7 @@ public class UsuarioDB {
     
     public static Usuario buscar(String username) {  
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?");
             pst.setString(1, username);
             
@@ -113,7 +113,7 @@ public class UsuarioDB {
 
     public static void modificar(Usuario u){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE idUsuario = ?");
             pst.setString(1, u.getNombre());
             pst.setString(2, u.getAp_paterno());
@@ -132,7 +132,7 @@ public class UsuarioDB {
     
     public static void eliminar(int id){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("DELETE FROM usuario WHERE idUsuario = " + Integer.toString(id));
             pst.executeUpdate();
             pst.close();
@@ -144,7 +144,7 @@ public class UsuarioDB {
     
     public static boolean autenticacion( String username, String pass ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM usuario WHERE username = ?"); 
             pst.setString(1, username);
             ResultSet rs = pst.executeQuery();

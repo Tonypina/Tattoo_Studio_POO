@@ -16,7 +16,7 @@ import objects.*;
 public class ProductoDB {
     public static ArrayList<Producto> get(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto ORDER BY modeloPro");
             
             ResultSet rs = pst.executeQuery();
@@ -44,7 +44,7 @@ public class ProductoDB {
     
     public static ArrayList<Producto> get( String tipoPro ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE tipoPro = ? ORDER BY tipoPro");
             pst.setString(1, tipoPro);
             ResultSet rs = pst.executeQuery();
@@ -72,7 +72,7 @@ public class ProductoDB {
     
     public static ArrayList<Producto> get( int idProveedor ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE idProveedorProducto = ?");
             pst.setString(1, Integer.toString(idProveedor));
             ResultSet rs = pst.executeQuery();
@@ -100,7 +100,7 @@ public class ProductoDB {
     
     public static void insertar( Producto pro ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("INSERT INTO producto VALUES(?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, pro.getModeloPro());
@@ -124,7 +124,7 @@ public class ProductoDB {
 
     public static Producto buscar( int idPro ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE idProducto = ?");
             pst.setString(1, Integer.toString(idPro));
             
@@ -149,7 +149,7 @@ public class ProductoDB {
         
     public static void modificar(Producto p){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, costoPro = ?, perfo = ?, idProveedorProducto = ? WHERE idProducto = " + p.getIdPro());
             pst.setString(1, p.getModeloPro());
             pst.setString(2, p.getTipoPro());
@@ -172,7 +172,7 @@ public class ProductoDB {
     
     public static void eliminar( int idPro ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = " + idPro);
             pst.executeUpdate();
             pst.close();
@@ -184,7 +184,7 @@ public class ProductoDB {
     
     public static void actualizarStock(int idPro, int cantidadPro){
         try {
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE producto SET cantidadPro = ? WHERE idProducto = " + idPro);
             
             pst.setString(1, Integer.toString(cantidadPro));

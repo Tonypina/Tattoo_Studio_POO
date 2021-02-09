@@ -15,7 +15,7 @@ public class EstudioDB {
     
     public static void aumentarGanancia( double aumento ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             double ganancia = obtenerGanancia();
             PreparedStatement pst = cn.prepareStatement("UPDATE estudio SET ganancia = ? WHERE idEstudio = 1");
             pst.setString(1, Double.toString(aumento+ganancia));
@@ -29,7 +29,7 @@ public class EstudioDB {
     
     public static double obtenerGanancia(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM estudio WHERE idEstudio = 1");
             ResultSet rs = pst.executeQuery();
             Double ganancia = rs.getDouble("ganancia");
@@ -44,7 +44,7 @@ public class EstudioDB {
     
     public static double obtenerReinversion(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM estudio WHERE idEstudio = 1");
             ResultSet rs = pst.executeQuery();
             Double reinversion = rs.getDouble("reinversion");
@@ -59,7 +59,7 @@ public class EstudioDB {
     
     public static void aumentarReinversion( double aumento ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             double reinversion = obtenerReinversion();
             PreparedStatement pst = cn.prepareStatement("UPDATE estudio SET reinversion = ? WHERE idEstudio = 1");
             pst.setString(1, Double.toString(reinversion+aumento));
@@ -73,7 +73,7 @@ public class EstudioDB {
     
     public static double obtenerPagoProveedores(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM estudio WHERE idEstudio = 1");
             ResultSet rs = pst.executeQuery();
             Double pagoProveedores = rs.getDouble("pagoProveedores");
@@ -88,7 +88,7 @@ public class EstudioDB {
     
     public static void aumentarPagoProveedores( double aumento ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             double pagoProveedores = obtenerPagoProveedores();
             PreparedStatement pst = cn.prepareStatement("UPDATE estudio SET pagoProveedores = ? WHERE idEstudio = 1");
             pst.setString(1, Double.toString(pagoProveedores+aumento));
@@ -102,7 +102,7 @@ public class EstudioDB {
     
     public static double getClip(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT clip FROM estudio WHERE idEstudio = 1");
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
@@ -120,7 +120,7 @@ public class EstudioDB {
     
     public static void setClip(double clip){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE estudio SET clip = ? WHERE idEstudio = 1");
             pst.setString(1, Double.toString(clip));
             pst.executeUpdate();

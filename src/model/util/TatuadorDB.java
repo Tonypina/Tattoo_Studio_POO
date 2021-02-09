@@ -15,7 +15,7 @@ public class TatuadorDB {
     
     public static ArrayList<Tatuador> get(){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador ORDER BY idTatuador");
             
             ResultSet rs = pst.executeQuery();
@@ -82,7 +82,7 @@ public class TatuadorDB {
     
     public static ArrayList<Tatuador> buscar( String nombre ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador WHERE nombre = ? ORDER BY nombre");
             pst.setString(1, nombre);
             
@@ -106,7 +106,7 @@ public class TatuadorDB {
     
     public static void modificar( Tatuador t ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE tatuador SET nombre = ?, ap_paterno = ?, ap_materno = ?, contacto = ?, rango = ?, total = ? WHERE idTatuador = " + t.getId());
             pst.setString(1, t.getNombre());
             pst.setString(2, t.getAp_pat());
@@ -124,7 +124,7 @@ public class TatuadorDB {
     
     public static void eliminar( int id ){
         try{
-            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("DELETE FROM tatuador WHERE idTatuador = " + id);
             pst.executeUpdate();
             pst.close();

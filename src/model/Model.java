@@ -215,6 +215,10 @@ public class Model {
     public static ArrayList<Ticket> getTickets(){
         return TicketDB.get();
     }
+
+    public static ArrayList<Ticket> getTickets( int dia, int mes, int anio ){
+        return TicketDB.get(dia, mes, anio);
+    }
     
     public static Ticket insertarTicket( Ticket t ){
         return TicketDB.insertar(t);
@@ -224,7 +228,6 @@ public class Model {
         return TicketDB.buscar(idTicket);
     }
 
-    
     public static void modificarTicket(Ticket t){
         TicketDB.modificar(t);
     }
