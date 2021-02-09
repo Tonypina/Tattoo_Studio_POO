@@ -95,7 +95,6 @@ public class RegistroProducto extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel11.setText("Proveedor:");
 
-        proveedores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         proveedores.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 proveedoresItemStateChanged(evt);
