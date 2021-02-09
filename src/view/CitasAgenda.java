@@ -39,7 +39,7 @@ public class CitasAgenda extends javax.swing.JFrame {
         modelo.addColumn("Año");
         modelo.addColumn("Hora");
         modelo.addColumn("Minutos");
-        modelo.addColumn("ID tatuador");  
+        modelo.addColumn("Tatuador");  
         int[] anchos ={100,100,100,100,100,100,100};
           
         for (int x =0; x< cantidadColumnas;x++  ){
@@ -54,7 +54,8 @@ public class CitasAgenda extends javax.swing.JFrame {
             fila[3] = c.getAnioInicio();
             fila[4] = c.getHora();
             fila[5] = c.getMinutos();
-            fila[6] = c.getIdTatuador();
+            Tatuador t = Model.buscarTatuador(c.getIdTatuador());
+            fila[6] = t.getNombre()+" "+t.getAp_pat()+" "+t.getAp_mat();
                      
             modelo.addRow(fila);
         }

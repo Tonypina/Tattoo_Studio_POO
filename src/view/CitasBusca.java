@@ -39,7 +39,7 @@ public class CitasBusca extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
         }
                        
-    for(Cita c : lista){           
+        for(Cita c : lista){           
             Object[] fila = new Object[cantidadColumnas];
             fila[0] = c.getIdCita();
             fila[1] = c.getNombreCliente();
@@ -66,10 +66,8 @@ public class CitasBusca extends javax.swing.JPanel {
                 fila[3] = c.getHora() + ":" + c.getMinutos() + " hrs" ;                
             }
             
-       
-          int id = c.getIdTatuador();
-          Tatuador t = Model.buscarTatuador(id);
-        /*    fila [4]= t.getNombre();*/
+            Tatuador t = Model.buscarTatuador(c.getIdTatuador());
+            fila[4] = t.getNombre()+" "+t.getAp_pat()+" "+t.getAp_mat();
           
             modelo.addRow(fila);
         }

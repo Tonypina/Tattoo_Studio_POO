@@ -68,10 +68,8 @@ public class CitasEliminar extends javax.swing.JPanel {
                 fila[3] = c.getHora() + ":" + c.getMinutos() + " hrs" ;                
             }
             
-       
-          int id = c.getIdTatuador();
-          Tatuador t = Model.buscarTatuador(id);
-        /*    fila [4]= t.getNombre();*/
+            Tatuador t = Model.buscarTatuador(c.getIdTatuador());
+            fila[4] = t.getNombre()+" "+t.getAp_pat()+" "+t.getAp_mat();
           
             modelo.addRow(fila);
         }
