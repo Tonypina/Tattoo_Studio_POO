@@ -97,6 +97,12 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel7.setText("Nombre:");
 
+        ap_mat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ap_matActionPerformed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel8.setText("Ap. Paterno:");
 
@@ -261,24 +267,36 @@ public class Usuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        Model.eliminarProducto(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()));
-        llenarTablaUsuarios(Model.getUsuarios());
-        limpiar();
+        try{    
+            Model.eliminarProducto(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()));
+            llenarTablaUsuarios(Model.getUsuarios());
+            limpiar();
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        Usuario u = new Usuario(
-            Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()),
-            nombre.getText(),
-            ap_pat.getText(),
-            ap_mat.getText(),
-            Model.buscarUsuario(username.getText()).getRango(),
-            username.getText(),
-            pass.getText()
-        );
-        Model.modificarUsuario(u);
-        llenarTablaUsuarios(Model.getUsuarios());
-        limpiar();
+        try{    
+            Usuario u = new Usuario(
+                Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString()),
+                nombre.getText(),
+                ap_pat.getText(),
+                ap_mat.getText(),
+                Model.buscarUsuario(username.getText()).getRango(),
+                username.getText(),
+                pass.getText()
+            );
+            Model.modificarUsuario(u);
+            llenarTablaUsuarios(Model.getUsuarios());
+            limpiar();
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_editarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -311,6 +329,10 @@ public class Usuarios extends javax.swing.JFrame {
             eliminar.setEnabled(true);
         }
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void ap_matActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ap_matActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ap_matActionPerformed
 
     /**
      * @param args the command line arguments

@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Airam
@@ -282,7 +283,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -305,49 +306,58 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try{
+            String id = jTextField1.getText();
+            int iD = Integer.parseInt(id);
+            String nombre = jTextField2.getText();
+            String apellidop = jTextField3.getText();
+            String apellidom = jTextField4.getText();
+            String contacto = jTextField5.getText();
+             String rango = jComboBox1.getSelectedItem().toString();
+            int rangoI=0;
+            if ("Principal".equals(rango)){
+                rangoI=0;
+            }
 
-        String id = jTextField1.getText();
-        int iD = Integer.parseInt(id);
-        String nombre = jTextField2.getText();
-        String apellidop = jTextField3.getText();
-        String apellidom = jTextField4.getText();
-        String contacto = jTextField5.getText();
-         String rango = jComboBox1.getSelectedItem().toString();
-        int rangoI=0;
-        if ("Principal".equals(rango)){
-            rangoI=0;
+            else if ("Aprendiz".equals(rango)){
+                rangoI=1;
+            }
+
+            else if ("Secundario".equals(rango)){
+                rangoI=2;
+            }
+
+
+            double tot = 0;
+
+            Tatuador t = new Tatuador(iD, nombre, apellidop, apellidom, contacto, rangoI, tot );
+            Model.modificarTatuador(t);
+            llenarTablaTatuadores();
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
         }
-
-        else if ("Aprendiz".equals(rango)){
-            rangoI=1;
-        }
-
-        else if ("Secundario".equals(rango)){
-            rangoI=2;
-        }
-               
-       
-        double tot = 0;
-
-        Tatuador t = new Tatuador(iD, nombre, apellidop, apellidom, contacto, rangoI, tot );
-        Model.modificarTatuador(t);
-        llenarTablaTatuadores();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try{
+            String iD = jTextField1.getText();
+            int id = Integer.parseInt(iD);
 
-        String iD = jTextField1.getText();
-        int id = Integer.parseInt(iD);
+            Model.eliminarTatuador(id);
+            llenarTablaTatuadores();
 
-        Model.eliminarTatuador(id);
-        llenarTablaTatuadores();
-        
-         jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField5.setText("");
-        jTextField4.setText("");
-
+             jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField5.setText("");
+            jTextField4.setText("");
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

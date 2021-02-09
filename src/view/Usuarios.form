@@ -153,6 +153,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ap_mat">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ap_matActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="ap_pat">
         </Component>

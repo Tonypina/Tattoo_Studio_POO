@@ -8,6 +8,7 @@ import java.awt.Component;
 import model.*;
 import objects.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
         
 /**
@@ -284,40 +285,52 @@ public class SociosMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String iD = jTextField1.getText();
-        int id = Integer.parseInt(iD);
-        
-        Model.eliminarSocio(id);
-       ArrayList <Socio> lista= Model.getSocios();
+        try{    
+            String iD = jTextField1.getText();
+            int id = Integer.parseInt(iD);
 
-        llenarTablaSocios(lista);
-        
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
+            Model.eliminarSocio(id);
+           ArrayList <Socio> lista= Model.getSocios();
+
+            llenarTablaSocios(lista);
+
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String id = jTextField1.getText();
-        int iD= Integer.parseInt(id);
-        String nombre = jTextField2.getText();
-        String contacto =jTextField3.getText();
-        
-        String rango = jComboBox1.getSelectedItem().toString();
-        boolean rang = false;
-        if ( "Mayoritario".equals(rango) ){
-            rang = true;           
-        }
-        else if ("Minoritario".equals(rango)){
-            rang= false;
-        }
-        double total =0;
-        
-        Socio s = new Socio (nombre, contacto, rang, total);
-        Model.modificarSocio(s);
-        ArrayList <Socio> lista= Model.getSocios();
+        try{    
+            String id = jTextField1.getText();
+            int iD= Integer.parseInt(id);
+            String nombre = jTextField2.getText();
+            String contacto =jTextField3.getText();
 
-        llenarTablaSocios(lista);
+            String rango = jComboBox1.getSelectedItem().toString();
+            boolean rang = false;
+            if ( "Mayoritario".equals(rango) ){
+                rang = true;           
+            }
+            else if ("Minoritario".equals(rango)){
+                rang= false;
+            }
+            double total =0;
+
+            Socio s = new Socio (nombre, contacto, rang, total);
+            Model.modificarSocio(s);
+            ArrayList <Socio> lista= Model.getSocios();
+
+            llenarTablaSocios(lista);
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

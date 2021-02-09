@@ -249,20 +249,24 @@ public class PerfElimiModif extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try{
+            String id = jTextField1.getText();
+            int iD = Integer.parseInt(id);
+            String nombre = jTextField4.getText();      
+            String contacto = jTextField3.getText();
 
-        String id = jTextField1.getText();
-        int iD = Integer.parseInt(id);
-        String nombre = jTextField4.getText();      
-        String contacto = jTextField3.getText();
-        
-        double tot = 0;
-        Proveedor p = new Proveedor (iD, nombre, contacto, tot);
-        Model.modificarProveedor(p);
-        ArrayList<Proveedor> lista = Model.getProveedor();
-        llenarTablaPerforadores( lista );
-        
-        JOptionPane.showMessageDialog(null, "Perforador Modificado" );
-       
+            double tot = 0;
+            Proveedor p = new Proveedor (iD, nombre, contacto, tot);
+            Model.modificarProveedor(p);
+            ArrayList<Proveedor> lista = Model.getProveedor();
+            llenarTablaPerforadores( lista );
+
+            JOptionPane.showMessageDialog(null, "Perforador Modificado" );
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -270,19 +274,23 @@ public class PerfElimiModif extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try{
+            String iD = jTextField1.getText();
+            int id = Integer.parseInt(iD);
 
-        String iD = jTextField1.getText();
-        int id = Integer.parseInt(iD);
+            Model.eliminarProveedor(id);
+            ArrayList<Proveedor> lista = Model.getProveedor();
+           llenarTablaPerforadores( lista ); 
 
-        Model.eliminarProveedor(id);
-        ArrayList<Proveedor> lista = Model.getProveedor();
-       llenarTablaPerforadores( lista ); 
-        
-        jTextField1.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-       JOptionPane.showMessageDialog(null, "Perforador Borrado" );
-
+            jTextField1.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+           JOptionPane.showMessageDialog(null, "Perforador Borrado" );
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -149,34 +149,37 @@ public class TatuadorRegistro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nombre= jTextField1.getText();
-        String apellidop= jTextField2.getText();
-        String apellidom= jTextField3.getText();
-        String contacto = jTextField5.getText();
-        String rango = jComboBox1.getSelectedItem().toString();
-        int rangoI=0;
-        int total=0;
-        if ("Principal".equals(rango)){
-            rangoI=0;
+        try{
+            String nombre= jTextField1.getText();
+            String apellidop= jTextField2.getText();
+            String apellidom= jTextField3.getText();
+            String contacto = jTextField5.getText();
+            String rango = jComboBox1.getSelectedItem().toString();
+            int rangoI=0;
+            int total=0;
+            if ("Principal".equals(rango)){
+                rangoI=0;
+            }
+
+            else if ("Aprendiz".equals(rango)){
+                rangoI=1;
+            }
+
+            else if ("Secundario".equals(rango)){
+                rangoI=2;
+            }
+
+            Tatuador t = new Tatuador(nombre, apellidop,apellidom, contacto, rangoI,total);
+            Model.insertarTatuador(t);
+            JOptionPane.showMessageDialog(null, "Registro Exitoso" );
+
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField5.setText("");
+        } catch(Exception e){
+            
         }
-
-        else if ("Aprendiz".equals(rango)){
-            rangoI=1;
-        }
-
-        else if ("Secundario".equals(rango)){
-            rangoI=2;
-        }
-
-        Tatuador t = new Tatuador(nombre, apellidop,apellidom, contacto, rangoI,total);
-        Model.insertarTatuador(t);
-        JOptionPane.showMessageDialog(null, "Registro Exitoso" );
-
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField5.setText("");
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

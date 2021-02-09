@@ -126,25 +126,29 @@ public class PerfRegistrar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String nombre = jTextField1.getText();
-        String apellidoP = jTextField2.getText();
-        String apellidoM = jTextField3.getText();
-        
-        String nombreC = nombre+" " + apellidoP + " " + apellidoM;
-        
-        String contacto = jTextField4.getText();
-        double total =0;
-                
-        Proveedor p = new Proveedor (nombreC, contacto, total);
-        Model.insertarProveedor(p);
-         JOptionPane.showMessageDialog(null, "Registro Exitoso" );
-         
-         jTextField1.setText("");
-         jTextField2.setText("");
-         jTextField3.setText("");
-         jTextField4.setText("");
+        try{
+            String nombre = jTextField1.getText();
+            String apellidoP = jTextField2.getText();
+            String apellidoM = jTextField3.getText();
 
+            String nombreC = nombre+" " + apellidoP + " " + apellidoM;
+
+            String contacto = jTextField4.getText();
+            double total =0;
+
+            Proveedor p = new Proveedor (nombreC, contacto, total);
+            Model.insertarProveedor(p);
+             JOptionPane.showMessageDialog(null, "Registro Exitoso" );
+
+             jTextField1.setText("");
+             jTextField2.setText("");
+             jTextField3.setText("");
+             jTextField4.setText("");
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

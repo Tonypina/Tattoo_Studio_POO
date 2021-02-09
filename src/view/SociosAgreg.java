@@ -175,33 +175,38 @@ public class SociosAgreg extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      String nombre = jTextField1.getText();
-      String apellidop = jTextField3.getText();
-      String apellidom = jTextField4.getText();
-      String nombreC = nombre + " " + apellidop  + " "+ apellidom;
-      
-      String contacto = jTextField2.getText();
-      String rango = jComboBox1.getSelectedItem().toString();
-      boolean rang = false;
-      double total =0;
-      if ("Mayoritario".equals(rango)){
-          rang = true;
-          // jComboBox1.remove(1);
-      }
-      
-      else if ("Minoritario".equals(rango)){
-          rang = false;
-      }
-      
-      Socio s = new Socio (nombreC, contacto, rang, total);
-      Model.insertarSocio(s);
-      
-       JOptionPane.showMessageDialog(null, "Registro Exitoso" );
-       jTextField1.setText(" ");
-       jTextField2.setText(" ");   
-       jTextField3.setText(" ");       
-       jTextField4.setText(" ");       
-       
+        try{
+            String nombre = jTextField1.getText();
+            String apellidop = jTextField3.getText();
+            String apellidom = jTextField4.getText();
+            String nombreC = nombre + " " + apellidop  + " "+ apellidom;
+
+            String contacto = jTextField2.getText();
+            String rango = jComboBox1.getSelectedItem().toString();
+            boolean rang = false;
+            double total =0;
+            if ("Mayoritario".equals(rango)){
+                rang = true;
+                // jComboBox1.remove(1);
+            }
+
+            else if ("Minoritario".equals(rango)){
+                rang = false;
+            }
+
+            Socio s = new Socio (nombreC, contacto, rang, total);
+            Model.insertarSocio(s);
+
+             JOptionPane.showMessageDialog(null, "Registro Exitoso" );
+             jTextField1.setText(" ");
+             jTextField2.setText(" ");   
+             jTextField3.setText(" ");       
+             jTextField4.setText(" ");       
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

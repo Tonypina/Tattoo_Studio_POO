@@ -211,37 +211,42 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        //Pide ID el objeto y falta la opción de rango
-        int iD=0;
-        String nombre = jTextField1.getText();
-        String apellidop = jTextField2.getText() ;
-        String apellidom = jTextField3.getText();
-        String username = jTextField4.getText();
-        char[] arrayA = jPasswordField1.getPassword();
-        char[] arrayB = jPasswordField2.getPassword();
-        String pass = new String(arrayA);
-        boolean rangoI = false;
-        
-        if (this.contraseñaCorrecta(arrayA, arrayB)){
-         System.out.println("Correcto");
-         pass = new String (arrayA);
-         Usuario u = new Usuario( nombre, apellidop, apellidom, rangoI, username, pass );
-         Model.insertarUsuario(u);
-              
-              
-              JOptionPane.showMessageDialog(null, "Registro Exitoso" );
+        try{
+            //Pide ID el objeto y falta la opción de rango
+            int iD=0;
+            String nombre = jTextField1.getText();
+            String apellidop = jTextField2.getText() ;
+            String apellidom = jTextField3.getText();
+            String username = jTextField4.getText();
+            char[] arrayA = jPasswordField1.getPassword();
+            char[] arrayB = jPasswordField2.getPassword();
+            String pass = new String(arrayA);
+            boolean rangoI = false;
 
-              
-//               JOptionPane.showMessageDialog(null, "Error de Registro" );
-           
-                
-                dispose();
-                MenuP m=new MenuP();
-                m.setVisible(true);
-        }else{
-           
-              JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden" );
+            if (this.contraseñaCorrecta(arrayA, arrayB)){
+             System.out.println("Correcto");
+             pass = new String (arrayA);
+             Usuario u = new Usuario( nombre, apellidop, apellidom, rangoI, username, pass );
+             Model.insertarUsuario(u);
+
+
+                  JOptionPane.showMessageDialog(null, "Registro Exitoso" );
+
+
+    //               JOptionPane.showMessageDialog(null, "Error de Registro" );
+
+
+                    dispose();
+                    MenuP m=new MenuP();
+                    m.setVisible(true);
+            }else{
+
+                  JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden" );
+            }
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
