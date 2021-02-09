@@ -25,7 +25,7 @@ public class UsuarioDB {
             while(rs.next()){
                 us.add(new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
                                    rs.getString("ap_paterno"), rs.getString("ap_materno"), 
-                                   rs.getBoolean("super"), rs.getString("username")));
+                                   rs.getBoolean("super"), rs.getString("username"), rs.getString("pass")));
             }
             pst.close();
             cn.close();
@@ -74,7 +74,7 @@ public class UsuarioDB {
             if(rs.next()){
                 Usuario u = new Usuario(rs.getInt("idUsuario"), rs.getString("nombre"), 
                                    rs.getString("ap_paterno"),rs.getString("ap_paterno"), 
-                                   rs.getBoolean("super"), rs.getString("username"));
+                                   rs.getBoolean("super"), rs.getString("username"), rs.getString("pass"));
                 pst.close();
                 cn.close();
                 return u;
@@ -114,7 +114,7 @@ public class UsuarioDB {
     public static void modificar(Usuario u){
         try{
             Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE id = ?");
+            PreparedStatement pst = cn.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, pass = ?, username = ? WHERE idUsuario = ?");
             pst.setString(1, u.getNombre());
             pst.setString(2, u.getAp_paterno());
             pst.setString(3, u.getAp_materno());
@@ -125,7 +125,7 @@ public class UsuarioDB {
             pst.close();
             cn.close();
         }catch(SQLException e){
-            e.getMessage();
+            System.out.println("No se pudo modificar");
         }
 
    }
