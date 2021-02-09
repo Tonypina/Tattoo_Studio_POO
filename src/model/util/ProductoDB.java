@@ -150,18 +150,20 @@ public class ProductoDB {
     public static void modificar(Producto p){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, costoPro = ?, perfo = ?, idProveedorProducto = ? WHERE idProducto = " + p.getIdPro());
+            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET modeloPro = ?, tipoPro = ?, cantidadPro = ?, precioPro = ?, costoPro = ?, perfo = ?, idProveedorProducto = ? WHERE idProducto = ?");
             pst.setString(1, p.getModeloPro());
             pst.setString(2, p.getTipoPro());
             pst.setString(3, Integer.toString(p.getCantidadPro()));
             pst.setString(4, Double.toString(p.getPrecioPro()));
             pst.setString(5, Double.toString(p.getCostoPro()));
+
             if(p.isPerfo())
                 pst.setString(6, "1");
             else
                 pst.setString(6, "0");
             
             pst.setString(7, Integer.toString(p.getProveedor().getId()));
+            pst.setString(8, Integer.toString(p.getIdPro()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -173,7 +175,8 @@ public class ProductoDB {
     public static void eliminar( int idPro ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = " + idPro);
+            PreparedStatement pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = ?");
+            pst.setString(1, Integer.toString(idPro));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -185,9 +188,10 @@ public class ProductoDB {
     public static void actualizarStock(int idPro, int cantidadPro){
         try {
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET cantidadPro = ? WHERE idProducto = " + idPro);
+            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET cantidadPro = ? WHERE idProducto = ?");
             
             pst.setString(1, Integer.toString(cantidadPro));
+            pst.setString(2, Integer.toString(idPro));
             pst.executeUpdate();
             pst.close();
             cn.close();
