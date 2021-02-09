@@ -26,11 +26,6 @@ private Usuario u;
         this.u = u;
         setLocationRelativeTo(null);
         setSize(1050, 650);    
-        Abrir_Registro();
-        /*Buscar_y_Mostrar();
-        Eliminar_o_M();
-        Agebda();*/
-        
     }
     
     public CitasMenu( ) {
@@ -39,6 +34,9 @@ private Usuario u;
         setLocationRelativeTo(null);
         setSize(1050, 650);    
         Abrir_Registro();
+        Buscar_y_Mostrar();
+        Eliminar_o_M();
+      //  Agenda();
     }
     
      private void Abrir_Registro(){
@@ -52,10 +50,10 @@ private Usuario u;
          vp = 1;
       }
      
-  /*   private void Buscar_y_Mostrar(){
+     private void Buscar_y_Mostrar(){
          if (vp1 == 0){
          busqueda = new CitasBusca();
-         principal.addTab("Todos",busqueda);
+         principal.addTab("Buscar y Mostrar",busqueda);
          principal.setSelectedComponent(busqueda);
          }else{
              principal.setSelectedComponent(busqueda);
@@ -73,7 +71,7 @@ private Usuario u;
          }
          vp2 = 1;
       }
-     private void Agenda(){
+   /*   private void Agenda(){
          if (vp3 == 0){
          agenda = new CitasAgenda();
          principal.addTab("Modificar o Eliminar",agenda);
@@ -82,8 +80,8 @@ private Usuario u;
              principal.setSelectedComponent(agenda);
          }
          vp3 = 1;
-     }
-    */
+     }*/
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,8 +131,8 @@ private Usuario u;
                     .addComponent(jLabel1)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -154,36 +152,7 @@ private Usuario u;
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CitasMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CitasMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CitasMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CitasMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CitasMenu().setVisible(true);
-            }
-        });
+     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

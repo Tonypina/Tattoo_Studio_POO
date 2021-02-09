@@ -74,7 +74,7 @@ public class CitasAgenda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 55)); // NOI18N
         jLabel1.setText("Citas");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -107,7 +107,7 @@ public class CitasAgenda extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

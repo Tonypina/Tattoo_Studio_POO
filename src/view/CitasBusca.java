@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package view;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import model.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.*;
+import model.Model;
 import objects.*;
-
 
 /**
  *
@@ -20,37 +19,58 @@ public class CitasBusca extends javax.swing.JPanel {
     public CitasBusca() {
         initComponents();
         ArrayList<Cita> lista = Model.getCitas();
-       // llenarTablaCitas(lista);
+        llenarTablaCitas(lista);
     }
 
     private void llenarTablaCitas( ArrayList<Cita> lista ){
+      
         DefaultTableModel modelo = new DefaultTableModel();
         jTable1.setModel(modelo);
-        int cantidadColumnas = 7;
-          
+        int cantidadColumnas = 5;
+   
+        modelo.addColumn("ID cita");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Dia");
-        modelo.addColumn("Mes");
-        modelo.addColumn("Año");
-        modelo.addColumn("Hora");
-        modelo.addColumn("Minutos");
-        modelo.addColumn("ID tatuador");  
-        int[] anchos ={40,100,100,100,100,100,40};
+        modelo.addColumn("Dia");     
+        modelo.addColumn("Hora");       
+        modelo.addColumn("Tatuador");  
+        int[] anchos ={35, 130, 23, 23, 130};
           
         for (int x =0; x< cantidadColumnas;x++  ){
             jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
         }
-        
-        for(Cita c : lista){
+                       
+    for(Cita c : lista){           
             Object[] fila = new Object[cantidadColumnas];
-            fila[0] = c.getNombreCliente();
-            fila[1] = c.getDiaInicio();
-            fila[2] = c.getMesInicio();
-            fila[3] = c.getAnioInicio();
-            fila[4] = c.getHora();
-            fila[5] = c.getMinutos();
-            fila[6] = c.getIdTatuador();
-                     
+            fila[0] = c.getIdCita();
+            fila[1] = c.getNombreCliente();
+            
+            if (c.getDiaInicio() < 10 && c.getMesInicio()<10 ){
+               fila[2] = "0"+c.getDiaInicio() + " / 0" + c.getMesInicio() + " / " + c.getAnioInicio();    
+            }else if (c.getDiaInicio() < 10){
+                fila[2] = "0"+c.getDiaInicio() + " / " + c.getMesInicio() + " / " + c.getAnioInicio();    
+            }else if (c.getMesInicio() < 10){
+                fila[2] = c.getDiaInicio() + " / 0" + c.getMesInicio() + " / " + c.getAnioInicio();    
+            }else{
+                fila[2] = c.getDiaInicio() + " / "+ c.getMesInicio() + " / " + c.getAnioInicio();                   
+            }
+            
+            if (c.getHora()< 10 && c.getMinutos()< 10){
+                fila[3] = "0"+c.getHora() + ":0" + c.getMinutos() + " hrs" ;
+            }
+            else if (c.getHora()< 10){
+                fila[3] = "0"+c.getHora() + ":" + c.getMinutos() + " hrs" ;
+            }
+            else if (c.getMinutos()< 10){
+                fila[3] = c.getHora() + ":0" + c.getMinutos() + " hrs" ;                
+            }else{
+                fila[3] = c.getHora() + ":" + c.getMinutos() + " hrs" ;                
+            }
+            
+       
+          int id = c.getIdTatuador();
+          Tatuador t = Model.buscarTatuador(id);
+        /*    fila [4]= t.getNombre();*/
+          
             modelo.addRow(fila);
         }
     }
@@ -68,6 +88,10 @@ public class CitasBusca extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +104,7 @@ public class CitasBusca extends javax.swing.JPanel {
         jLabel1.setText("Búsqueda");
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 20)); // NOI18N
-        jLabel2.setText("ID del tatuador");
+        jLabel2.setText("Fecha de la Cita:");
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
 
@@ -114,6 +138,16 @@ public class CitasBusca extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+
+        jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel3.setText("//");
+
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel4.setText("//");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,9 +160,17 @@ public class CitasBusca extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addGap(1, 1, 1)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
                         .addComponent(jButton1)
                         .addGap(34, 34, 34)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,7 +192,11 @@ public class CitasBusca extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4))
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,14 +207,23 @@ public class CitasBusca extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String idt=jTextField1.getText();
-        int idtat=Integer.parseInt(idt);
-        llenarTablaCitas( Model.getCitas( idtat ) );
+        String dia=jTextField1.getText();
+        int diaC=Integer.parseInt(dia);
+        String mes=jTextField2.getText();
+        int mesC=Integer.parseInt(mes);
+         String año=jTextField3.getText();
+        int añoC=Integer.parseInt(año);
+   
+        llenarTablaCitas(Model.getCitas(diaC, mesC, añoC));
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jTextField1.setText("");
-//        llenarTablaTatuadores(Model.getTatuadores());
+        jTextField2.setText("");
+        jTextField3.setText("");
+     llenarTablaCitas(Model.getCitas());
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -179,8 +234,12 @@ public class CitasBusca extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
