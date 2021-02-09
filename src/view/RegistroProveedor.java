@@ -23,6 +23,7 @@ public class RegistroProveedor extends javax.swing.JFrame {
      */
     public RegistroProveedor( Usuario u ) {
         initComponents();
+        setSize(969, 500);
         this.u = u;
         setLocationRelativeTo(null);
         setResizable(false);
@@ -51,14 +52,27 @@ public class RegistroProveedor extends javax.swing.JFrame {
         salir = new javax.swing.JToggleButton();
         nombre1 = new javax.swing.JLabel();
         registrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel3.setLayout(null);
+
         jLabel7.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nombre:");
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(142, 209, 71, 26);
+        jPanel3.add(contacto);
+        contacto.setBounds(244, 254, 159, 22);
 
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Contacto:");
+        jPanel3.add(jLabel8);
+        jLabel8.setBounds(142, 253, 75, 26);
+        jPanel3.add(nombre);
+        nombre.setBounds(244, 210, 159, 22);
 
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flechar.png"))); // NOI18N
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -66,9 +80,14 @@ public class RegistroProveedor extends javax.swing.JFrame {
                 salirActionPerformed(evt);
             }
         });
+        jPanel3.add(salir);
+        salir.setBounds(142, 332, 41, 39);
 
         nombre1.setFont(new java.awt.Font("Old English Text MT", 0, 36)); // NOI18N
-        nombre1.setText("Nuevo producto");
+        nombre1.setForeground(new java.awt.Color(255, 255, 255));
+        nombre1.setText("Nuevo proveedor");
+        jPanel3.add(nombre1);
+        nombre1.setBounds(180, 90, 250, 38);
 
         registrar.setFont(new java.awt.Font("Sitka Small", 0, 20)); // NOI18N
         registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/check.png"))); // NOI18N
@@ -78,48 +97,13 @@ public class RegistroProveedor extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
+        jPanel3.add(registrar);
+        registrar.setBounds(244, 332, 159, 37);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(contacto)
-                            .addComponent(nombre))))
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(registrar))
-                .addGap(134, 134, 134))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel3.add(jLabel1);
+        jLabel1.setBounds(-10, -20, 580, 540);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,6 +179,7 @@ public class RegistroProveedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField contacto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
