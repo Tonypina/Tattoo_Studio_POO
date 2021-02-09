@@ -19,6 +19,7 @@ public class TatuadorRegistro extends javax.swing.JPanel {
      */
     public TatuadorRegistro() {
         initComponents();
+        setSize(969, 500);
     }
 
     /**
@@ -58,7 +59,7 @@ public class TatuadorRegistro extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Registro ");
         add(jLabel1);
-        jLabel1.setBounds(211, 35, 231, 74);
+        jLabel1.setBounds(211, 35, 225, 58);
 
         jTextField5.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
         add(jTextField5);
@@ -108,13 +109,13 @@ public class TatuadorRegistro extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(278, 390, 127, 35);
+        jButton1.setBounds(278, 390, 159, 37);
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
         add(jTextField1);
         jTextField1.setBounds(203, 143, 274, 25);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tattoo_Studio_POO-main/src/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         add(jLabel7);
         jLabel7.setBounds(0, 0, 750, 460);
