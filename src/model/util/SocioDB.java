@@ -87,9 +87,9 @@ public class SocioDB {
     public static void modificar( Socio s ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, contacto = ?, rango = ?, total = ? WHERE idSocio = " + Integer.toString(s.getId()));
-            pst.setString(1, s.getNombre().trim());
-            pst.setString(2, s.getContacto().trim());
+            PreparedStatement pst = cn.prepareStatement("UPDATE socio SET nombre = ?, contacto = ?, rango = ?, total = ? WHERE idSocio = ?");
+            pst.setString(1, s.getNombre());
+            pst.setString(2, s.getContacto());
             if( s.isRango() ){
                 pst.setString(3, "0");
             } else {
@@ -97,6 +97,7 @@ public class SocioDB {
             }
             
             pst.setString(4, Double.toString(s.getTotal()));
+            pst.setString(5, Integer.toString(s.getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -108,7 +109,8 @@ public class SocioDB {
     public static void eliminar( int id ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM socio WHERE idSocio = " + Integer.toString(id));
+            PreparedStatement pst = cn.prepareStatement("DELETE FROM socio WHERE idSocio = ?");
+            pst.setString(1, Integer.toString(id));
             pst.executeUpdate();
             pst.close();
             cn.close();
