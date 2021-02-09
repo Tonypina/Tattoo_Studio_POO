@@ -137,7 +137,7 @@ public class PerfRegistrar extends javax.swing.JPanel {
         double total =0;
                 
         Proveedor p = new Proveedor (nombreC, contacto, total);
-        Model.insertarProvedor(p);
+        Model.insertarProveedor(p);
          JOptionPane.showMessageDialog(null, "Registro Exitoso" );
     }//GEN-LAST:event_jButton1ActionPerformed
 
