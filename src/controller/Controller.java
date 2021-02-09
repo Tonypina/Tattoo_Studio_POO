@@ -39,6 +39,7 @@ class Controller{
             if (prod.isPerfo()){
               monto += prod.getPrecioPro()*0.3;
               totalProv = prov.getTotal();
+              t.setSubtotalPerforacion(prod.getPrecioPro());
               prov.setTotal(totalProv + prod.getPrecioPro()*0.7);
             }else{
               monto += prod.getPrecioPro()-(prod.getCostoPro());
@@ -76,6 +77,8 @@ class Controller{
         }
         break;
       }
+      t.setSubtotalTatuaje(montoTatuaje);
+      Model.modificarTicket(t);
       monto += montoTatuaje - montoTatuaje*comision;
       Model.aumentarGanancia(monto);
       t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*montoTatuaje);
