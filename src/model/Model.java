@@ -212,6 +212,10 @@ public class Model {
     }
 
     //Ticket
+    public static ArrayList<Ticket> getTickets(){
+        return TicketDB.get();
+    }
+    
     public static Ticket insertarTicket( Ticket t ){
         return TicketDB.insertar(t);
     }
