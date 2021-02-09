@@ -27,9 +27,9 @@ public class TicketDB {
                 do{
                     p = getVentas(rs.getInt("idTicket"));
                     Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
-                    Proveedor pr = ProveedorDB.buscar(rs.getInt("idPeforadorTicket"));
+                    Proveedor pr = ProveedorDB.buscar(rs.getInt("idPerforadorTicket"));
                     Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
-                            rs.getBoolean("prod"), rs.getDouble("subTotalTatuaje"), rs.getDouble("subTotalPerforacion"), 
+                            rs.getBoolean("prod"), rs.getDouble("subtotalTatuaje"), rs.getDouble("subtotalPerforacion"), 
                             rs.getDouble("total"), rs.getInt("dia"),
                             rs.getInt("mes"), rs.getInt("anio"),
                             t, pr, rs.getBoolean("visita"), p);
@@ -41,7 +41,7 @@ public class TicketDB {
             cn.close();
             return lti;
         }catch(SQLException e){
-            e.getMessage();
+            System.out.println(e);
         }
         return null;
     }
@@ -144,9 +144,9 @@ public class TicketDB {
             if(rs.next()){
                 p = getVentas(rs.getInt("idTicket"));
                 Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
-                Proveedor pr = ProveedorDB.buscar(rs.getInt("idPeforadorTicket"));
+                Proveedor pr = ProveedorDB.buscar(rs.getInt("idPerforadorTicket"));
                 Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
-                        rs.getBoolean("prod"), rs.getDouble("subTotalTatuaje"), rs.getDouble("subTotalPerforacion"), 
+                        rs.getBoolean("prod"), rs.getDouble("subtotalTatuaje"), rs.getDouble("subtotalPerforacion"), 
                         rs.getDouble("total"), rs.getInt("dia"),
                         rs.getInt("mes"), rs.getInt("anio"),
                         t, pr, rs.getBoolean("visita"), p);
@@ -189,9 +189,9 @@ public class TicketDB {
                 do{
                     p = getVentas(rs.getInt("idTicket"));
                     Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
-                    Proveedor pr = ProveedorDB.buscar(rs.getInt("idPeforadorTicket"));
+                    Proveedor pr = ProveedorDB.buscar(rs.getInt("idPerforadorTicket"));
                     Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
-                            rs.getBoolean("prod"), rs.getDouble("subTotalTatuaje"), rs.getDouble("subTotalPerforacion"), 
+                            rs.getBoolean("prod"), rs.getDouble("subtotalTatuaje"), rs.getDouble("subtotalPerforacion"), 
                             rs.getDouble("total"), rs.getInt("dia"),
                             rs.getInt("mes"), rs.getInt("anio"),
                             t, pr, rs.getBoolean("visita"), p);
