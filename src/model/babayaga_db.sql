@@ -191,9 +191,15 @@ CREATE TABLE `ticket` (
   `idTicket` int unsigned NOT NULL AUTO_INCREMENT,
   `clip` tinyint DEFAULT NULL,
   `prod` tinyint DEFAULT NULL,
+  `subtotalTatuaje` double DEFAULT NULL,
+  `subtotalPerforacion` double DEFAULT NULL,
   `total` double DEFAULT NULL,
-  `idTatuadorTicket` int NOT NULL,
   `visita` tinyint DEFAULT NULL,
+  `dia` int DEFAULT NULL,
+  `mes` int DEFAULT NULL,
+  `anio` int DEFAULT NULL,
+  `idTatuadorTicket` int DEFAULT NULL,
+  `idPerforadorTicket` int DEFAULT NULL,
   PRIMARY KEY (`idTicket`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -233,7 +239,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,NULL,NULL,NULL,1,'toor','root');
+INSERT INTO `usuario` VALUES (1,null,null,null,1,'toor','root');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +253,6 @@ DROP TABLE IF EXISTS `venta`;
 CREATE TABLE `venta` (
   `idVenta` int unsigned NOT NULL AUTO_INCREMENT,
   `cantidad` int DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
   `idProductoVenta` int DEFAULT NULL,
   `idTicketVenta` int DEFAULT NULL,
   PRIMARY KEY (`idVenta`)
@@ -272,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:49:06
+-- Dump completed on 2021-02-09 14:17:46
