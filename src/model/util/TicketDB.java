@@ -27,9 +27,12 @@ public class TicketDB {
                 do{
                     p = getVentas(rs.getInt("idTicket"));
                     Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
+                    Proveedor pr = ProveedorDB.buscar(rs.getInt("idPeforadorTicket"));
                     Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
-                            rs.getBoolean("prod"), rs.getDouble("total"), 
-                            t, rs.getBoolean("visita"), p);
+                            rs.getBoolean("prod"), rs.getDouble("subTotalTatuaje"), rs.getDouble("subTotalPerforacion"), 
+                            rs.getDouble("total"), rs.getInt("dia"),
+                            rs.getInt("mes"), rs.getInt("anio"),
+                            t, pr, rs.getBoolean("visita"), p);
                     lti.add(ti);
                 }while(rs.next());
             }
@@ -48,8 +51,8 @@ public class TicketDB {
             Calendar c = Calendar.getInstance();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, "");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, "0");
             if(t.isClip()){
                 pst.setString(2, "1");
             }else{
@@ -60,26 +63,31 @@ public class TicketDB {
             }else{
                 pst.setString(3, "0");
             }
-            pst.setString(4, Double.toString(t.getTotal()));
+            pst.setString(4, Double.toString(t.getSubtotalTatuaje()));
+            pst.setString(5, Double.toString(t.getSubtotalPerforacion()));
+            pst.setString(6, Double.toString(t.getTotal()));
+
             if(t.isVisita()){
-                pst.setString(5, "1");
+                pst.setString(7, "1");
             }else{
-                pst.setString(5, "0");
+                pst.setString(7, "0");
             }
-            pst.setString(6, Integer.toString(c.get(Calendar.DATE)));
-            pst.setString(7, Integer.toString(c.get(Calendar.MONTH)));
-            pst.setString(8, Integer.toString(c.get(Calendar.YEAR)));
-            pst.setString(9, Integer.toString(t.getTatuador().getId()));
+            pst.setString(8, Integer.toString(c.get(Calendar.DATE)));
+            pst.setString(9, Integer.toString(c.get(Calendar.MONTH)));
+            pst.setString(10, Integer.toString(c.get(Calendar.YEAR)));
+            pst.setString(11, Integer.toString(t.getTatuador().getId()));
+            pst.setString(12, Integer.toString(t.getPerforador().getId()));
             pst.executeUpdate();
             ResultSet rs = pst.executeQuery("SELECT MAX(idTicket) FROM ticket");
             rs.next();
             Ticket ti = buscar( rs.getInt(1) );
             for (Producto p : t.getProductos()) {
-                pst.executeUpdate("INSERT INTO venta VALUES(?,?,?,?)");
+                pst = cn.prepareStatement("INSERT INTO venta VALUES(?,?,?,?)");
                 pst.setString(1, "0");
                 pst.setString(2, "1");
                 pst.setString(3, Integer.toString(p.getIdPro()));
                 pst.setString(4, Integer.toString(ti.getId()));
+                pst.executeUpdate();
             }
             pst.close();
             cn.close();
@@ -89,11 +97,25 @@ public class TicketDB {
         }
         return null;
     }
+    
+    public static int getMinAnio(){
+        try{
+            Connection cn = Conexion.getConnection();
+            PreparedStatement pst = cn.prepareStatement("SELECT MIN(anio) FROM ticket");
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            int anio = rs.getInt(1);
+            return anio;
+        }catch(Exception e){
+            e.getMessage();
+        }
+        return 0;
+    }
 
     public static ArrayList<Producto> getVentas( int idTicket ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("SELECT idProductoVenta FROM venta WHERE idTicketVenta = "+idTicket);
+            PreparedStatement pst = cn.prepareStatement("SELECT idProductoVenta FROM venta WHERE idTicketVenta = "+Integer.toString(idTicket));
             ResultSet rs = pst.executeQuery();
             
             ArrayList<Producto> p = new ArrayList<>();
@@ -122,9 +144,12 @@ public class TicketDB {
             if(rs.next()){
                 p = getVentas(rs.getInt("idTicket"));
                 Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
+                Proveedor pr = ProveedorDB.buscar(rs.getInt("idPeforadorTicket"));
                 Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
-                        rs.getBoolean("prod"), rs.getDouble("total"), 
-                        t, rs.getBoolean("visita"), p);
+                        rs.getBoolean("prod"), rs.getDouble("subTotalTatuaje"), rs.getDouble("subTotalPerforacion"), 
+                        rs.getDouble("total"), rs.getInt("dia"),
+                        rs.getInt("mes"), rs.getInt("anio"),
+                        t, pr, rs.getBoolean("visita"), p);
                 pst.close();
                 cn.close();
                 return ti;
@@ -164,9 +189,12 @@ public class TicketDB {
                 do{
                     p = getVentas(rs.getInt("idTicket"));
                     Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
+                    Proveedor pr = ProveedorDB.buscar(rs.getInt("idPeforadorTicket"));
                     Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
-                            rs.getBoolean("prod"), rs.getDouble("total"), 
-                            t, rs.getBoolean("visita"), p);
+                            rs.getBoolean("prod"), rs.getDouble("subTotalTatuaje"), rs.getDouble("subTotalPerforacion"), 
+                            rs.getDouble("total"), rs.getInt("dia"),
+                            rs.getInt("mes"), rs.getInt("anio"),
+                            t, pr, rs.getBoolean("visita"), p);
                     lti.add(ti);
                 }while(rs.next());
             }
