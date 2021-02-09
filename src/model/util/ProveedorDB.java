@@ -117,7 +117,11 @@ public class ProveedorDB {
     public static void eliminar( int id ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM proveedor WHERE idProveedor = " + id);
+            PreparedStatement pst = cn.prepareStatement("DELETE FROM proveedor WHERE idProveedor = ?");
+            pst.setString(1, Integer.toString(id));
+            pst.executeUpdate();
+            pst = cn.prepareStatement("DELETE FROM producto WHERE idProveedorProducto = ?");
+            pst.setString(1, Integer.toString(id));
             pst.executeUpdate();
             pst.close();
             cn.close();
