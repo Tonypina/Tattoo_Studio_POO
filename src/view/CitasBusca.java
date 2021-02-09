@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -18,6 +19,9 @@ public class CitasBusca extends javax.swing.JPanel {
 
     public CitasBusca() {
         initComponents();
+       
+        setSize(969, 500);
+        
         ArrayList<Cita> lista = Model.getCitas();
         llenarTablaCitas(lista);
     }
