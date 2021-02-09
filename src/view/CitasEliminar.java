@@ -406,7 +406,7 @@ public class CitasEliminar extends javax.swing.JPanel {
         Model.modificarCita(c);
         JOptionPane.showMessageDialog(null, "Cita Modificada" );
         }catch(Exception e){
-            
+            JOptionPane.showMessageDialog(null, "Formato incorrecto." );
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

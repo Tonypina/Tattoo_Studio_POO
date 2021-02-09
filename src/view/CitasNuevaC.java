@@ -303,7 +303,7 @@ public class CitasNuevaC extends javax.swing.JPanel {
         
         
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Algo salió mal" );
+            JOptionPane.showMessageDialog(null, "Algo salió mal." );
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

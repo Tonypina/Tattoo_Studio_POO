@@ -205,15 +205,18 @@ public class CitasBusca extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String dia=jTextField1.getText();
-        int diaC=Integer.parseInt(dia);
-        String mes=jTextField2.getText();
-        int mesC=Integer.parseInt(mes);
-         String año=jTextField3.getText();
-        int añoC=Integer.parseInt(año);
-   
-        llenarTablaCitas(Model.getCitas(diaC, mesC, añoC));
+        try{    
+            String dia=jTextField1.getText();
+            int diaC=Integer.parseInt(dia);
+            String mes=jTextField2.getText();
+            int mesC=Integer.parseInt(mes);
+             String año=jTextField3.getText();
+            int añoC=Integer.parseInt(año);
 
+            llenarTablaCitas(Model.getCitas(diaC, mesC, añoC));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Formato incorrecto." );
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
