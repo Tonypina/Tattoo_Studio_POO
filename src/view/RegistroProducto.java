@@ -31,12 +31,12 @@ public class RegistroProducto extends javax.swing.JFrame {
     }
 
     private ArrayList<Proveedor> proveedores(){
-        proveedores.removeAllItems();
         ArrayList<Proveedor> pl = new ArrayList<>();
-        
         for(Proveedor p : Model.getProveedor()){
-            proveedores.addItem(p.getNombre());
-            pl.add(p);
+            if(!p.getNombre().endsWith("-P")){    
+                proveedores.addItem(p.getNombre());
+                pl.add(p);
+            }
         }
         return pl;
     }
