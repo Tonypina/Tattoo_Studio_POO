@@ -13,6 +13,35 @@ import objects.*;
  */
 public class TicketDB {
     
+    public static ArrayList<Ticket> get(){
+        try{
+            Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM ticket");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            ArrayList<Ticket> lti = null;
+            ArrayList<Producto> p;
+            
+            if(rs.next()){
+                do{
+                    p = getVentas(rs.getInt("idTicket"));
+                    Tatuador t = TatuadorDB.buscar(rs.getInt("idTatuadorTicket"));
+                    Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
+                            rs.getBoolean("prod"), rs.getDouble("total"), 
+                            t, rs.getBoolean("visita"), p);
+                }while(rs.next());
+            }
+            
+            pst.close();
+            cn.close();
+            return lti;
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
+    }
+    
     public static Ticket insertar( Ticket t ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
