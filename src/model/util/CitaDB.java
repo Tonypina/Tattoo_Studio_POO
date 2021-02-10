@@ -124,19 +124,21 @@ public class CitaDB {
         try{
             Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("UPDATE cita SET nomClienteCita = ?, "
-                                    + "dia = ?, mes = ?, anio = ?, hora = ?, minutos = ? "
-                                    + "WHERE idCita = "+ Integer.toString(c.getIdCita()));
+                                    + "dia = ?, mes = ?, anio = ?, hora = ?, minutos = ?, idTatuadorCita = ? "
+                                    + "WHERE idCita = ?");
             pst.setString(1, c.getNombreCliente());
             pst.setString(2, Integer.toString(c.getDiaInicio()));
             pst.setString(3, Integer.toString(c.getMesInicio()));
             pst.setString(4, Integer.toString(c.getAnioInicio()));
             pst.setString(5, Integer.toString(c.getHora()));
             pst.setString(6, Integer.toString(c.getMinutos()));
+            pst.setString(7, Integer.toString(c.getIdTatuador()));
+            pst.setString(8, Integer.toString(c.getIdCita()));
             pst.executeUpdate();
             pst.close();
             cn.close();
         }catch(SQLException e){
-            e.getMessage();
+            System.out.println(e);
         }
     }
     
