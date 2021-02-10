@@ -737,7 +737,7 @@ public class Tickets extends javax.swing.JFrame {
             Controller.procesoPago(t);
             Controller.procesoGanancias();
         }catch(Exception e){
-            System.out.println("No se pudo");
+            //System.out.println("No se pudo");
         }
         JOptionPane.showMessageDialog(null, "Operación exitosa." );
         dispose();
