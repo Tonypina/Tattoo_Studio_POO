@@ -76,10 +76,17 @@ public class TicketDB {
                 pst.setString(9, "0");
             }
             pst.setString(10, Integer.toString(c.get(Calendar.DATE)));
-            pst.setString(11, Integer.toString(c.get(Calendar.MONTH)));
+            pst.setString(11, Integer.toString(c.get(Calendar.MONTH+1)));
             pst.setString(12, Integer.toString(c.get(Calendar.YEAR)));
-            pst.setString(13, Integer.toString(t.getTatuador().getId()));
-            pst.setString(14, Integer.toString(t.getPerforador().getId()));
+            if(t.getTatuador() != null)
+                pst.setString(13, Integer.toString(t.getTatuador().getId()));
+            else
+                pst.setString(13, "0");
+            
+            if(t.getPerforador() != null)
+                pst.setString(14, Integer.toString(t.getPerforador().getId()));
+            else
+                pst.setString(14, "0");
             pst.executeUpdate();
             ResultSet rs = pst.executeQuery("SELECT MAX(idTicket) FROM ticket");
             rs.next();
@@ -230,7 +237,7 @@ public class TicketDB {
     public static void modificar(Ticket t){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("UPDATE ticket SET clip = ?, prod = ?, subtotalTatuaje = ?, , total = ?, idTatuadorTicket = ?, visita = ? WHERE idTicket = ?");
+            PreparedStatement pst = cn.prepareStatement("UPDATE ticket SET clip = ?, prod = ?, subtotalTatuaje = ?, subtotalPerforacion = ?, pagoTatuador = ?, pagoPerforador = ?, total = ?, idTatuadorTicket = ?, idPerforadorTicket = ?, visita = ? WHERE idTicket = ?");
             
             if(t.isClip())
                 pst.setString(1, "1");
@@ -242,20 +249,34 @@ public class TicketDB {
             else
                 pst.setString(2, "0");
 
-            pst.setString(3, Double.toString(t.getTotal()));
-            pst.setString(4, Integer.toString(t.getTatuador().getId()));
+            pst.setString(3, Double.toString(t.getSubtotalTatuaje()));
+            pst.setString(4, Double.toString(t.getSubtotalPerforacion()));
+            pst.setString(5, Double.toString(t.getPagoTatuador()));
+            pst.setString(6, Double.toString(t.getPagoPerforador()));            
+            
+            pst.setString(7, Double.toString(t.getTotal()));
+            
+            if(t.getTatuador() != null)
+                pst.setString(8, Integer.toString(t.getTatuador().getId()));
+            else
+                pst.setString(8, "0");
+            
+            if(t.getPerforador() != null)
+                pst.setString(9, Integer.toString(t.getPerforador().getId()));
+            else
+                pst.setString(9, "0");
             
             if(t.isVisita())
-                pst.setString(5, "1");
+                pst.setString(10, "1");
             else
-                pst.setString(5, "0");
+                pst.setString(10, "0");
 
-            pst.setString(6, Integer.toString(t.getId()));
+            pst.setString(11, Integer.toString(t.getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();
         }catch(SQLException e){
-            e.getMessage();
+            System.out.println(e);
         }
     }
 }
