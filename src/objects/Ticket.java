@@ -15,6 +15,8 @@ public class Ticket {
     private boolean prod;
     private double subtotalTatuaje;
     private double subtotalPerforacion;
+    private double pagoTatuador;
+    private double pagoPerforador;
     private double total;
     private int dia;
     private int mes;
@@ -26,12 +28,14 @@ public class Ticket {
 
     // Sobrecarga de constructor para base de datos
 
-    public Ticket(int id, boolean clip, boolean prod, double subtotalTatuaje, double subtotalPerforacion, double total, int dia, int mes, int anio, Tatuador tatuador, Proveedor perforador, boolean visita, ArrayList<Producto> productos) {
+    public Ticket(int id, boolean clip, boolean prod, double subtotalTatuaje, double subtotalPerforacion, double pagoTatuador, double pagoPerforador, double total, int dia, int mes, int anio, Tatuador tatuador, Proveedor perforador, boolean visita, ArrayList<Producto> productos) {
         this.id = id;
         this.clip = clip;
         this.prod = prod;
         this.subtotalTatuaje = subtotalTatuaje;
         this.subtotalPerforacion = subtotalPerforacion;
+        this.pagoTatuador = pagoTatuador;
+        this.pagoPerforador = pagoPerforador;
         this.total = total;
         this.dia = dia;
         this.mes = mes;
@@ -54,6 +58,24 @@ public class Ticket {
         this.productos = productos;
     }
 
+    public double getPagoTatuador() {
+        return pagoTatuador;
+    }
+
+    public double getPagoPerforador() {
+        return pagoPerforador;
+    }
+
+    public void setPagoTatuador(double pagoTatuador) {
+        this.pagoTatuador = pagoTatuador;
+    }
+
+    public void setPagoPerforador(double pagoPerforador) {
+        this.pagoPerforador = pagoPerforador;
+    }
+
+    
+    
     public boolean isVisita(){
         return visita;
     }
