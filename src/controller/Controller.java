@@ -80,9 +80,7 @@ public class Controller{
       monto += montoTatuaje - montoTatuaje*comision;
       Model.aumentarGanancia(monto);
       t.setPagoTatuador(comision*montoTatuaje);
-      if(t.getTatuador()!=null){
-        t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*montoTatuaje);
-      }
+      t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*montoTatuaje);
       Model.modificarTicket(t);
       Model.modificarTatuador(t.getTatuador());
     }
