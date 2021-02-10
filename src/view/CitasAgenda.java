@@ -75,6 +75,7 @@ public class CitasAgenda extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(927, 535));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 55)); // NOI18N
@@ -97,12 +98,12 @@ public class CitasAgenda extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 110, 816, 402);
+        jScrollPane1.setBounds(60, 100, 816, 402);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(-10, -10, 940, 570);
+        jLabel2.setBounds(-10, -10, 930, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
