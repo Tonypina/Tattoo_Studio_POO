@@ -30,6 +30,7 @@ public class TicketDB {
                     Proveedor pr = ProveedorDB.buscar(rs.getInt("idPerforadorTicket"));
                     Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
                             rs.getBoolean("prod"), rs.getDouble("subtotalTatuaje"), rs.getDouble("subtotalPerforacion"), 
+                            rs.getDouble("pagoTatuador"), rs.getDouble("pagoPerforador"),
                             rs.getDouble("total"), rs.getInt("dia"),
                             rs.getInt("mes"), rs.getInt("anio"),
                             t, pr, rs.getBoolean("visita"), p);
@@ -51,7 +52,7 @@ public class TicketDB {
             Calendar c = Calendar.getInstance();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             if(t.isClip()){
                 pst.setString(2, "1");
@@ -65,18 +66,20 @@ public class TicketDB {
             }
             pst.setString(4, Double.toString(t.getSubtotalTatuaje()));
             pst.setString(5, Double.toString(t.getSubtotalPerforacion()));
-            pst.setString(6, Double.toString(t.getTotal()));
+            pst.setString(6, Double.toString(t.getPagoTatuador()));
+            pst.setString(7, Double.toString(t.getPagoPerforador()));
+            pst.setString(8, Double.toString(t.getTotal()));
 
             if(t.isVisita()){
-                pst.setString(7, "1");
+                pst.setString(9, "1");
             }else{
-                pst.setString(7, "0");
+                pst.setString(9, "0");
             }
-            pst.setString(8, Integer.toString(c.get(Calendar.DATE)));
-            pst.setString(9, Integer.toString(c.get(Calendar.MONTH)));
-            pst.setString(10, Integer.toString(c.get(Calendar.YEAR)));
-            pst.setString(11, Integer.toString(t.getTatuador().getId()));
-            pst.setString(12, Integer.toString(t.getPerforador().getId()));
+            pst.setString(10, Integer.toString(c.get(Calendar.DATE)));
+            pst.setString(11, Integer.toString(c.get(Calendar.MONTH)));
+            pst.setString(12, Integer.toString(c.get(Calendar.YEAR)));
+            pst.setString(13, Integer.toString(t.getTatuador().getId()));
+            pst.setString(14, Integer.toString(t.getPerforador().getId()));
             pst.executeUpdate();
             ResultSet rs = pst.executeQuery("SELECT MAX(idTicket) FROM ticket");
             rs.next();
@@ -93,7 +96,7 @@ public class TicketDB {
             cn.close();
             return t;
         }catch(SQLException e){
-            e.getMessage();
+            System.out.println(e);
         }
         return null;
     }
@@ -161,6 +164,7 @@ public class TicketDB {
                 Proveedor pr = ProveedorDB.buscar(rs.getInt("idPerforadorTicket"));
                 Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
                         rs.getBoolean("prod"), rs.getDouble("subtotalTatuaje"), rs.getDouble("subtotalPerforacion"), 
+                        rs.getDouble("pagoTatuador"), rs.getDouble("pagoPerforador"),
                         rs.getDouble("total"), rs.getInt("dia"),
                         rs.getInt("mes"), rs.getInt("anio"),
                         t, pr, rs.getBoolean("visita"), p);
@@ -206,6 +210,7 @@ public class TicketDB {
                     Proveedor pr = ProveedorDB.buscar(rs.getInt("idPerforadorTicket"));
                     Ticket ti = new Ticket(rs.getInt("idTicket"), rs.getBoolean("clip"), 
                             rs.getBoolean("prod"), rs.getDouble("subtotalTatuaje"), rs.getDouble("subtotalPerforacion"), 
+                            rs.getDouble("pagoTatuador"), rs.getDouble("pagoPerforador"),
                             rs.getDouble("total"), rs.getInt("dia"),
                             rs.getInt("mes"), rs.getInt("anio"),
                             t, pr, rs.getBoolean("visita"), p);
@@ -225,7 +230,7 @@ public class TicketDB {
     public static void modificar(Ticket t){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("UPDATE ticket SET clip = ?, prod = ?, total = ?, idTatuadorTicket = ?, visita = ? WHERE idTicket = " + t.getId());
+            PreparedStatement pst = cn.prepareStatement("UPDATE ticket SET clip = ?, prod = ?, subtotalTatuaje = ?, , total = ?, idTatuadorTicket = ?, visita = ? WHERE idTicket = ?");
             
             if(t.isClip())
                 pst.setString(1, "1");
@@ -245,6 +250,7 @@ public class TicketDB {
             else
                 pst.setString(5, "0");
 
+            pst.setString(6, Integer.toString(t.getId()));
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -252,5 +258,4 @@ public class TicketDB {
             e.getMessage();
         }
     }
-
 }
