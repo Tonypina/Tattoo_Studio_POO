@@ -40,6 +40,7 @@ class Controller{
               monto += prod.getPrecioPro()*0.3;
               totalProv = prov.getTotal();
               t.setSubtotalPerforacion(prod.getPrecioPro());
+              t.setPagoPerforador(prod.getPrecioPro()*0.7);
               prov.setTotal(totalProv + prod.getPrecioPro()*0.7);
             }else{
               monto += prod.getPrecioPro()-(prod.getCostoPro());
