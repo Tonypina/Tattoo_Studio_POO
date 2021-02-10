@@ -48,9 +48,9 @@ public class SocioDB {
             pst.setString(2, s.getNombre());
             pst.setString(3, s.getContacto());
             if( s.isRango() ){
-                pst.setString(4, "0");
-            } else {
                 pst.setString(4, "1");
+            } else {
+                pst.setString(4, "0");
             }
             pst.setString(5, Double.toString(s.getTotal()));
             pst.executeUpdate();
@@ -113,7 +113,7 @@ public class SocioDB {
             pst.setString(1, Integer.toString(id));
             pst.executeUpdate();
             pst.close();
-            cn.close();
+            cn.close(); 
         }catch(SQLException e){
             e.getMessage();
         }
