@@ -9,7 +9,7 @@ import model.*;
 import view.*;
 import objects.*;
 
-class Controller{
+public class Controller{
   private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
   public static void procesoPago(Ticket ticket){
