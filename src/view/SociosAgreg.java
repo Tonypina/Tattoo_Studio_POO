@@ -22,7 +22,8 @@ public class SociosAgreg extends javax.swing.JFrame {
     public SociosAgreg() {
         initComponents();
         setLocationRelativeTo(null);
-        setSize(1050, 650);                 
+        setSize(1050, 650); 
+        llenar();
     }
     
     public void bloquearBoton(){
@@ -30,6 +31,17 @@ public class SociosAgreg extends javax.swing.JFrame {
          a.setEnabled(false);
         }
       }
+    
+     public void llenar(){
+    ArrayList <Socio> lista= Model.getSocios();
+        for (Socio f :lista ){
+                if (f.isRango() == true){
+                 jComboBox1.removeAllItems();
+                 jComboBox1.addItem("Minoritario");
+                 
+                 }   
+        }
+    }
 
   
     @SuppressWarnings("unchecked")
@@ -193,15 +205,7 @@ public class SociosAgreg extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
-        ArrayList <Socio> lista= Model.getSocios();
-        
-        for (Socio s: lista ){
-            if (s.isRango() == true){
-                jComboBox1.removeItemAt(1);
-            }
-            
-        }
+ 
 
      int c = Model.getSocios().size();
      if (c<4){
@@ -216,7 +220,7 @@ public class SociosAgreg extends javax.swing.JFrame {
       double total = 0;
       if ("Mayoritario".equals(rango)){
           rang = true;    
-                jComboBox1.removeItemAt(1);          
+        jComboBox1.removeItemAt(1);
       }
       
       else if ("Minoritario".equals(rango)){
@@ -224,9 +228,9 @@ public class SociosAgreg extends javax.swing.JFrame {
       }
       
     
-     if (jTextField1.getText().length() != 0 && jTextField2.getText().length() != 0
+    /* if (jTextField1.getText().length() != 0 && jTextField2.getText().length() != 0
              && jTextField3.getText().length() != 0 && jTextField4.getText().length() != 0 &&
-              jComboBox1.getSelectedIndex() !=0) {     
+              jComboBox1.getSelectedIndex() !=0) { */    
      
          Socio s = new Socio (nombreC, contacto, rang, total);
           Model.insertarSocio(s);
@@ -236,15 +240,19 @@ public class SociosAgreg extends javax.swing.JFrame {
           jTextField2.setText(" ");   
           jTextField3.setText(" ");       
           jTextField4.setText(" ");         
-        }else{
+      /*  }else{
            JOptionPane.showMessageDialog(null, "Datos incompletos" );
 
-        }
+        }*/
 
      }
      
       else{
        JOptionPane.showMessageDialog(null, "Solo se permiten 4 socios" ); 
+        jTextField1.setText(" ");
+          jTextField2.setText(" ");   
+          jTextField3.setText(" ");       
+          jTextField4.setText(" "); 
        bloquearBoton();
       } 
     }//GEN-LAST:event_jButton1ActionPerformed
