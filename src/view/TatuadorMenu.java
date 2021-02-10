@@ -98,19 +98,19 @@ int vp, vp1, vp2, vp3 =0;
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(974, 85, 33, 9);
+        jButton5.setBounds(974, 85, 57, 33);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 58)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tatuadores");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 20, 276, 74);
+        jLabel1.setBounds(10, 20, 276, 58);
 
         principal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(principal);
         principal.setBounds(10, 100, 997, 382);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tattoo_Studio_POO-main/src/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 1020, 500);

@@ -80,7 +80,7 @@ public class TatuadorRegistros extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Registros");
         add(jLabel1);
-        jLabel1.setBounds(360, 11, 244, 74);
+        jLabel1.setBounds(360, 11, 236, 58);
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -107,7 +107,7 @@ public class TatuadorRegistros extends javax.swing.JPanel {
         add(jScrollPane1);
         jScrollPane1.setBounds(113, 103, 731, 290);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tattoo_Studio_POO-main/src/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
         jLabel2.setBounds(-6, 0, 960, 460);

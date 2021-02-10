@@ -118,7 +118,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Modificar y Eliminar");
         add(jLabel1);
-        jLabel1.setBounds(10, 10, 421, 63);
+        jLabel1.setBounds(10, 10, 423, 50);
 
         jButton3.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
@@ -129,7 +129,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             }
         });
         add(jButton3);
-        jButton3.setBounds(731, 379, 91, 25);
+        jButton3.setBounds(731, 379, 119, 33);
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,7 +146,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             }
         });
         add(jButton4);
-        jButton4.setBounds(840, 379, 85, 25);
+        jButton4.setBounds(840, 379, 113, 33);
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -250,7 +250,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
         add(jComboBox1);
         jComboBox1.setBounds(740, 275, 172, 20);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tattoo_Studio_POO-main/src/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         add(jLabel7);
         jLabel7.setBounds(0, 0, 950, 450);
