@@ -6,11 +6,10 @@
 package controller;
 import java.util.ArrayList;
 import model.*;
-import view.*;
 import objects.*;
 
 public class Controller{
-  private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
+  private static double comiclip = 0.0417; //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
   public static void procesoPago(Ticket ticket){
     double monto=0;
