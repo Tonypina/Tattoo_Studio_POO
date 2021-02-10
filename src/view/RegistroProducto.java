@@ -24,7 +24,7 @@ public class RegistroProducto extends javax.swing.JFrame {
     public RegistroProducto( Usuario u ) {
         initComponents();
         this.u = u;
-        setSize(969, 500);
+        setSize(841,509);
         setLocationRelativeTo(null);
         setResizable(false);
         Proveedor pr = null;
@@ -151,14 +151,15 @@ public class RegistroProducto extends javax.swing.JFrame {
         jPanel3.add(proveedores);
         proveedores.setBounds(390, 137, 138, 26);
 
-        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flechar.png"))); // NOI18N
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresarboton.png"))); // NOI18N
+        salir.setContentAreaFilled(false);
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
             }
         });
         jPanel3.add(salir);
-        salir.setBounds(35, 408, 41, 39);
+        salir.setBounds(160, 420, 41, 39);
 
         nombre1.setFont(new java.awt.Font("Old English Text MT", 0, 36)); // NOI18N
         nombre1.setForeground(new java.awt.Color(255, 255, 255));
@@ -175,22 +176,22 @@ public class RegistroProducto extends javax.swing.JFrame {
             }
         });
         jPanel3.add(registrar);
-        registrar.setBounds(612, 410, 159, 37);
+        registrar.setBounds(620, 420, 159, 37);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(-10, -10, 850, 520);
+        jLabel1.setBounds(0, -10, 840, 520);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
         );
 
         pack();
