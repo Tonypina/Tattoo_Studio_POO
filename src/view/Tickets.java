@@ -687,7 +687,7 @@ public class Tickets extends javax.swing.JFrame {
                 pl.add(p);
                 
             }else{
-                jComboBox2.addItem(p.getNombre());
+                jComboBox2.addItem(p.getNombre().substring(0, p.getNombre().length()-2));
             }
         }
         return pl;
@@ -714,7 +714,10 @@ public class Tickets extends javax.swing.JFrame {
                 r=true;
             }
             double totalfinal = Double.parseDouble(jTextField2.getText());
-            double montPerf = Double.parseDouble(jTextField1.getText());
+            double montPerf = 0.0;
+            if(!jTextField1.getText().equals("")){    
+                montPerf = Double.parseDouble(jTextField1.getText());
+            }
             ArrayList<Producto> prod = new ArrayList<>();
             for(int i=0; i<jTable1.getRowCount();i++){
                 String IDFunc = jTable1.getValueAt(i, 1).toString();
@@ -732,12 +735,16 @@ public class Tickets extends javax.swing.JFrame {
                     idT = t.getId();
                 }
             }
-            Ticket t = new Ticket(x,r,0.0,montPerf,totalfinal,Model.buscarTatuador(idT),Model.buscarProveedor(jComboBox2.getSelectedItem().toString()),f,prod);
-            Model.insertarTicket(t);
+            
+            System.out.println("Antes de Ticket");                
+            Ticket t = new Ticket(x,r,0.0,montPerf,totalfinal,Model.buscarTatuador(idT),Model.buscarProveedor(jComboBox2.getSelectedItem().toString()+"-P"),f,prod);
+            
+            System.out.println("Antes de controller");
+            
             Controller.procesoPago(t);
             Controller.procesoGanancias();
-        }catch(Exception e){
-            //System.out.println("No se pudo");
+        }catch(NumberFormatException e){
+            System.out.println("Error de casteo");
         }
         JOptionPane.showMessageDialog(null, "Operación exitosa." );
         dispose();
