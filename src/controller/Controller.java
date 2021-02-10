@@ -58,18 +58,18 @@ public class Controller{
         montoTatuaje = t.getTotal();
       }
     }
-    if (montoTatuaje==0) {
+    if (montoTatuaje==0 || t.getTatuador()==null) {
       Model.aumentarGanancia(monto);
     }else{
       switch(t.getTatuador().getRango()){
         case 1:
-        comision = 0.6;
-        break;
+          comision = 0.6;
+          break;
         case 2:
-        comision = 0.5;
-        break;
+          comision = 0.5;
+          break;
         case 3:
-        if(t.isVisita()){
+          if(t.isVisita()){
           comision = 0.6;
         }else{
           comision = 0.4;
@@ -80,7 +80,9 @@ public class Controller{
       monto += montoTatuaje - montoTatuaje*comision;
       Model.aumentarGanancia(monto);
       t.setPagoTatuador(comision*montoTatuaje);
-      t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*montoTatuaje);
+      if(t.getTatuador()!=null){
+        t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*montoTatuaje);
+      }
       Model.modificarTicket(t);
       Model.modificarTatuador(t.getTatuador());
     }
