@@ -23,7 +23,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     public RegistroUsuario() {
         initComponents();
         setLocationRelativeTo(null);
-        setSize(969, 500);
+        setSize(916,455);
         setResizable(false);
 
     }
