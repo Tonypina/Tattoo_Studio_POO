@@ -77,10 +77,11 @@ class Controller{
         break;
       }
       t.setSubtotalTatuaje(montoTatuaje);
-      Model.modificarTicket(t);
       monto += montoTatuaje - montoTatuaje*comision;
       Model.aumentarGanancia(monto);
+      t.setPagoTatuador(comision*montoTatuaje)
       t.getTatuador().setTotal(t.getTatuador().getTotal()+comision*montoTatuaje);
+      Model.modificarTicket(t);
       Model.modificarTatuador(t.getTatuador());
     }
   }
