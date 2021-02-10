@@ -26,10 +26,11 @@ public class SociosMenu extends javax.swing.JFrame {
          bloquearID();
     }
 
-    private void bloquearID(){
-        for(Component a: jPanel1.getComponents()){
-           a.setEnabled(true);
+      public void bloquearID(){
+        for(Component a:jPanel1.getComponents() ){
+         a.setEnabled(false);
         }
+        
     }
     
      private void llenarTablaSocios ( ArrayList <Socio> lista){
@@ -45,7 +46,7 @@ public class SociosMenu extends javax.swing.JFrame {
         modelo.addColumn("Contacto");
         modelo.addColumn("Rango");
         modelo.addColumn("Total");  
-        int[] anchos ={40,100,100,100,40};
+        int[] anchos ={40,235,150,130,40};
           
         for (int x =0; x< cantidadColumnas;x++  ){
             jTable1.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
@@ -87,16 +88,11 @@ public class SociosMenu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 56)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Socios");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 19, 168, 72);
 
         jButton5.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/return.png"))); // NOI18N
@@ -107,9 +103,8 @@ public class SociosMenu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(864, 83, 46, 32);
 
+        jTable1.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -128,45 +123,24 @@ public class SociosMenu extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 120, 527, 374);
-
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(563, 216, 71, 26);
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contacto:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(559, 273, 75, 26);
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Rango:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(579, 334, 55, 26);
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("ID:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(608, 157, 26, 26);
 
         jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(644, 213, 229, 24);
 
         jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(644, 270, 229, 24);
 
         jComboBox1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rango", "Mayoritario", "Minoritario" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(644, 331, 229, 24);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -174,8 +148,6 @@ public class SociosMenu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(596, 430, 57, 33);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -183,8 +155,6 @@ public class SociosMenu extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(667, 430, 57, 33);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -192,10 +162,13 @@ public class SociosMenu extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(730, 430, 57, 33);
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,13 +185,81 @@ public class SociosMenu extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(644, 157, 158, 24);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 920, 540);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField2)
+                                    .addComponent(jTextField3)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jButton1)
+                                .addGap(38, 38, 38)
+                                .addComponent(jButton2)
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton3)))
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton5))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton3)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -252,53 +293,47 @@ public class SociosMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try{    
-            String iD = jTextField1.getText();
-            int id = Integer.parseInt(iD);
-
-            Model.eliminarSocio(id);
-           ArrayList <Socio> lista= Model.getSocios();
-
-            llenarTablaSocios(lista);
-
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-        }catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
-        } catch(ArrayIndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
-        }
+        String iD = jTextField1.getText();
+        int id = Integer.parseInt(iD);
+        
+        Model.eliminarSocio(id);
+       ArrayList <Socio> lista= Model.getSocios();
+       
+        llenarTablaSocios(lista);
+       JOptionPane.showMessageDialog(null, "Socio Eliminado" );         
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try{    
-            String id = jTextField1.getText();
-            int iD= Integer.parseInt(id);
-            String nombre = jTextField2.getText();
-            String contacto =jTextField3.getText();
-
-            String rango = jComboBox1.getSelectedItem().toString();
-            boolean rang = false;
-            if ( "Mayoritario".equals(rango) ){
-                rang = true;           
-            }
-            else if ("Minoritario".equals(rango)){
-                rang= false;
-            }
-            double total =0;
-
-            Socio s = new Socio (nombre, contacto, rang, total);
-            Model.modificarSocio(s);
-            ArrayList <Socio> lista= Model.getSocios();
-
-            llenarTablaSocios(lista);
-        }catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El formato en los campos es incorrecto." );
-        } catch(ArrayIndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(null, "No a seleccionado nada." );
+        String id = jTextField1.getText();
+        int iD= Integer.parseInt(id);
+        String nombre = jTextField2.getText();
+        String contacto =jTextField3.getText();
+        
+        String rango = jComboBox1.getSelectedItem().toString();
+        boolean rang = false;
+        if ( "Mayoritario".equals(rango) ){
+            rang = true;           
         }
+        else if ("Minoritario".equals(rango)){
+            rang= false;
+        }
+        double total =0;
+        
+        Socio s = new Socio (iD, nombre, contacto, rang, total);
+        Model.modificarSocio(s);
+               JOptionPane.showMessageDialog(null, "Socio Modificado" ); 
+
+        ArrayList <Socio> lista= Model.getSocios();
+
+        llenarTablaSocios(lista);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,7 +382,6 @@ public class SociosMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
