@@ -36,7 +36,8 @@ public class CitasNuevaC extends javax.swing.JPanel {
              jComboBox2.addItem(lista.get(i));
         }
     }
-
+    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,9 +52,9 @@ public class CitasNuevaC extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        diaDiario = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        mesDiario = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -76,11 +77,11 @@ public class CitasNuevaC extends javax.swing.JPanel {
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        diaDiario.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        diaDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        diaDiario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                diaDiarioActionPerformed(evt);
             }
         });
 
@@ -92,11 +93,11 @@ public class CitasNuevaC extends javax.swing.JPanel {
             }
         });
 
-        jComboBox3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        mesDiario.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        mesDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        mesDiario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                mesDiarioActionPerformed(evt);
             }
         });
 
@@ -141,9 +142,9 @@ public class CitasNuevaC extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(diaDiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(mesDiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,8 +181,8 @@ public class CitasNuevaC extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaDiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesDiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -200,27 +201,27 @@ public class CitasNuevaC extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void diaDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaDiarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_diaDiarioActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void mesDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesDiarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_mesDiarioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{
             
         String nombreC = jTextField1.getText();
         
-        String diaI = jComboBox1.getSelectedItem().toString();
+        String diaI = diaDiario.getSelectedItem().toString();
         int dI= Integer.parseInt(diaI);
-        String mesI = jComboBox3.getSelectedItem().toString();
+        String mesI = mesDiario.getSelectedItem().toString();
         int mI =0;
        
        switch (mesI){
@@ -261,8 +262,7 @@ public class CitasNuevaC extends javax.swing.JPanel {
                mI= 12;
            break;
        }
-        
-        
+
         
         String anI = jComboBox4.getSelectedItem().toString();
         int aI = Integer.parseInt(anI);
@@ -272,13 +272,21 @@ public class CitasNuevaC extends javax.swing.JPanel {
         String ho=jTextField2.getText();
         int hora=Integer.parseInt(ho);
         
-        if ( jComboBox9.getSelectedItem().toString() == "AM"){
-           hora = hora;
-        }
-        else if (jComboBox9.getSelectedItem().toString() == "PM"){
-            hora = hora + 12;
-        }
-        
+        if (hora > 12 || minuto > 59){
+           JOptionPane.showMessageDialog(null, "Hora no compatible" );
+           jTextField2.setText("");
+           jTextField3.setText("");
+
+
+        }else{
+            
+            
+            if ( jComboBox9.getSelectedItem().toString() == "AM"){
+               hora = hora;
+            }
+            else if (jComboBox9.getSelectedItem().toString() == "PM"){
+                hora = hora + 12;
+            }
         
         String tatuador = jComboBox2.getSelectedItem().toString();
         StringTokenizer st = new StringTokenizer(tatuador, " ");
@@ -291,8 +299,23 @@ public class CitasNuevaC extends javax.swing.JPanel {
                 idT = t.getId();
             }
         }
-
-        Cita c = new Cita(nombreC, dI, mI, aI,hora,minuto, idT);
+        
+      /*   boolean res=false;
+        ArrayList <Cita> listaH= Model.getCitas();
+        for (Cita c: listaH){
+            if (dI == c.getDiaInicio()&& mI== c.getMesInicio()&& aI == c.getAnioInicio()&& hora == c.getHora()&& minuto == c.getMinutos()){
+               JOptionPane.showMessageDialog(null, "Ya esta ocupado ese horario" );
+               jTextField2.setText("");
+               jTextField3.setText("");
+               res = false;
+            }else{
+                res= true;
+            }                      
+            
+        }
+        
+        if (res == true){*/
+        Cita c = new Cita(nombreC, dI, mI, aI,hora,minuto, idT);      
         Model.insertarCita(c);
 
         JOptionPane.showMessageDialog(null, "Cita Agendada Exitosamente" );
@@ -300,19 +323,21 @@ public class CitasNuevaC extends javax.swing.JPanel {
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
+        //}
+        
+        }
         
         
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Algo salió mal." );
+            JOptionPane.showMessageDialog(null, "Algo salió mal" );
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> diaDiario;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
@@ -324,5 +349,6 @@ public class CitasNuevaC extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JComboBox<String> mesDiario;
     // End of variables declaration//GEN-END:variables
 }
