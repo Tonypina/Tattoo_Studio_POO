@@ -72,7 +72,7 @@ public class PerfBuscar extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Búsqueda");
         add(jLabel1);
-        jLabel1.setBounds(340, 11, 260, 74);
+        jLabel1.setBounds(340, 11, 236, 58);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -134,16 +134,16 @@ public class PerfBuscar extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList <Proveedor> buscar = new ArrayList<Proveedor>() ;
-         ArrayList<Proveedor> lista = Model.getProveedor();
-        llenarTablaPerforadores( lista );
+        ArrayList<Proveedor> perforadores = new ArrayList<>();
         
-         for(Proveedor p : lista){
-          buscar.add(Model.buscarProveedor(jTextField1.getText()));
-      //
+        for(Proveedor p : Model.getProveedor()){
+            if(p.getNombre().endsWith("-P")){
+                if(p.getNombre().contains(jTextField1.getText())){
+                    perforadores.add(p);
+                }
+            }
         }
-        
-        llenarTablaPerforadores(buscar);
+        llenarTablaPerforadores(perforadores);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
