@@ -129,7 +129,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             }
         });
         add(jButton3);
-        jButton3.setBounds(731, 379, 119, 33);
+        jButton3.setBounds(710, 380, 119, 33);
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,7 +146,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             }
         });
         add(jButton4);
-        jButton4.setBounds(840, 379, 113, 33);
+        jButton4.setBounds(840, 380, 113, 33);
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -217,20 +217,15 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 5, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
         );
 
         add(jPanel1);
-        jPanel1.setBounds(740, 91, 191, 29);
+        jPanel1.setBounds(740, 90, 195, 29);
 
         jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField3);
@@ -238,7 +233,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
 
         jTextField4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField4);
-        jTextField4.setBounds(750, 126, 171, 24);
+        jTextField4.setBounds(740, 130, 171, 24);
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -248,7 +243,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principal", "Aprendiz", "Secundario" }));
         add(jComboBox1);
-        jComboBox1.setBounds(740, 275, 172, 20);
+        jComboBox1.setBounds(740, 275, 172, 22);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");

@@ -21,6 +21,7 @@ public class CitasEliminar extends javax.swing.JPanel {
    
     public CitasEliminar() {
         initComponents();
+        setSize(1190,510);  
      ArrayList<Cita> lista = Model.getCitas();
         llenarTablaCitas(lista);
         combo2();
@@ -285,7 +286,7 @@ public class CitasEliminar extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(930, 122, 189, 44);
+        jPanel1.setBounds(930, 122, 189, 48);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sync.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
@@ -300,7 +301,7 @@ public class CitasEliminar extends javax.swing.JPanel {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel10.setText("jLabel10");
         add(jLabel10);
-        jLabel10.setBounds(-50, -10, 1250, 530);
+        jLabel10.setBounds(0, 0, 1190, 510);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

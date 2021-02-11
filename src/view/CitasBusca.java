@@ -18,7 +18,7 @@ public class CitasBusca extends javax.swing.JPanel {
 
     public CitasBusca() {
         initComponents();
-        setSize(945,473);
+        setSize(960,490);
         ArrayList<Cita> lista = Model.getCitas();
         llenarTablaCitas(lista);
     }

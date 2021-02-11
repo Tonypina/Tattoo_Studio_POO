@@ -23,9 +23,10 @@ private Usuario u;
      */
     public CitasMenu( Usuario u ) {
         initComponents();
+        setSize(997,393);  
         this.u = u;
         setLocationRelativeTo(null);
-        setSize(1050, 650);    
+          
     }
     
     public CitasMenu( ) {

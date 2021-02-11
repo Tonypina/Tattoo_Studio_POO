@@ -23,7 +23,7 @@ public class CitasAgenda extends javax.swing.JFrame {
     public CitasAgenda() {
         initComponents();
         setLocationRelativeTo(null);
-        setSize(920, 590);
+        setSize(930,540);
         ArrayList<Cita> lista = Model.getCitas();
         llenarTablaCitas(lista);
         
@@ -103,7 +103,7 @@ public class CitasAgenda extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(-10, -10, 930, 570);
+        jLabel2.setBounds(-10, -10, 930, 540);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
