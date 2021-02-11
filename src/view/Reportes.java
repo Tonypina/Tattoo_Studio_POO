@@ -173,7 +173,6 @@ public class Reportes extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaAnual = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        anioMensual6 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REPORTES");
@@ -468,13 +467,6 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
 
-        anioMensual6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
-        anioMensual6.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                anioMensual6ItemStateChanged(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -490,12 +482,7 @@ public class Reportes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(296, 296, 296)
                 .addComponent(jLabel4)
-                .addContainerGap(287, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(333, 333, 333)
-                    .addComponent(anioMensual6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(298, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,11 +494,6 @@ public class Reportes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(225, 225, 225)
-                    .addComponent(anioMensual6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(227, Short.MAX_VALUE)))
         );
 
         pack();
@@ -534,13 +516,12 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_detallesMensualActionPerformed
 
     private void detallesDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesDiarioActionPerformed
-        try{
-            Ticket t = Model.buscarTicket(Integer.parseInt(tablaDiario.getValueAt(tablaDiario.getSelectedRow(), 0).toString()));
-            dispose();
-            new Detalles(t).setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado nada." );
-        }
+        //try{
+            new Detalles(Model.buscarTicket(Integer.parseInt(tablaDiario.getValueAt(tablaDiario.getSelectedRow(), 0).toString()))).setVisible(true);
+            dispose(); 
+        //}//catch(Exception e){
+           // JOptionPane.showMessageDialog(null, "No se ha seleccionado nada." );
+        //}
     }//GEN-LAST:event_detallesDiarioActionPerformed
 
     private void anioMensualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioMensualItemStateChanged
@@ -584,10 +565,6 @@ public class Reportes extends javax.swing.JFrame {
     private void anioDiarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioDiarioItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_anioDiarioItemStateChanged
-
-    private void anioMensual6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioMensual6ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anioMensual6ItemStateChanged
 
     private void mesDiarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mesDiarioItemStateChanged
         llenarDias();
@@ -633,7 +610,6 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> anioDiario;
     private javax.swing.JComboBox<String> anioMensual;
     private javax.swing.JComboBox<String> anioMensual1;
-    private javax.swing.JComboBox<String> anioMensual6;
     private javax.swing.JToggleButton buscarAnual;
     private javax.swing.JToggleButton buscarDiario;
     private javax.swing.JToggleButton buscarMensual;

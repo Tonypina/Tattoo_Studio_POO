@@ -48,24 +48,30 @@ public class Detalles extends javax.swing.JFrame {
     private void llenarTablaProductos(ArrayList<Producto> lista){
         DefaultTableModel modelo = new DefaultTableModel();
         productosTicket.setModel(modelo);
-        int cantidadColumnas = 4;
+        int cantidadColumnas = 6;
           
         modelo.addColumn("ID");
         modelo.addColumn("Producto");
+        modelo.addColumn("Cantidad");
         modelo.addColumn("Proveedor");
+        modelo.addColumn("Precio");
         modelo.addColumn("Precio Total");
-        int[] anchos ={50,150,100,100};
+        int[] anchos ={50,150,40,100,100,100};
           
         for (int x =0; x < cantidadColumnas; x++  ){
             productosTicket.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
         }
         
-        for( Producto p : lista){
+        int idTemp = 0;
+        int i = 1;
+        for( Producto p : lista ){
             Object[] fila = new Object[cantidadColumnas];
             fila[0] = p.getIdPro();
             fila[1] = p.getTipoPro()+" "+p.getModeloPro();
-            fila[2] = p.getProveedor().getNombre();
-            fila[3] = p.getPrecioPro();
+            fila[2] = p.getCantidadPro();
+            fila[3] = p.getProveedor().getNombre();
+            fila[4] = p.getPrecioPro();
+            fila[5] = (p.getCantidadPro()*p.getPrecioPro());
             modelo.addRow(fila);
         }
     }
@@ -135,13 +141,13 @@ public class Detalles extends javax.swing.JFrame {
 
         productosTicket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Producto", "Proveedor", "Precio Total"
+                "ID", "Producto", "Cantidad", "Proveedor", "Precio Total"
             }
         ));
         jScrollPane1.setViewportView(productosTicket);
@@ -401,7 +407,7 @@ public class Detalles extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        MenuP m=new MenuP();
+        Reportes m=new Reportes();
         m.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
