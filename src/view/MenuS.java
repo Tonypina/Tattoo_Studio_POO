@@ -24,7 +24,7 @@ public class MenuS extends javax.swing.JFrame {
         initComponents();
         this.u = u;
         setLocationRelativeTo(null);
-        //setSize(969, 500);
+        setSize(980, 540);
         setResizable(false);
 
     }
