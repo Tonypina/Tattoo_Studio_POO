@@ -64,13 +64,13 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             fila[3] = t.getAp_mat();
             fila[4] = t.getContacto();
             switch(t.getRango()){
-                case 0:
+                case 1:
                     fila[5] = "Principal";
                     break;
-                case 1:
+                case 2:
                     fila[5] = "Aprendiz";
                     break;
-                case 2:
+                case 3:
                     fila[5] = "Secundario";
                     break;
             }
@@ -271,15 +271,15 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
              String rango = jComboBox1.getSelectedItem().toString();
             int rangoI=0;
             if ("Principal".equals(rango)){
-                rangoI=0;
-            }
-
-            else if ("Aprendiz".equals(rango)){
                 rangoI=1;
             }
 
-            else if ("Secundario".equals(rango)){
+            else if ("Aprendiz".equals(rango)){
                 rangoI=2;
+            }
+
+            else if ("Secundario".equals(rango)){
+                rangoI=3;
             }
 
 

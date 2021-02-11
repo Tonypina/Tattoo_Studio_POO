@@ -52,13 +52,13 @@ public class TatuadorBuscar extends javax.swing.JPanel {
             fila[3] = t.getAp_mat();
             fila[4] = t.getContacto();
             switch(t.getRango()){
-                case 0:
+                case 1:
                     fila[5] = "Principal";
                     break;
-                case 1:
+                case 2:
                     fila[5] = "Aprendiz";
                     break;
-                case 2:
+                case 3:
                     fila[5] = "Secundario";
                     break;
             }
