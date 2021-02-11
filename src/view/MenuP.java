@@ -21,7 +21,7 @@ public class MenuP extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        setSize(969, 500);
+        setSize(980, 540);
         setResizable(false);
 
     }
