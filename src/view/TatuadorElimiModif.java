@@ -25,6 +25,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
    
     public TatuadorElimiModif() {
         initComponents();
+        setSize(950,450);  
         llenarTablaTatuadores();
         bloquearID();
     }
@@ -121,15 +122,17 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
         jLabel1.setBounds(10, 10, 423, 50);
 
         jButton3.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
-        jButton3.setText("Modificar");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editboton.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         add(jButton3);
-        jButton3.setBounds(710, 380, 119, 33);
+        jButton3.setBounds(710, 380, 33, 33);
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,15 +141,17 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
         jLabel4.setBounds(664, 132, 60, 21);
 
         jButton4.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
-        jButton4.setText("Eliminar");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trashpeque.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         add(jButton4);
-        jButton4.setBounds(840, 380, 113, 33);
+        jButton4.setBounds(840, 380, 33, 33);
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));

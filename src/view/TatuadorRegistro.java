@@ -19,7 +19,7 @@ public class TatuadorRegistro extends javax.swing.JPanel {
      */
     public TatuadorRegistro() {
         initComponents();
-        setSize(969, 500);
+        setSize(750,460);
     }
 
     /**

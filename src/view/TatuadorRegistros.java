@@ -20,6 +20,7 @@ public class TatuadorRegistros extends javax.swing.JPanel {
      */
     public TatuadorRegistros() {
         initComponents();
+        setSize(950,460);  
         llenarTablaTatuadores();
     }
 
@@ -110,7 +111,7 @@ public class TatuadorRegistros extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(-6, 0, 960, 460);
+        jLabel2.setBounds(-6, 0, 950, 460);
     }// </editor-fold>//GEN-END:initComponents
 
 

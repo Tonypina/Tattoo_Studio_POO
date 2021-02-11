@@ -21,7 +21,7 @@ int vp, vp1, vp2, vp3 =0;
     public TatuadorMenu() {
         initComponents();
         setLocationRelativeTo(null);
-        setSize(1050, 650);
+        setSize(1020,500);
            
         Abrir_Registro();
         Buscar();
@@ -91,14 +91,17 @@ int vp, vp1, vp2, vp3 =0;
         getContentPane().setLayout(null);
 
         jButton5.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/return.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresarboton.png"))); // NOI18N
+        jButton5.setBorder(null);
+        jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(974, 85, 57, 33);
+        jButton5.setBounds(910, 40, 33, 33);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 58)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
