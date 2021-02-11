@@ -55,10 +55,10 @@ public class Tickets extends javax.swing.JFrame {
         ArrayList<Producto> listp = Model.getProductos();
         LlenarTablaProd(listp);
         Proveedor pr = null;
-        
+
         proveedores();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -608,7 +608,7 @@ public class Tickets extends javax.swing.JFrame {
             String name = t.getNombre();
             String appat = t.getAp_pat();
             String apmat = t.getAp_mat();
-            
+
             String namecompleto = name +" "+ appat +" "+ apmat;
             jComboBox1.addItem(namecompleto);
         }
@@ -616,10 +616,10 @@ public class Tickets extends javax.swing.JFrame {
     private ArrayList<Proveedor> proveedores(){
         ArrayList<Proveedor> pl = new ArrayList<>();
         for(Proveedor p : Model.getProveedor()){
-            if(!p.getNombre().endsWith("-P")){    
+            if(!p.getNombre().endsWith("-P")){
                 proveedores.addItem(p.getNombre());
                 pl.add(p);
-                
+
             }else{
                 jComboBox2.addItem(p.getNombre().substring(0, p.getNombre().length()-2));
             }
@@ -629,7 +629,7 @@ public class Tickets extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
-   
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         boolean x=false;
         boolean f=false;
@@ -647,12 +647,15 @@ public class Tickets extends javax.swing.JFrame {
             if(filas>0){
                 r=true;
             }
+            ArrayList<Producto> prod = new ArrayList<>();
             double totalfinal = Double.parseDouble(jTextField2.getText());
             double montPerf = 0.0;
-            if(!jTextField1.getText().equals("")){    
+            if(!jTextField1.getText().equals("")){
                 montPerf = Double.parseDouble(jTextField1.getText());
+                String nomper = jComboBox2.getSelectedItem().toString();
+                Producto per = new Producto("Perforacion","X",1,montPerf,Model.buscarProveedor(nomper+"-P"),0,true);
+                prod.add(per);
             }
-            ArrayList<Producto> prod = new ArrayList<>();
             for(int i=0; i<jTable1.getRowCount();i++){
                 //Cambios
                 for(int j = 0; j<Integer.parseInt(jTable1.getValueAt(i, 2).toString()); ++j){
@@ -673,12 +676,11 @@ public class Tickets extends javax.swing.JFrame {
                     idT = t.getId();
                 }
             }
-            
-            System.out.println("Antes de Ticket");                
+            System.out.println("Antes de Ticket");
             Ticket t = new Ticket(x,r,0.0,montPerf,totalfinal,Model.buscarTatuador(idT),Model.buscarProveedor(jComboBox2.getSelectedItem().toString()+"-P"),f,prod);
-            
+
             System.out.println("Antes de controller");
-            
+
             Controller.procesoPago(t);
             Controller.procesoGanancias();
         }catch(NumberFormatException e){
@@ -695,7 +697,7 @@ public class Tickets extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuCanceled
-        
+
     }//GEN-LAST:event_jComboBox1PopupMenuCanceled
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -703,7 +705,7 @@ public class Tickets extends javax.swing.JFrame {
         StringTokenizer st = new StringTokenizer(tatuador, " ");
         ArrayList<Tatuador> lista = Model.buscarTatuador(st.nextToken());
         for(Tatuador t : lista){
-            if(tatuador.equals(t.getNombre()+" "+t.getAp_pat()+" "+t.getAp_mat())){    
+            if(tatuador.equals(t.getNombre()+" "+t.getAp_pat()+" "+t.getAp_mat())){
                 if(t.getRango()==2){
                         for(Component a: jPanel5.getComponents()){
                             a.setEnabled(true);
@@ -718,7 +720,7 @@ public class Tickets extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jDialog1.setVisible(true);        
+        jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void proveedoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_proveedoresItemStateChanged
@@ -757,13 +759,13 @@ private void LlenarTablaProd(ArrayList<Producto> listp){
         modelo.addColumn("Modelo");
         modelo.addColumn("Tipo");
         modelo.addColumn("Cantidad Disponible");
-        modelo.addColumn("Precio");  
+        modelo.addColumn("Precio");
         int[] anchos ={40,70,70,100,70};
-          
+
         for (int x =0; x < cantidadColumnas; x++  ){
             jTable2.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
         }
-        
+
         for(Producto p : listp){
             Object[] fila = new Object[cantidadColumnas];
             fila[0] = p.getIdPro();
@@ -812,7 +814,7 @@ private void LlenarTablaProd(ArrayList<Producto> listp){
             }
         }catch(Exception e){
         }
-        jDialog1.setVisible(false); 
+        jDialog1.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
@@ -828,7 +830,7 @@ private void LlenarTablaProd(ArrayList<Producto> listp){
             jTextField6.setText(Double.toString(Precio));
             jTextField4.setText(Integer.toString(id));
         }catch(Exception e){
-            
+
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -866,7 +868,7 @@ private void LlenarTablaProd(ArrayList<Producto> listp){
     }//GEN-LAST:event_jTable1ComponentRemoved
 
     private void clipboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clipboxMouseClicked
-        
+
     }//GEN-LAST:event_clipboxMouseClicked
 
     /**
@@ -876,7 +878,7 @@ private void LlenarTablaProd(ArrayList<Producto> listp){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

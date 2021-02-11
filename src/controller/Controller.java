@@ -23,15 +23,7 @@ public class Controller{
     if (t.isProd()){
       ArrayList<Proveedor> proveedoresArr = Model.getProveedor();
       ArrayList<Producto> productosArr = t.getProductos();
-      for(Producto produ:productosArr){
-        totalMerch += produ.getPrecioPro();
-      }
-      if (t.isClip()) {
-        montoTatuaje = (float)(t.getTotal()/(1+comiclip))-totalMerch;
-        montoTatuaje = (double)montoTatuaje;
-      }else{
-        montoTatuaje = (t.getTotal()/1)-totalMerch;
-      }
+      totalMerch = sumaProd(productosArr);
       for(Producto prod:productosArr){
         for(Proveedor prov:proveedoresArr){
           if (prod.getProveedor().getNombre().equals(prov.getNombre())){
@@ -50,16 +42,11 @@ public class Controller{
           }
         }
       }
-    }else{
-      if (t.isClip()) {
-        montoTatuaje = (float)(t.getTotal()/(1+comiclip));
-        montoTatuaje = (double)montoTatuaje;
-      }else{
-        montoTatuaje = t.getTotal();
-      }
     }
-    if (montoTatuaje==0 || t.getTatuador()==null) {
+    montoTatuaje = t.getSubtotalTatuaje();
+    if (t.getTatuador()==null) {
       Model.aumentarGanancia(monto);
+      Model.modificarTicket(t);
     }else{
       switch(t.getTatuador().getRango()){
         case 1:
@@ -70,13 +57,12 @@ public class Controller{
           break;
         case 3:
           if(t.isVisita()){
-          comision = 0.6;
-        }else{
-          comision = 0.4;
-        }
-        break;
+            comision = 0.6;
+          }else{
+            comision = 0.4;
+          }
+          break;
       }
-      t.setSubtotalTatuaje(montoTatuaje);
       monto += montoTatuaje - montoTatuaje*comision;
       Model.aumentarGanancia(monto);
       t.setPagoTatuador(comision*montoTatuaje);
@@ -107,5 +93,18 @@ public class Controller{
     }
     Model.aumentarReinversion(totalG-sablazo);
     Model.aumentarGanancia(-sablazo);
+  }
+  //Métodos for dummies :)
+  public static double sumaProd(ArrayList<Producto> p){
+    for(Producto produ:p){
+      totalMerch += produ.getPrecioPro();
+    }
+    return totalMerch;
+  }
+  public static double sumaTodo(double tatuaje, double productos){
+    return tatuaje+perforacion+productos;
+  }
+  public static double sumaClip(double total){
+    return total + total*Model.getClip();
   }
 }
