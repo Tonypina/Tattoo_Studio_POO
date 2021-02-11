@@ -9,14 +9,14 @@ import model.*;
 import objects.*;
 
 public class Controller{
-  private static double comiclip = 0.0417; //getClip debe regresar la comisión de clip;
+  private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
   public static void procesoPago(Ticket ticket){
-    double monto=0;
-    double comision=0;
-    double totalMerch=0;
-    double montoTatuaje=0;
-    double totalProv=0;
+    double monto = 0;
+    double comision = 0;
+    double totalMerch = 0;
+    double montoTatuaje = 0;
+    double totalProv = 0;
     Ticket t;
     t = Model.insertarTicket(ticket);
     double total = t.getTotal();
@@ -87,9 +87,9 @@ public class Controller{
   }
 
   public static void procesoGanancias(){
-    double sablazo=0;
-    double pago=0;
-    double comisionS=0;
+    double sablazo = 0;
+    double pago = 0;
+    double comisionS = 0;
     double totalG = 0;
     ArrayList<Socio> socios = Model.getSocios();
     for(Socio s:socios){
@@ -103,7 +103,7 @@ public class Controller{
       pago += totalG*comisionS;
       s.setTotal(s.getTotal()+pago);
       Model.modificarSocio(s);
-      sablazo+=pago;
+      sablazo += pago;
     }
     Model.aumentarReinversion(totalG-sablazo);
     Model.aumentarGanancia(-sablazo);
