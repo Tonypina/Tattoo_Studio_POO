@@ -157,6 +157,7 @@ public class Reportes extends javax.swing.JFrame {
         anioMensual1 = new javax.swing.JComboBox<>();
         anioDiario = new javax.swing.JComboBox<>();
         diaDiario = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         anioMensual = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -165,6 +166,7 @@ public class Reportes extends javax.swing.JFrame {
         detallesMensual = new javax.swing.JToggleButton();
         mesMensual = new javax.swing.JComboBox<>();
         buscarMensual = new javax.swing.JToggleButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         anioAnual = new javax.swing.JComboBox<>();
@@ -172,7 +174,10 @@ public class Reportes extends javax.swing.JFrame {
         detallesAnual = new javax.swing.JToggleButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaAnual = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REPORTES");
@@ -180,12 +185,23 @@ public class Reportes extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(920, 590));
         setPreferredSize(new java.awt.Dimension(920, 590));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Old English Text MT", 0, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Reportes");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(296, 40, 178, 49);
+
+        jPanel1.setLayout(null);
+
+        jPanel4.setLayout(null);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Seleccione un mes:");
+        jPanel4.add(jLabel8);
+        jLabel8.setBounds(22, 27, 151, 22);
 
         mesDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         mesDiario.addItemListener(new java.awt.event.ItemListener() {
@@ -193,6 +209,8 @@ public class Reportes extends javax.swing.JFrame {
                 mesDiarioItemStateChanged(evt);
             }
         });
+        jPanel4.add(mesDiario);
+        mesDiario.setBounds(249, 28, 109, 22);
 
         detallesDiario.setText("Ver detalles");
         detallesDiario.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +218,8 @@ public class Reportes extends javax.swing.JFrame {
                 detallesDiarioActionPerformed(evt);
             }
         });
+        jPanel4.add(detallesDiario);
+        detallesDiario.setBounds(572, 27, 101, 25);
 
         tablaDiario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,12 +234,17 @@ public class Reportes extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tablaDiario);
 
+        jPanel4.add(jScrollPane5);
+        jScrollPane5.setBounds(200, 70, 452, 164);
+
         buscarDiario.setText("Buscar");
         buscarDiario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarDiarioActionPerformed(evt);
             }
         });
+        jPanel4.add(buscarDiario);
+        buscarDiario.setBounds(483, 27, 71, 25);
 
         anioMensual1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioMensual1.addItemListener(new java.awt.event.ItemListener() {
@@ -227,6 +252,8 @@ public class Reportes extends javax.swing.JFrame {
                 anioMensual1ItemStateChanged(evt);
             }
         });
+        jPanel4.add(anioMensual1);
+        anioMensual1.setBounds(316, 306, 130, 22);
 
         anioDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioDiario.addItemListener(new java.awt.event.ItemListener() {
@@ -234,57 +261,20 @@ public class Reportes extends javax.swing.JFrame {
                 anioDiarioItemStateChanged(evt);
             }
         });
+        jPanel4.add(anioDiario);
+        anioDiario.setBounds(376, 28, 81, 22);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel8)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(diaDiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(mesDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(anioDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(buscarDiario)
-                        .addGap(18, 18, 18)
-                        .addComponent(detallesDiario)))
-                .addContainerGap(72, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(316, 316, 316)
-                    .addComponent(anioMensual1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(280, Short.MAX_VALUE)))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(mesDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(detallesDiario)
-                        .addComponent(buscarDiario)
-                        .addComponent(anioDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(diaDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(306, 306, 306)
-                    .addComponent(anioMensual1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jPanel4.add(diaDiario);
+        diaDiario.setBounds(200, 28, 31, 22);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        jPanel4.add(jLabel6);
+        jLabel6.setBounds(0, 0, 730, 280);
 
         jTabbedPane1.addTab("Diario", jPanel4);
+
+        jPanel5.setLayout(null);
 
         anioMensual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioMensual.addItemListener(new java.awt.event.ItemListener() {
@@ -292,9 +282,14 @@ public class Reportes extends javax.swing.JFrame {
                 anioMensualItemStateChanged(evt);
             }
         });
+        jPanel5.add(anioMensual);
+        anioMensual.setBounds(326, 28, 130, 22);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione un mes:");
+        jPanel5.add(jLabel3);
+        jLabel3.setBounds(10, 27, 151, 22);
 
         tablaMensual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -309,12 +304,17 @@ public class Reportes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaMensual);
 
+        jPanel5.add(jScrollPane1);
+        jScrollPane1.setBounds(113, 70, 452, 164);
+
         detallesMensual.setText("Ver detalles");
         detallesMensual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detallesMensualActionPerformed(evt);
             }
         });
+        jPanel5.add(detallesMensual);
+        detallesMensual.setBounds(583, 27, 101, 25);
 
         mesMensual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         mesMensual.addItemListener(new java.awt.event.ItemListener() {
@@ -322,6 +322,8 @@ public class Reportes extends javax.swing.JFrame {
                 mesMensualItemStateChanged(evt);
             }
         });
+        jPanel5.add(mesMensual);
+        mesMensual.setBounds(179, 28, 130, 22);
 
         buscarMensual.setText("Buscar");
         buscarMensual.addActionListener(new java.awt.event.ActionListener() {
@@ -329,49 +331,23 @@ public class Reportes extends javax.swing.JFrame {
                 buscarMensualActionPerformed(evt);
             }
         });
+        jPanel5.add(buscarMensual);
+        buscarMensual.setBounds(484, 27, 71, 25);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(mesMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(anioMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(buscarMensual))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(detallesMensual)
-                .addGap(54, 54, 54))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(anioMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(detallesMensual)
-                        .addComponent(mesMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buscarMensual)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        jPanel5.add(jLabel7);
+        jLabel7.setBounds(-9, -4, 740, 290);
 
         jTabbedPane1.addTab("Mensual", jPanel5);
 
+        jPanel6.setLayout(null);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Seleccione un año:");
+        jPanel6.add(jLabel5);
+        jLabel5.setBounds(10, 27, 148, 22);
 
         anioAnual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioAnual.addItemListener(new java.awt.event.ItemListener() {
@@ -379,6 +355,8 @@ public class Reportes extends javax.swing.JFrame {
                 anioAnualItemStateChanged(evt);
             }
         });
+        jPanel6.add(anioAnual);
+        anioAnual.setBounds(176, 28, 130, 22);
 
         buscarAnual.setText("Buscar");
         buscarAnual.addActionListener(new java.awt.event.ActionListener() {
@@ -386,6 +364,8 @@ public class Reportes extends javax.swing.JFrame {
                 buscarAnualActionPerformed(evt);
             }
         });
+        jPanel6.add(buscarAnual);
+        buscarAnual.setBounds(351, 27, 71, 25);
 
         detallesAnual.setText("Ver detalles");
         detallesAnual.addActionListener(new java.awt.event.ActionListener() {
@@ -393,6 +373,8 @@ public class Reportes extends javax.swing.JFrame {
                 detallesAnualActionPerformed(evt);
             }
         });
+        jPanel6.add(detallesAnual);
+        detallesAnual.setBounds(464, 27, 101, 25);
 
         tablaAnual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -407,94 +389,44 @@ public class Reportes extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaAnual);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(anioAnual, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(buscarAnual)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(detallesAnual))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(161, 161, 161))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(anioAnual, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(detallesAnual)
-                        .addComponent(buscarAnual)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        jPanel6.add(jScrollPane2);
+        jScrollPane2.setBounds(113, 70, 452, 164);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel6.add(jLabel2);
+        jLabel2.setBounds(0, 0, 730, 280);
 
         jTabbedPane1.addTab("Anual", jPanel6);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel1.add(jTabbedPane1);
+        jTabbedPane1.setBounds(10, 23, 740, 307);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel9.setText("jLabel9");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(0, 0, 750, 330);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(1, 88, 750, 330);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flechar.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(10, 429, 29, 29);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-10, -10, 780, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -618,10 +550,15 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JToggleButton detallesMensual;
     private javax.swing.JComboBox<String> diaDiario;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
