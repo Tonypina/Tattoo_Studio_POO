@@ -134,24 +134,24 @@ public class CitasEliminar extends javax.swing.JPanel {
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField1);
-        jTextField1.setBounds(930, 177, 248, 24);
+        jTextField1.setBounds(710, 120, 248, 24);
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha:");
         add(jLabel3);
-        jLabel3.setBounds(884, 264, 42, 21);
+        jLabel3.setBounds(660, 200, 42, 21);
 
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tatuador:");
         add(jLabel8);
-        jLabel8.setBounds(848, 222, 64, 21);
+        jLabel8.setBounds(630, 160, 64, 21);
 
         jComboBox7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(jComboBox7);
-        jComboBox7.setBounds(930, 219, 248, 24);
+        jComboBox7.setBounds(710, 160, 248, 24);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -172,7 +172,7 @@ public class CitasEliminar extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(11, 122, 832, 339);
+        jScrollPane1.setBounds(10, 80, 600, 270);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trashpeque.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -182,7 +182,7 @@ public class CitasEliminar extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(1121, 428, 65, 41);
+        jButton1.setBounds(900, 330, 65, 30);
 
         jComboBox1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
@@ -192,7 +192,7 @@ public class CitasEliminar extends javax.swing.JPanel {
             }
         });
         add(jComboBox1);
-        jComboBox1.setBounds(930, 261, 51, 24);
+        jComboBox1.setBounds(710, 200, 51, 24);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editboton.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
@@ -202,7 +202,7 @@ public class CitasEliminar extends javax.swing.JPanel {
             }
         });
         add(jButton2);
-        jButton2.setBounds(1020, 430, 57, 33);
+        jButton2.setBounds(720, 330, 57, 33);
 
         jComboBox2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
@@ -212,12 +212,12 @@ public class CitasEliminar extends javax.swing.JPanel {
             }
         });
         add(jComboBox2);
-        jComboBox2.setBounds(1014, 261, 79, 24);
+        jComboBox2.setBounds(790, 200, 79, 24);
 
         jComboBox3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032" }));
         add(jComboBox3);
-        jComboBox3.setBounds(1121, 261, 57, 24);
+        jComboBox3.setBounds(900, 200, 58, 24);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 53)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -229,45 +229,48 @@ public class CitasEliminar extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText(" Cliente:");
         add(jLabel2);
-        jLabel2.setBounds(857, 180, 55, 21);
+        jLabel2.setBounds(640, 120, 55, 21);
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hora:");
         add(jLabel5);
-        jLabel5.setBounds(868, 344, 37, 21);
+        jLabel5.setBounds(650, 280, 37, 21);
 
         jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField2);
-        jTextField2.setBounds(930, 341, 51, 24);
+        jTextField2.setBounds(710, 280, 51, 24);
 
         jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField3);
-        jTextField3.setBounds(1033, 341, 60, 24);
+        jTextField3.setBounds(810, 280, 60, 24);
 
         jComboBox8.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
         add(jComboBox8);
-        jComboBox8.setBounds(1121, 341, 57, 24);
+        jComboBox8.setBounds(900, 280, 57, 24);
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText(":");
         add(jLabel6);
-        jLabel6.setBounds(1001, 343, 6, 19);
+        jLabel6.setBounds(780, 280, 6, 19);
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Hora");
         add(jLabel4);
-        jLabel4.setBounds(940, 319, 27, 16);
+        jLabel4.setBounds(720, 260, 40, 14);
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Minutos");
         add(jLabel7);
-        jLabel7.setBounds(1033, 319, 44, 16);
+        jLabel7.setBounds(810, 260, 60, 14);
 
         jLabel9.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("ID Cita:");
         add(jLabel9);
-        jLabel9.setBounds(857, 140, 52, 26);
+        jLabel9.setBounds(640, 80, 52, 26);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -286,7 +289,7 @@ public class CitasEliminar extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(930, 122, 189, 48);
+        jPanel1.setBounds(710, 60, 189, 42);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sync.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
@@ -296,7 +299,7 @@ public class CitasEliminar extends javax.swing.JPanel {
             }
         });
         add(jButton3);
-        jButton3.setBounds(940, 420, 44, 52);
+        jButton3.setBounds(820, 320, 44, 52);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel10.setText("jLabel10");

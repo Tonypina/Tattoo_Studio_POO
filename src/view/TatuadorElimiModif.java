@@ -113,7 +113,7 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             }
         });
         add(jTextField5);
-        jTextField5.setBounds(740, 240, 181, 24);
+        jTextField5.setBounds(740, 210, 181, 24);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 49)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,13 +132,13 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             }
         });
         add(jButton3);
-        jButton3.setBounds(710, 380, 33, 33);
+        jButton3.setBounds(710, 280, 33, 33);
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre:");
         add(jLabel4);
-        jLabel4.setBounds(664, 132, 60, 21);
+        jLabel4.setBounds(660, 110, 60, 21);
 
         jButton4.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trashpeque.png"))); // NOI18N
@@ -151,31 +151,31 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
             }
         });
         add(jButton4);
-        jButton4.setBounds(840, 380, 33, 33);
+        jButton4.setBounds(840, 280, 33, 33);
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Apellido Materno:");
         add(jLabel5);
-        jLabel5.setBounds(609, 208, 121, 21);
+        jLabel5.setBounds(610, 180, 121, 21);
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Rango:");
         add(jLabel2);
-        jLabel2.setBounds(684, 278, 46, 21);
+        jLabel2.setBounds(680, 250, 46, 21);
 
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Apeliido Paterno:");
         add(jLabel6);
-        jLabel6.setBounds(609, 170, 115, 21);
+        jLabel6.setBounds(610, 140, 115, 21);
 
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Contacto:");
         add(jLabel8);
-        jLabel8.setBounds(666, 240, 64, 21);
+        jLabel8.setBounds(670, 210, 64, 21);
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -205,11 +205,11 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(10, 91, 595, 294);
+        jScrollPane1.setBounds(10, 70, 595, 230);
 
         jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField2);
-        jTextField2.setBounds(740, 202, 181, 24);
+        jTextField2.setBounds(740, 180, 181, 24);
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -230,25 +230,25 @@ public class TatuadorElimiModif extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(740, 90, 195, 29);
+        jPanel1.setBounds(740, 60, 195, 29);
 
         jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField3);
-        jTextField3.setBounds(740, 164, 181, 24);
+        jTextField3.setBounds(740, 140, 181, 24);
 
         jTextField4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField4);
-        jTextField4.setBounds(740, 130, 171, 24);
+        jTextField4.setBounds(740, 100, 171, 24);
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("ID:");
         add(jLabel3);
-        jLabel3.setBounds(701, 99, 21, 21);
+        jLabel3.setBounds(700, 70, 21, 21);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principal", "Aprendiz", "Secundario" }));
         add(jComboBox1);
-        jComboBox1.setBounds(740, 275, 172, 22);
+        jComboBox1.setBounds(740, 250, 172, 20);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");

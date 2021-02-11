@@ -23,9 +23,13 @@ private Usuario u;
      */
     public CitasMenu( Usuario u ) {
         initComponents();
-        setSize(997,393);  
+        setSize(1050, 510);    
         this.u = u;
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); 
+        setResizable(false);
+        Abrir_Registro();
+        Buscar_y_Mostrar();
+        Eliminar_o_M();
           
     }
     
@@ -33,7 +37,8 @@ private Usuario u;
         initComponents();
         this.u = new Usuario(0, null, null, null, true, null, null);
         setLocationRelativeTo(null);
-        setSize(1050, 650);    
+        setSize(1050, 510);  
+        setResizable(false);
         Abrir_Registro();
         Buscar_y_Mostrar();
         Eliminar_o_M();

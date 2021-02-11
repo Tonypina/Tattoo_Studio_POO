@@ -137,9 +137,9 @@ public class Inventario extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
         jLabel7.setBounds(631, 129, 68, 26);
         jPanel3.add(costo);
-        costo.setBounds(734, 218, 137, 22);
+        costo.setBounds(734, 218, 137, 20);
         jPanel3.add(tipo);
-        tipo.setBounds(733, 174, 138, 22);
+        tipo.setBounds(733, 174, 138, 20);
 
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,9 +153,9 @@ public class Inventario extends javax.swing.JFrame {
         jPanel3.add(jLabel9);
         jLabel9.setBounds(631, 305, 83, 26);
         jPanel3.add(modelo);
-        modelo.setBounds(733, 130, 138, 22);
+        modelo.setBounds(733, 130, 138, 20);
         jPanel3.add(precio);
-        precio.setBounds(734, 262, 137, 22);
+        precio.setBounds(734, 262, 137, 20);
 
         jLabel12.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,7 +169,7 @@ public class Inventario extends javax.swing.JFrame {
         jPanel3.add(jLabel10);
         jLabel10.setBounds(631, 217, 49, 26);
         jPanel3.add(cantidad);
-        cantidad.setBounds(732, 306, 137, 22);
+        cantidad.setBounds(732, 306, 137, 20);
 
         jLabel11.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -273,7 +273,7 @@ public class Inventario extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(-10, 0, 940, 600);
+        jLabel1.setBounds(-10, 0, 940, 450);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -283,7 +283,7 @@ public class Inventario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

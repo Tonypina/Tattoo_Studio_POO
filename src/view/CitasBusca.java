@@ -82,7 +82,6 @@ public class CitasBusca extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -106,28 +105,23 @@ public class CitasBusca extends javax.swing.JPanel {
             }
         });
         add(jButton3);
-        jButton3.setBounds(745, 84, 44, 52);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresarboton.png"))); // NOI18N
-        jButton2.setContentAreaFilled(false);
-        add(jButton2);
-        jButton2.setBounds(26, 406, 65, 40);
+        jButton3.setBounds(790, 80, 44, 52);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 53)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Búsqueda");
         add(jLabel1);
-        jLabel1.setBounds(352, 24, 216, 54);
+        jLabel1.setBounds(400, 20, 216, 54);
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Fecha de la Cita:");
         add(jLabel2);
-        jLabel2.setBounds(128, 102, 147, 27);
+        jLabel2.setBounds(180, 100, 147, 28);
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         add(jTextField1);
-        jTextField1.setBounds(293, 100, 70, 27);
+        jTextField1.setBounds(340, 100, 70, 27);
 
         jButton1.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
@@ -138,7 +132,7 @@ public class CitasBusca extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(598, 99, 113, 37);
+        jButton1.setBounds(650, 100, 113, 37);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,32 +156,32 @@ public class CitasBusca extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(46, 147, 829, 250);
+        jScrollPane1.setBounds(90, 150, 829, 150);
 
         jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         add(jTextField2);
-        jTextField2.setBounds(392, 100, 70, 27);
+        jTextField2.setBounds(440, 100, 70, 27);
 
         jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         add(jTextField3);
-        jTextField3.setBounds(485, 100, 70, 27);
+        jTextField3.setBounds(530, 100, 70, 27);
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("//");
         add(jLabel3);
-        jLabel3.setBounds(370, 103, 18, 21);
+        jLabel3.setBounds(420, 100, 18, 21);
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("//");
         add(jLabel4);
-        jLabel4.setBounds(466, 103, 18, 21);
+        jLabel4.setBounds(510, 100, 18, 21);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
         add(jLabel5);
-        jLabel5.setBounds(-10, -10, 960, 490);
+        jLabel5.setBounds(-10, -10, 1160, 490);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -214,7 +208,6 @@ public class CitasBusca extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

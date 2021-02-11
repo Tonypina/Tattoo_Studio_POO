@@ -71,29 +71,29 @@ public class CitasNuevaC extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nueva Cita");
         add(jLabel1);
-        jLabel1.setBounds(336, 65, 266, 56);
+        jLabel1.setBounds(330, 20, 266, 56);
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("   Nombre del Cliente:");
         add(jLabel2);
-        jLabel2.setBounds(215, 152, 206, 27);
+        jLabel2.setBounds(210, 110, 206, 28);
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText(" Fecha de Reservación:");
         add(jLabel3);
-        jLabel3.setBounds(215, 204, 206, 27);
+        jLabel3.setBounds(210, 160, 206, 28);
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("                       Tatuador:");
         add(jLabel4);
-        jLabel4.setBounds(215, 307, 206, 27);
+        jLabel4.setBounds(210, 260, 206, 28);
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField1);
-        jTextField1.setBounds(458, 153, 295, 24);
+        jTextField1.setBounds(450, 110, 295, 24);
 
         diaDiario.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         diaDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
@@ -103,7 +103,7 @@ public class CitasNuevaC extends javax.swing.JPanel {
             }
         });
         add(diaDiario);
-        diaDiario.setBounds(458, 205, 49, 24);
+        diaDiario.setBounds(450, 160, 50, 24);
 
         jComboBox2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -113,7 +113,7 @@ public class CitasNuevaC extends javax.swing.JPanel {
             }
         });
         add(jComboBox2);
-        jComboBox2.setBounds(458, 308, 295, 24);
+        jComboBox2.setBounds(450, 260, 295, 24);
 
         mesDiario.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         mesDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
@@ -123,12 +123,12 @@ public class CitasNuevaC extends javax.swing.JPanel {
             }
         });
         add(mesDiario);
-        mesDiario.setBounds(550, 205, 102, 24);
+        mesDiario.setBounds(540, 160, 103, 24);
 
         jComboBox4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035" }));
         add(jComboBox4);
-        jComboBox4.setBounds(696, 205, 57, 24);
+        jComboBox4.setBounds(690, 160, 58, 24);
 
         jButton2.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/check.png"))); // NOI18N
@@ -139,13 +139,13 @@ public class CitasNuevaC extends javax.swing.JPanel {
             }
         });
         add(jButton2);
-        jButton2.setBounds(409, 370, 189, 37);
+        jButton2.setBounds(400, 320, 230, 37);
 
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Hora de la reservación:");
         add(jLabel6);
-        jLabel6.setBounds(215, 249, 206, 39);
+        jLabel6.setBounds(210, 200, 206, 39);
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel7.setText(":");
@@ -154,21 +154,21 @@ public class CitasNuevaC extends javax.swing.JPanel {
 
         jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField2);
-        jTextField2.setBounds(470, 256, 50, 24);
+        jTextField2.setBounds(460, 210, 50, 24);
 
         jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField3);
-        jTextField3.setBounds(563, 256, 50, 24);
+        jTextField3.setBounds(560, 210, 50, 24);
 
         jComboBox9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM ", "PM" }));
         add(jComboBox9);
-        jComboBox9.setBounds(695, 256, 58, 24);
+        jComboBox9.setBounds(690, 210, 58, 24);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
         add(jLabel5);
-        jLabel5.setBounds(0, 0, 920, 480);
+        jLabel5.setBounds(0, 0, 1010, 480);
     }// </editor-fold>//GEN-END:initComponents
 
     private void diaDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaDiarioActionPerformed

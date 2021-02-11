@@ -72,7 +72,7 @@ public class PerfBuscar extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Búsqueda");
         add(jLabel1);
-        jLabel1.setBounds(340, 11, 236, 58);
+        jLabel1.setBounds(400, 10, 236, 58);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sync.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
@@ -82,18 +82,18 @@ public class PerfBuscar extends javax.swing.JPanel {
             }
         });
         add(jButton2);
-        jButton2.setBounds(769, 91, 41, 42);
+        jButton2.setBounds(830, 90, 41, 42);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese el nombre del perforador que desee buscar:");
         add(jLabel2);
-        jLabel2.setBounds(156, 109, 343, 23);
+        jLabel2.setBounds(210, 110, 343, 22);
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         add(jTextField1);
-        jTextField1.setBounds(509, 109, 187, 24);
+        jTextField1.setBounds(570, 110, 187, 24);
 
         jButton1.setFont(new java.awt.Font("Sitka Small", 0, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/searchboton.png"))); // NOI18N
@@ -104,7 +104,7 @@ public class PerfBuscar extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(702, 91, 49, 42);
+        jButton1.setBounds(760, 90, 49, 42);
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,12 +121,12 @@ public class PerfBuscar extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(156, 159, 654, 241);
+        jScrollPane1.setBounds(210, 160, 654, 150);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         add(jLabel3);
-        jLabel3.setBounds(0, 0, 900, 440);
+        jLabel3.setBounds(0, 0, 1000, 440);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
