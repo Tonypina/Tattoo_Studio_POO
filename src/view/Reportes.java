@@ -29,9 +29,9 @@ public class Reportes extends javax.swing.JFrame {
         llenarAnio(anioMensual);
         llenarAnio(anioAnual);
         llenarDias();
-        llenarTablaTicket(tablaMensual, Model.getTickets());
-        llenarTablaTicket(tablaAnual, Model.getTickets());
-        llenarTablaTicket(tablaDiario, Model.getTickets());
+        totalDiario.setText("0");
+        totalMensual.setText("0");
+        totalAnual.setText("0");
     }
 
     private void llenarAnio(javax.swing.JComboBox<String> anio){
@@ -154,30 +154,37 @@ public class Reportes extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tablaDiario = new javax.swing.JTable();
         buscarDiario = new javax.swing.JToggleButton();
-        anioMensual1 = new javax.swing.JComboBox<>();
         anioDiario = new javax.swing.JComboBox<>();
         diaDiario = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        comisionesDiario = new javax.swing.JToggleButton();
+        jLabel10 = new javax.swing.JLabel();
+        totalDiario = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         anioMensual = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaMensual = new javax.swing.JTable();
+        totalMensual = new javax.swing.JLabel();
         detallesMensual = new javax.swing.JToggleButton();
         mesMensual = new javax.swing.JComboBox<>();
         buscarMensual = new javax.swing.JToggleButton();
+        comisionesMensual = new javax.swing.JToggleButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaMensual = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         anioAnual = new javax.swing.JComboBox<>();
         buscarAnual = new javax.swing.JToggleButton();
         detallesAnual = new javax.swing.JToggleButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        comisionesAnual = new javax.swing.JToggleButton();
+        jLabel11 = new javax.swing.JLabel();
+        totalAnual = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
         tablaAnual = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REPORTES");
@@ -191,17 +198,21 @@ public class Reportes extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Reportes");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(296, 40, 178, 49);
+        jLabel4.setBounds(380, 50, 178, 49);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
+        jTabbedPane1.setBackground(new java.awt.Color(204, 0, 0));
+
+        jPanel4.setBackground(new java.awt.Color(102, 0, 0));
         jPanel4.setLayout(null);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Seleccione un mes:");
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(22, 27, 151, 22);
+        jLabel8.setBounds(20, 60, 151, 22);
 
         mesDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         mesDiario.addItemListener(new java.awt.event.ItemListener() {
@@ -210,7 +221,7 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel4.add(mesDiario);
-        mesDiario.setBounds(249, 28, 109, 22);
+        mesDiario.setBounds(260, 60, 120, 20);
 
         detallesDiario.setText("Ver detalles");
         detallesDiario.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +230,7 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel4.add(detallesDiario);
-        detallesDiario.setBounds(572, 27, 101, 25);
+        detallesDiario.setBounds(590, 60, 110, 23);
 
         tablaDiario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -235,7 +246,7 @@ public class Reportes extends javax.swing.JFrame {
         jScrollPane5.setViewportView(tablaDiario);
 
         jPanel4.add(jScrollPane5);
-        jScrollPane5.setBounds(200, 70, 452, 164);
+        jScrollPane5.setBounds(140, 100, 510, 164);
 
         buscarDiario.setText("Buscar");
         buscarDiario.addActionListener(new java.awt.event.ActionListener() {
@@ -244,16 +255,7 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel4.add(buscarDiario);
-        buscarDiario.setBounds(483, 27, 71, 25);
-
-        anioMensual1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
-        anioMensual1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                anioMensual1ItemStateChanged(evt);
-            }
-        });
-        jPanel4.add(anioMensual1);
-        anioMensual1.setBounds(316, 306, 130, 22);
+        buscarDiario.setBounds(500, 60, 80, 23);
 
         anioDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioDiario.addItemListener(new java.awt.event.ItemListener() {
@@ -262,18 +264,40 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel4.add(anioDiario);
-        anioDiario.setBounds(376, 28, 81, 22);
+        anioDiario.setBounds(390, 60, 100, 20);
 
         jPanel4.add(diaDiario);
-        diaDiario.setBounds(200, 28, 31, 22);
+        diaDiario.setBounds(190, 60, 50, 22);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        jPanel4.add(jLabel6);
-        jLabel6.setBounds(0, 0, 730, 280);
+        comisionesDiario.setText("Comisiones");
+        comisionesDiario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesDiarioActionPerformed(evt);
+            }
+        });
+        jPanel4.add(comisionesDiario);
+        comisionesDiario.setBounds(610, 280, 110, 40);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("$");
+        jPanel4.add(jLabel10);
+        jLabel10.setBounds(80, 290, 10, 22);
+
+        totalDiario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        totalDiario.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel4.add(totalDiario);
+        totalDiario.setBounds(90, 290, 120, 22);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Total:");
+        jPanel4.add(jLabel12);
+        jLabel12.setBounds(30, 290, 70, 22);
 
         jTabbedPane1.addTab("Diario", jPanel4);
 
+        jPanel5.setBackground(new java.awt.Color(102, 0, 0));
         jPanel5.setLayout(null);
 
         anioMensual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
@@ -283,13 +307,60 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel5.add(anioMensual);
-        anioMensual.setBounds(326, 28, 130, 22);
+        anioMensual.setBounds(350, 60, 130, 20);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Seleccione un mes:");
-        jPanel5.add(jLabel3);
-        jLabel3.setBounds(10, 27, 151, 22);
+        totalMensual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        totalMensual.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel5.add(totalMensual);
+        totalMensual.setBounds(90, 290, 120, 22);
+
+        detallesMensual.setText("Ver detalles");
+        detallesMensual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detallesMensualActionPerformed(evt);
+            }
+        });
+        jPanel5.add(detallesMensual);
+        detallesMensual.setBounds(590, 60, 120, 23);
+
+        mesMensual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        mesMensual.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                mesMensualItemStateChanged(evt);
+            }
+        });
+        jPanel5.add(mesMensual);
+        mesMensual.setBounds(200, 60, 130, 20);
+
+        buscarMensual.setText("Buscar");
+        buscarMensual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarMensualActionPerformed(evt);
+            }
+        });
+        jPanel5.add(buscarMensual);
+        buscarMensual.setBounds(500, 60, 80, 23);
+
+        comisionesMensual.setText("Comisiones");
+        comisionesMensual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesMensualActionPerformed(evt);
+            }
+        });
+        jPanel5.add(comisionesMensual);
+        comisionesMensual.setBounds(610, 280, 110, 40);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Seleccione un mes:");
+        jPanel5.add(jLabel7);
+        jLabel7.setBounds(30, 60, 151, 22);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Total:");
+        jPanel5.add(jLabel9);
+        jLabel9.setBounds(30, 290, 70, 22);
 
         tablaMensual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,52 +373,27 @@ public class Reportes extends javax.swing.JFrame {
                 "Num. Ticket", "Fecha", "Tatuador", "Perforador", "Venta Productos", "Total"
             }
         ));
-        jScrollPane1.setViewportView(tablaMensual);
+        jScrollPane6.setViewportView(tablaMensual);
 
-        jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(113, 70, 452, 164);
+        jPanel5.add(jScrollPane6);
+        jScrollPane6.setBounds(140, 100, 510, 164);
 
-        detallesMensual.setText("Ver detalles");
-        detallesMensual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                detallesMensualActionPerformed(evt);
-            }
-        });
-        jPanel5.add(detallesMensual);
-        detallesMensual.setBounds(583, 27, 101, 25);
-
-        mesMensual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        mesMensual.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                mesMensualItemStateChanged(evt);
-            }
-        });
-        jPanel5.add(mesMensual);
-        mesMensual.setBounds(179, 28, 130, 22);
-
-        buscarMensual.setText("Buscar");
-        buscarMensual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarMensualActionPerformed(evt);
-            }
-        });
-        jPanel5.add(buscarMensual);
-        buscarMensual.setBounds(484, 27, 71, 25);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        jPanel5.add(jLabel7);
-        jLabel7.setBounds(-9, -4, 740, 290);
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("$");
+        jPanel5.add(jLabel13);
+        jLabel13.setBounds(80, 290, 10, 22);
 
         jTabbedPane1.addTab("Mensual", jPanel5);
 
+        jPanel6.setBackground(new java.awt.Color(102, 0, 0));
         jPanel6.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Seleccione un año:");
         jPanel6.add(jLabel5);
-        jLabel5.setBounds(10, 27, 148, 22);
+        jLabel5.setBounds(130, 60, 148, 22);
 
         anioAnual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioAnual.addItemListener(new java.awt.event.ItemListener() {
@@ -356,7 +402,7 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel6.add(anioAnual);
-        anioAnual.setBounds(176, 28, 130, 22);
+        anioAnual.setBounds(290, 60, 130, 20);
 
         buscarAnual.setText("Buscar");
         buscarAnual.addActionListener(new java.awt.event.ActionListener() {
@@ -365,7 +411,7 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel6.add(buscarAnual);
-        buscarAnual.setBounds(351, 27, 71, 25);
+        buscarAnual.setBounds(440, 60, 90, 23);
 
         detallesAnual.setText("Ver detalles");
         detallesAnual.addActionListener(new java.awt.event.ActionListener() {
@@ -374,7 +420,27 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel6.add(detallesAnual);
-        detallesAnual.setBounds(464, 27, 101, 25);
+        detallesAnual.setBounds(550, 60, 100, 23);
+
+        comisionesAnual.setText("Comisiones");
+        comisionesAnual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesAnualActionPerformed(evt);
+            }
+        });
+        jPanel6.add(comisionesAnual);
+        comisionesAnual.setBounds(610, 280, 110, 40);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Total:");
+        jPanel6.add(jLabel11);
+        jLabel11.setBounds(30, 290, 70, 22);
+
+        totalAnual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        totalAnual.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(totalAnual);
+        totalAnual.setBounds(90, 290, 120, 22);
 
         tablaAnual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -387,32 +453,27 @@ public class Reportes extends javax.swing.JFrame {
                 "Num. Ticket", "Fecha", "Tatuador", "Perforador", "Venta Productos", "Total"
             }
         ));
-        jScrollPane2.setViewportView(tablaAnual);
+        jScrollPane7.setViewportView(tablaAnual);
 
-        jPanel6.add(jScrollPane2);
-        jScrollPane2.setBounds(113, 70, 452, 164);
+        jPanel6.add(jScrollPane7);
+        jScrollPane7.setBounds(140, 100, 510, 164);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        jPanel6.add(jLabel2);
-        jLabel2.setBounds(0, 0, 730, 280);
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("$");
+        jPanel6.add(jLabel14);
+        jLabel14.setBounds(80, 290, 10, 22);
 
         jTabbedPane1.addTab("Anual", jPanel6);
 
         jPanel1.add(jTabbedPane1);
-        jTabbedPane1.setBounds(10, 23, 740, 307);
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
-        jLabel9.setText("jLabel9");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(0, 0, 750, 330);
+        jTabbedPane1.setBounds(30, 10, 760, 360);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(1, 88, 750, 330);
+        jPanel1.setBounds(50, 120, 800, 380);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flechar.png"))); // NOI18N
-        jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -421,12 +482,11 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(10, 429, 29, 29);
+        jButton1.setBounds(20, 510, 61, 37);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-10, -10, 780, 500);
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 930, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -436,45 +496,6 @@ public class Reportes extends javax.swing.JFrame {
         MenuP m=new MenuP();
         m.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void detallesMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesMensualActionPerformed
-        try{
-            Ticket t = Model.buscarTicket(Integer.parseInt(tablaMensual.getValueAt(tablaMensual.getSelectedRow(), 0).toString()));
-            dispose();
-            new Detalles(t).setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado nada." );
-        }
-    }//GEN-LAST:event_detallesMensualActionPerformed
-
-    private void detallesDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesDiarioActionPerformed
-        //try{
-            new Detalles(Model.buscarTicket(Integer.parseInt(tablaDiario.getValueAt(tablaDiario.getSelectedRow(), 0).toString()))).setVisible(true);
-            dispose(); 
-        //}//catch(Exception e){
-           // JOptionPane.showMessageDialog(null, "No se ha seleccionado nada." );
-        //}
-    }//GEN-LAST:event_detallesDiarioActionPerformed
-
-    private void anioMensualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioMensualItemStateChanged
-        
-    }//GEN-LAST:event_anioMensualItemStateChanged
-
-    private void mesMensualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mesMensualItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mesMensualItemStateChanged
-
-    private void buscarMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMensualActionPerformed
-        llenarTablaTicket(tablaMensual, Model.getTickets(0, getMesSelected(mesMensual), Integer.parseInt(anioMensual.getSelectedItem().toString())));        
-    }//GEN-LAST:event_buscarMensualActionPerformed
-
-    private void anioAnualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioAnualItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anioAnualItemStateChanged
-
-    private void buscarAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarAnualActionPerformed
-        llenarTablaTicket(tablaAnual, Model.getTickets(0, 0, Integer.parseInt(anioAnual.getSelectedItem().toString())));
-    }//GEN-LAST:event_buscarAnualActionPerformed
 
     private void detallesAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesAnualActionPerformed
         try{
@@ -486,21 +507,86 @@ public class Reportes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_detallesAnualActionPerformed
 
-    private void buscarDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDiarioActionPerformed
-        llenarTablaTicket(tablaDiario, Model.getTickets(Integer.parseInt(diaDiario.getSelectedItem().toString()), getMesSelected(mesDiario), Integer.parseInt(anioDiario.getSelectedItem().toString())));
-    }//GEN-LAST:event_buscarDiarioActionPerformed
+    private void buscarAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarAnualActionPerformed
+        llenarTablaTicket(tablaAnual, Model.getTickets(0, 0, Integer.parseInt(anioAnual.getSelectedItem().toString())));
+        totalAnual.setText(Double.toString(Model.getTotal(0,0, Integer.parseInt(anioAnual.getSelectedItem().toString()))));
+    }//GEN-LAST:event_buscarAnualActionPerformed
 
-    private void anioMensual1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioMensual1ItemStateChanged
+    private void anioAnualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioAnualItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_anioMensual1ItemStateChanged
+    }//GEN-LAST:event_anioAnualItemStateChanged
+
+    private void buscarMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMensualActionPerformed
+        llenarTablaTicket(tablaMensual, Model.getTickets(0, getMesSelected(mesMensual), Integer.parseInt(anioMensual.getSelectedItem().toString())));
+        totalMensual.setText(Double.toString(Model.getTotal(0, getMesSelected(mesMensual), Integer.parseInt(anioMensual.getSelectedItem().toString()))));
+    }//GEN-LAST:event_buscarMensualActionPerformed
+
+    private void mesMensualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mesMensualItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesMensualItemStateChanged
+
+    private void detallesMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesMensualActionPerformed
+        try{
+            Ticket t = Model.buscarTicket(Integer.parseInt(tablaMensual.getValueAt(tablaMensual.getSelectedRow(), 0).toString()));
+            dispose();
+            new Detalles(t).setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado nada." );
+        }
+    }//GEN-LAST:event_detallesMensualActionPerformed
+
+    private void anioMensualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioMensualItemStateChanged
+
+    }//GEN-LAST:event_anioMensualItemStateChanged
 
     private void anioDiarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_anioDiarioItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_anioDiarioItemStateChanged
 
+    private void buscarDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDiarioActionPerformed
+        llenarTablaTicket(tablaDiario, Model.getTickets(Integer.parseInt(diaDiario.getSelectedItem().toString()), getMesSelected(mesDiario), Integer.parseInt(anioDiario.getSelectedItem().toString())));
+        totalDiario.setText(Double.toString(Model.getTotal(Integer.parseInt(diaDiario.getSelectedItem().toString()), getMesSelected(mesDiario), Integer.parseInt(anioDiario.getSelectedItem().toString()))));
+    }//GEN-LAST:event_buscarDiarioActionPerformed
+
+    private void detallesDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesDiarioActionPerformed
+        try{
+            new Detalles(Model.buscarTicket(Integer.parseInt(tablaDiario.getValueAt(tablaDiario.getSelectedRow(), 0).toString()))).setVisible(true);
+            dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado nada." );
+        }
+    }//GEN-LAST:event_detallesDiarioActionPerformed
+
     private void mesDiarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mesDiarioItemStateChanged
         llenarDias();
     }//GEN-LAST:event_mesDiarioItemStateChanged
+
+    private void comisionesMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesMensualActionPerformed
+        try{
+            new Comisiones(0, mesMensual.getSelectedItem().toString(), Integer.parseInt(anioMensual.getSelectedItem().toString())).setVisible(true);
+            dispose();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+        }
+    }//GEN-LAST:event_comisionesMensualActionPerformed
+
+    private void comisionesDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesDiarioActionPerformed
+        try{
+            new Comisiones(Integer.parseInt(diaDiario.getSelectedItem().toString()), mesDiario.getSelectedItem().toString(), Integer.parseInt(anioDiario.getSelectedItem().toString())).setVisible(true);
+            dispose();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+        }
+    }//GEN-LAST:event_comisionesDiarioActionPerformed
+
+    private void comisionesAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesAnualActionPerformed
+        try{
+            new Comisiones(0, "", Integer.parseInt(anioAnual.getSelectedItem().toString())).setVisible(true);
+            dispose();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+        }
+    }//GEN-LAST:event_comisionesAnualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -541,36 +627,43 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> anioAnual;
     private javax.swing.JComboBox<String> anioDiario;
     private javax.swing.JComboBox<String> anioMensual;
-    private javax.swing.JComboBox<String> anioMensual1;
     private javax.swing.JToggleButton buscarAnual;
     private javax.swing.JToggleButton buscarDiario;
     private javax.swing.JToggleButton buscarMensual;
+    private javax.swing.JToggleButton comisionesAnual;
+    private javax.swing.JToggleButton comisionesDiario;
+    private javax.swing.JToggleButton comisionesMensual;
     private javax.swing.JToggleButton detallesAnual;
     private javax.swing.JToggleButton detallesDiario;
     private javax.swing.JToggleButton detallesMensual;
     private javax.swing.JComboBox<String> diaDiario;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> mesDiario;
     private javax.swing.JComboBox<String> mesMensual;
     private javax.swing.JTable tablaAnual;
     private javax.swing.JTable tablaDiario;
     private javax.swing.JTable tablaMensual;
+    private javax.swing.JLabel totalAnual;
+    private javax.swing.JLabel totalDiario;
+    private javax.swing.JLabel totalMensual;
     // End of variables declaration//GEN-END:variables
 }
