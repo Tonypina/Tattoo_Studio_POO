@@ -11,8 +11,8 @@ import objects.*;
 public class Controller{
   private static double comiclip = Model.getClip(); //getClip debe regresar la comisión de clip;
   private static Ticket ticket;
-  public static void procesoPago(Ticket ticket){
-    double monto = 0;
+  public static Ticket procesoPago(Ticket ticket){
+    double monto = 0.0;
     double comision = 0.0;
     double totalMerch = 0.0;
     double montoTatuaje = 0.0;
@@ -28,11 +28,10 @@ public class Controller{
         for(Proveedor prov:proveedoresArr){
           if (prod.getProveedor().getNombre().equals(prov.getNombre())){
             if (prod.isPerfo()){
-              monto += prod.getPrecioPro()*0.3;
+              monto += t.getSubtotalPerforacion()*0.3;
               totalProv = prov.getTotal();
-              t.setSubtotalPerforacion(prod.getPrecioPro());
-              t.setPagoPerforador(prod.getPrecioPro()*0.7);
-              prov.setTotal(totalProv + prod.getPrecioPro()*0.7);
+              t.setPagoPerforador(t.getSubtotalPerforacion()*0.7);
+              prov.setTotal(totalProv + t.getSubtotalPerforacion()*0.7);
               Model.modificarProveedor(prov);
             }else{
               monto += prod.getPrecioPro()-(prod.getCostoPro());
@@ -71,6 +70,7 @@ public class Controller{
       Model.modificarTicket(t);
       Model.modificarTatuador(t.getTatuador());
     }
+    return t;
   }
 
   public static void procesoGanancias(){
