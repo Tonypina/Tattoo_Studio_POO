@@ -380,8 +380,9 @@ public class Tickets extends javax.swing.JFrame {
         jPanel5.setName("Visita"); // NOI18N
         jPanel5.setOpaque(false);
 
-        visitabox.setBackground(new java.awt.Color(255, 255, 255));
+        visitabox.setBackground(new java.awt.Color(0, 0, 0));
         visitabox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        visitabox.setForeground(new java.awt.Color(255, 255, 255));
         visitabox.setText("Visita");
         visitabox.setOpaque(false);
         visitabox.addActionListener(new java.awt.event.ActionListener() {
@@ -408,12 +409,12 @@ public class Tickets extends javax.swing.JFrame {
 
         jPanel7.setOpaque(false);
 
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setBackground(new java.awt.Color(0, 0, 0));
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Monto:");
 
-        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel18.setBackground(new java.awt.Color(0, 0, 0));
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("$");
@@ -645,12 +646,12 @@ public class Tickets extends javax.swing.JFrame {
 
         jPanel6.setOpaque(false);
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Monto:");
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("$");
