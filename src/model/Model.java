@@ -212,6 +212,18 @@ public class Model {
     }
 
     //Ticket
+    public static double getTotal(int dia, int mes, int anio){
+        return TicketDB.getTotal(dia, mes, anio);
+    }
+    
+    public static ArrayList<Object[]> getComisionTatu(int dia, int mes, int anio){
+        return TicketDB.getComisionTatu(dia, mes, anio);
+    }
+   
+    public static ArrayList<Object[]> getComisionPerfo(int dia, int mes, int anio){
+        return TicketDB.getComisionPerfo(dia, mes, anio);
+    }
+    
     public static ArrayList<Ticket> getTickets(){
         return TicketDB.get();
     }

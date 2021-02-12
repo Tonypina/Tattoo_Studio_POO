@@ -242,7 +242,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,null,null,null,1,'toor','root');
+INSERT INTO `usuario` VALUES (1,'','','',1,'admin','admin');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,6 +258,8 @@ CREATE TABLE `venta` (
   `cantidad` int DEFAULT NULL,
   `idProductoVenta` int DEFAULT NULL,
   `idTicketVenta` int DEFAULT NULL,
+  `costoTotal` double DEFAULT NULL,
+  `precioTotal` double DEFAULT NULL,
   PRIMARY KEY (`idVenta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -270,6 +272,239 @@ LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'tattoo_studio_db'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `insertar_ticket` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_ticket`(IN clip TINYINT, 
+									IN prod TINYINT, 
+                                    IN subTat DOUBLE, 
+                                    IN subPerf DOUBLE, 
+                                    IN pagoT DOUBLE,
+                                    IN pagoP DOUBLE,
+                                    IN total DOUBLE,
+                                    IN visita TINYINT,
+                                    IN dia INT,
+                                    IN mes INT,
+                                    IN anio INT,
+                                    IN idTatuador INT,
+                                    IN idPerforador INT)
+BEGIN
+	INSERT INTO ticket (clip, prod, subtotalTatuaje, subtotalPerforacion, pagoTatuador, pagoPerforador, total, visita, dia, mes, anio, idTatuadorTicket, idPerforadorTicket) 
+    VALUES(clip,prod,subTat,subPerf,pagoT,pagoP,total,visita,dia,mes,anio,idTatuador,idPerforador);
+    
+    SELECT MAX(idTicket) AS max
+    FROM ticket;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `obtener_comisiones` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_comisiones`(IN v_dia INT, IN v_mes INT, IN v_anio INT)
+BEGIN
+	IF v_dia = 0 AND v_mes = 0 THEN
+		SELECT SUM(pagoTatuador)suma, idTatuadorTicket, nombre, ap_paterno, ap_materno
+		FROM ticket
+		INNER JOIN tatuador
+		ON idTatuadorTicket = idTatuador
+        WHERE anio = v_anio
+        GROUP BY idTatuadorTicket;
+			
+	ELSEIF v_dia = 0 AND v_mes <> 0 THEN
+		SELECT SUM(pagoTatuador)suma, idTatuadorTicket, nombre, ap_paterno, ap_materno
+		FROM ticket
+		INNER JOIN tatuador
+		ON idTatuadorTicket = idTatuador
+        WHERE anio = v_anio AND mes = v_mes
+        GROUP BY idTatuadorTicket;
+    ELSE
+		SELECT SUM(pagoTatuador)suma, idTatuadorTicket, nombre, ap_paterno, ap_materno
+		FROM ticket
+		INNER JOIN tatuador
+		ON idTatuadorTicket = idTatuador
+        WHERE anio = v_anio AND mes = v_mes AND dia = v_dia
+        GROUP BY idTatuadorTicket;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `obtener_comision_perforadores` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_comision_perforadores`(IN v_dia INT, IN v_mes INT, IN v_anio INT)
+BEGIN
+	IF v_dia = 0 AND v_mes = 0 THEN
+		SELECT SUM(t.pagoPerforador)suma, t.total, t.idPerforadorTicket, nombre
+		FROM ticket t
+		INNER JOIN proveedor
+		ON idPerforadorTicket = idProveedor
+        WHERE anio = v_anio
+        GROUP BY idPerforadorTicket
+        ORDER BY idProveedor;
+			
+	ELSEIF v_dia = 0 AND v_mes <> 0 THEN
+		SELECT SUM(t.pagoPerforador)suma, t.total, t.idPerforadorTicket, nombre
+		FROM ticket t
+		INNER JOIN proveedor
+		ON idPerforadorTicket = idProveedor
+        WHERE anio = v_anio AND mes = v_mes
+        GROUP BY idPerforadorTicket
+        ORDER BY idProveedor;
+    ELSE
+		SELECT SUM(t.pagoPerforador)suma, t.total, t.idPerforadorTicket, nombre
+		FROM ticket t
+		INNER JOIN proveedor
+		ON idPerforadorTicket = idProveedor
+        WHERE anio = v_anio AND mes = v_mes AND dia = v_dia
+        GROUP BY idPerforadorTicket
+        ORDER BY idProveedor;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `obtener_comision_tatuador` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_comision_tatuador`(IN v_dia INT, IN v_mes INT, IN v_anio INT)
+BEGIN
+	IF v_dia = 0 AND v_mes = 0 THEN
+		SELECT SUM(t.pagoTatuador)suma, t.total, t.idTatuadorTicket, nombre, ap_paterno, ap_materno
+		FROM ticket t
+		INNER JOIN tatuador
+		ON idTatuadorTicket = idTatuador
+        WHERE anio = v_anio
+        GROUP BY idTatuadorTicket
+        ORDER BY idTatuador;
+			
+	ELSEIF v_dia = 0 AND v_mes <> 0 THEN
+		SELECT SUM(t.pagoTatuador)suma, t.total, t.idTatuadorTicket, nombre, ap_paterno, ap_materno
+		FROM ticket t
+		INNER JOIN tatuador
+		ON idTatuadorTicket = idTatuador
+        WHERE anio = v_anio AND mes = v_mes
+        GROUP BY idTatuadorTicket
+        ORDER BY idTatuador;
+
+    ELSE
+		SELECT SUM(t.pagoTatuador)suma, t.total, t.idTatuadorTicket, nombre, ap_paterno, ap_materno
+		FROM ticket t
+		INNER JOIN tatuador
+		ON idTatuadorTicket = idTatuador
+        WHERE anio = v_anio AND mes = v_mes AND dia = v_dia
+        GROUP BY idTatuadorTicket
+        ORDER BY idTatuador;
+
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `obtener_ganancias` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_ganancias`(IN v_dia INT, IN v_mes INT, IN v_anio INT)
+BEGIN
+	IF v_dia = 0 AND v_mes = 0 THEN
+		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-(SUM(v.precioTotal)-SUM(V.costoTotal))ganancias
+		FROM ticket t
+		INNER JOIN venta v
+		ON idTicket = idTicketVenta
+		WHERE anio = v_anio;
+			
+	ELSEIF v_dia = 0 AND v_mes <> 0 THEN
+		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-(SUM(v.precioTotal)-SUM(V.costoTotal))ganancias
+		FROM ticket t
+		INNER JOIN venta v
+		ON idTicket = idTicketVenta
+		WHERE anio = v_anio AND mes = v_mes;
+	ELSE
+		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-(SUM(v.precioTotal)-SUM(V.costoTotal))ganancias
+		FROM ticket t
+		INNER JOIN venta v
+		ON idTicket = idTicketVenta
+		WHERE anio = v_anio AND mes = v_mes AND dia = v_dia;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `obtener_total` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_total`(IN v_dia INT, IN v_mes INT, IN v_anio INT)
+BEGIN
+	IF v_dia = 0 AND v_mes = 0 THEN
+		SELECT SUM(total) FROM ticket WHERE anio = v_anio;
+	ELSEIF v_dia = 0 AND v_mes <> 0 THEN
+		SELECT SUM(total) FROM ticket WHERE mes = v_mes AND anio = v_anio;
+	ELSE
+		SELECT SUM(total) FROM ticket WHERE dia = v_dia AND mes = v_mes AND anio = v_anio;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -280,4 +515,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-10 10:59:40
+-- Dump completed on 2021-02-12  8:16:38

@@ -6,6 +6,7 @@
 package model.util;
 import java.sql.*;
 import java.util.*;
+import model.Model;
 import objects.*;
 /**
  *
@@ -47,6 +48,28 @@ public class TicketDB {
         return null;
     }
     
+    public static double getTotal(int dia, int mes, int anio){
+        try{
+            Connection cn = Conexion.getConnection();
+            CallableStatement cst = cn.prepareCall("CALL obtener_total(?,?,?)");
+            cst.setString(1, Integer.toString(dia));
+            cst.setString(2, Integer.toString(mes));
+            cst.setString(3, Integer.toString(anio));
+            ResultSet rs = cst.executeQuery();
+            if(rs.next()){
+                double i = rs.getDouble(1);
+                cst.close();
+                cn.close();
+                return i;
+            }
+            cst.close();
+            cn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return 0;
+    }
+    
     public static Ticket insertar( Ticket t ){
         try{
             Calendar c = Calendar.getInstance();
@@ -76,7 +99,7 @@ public class TicketDB {
                 pst.setString(9, "0");
             }
             pst.setString(10, Integer.toString(c.get(Calendar.DATE)));
-            pst.setString(11, Integer.toString(c.get(Calendar.MONTH)));
+            pst.setString(11, Integer.toString(c.get(Calendar.MONTH)+1));
             pst.setString(12, Integer.toString(c.get(Calendar.YEAR)));
             if(t.getTatuador() != null)
                 pst.setString(13, Integer.toString(t.getTatuador().getId()));
@@ -96,16 +119,20 @@ public class TicketDB {
             int idTemp = 0;
             for (Producto p : t.getProductos()) {
                 if(idTemp == p.getIdPro()){
-                    pst = cn.prepareStatement("UPDATE venta SET cantidad = cantidad + ? WHERE idTicketVenta = ?");
+                    pst = cn.prepareStatement("UPDATE venta SET cantidad = cantidad + ?, costoTotal = costoTotal + ?, precioTotal = precioTotal + ? WHERE idTicketVenta = ?");
                     pst.setString(1, "1");
-                    pst.setString(2, Integer.toString(ti.getId()));
+                    pst.setString(2, Double.toString(p.getCantidadPro()));
+                    pst.setString(3, Double.toString(p.getPrecioPro()));
+                    pst.setString(4, Integer.toString(ti.getId()));
                     pst.executeUpdate();
                 } else {
-                    pst = cn.prepareStatement("INSERT INTO venta VALUES(?,?,?,?)");
+                    pst = cn.prepareStatement("INSERT INTO venta VALUES(?,?,?,?,?,?)");
                     pst.setString(1, "0");
                     pst.setString(2, "1");
                     pst.setString(3, Integer.toString(p.getIdPro()));
                     pst.setString(4, Integer.toString(ti.getId()));
+                    pst.setString(5, Double.toString(p.getCostoPro()));
+                    pst.setString(6, Double.toString(p.getPrecioPro()));
                     pst.executeUpdate();
                     idTemp = p.getIdPro();
                 }
@@ -113,6 +140,58 @@ public class TicketDB {
             pst.close();
             cn.close();
             return ti;
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public static ArrayList<Object[]> getComisionTatu(int dia, int mes, int anio){
+        try{
+            Connection cn = Conexion.getConnection();
+            CallableStatement cst = cn.prepareCall("CALL obtener_comision_tatuador(?,?,?)");
+            cst.setString(1, Integer.toString(dia));
+            cst.setString(2, Integer.toString(mes));
+            cst.setString(3, Integer.toString(anio));
+            ResultSet rs = cst.executeQuery();
+            
+            ArrayList<Object[]> a = new ArrayList<>();
+            if(rs.next()){
+                do{
+                    Object o[] = {rs.getDouble("suma"), rs.getDouble("total"), rs.getInt("idTatuadorTicket"), rs.getString("nombre"), rs.getString("ap_paterno"), rs.getString("ap_materno")};
+                    a.add(o);
+                }while(rs.next());
+            }
+            
+            cst.close();
+            cn.close();
+            return a;
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public static ArrayList<Object[]> getComisionPerfo(int dia, int mes, int anio){
+        try{
+            Connection cn = Conexion.getConnection();
+            CallableStatement cst = cn.prepareCall("CALL obtener_comision_perforadores(?,?,?)");
+            cst.setString(1, Integer.toString(dia));
+            cst.setString(2, Integer.toString(mes));
+            cst.setString(3, Integer.toString(anio));
+            ResultSet rs = cst.executeQuery();
+            
+            ArrayList<Object[]> a = new ArrayList<>();
+            if(rs.next()){
+                do{
+                    Object o[] = {rs.getDouble("suma"), rs.getDouble("total"), rs.getInt("idPerforadorTicket"), rs.getString("nombre")};
+                    a.add(o);
+                }while(rs.next());
+            }
+            
+            cst.close();
+            cn.close();
+            return a;
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -164,6 +243,40 @@ public class TicketDB {
             return p;
         }catch(SQLException e){
             e.getMessage();
+        }
+        return null;
+    }
+    
+    public static ArrayList<Object[]> getComisionesSocios(int dia, int mes, int anio){
+        try{
+            Connection cn = Conexion.getConnection();
+            CallableStatement cst = cn.prepareCall("CALL obtener_ganancias(?,?,?)");
+            cst.setString(1, Integer.toString(dia));
+            cst.setString(2, Integer.toString(mes));
+            cst.setString(3, Integer.toString(anio));
+            ResultSet rs = cst.executeQuery();
+
+            ArrayList<Socio> sl = Model.getSocios();
+            ArrayList<Object[]> gananciasList = new ArrayList<>();
+            if(rs.next()){
+                double ganancias = rs.getDouble(1);
+                for(Socio s : sl){
+                    if(s.isRango()){
+                        Object o[] = {1, ganancias*0.35};
+                        gananciasList.add(o);
+                    } else {
+                        Object o[] = {0, ganancias*0.15};
+                        gananciasList.add(o);
+                    }
+                }
+                Object o[] = {2, ganancias*0.20};
+                gananciasList.add(o);
+            }
+            cst.close();
+            cn.close();
+            return gananciasList;
+        }catch(SQLException e){
+            System.out.println(e);
         }
         return null;
     }

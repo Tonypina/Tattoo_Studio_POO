@@ -16,7 +16,7 @@ public class TatuadorDB {
     public static ArrayList<Tatuador> get(){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador ORDER BY idTatuador");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador WHERE eliminado = 0 ORDER BY idTatuador");
             
             ResultSet rs = pst.executeQuery();
             
@@ -40,7 +40,7 @@ public class TatuadorDB {
     public static void insertar( Tatuador t ){
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");            
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO tatuador VALUES(?,?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO tatuador VALUES(?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, t.getNombre());
             pst.setString(3, t.getAp_pat());
@@ -48,6 +48,7 @@ public class TatuadorDB {
             pst.setString(5, t.getContacto());
             pst.setString(6, Integer.toString(t.getRango()));
             pst.setString(7, Double.toString(t.getTotal()));
+            pst.setString(8, "0");
             pst.executeUpdate();
             
             pst.close();
@@ -125,7 +126,7 @@ public class TatuadorDB {
     public static void eliminar( int id ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM tatuador WHERE idTatuador = " + id);
+            PreparedStatement pst = cn.prepareStatement("UPDATE tatuador SET eliminado = 1 WHERE idTatuador = " + id);
             pst.executeUpdate();
             pst.close();
             cn.close();

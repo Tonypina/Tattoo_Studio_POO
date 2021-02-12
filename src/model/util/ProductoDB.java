@@ -17,7 +17,7 @@ public class ProductoDB {
     public static ArrayList<Producto> get(){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto ORDER BY modeloPro");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE eliminado = 0 ORDER BY modeloPro");
             
             ResultSet rs = pst.executeQuery();
             
@@ -45,7 +45,7 @@ public class ProductoDB {
     public static ArrayList<Producto> get( String tipoPro ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE tipoPro = ? ORDER BY tipoPro");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE tipoPro = ? AND eliminado = 0 ORDER BY tipoPro");
             pst.setString(1, tipoPro);
             ResultSet rs = pst.executeQuery();
             
@@ -73,7 +73,7 @@ public class ProductoDB {
     public static ArrayList<Producto> get( int idProveedor ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE idProveedorProducto = ?");
+            PreparedStatement pst = cn.prepareStatement("SELECT * FROM producto WHERE eliminado = 0 AND idProveedorProducto = ?");
             pst.setString(1, Integer.toString(idProveedor));
             ResultSet rs = pst.executeQuery();
             
@@ -101,7 +101,7 @@ public class ProductoDB {
     public static void insertar( Producto pro ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO producto VALUES(?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO producto VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, pro.getModeloPro());
             pst.setString(3, pro.getTipoPro());
@@ -114,6 +114,7 @@ public class ProductoDB {
                 pst.setString(7, "0");
             
             pst.setString(8, Integer.toString(pro.getProveedor().getId()));
+            pst.setString(9, "0");
             pst.executeUpdate();
             pst.close();
             cn.close();
@@ -175,7 +176,7 @@ public class ProductoDB {
     public static void eliminar( int idPro ){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM producto WHERE idProducto = ?");
+            PreparedStatement pst = cn.prepareStatement("UPDATE producto SET eliminado = 1 WHERE idProducto = ?");
             pst.setString(1, Integer.toString(idPro));
             pst.executeUpdate();
             pst.close();
