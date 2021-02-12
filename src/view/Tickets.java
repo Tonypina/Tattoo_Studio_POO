@@ -1212,7 +1212,7 @@ public class Tickets extends javax.swing.JFrame {
             tatuador.setText(nombTat);
             perforador.setText(nomper);
             comisionT.setText(Double.toString(t.getPagoTatuador()));
-            comisionP.setText(Double.toString(t.getPagoPerforador()));
+            comisionP.setText(Double.toString(montPerf*0.7);
             //llenarTablaProductos(prod);
         }catch(NumberFormatException e){
             System.out.println("Error de casteo");
