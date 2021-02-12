@@ -262,14 +262,14 @@ public class TicketDB {
                 double ganancias = rs.getDouble(1);
                 for(Socio s : sl){
                     if(s.isRango()){
-                        Object o[] = {1, ganancias*0.35};
+                        Object o[] = {s, ganancias*0.35, true};
                         gananciasList.add(o);
                     } else {
-                        Object o[] = {0, ganancias*0.15};
+                        Object o[] = {s, ganancias*0.15, true};
                         gananciasList.add(o);
                     }
                 }
-                Object o[] = {2, ganancias*0.20};
+                Object o[] = {2, ganancias*0.20, false};
                 gananciasList.add(o);
             }
             cst.close();
