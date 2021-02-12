@@ -21,7 +21,7 @@ public class MenuP extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        setSize(969, 500);
+        setSize(975, 530);
         setResizable(false);
 
     }
@@ -82,7 +82,7 @@ public class MenuP extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(109, 363, 213, 41);
+        jButton2.setBounds(109, 363, 217, 41);
 
         jButton3.setFont(new java.awt.Font("Sitka Small", 0, 18)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/storage.png"))); // NOI18N
