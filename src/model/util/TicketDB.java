@@ -75,7 +75,7 @@ public class TicketDB {
             Calendar c = Calendar.getInstance();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             if(t.isClip()){
                 pst.setString(2, "1");
@@ -92,24 +92,25 @@ public class TicketDB {
             pst.setString(6, Double.toString(t.getPagoTatuador()));
             pst.setString(7, Double.toString(t.getPagoPerforador()));
             pst.setString(8, Double.toString(t.getTotal()));
+            pst.setString(9, Double.toString(t.getTotal()*Model.getClip()));
 
             if(t.isVisita()){
-                pst.setString(9, "1");
+                pst.setString(10, "1");
             }else{
-                pst.setString(9, "0");
+                pst.setString(10, "0");
             }
-            pst.setString(10, Integer.toString(c.get(Calendar.DATE)));
-            pst.setString(11, Integer.toString(c.get(Calendar.MONTH)+1));
-            pst.setString(12, Integer.toString(c.get(Calendar.YEAR)));
+            pst.setString(11, Integer.toString(c.get(Calendar.DATE)));
+            pst.setString(12, Integer.toString(c.get(Calendar.MONTH)+1));
+            pst.setString(13, Integer.toString(c.get(Calendar.YEAR)));
             if(t.getTatuador() != null)
-                pst.setString(13, Integer.toString(t.getTatuador().getId()));
-            else
-                pst.setString(13, "0");
-            
-            if(t.getPerforador() != null)
-                pst.setString(14, Integer.toString(t.getPerforador().getId()));
+                pst.setString(14, Integer.toString(t.getTatuador().getId()));
             else
                 pst.setString(14, "0");
+            
+            if(t.getPerforador() != null)
+                pst.setString(15, Integer.toString(t.getPerforador().getId()));
+            else
+                pst.setString(15, "0");
             pst.executeUpdate();
             
             pst = cn.prepareStatement("SELECT MAX(idTicket) AS max FROM ticket");
