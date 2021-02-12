@@ -165,6 +165,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         comisionesDiarioTatuadores = new javax.swing.JToggleButton();
         comisionesDiarioSocios = new javax.swing.JToggleButton();
+        jLabel25 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         anioMensual = new javax.swing.JComboBox<>();
         totalMensual = new javax.swing.JLabel();
@@ -178,6 +179,7 @@ public class Reportes extends javax.swing.JFrame {
         tablaMensual = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         comisionesMensualTatuadores = new javax.swing.JToggleButton();
+        jLabel26 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         anioAnual = new javax.swing.JComboBox<>();
@@ -190,8 +192,9 @@ public class Reportes extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         comisionesAnualTatuadores = new javax.swing.JToggleButton();
         comisionesAnualSocios = new javax.swing.JToggleButton();
+        jLabel27 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REPORTES");
@@ -209,6 +212,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel4.setBounds(80, 50, 760, 49);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setOpaque(false);
         jPanel1.setLayout(null);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -220,7 +224,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Seleccione un mes:");
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(20, 60, 151, 22);
+        jLabel8.setBounds(11, 60, 160, 22);
 
         mesDiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         mesDiario.addItemListener(new java.awt.event.ItemListener() {
@@ -295,15 +299,17 @@ public class Reportes extends javax.swing.JFrame {
         jLabel12.setBounds(30, 290, 70, 22);
 
         comisionesDiarioTatuadores.setText("Comisiones Tatuadores");
+        comisionesDiarioTatuadores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         comisionesDiarioTatuadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comisionesDiarioTatuadoresActionPerformed(evt);
             }
         });
         jPanel4.add(comisionesDiarioTatuadores);
-        comisionesDiarioTatuadores.setBounds(560, 280, 160, 40);
+        comisionesDiarioTatuadores.setBounds(560, 280, 170, 40);
 
         comisionesDiarioSocios.setText("Comisiones Socios");
+        comisionesDiarioSocios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         comisionesDiarioSocios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comisionesDiarioSociosActionPerformed(evt);
@@ -311,6 +317,12 @@ public class Reportes extends javax.swing.JFrame {
         });
         jPanel4.add(comisionesDiarioSocios);
         comisionesDiarioSocios.setBounds(380, 280, 160, 40);
+
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel25.setText("jLabel1");
+        jPanel4.add(jLabel25);
+        jLabel25.setBounds(0, 0, 2598, 1440);
 
         jTabbedPane1.addTab("Diario", jPanel4);
 
@@ -371,7 +383,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Seleccione un mes:");
         jPanel5.add(jLabel7);
-        jLabel7.setBounds(30, 60, 151, 22);
+        jLabel7.setBounds(21, 60, 160, 22);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -410,6 +422,12 @@ public class Reportes extends javax.swing.JFrame {
         jPanel5.add(comisionesMensualTatuadores);
         comisionesMensualTatuadores.setBounds(560, 280, 160, 40);
 
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel26.setText("jLabel1");
+        jPanel5.add(jLabel26);
+        jLabel26.setBounds(0, 0, 2598, 1440);
+
         jTabbedPane1.addTab("Mensual", jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(102, 0, 0));
@@ -419,7 +437,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Seleccione un año:");
         jPanel6.add(jLabel5);
-        jLabel5.setBounds(130, 60, 148, 22);
+        jLabel5.setBounds(118, 60, 160, 22);
 
         anioAnual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioAnual.addItemListener(new java.awt.event.ItemListener() {
@@ -499,6 +517,12 @@ public class Reportes extends javax.swing.JFrame {
         jPanel6.add(comisionesAnualSocios);
         comisionesAnualSocios.setBounds(380, 280, 160, 40);
 
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel27.setText("jLabel1");
+        jPanel6.add(jLabel27);
+        jLabel27.setBounds(0, 0, 2598, 1440);
+
         jTabbedPane1.addTab("Anual", jPanel6);
 
         jPanel1.add(jTabbedPane1);
@@ -508,7 +532,7 @@ public class Reportes extends javax.swing.JFrame {
         jPanel1.setBounds(50, 120, 800, 380);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flechar.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresarboton.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -517,11 +541,13 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(20, 510, 61, 37);
+        jButton1.setBounds(20, 510, 65, 41);
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 930, 570);
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel24.setText("jLabel1");
+        getContentPane().add(jLabel24);
+        jLabel24.setBounds(0, 0, 2598, 1440);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -708,13 +734,16 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
