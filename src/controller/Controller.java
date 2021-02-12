@@ -33,6 +33,7 @@ public class Controller{
               t.setSubtotalPerforacion(prod.getPrecioPro());
               t.setPagoPerforador(prod.getPrecioPro()*0.7);
               prov.setTotal(totalProv + prod.getPrecioPro()*0.7);
+              Model.modificarProveedor(prov);
             }else{
               monto += prod.getPrecioPro()-(prod.getCostoPro());
               totalProv = prov.getTotal();
