@@ -186,15 +186,16 @@ public class Detalles extends javax.swing.JFrame {
         jLabel14.setText("$");
 
         subtotalPerforacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        subtotalPerforacion.setForeground(new java.awt.Color(204, 204, 204));
+        subtotalPerforacion.setForeground(new java.awt.Color(255, 255, 255));
 
         perforador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        perforador.setForeground(new java.awt.Color(204, 204, 204));
+        perforador.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Comisión del perforador:");
 
+        comisionP.setBackground(new java.awt.Color(255, 255, 255));
         comisionP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         comisionP.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -294,17 +295,17 @@ public class Detalles extends javax.swing.JFrame {
         );
 
         subtotalTatuaje.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        subtotalTatuaje.setForeground(new java.awt.Color(204, 204, 204));
+        subtotalTatuaje.setForeground(new java.awt.Color(255, 255, 255));
 
         tatuador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tatuador.setForeground(new java.awt.Color(204, 204, 204));
+        tatuador.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Comisión del tatuador:");
 
         comisionT.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        comisionT.setForeground(new java.awt.Color(204, 204, 204));
+        comisionT.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
