@@ -186,12 +186,12 @@ public class SociosAgreg extends javax.swing.JFrame {
       String rango = jComboBox1.getSelectedItem().toString();
       boolean rang = false;
       double total = 0;
-      if ("Mayoritario".equals(rango)){
+      if (rango.equals("Mayoritario")){
           rang = true;    
         jComboBox1.removeItemAt(1);
       }
       
-      else if ("Minoritario".equals(rango)){
+      else{
           rang = false;
       }
       

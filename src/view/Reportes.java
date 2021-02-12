@@ -61,46 +61,50 @@ public class Reportes extends javax.swing.JFrame {
     }
     
     private void llenarTablaTicket(javax.swing.JTable tabla, ArrayList<Ticket> lista){
-        DefaultTableModel modelo = new DefaultTableModel();
-        tabla.setModel(modelo);
-        int cantidadColumnas = 6;
-          
-        modelo.addColumn("Num. Ticket");
-        modelo.addColumn("Fecha");
-        modelo.addColumn("Tatuador");
-        modelo.addColumn("Perforador");
-        modelo.addColumn("Venta Producto");
-        modelo.addColumn("Total");  
-        int[] anchos ={70,80,130,100,40,60};
-          
-        for (int x =0; x < cantidadColumnas; x++  ){
-            tabla.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
-        }
-        
-        for( Ticket t : lista){
-            Object[] fila = new Object[cantidadColumnas];
-            fila[0] = t.getId();
-            fila[1] = Integer.toString(t.getDia())+" / "+Integer.toString(t.getMes())+" / "+Integer.toString(t.getAnio());
-           
-            if(t.getTatuador() != null){
-                fila[2] = t.getTatuador().getNombre()+" "+t.getTatuador().getAp_pat()+" "+t.getTatuador().getAp_mat();
-            } else {
-                fila[2] = "";
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            tabla.setModel(modelo);
+            int cantidadColumnas = 6;
+
+            modelo.addColumn("Num. Ticket");
+            modelo.addColumn("Fecha");
+            modelo.addColumn("Tatuador");
+            modelo.addColumn("Perforador");
+            modelo.addColumn("Venta Producto");
+            modelo.addColumn("Total");  
+            int[] anchos ={70,80,130,100,40,60};
+
+            for (int x =0; x < cantidadColumnas; x++  ){
+                tabla.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
             }
-            
-            if(t.getPerforador() != null){
-                fila[3] = t.getPerforador().getNombre();
-            } else {
-                fila[3] = "";
+
+            for( Ticket t : lista){
+                Object[] fila = new Object[cantidadColumnas];
+                fila[0] = t.getId();
+                fila[1] = Integer.toString(t.getDia())+" / "+Integer.toString(t.getMes())+" / "+Integer.toString(t.getAnio());
+
+                if(t.getTatuador() != null){
+                    fila[2] = t.getTatuador().getNombre()+" "+t.getTatuador().getAp_pat()+" "+t.getTatuador().getAp_mat();
+                } else {
+                    fila[2] = "";
+                }
+
+                if(t.getPerforador() != null){
+                    fila[3] = t.getPerforador().getNombre();
+                } else {
+                    fila[3] = "";
+                }
+
+                if(t.isProd()){
+                    fila[4] = "Sí";
+                } else {
+                    fila[4] = "No";
+                }
+                fila[5] = t.getTotal();
+                modelo.addRow(fila);
             }
-            
-            if(t.isProd()){
-                fila[4] = "Sí";
-            } else {
-                fila[4] = "No";
-            }
-            fila[5] = t.getTotal();
-            modelo.addRow(fila);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error" );
         }
     }
 
@@ -156,33 +160,36 @@ public class Reportes extends javax.swing.JFrame {
         buscarDiario = new javax.swing.JToggleButton();
         anioDiario = new javax.swing.JComboBox<>();
         diaDiario = new javax.swing.JComboBox<>();
-        comisionesDiario = new javax.swing.JToggleButton();
         jLabel10 = new javax.swing.JLabel();
         totalDiario = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        comisionesDiarioTatuadores = new javax.swing.JToggleButton();
+        comisionesDiarioSocios = new javax.swing.JToggleButton();
         jPanel5 = new javax.swing.JPanel();
         anioMensual = new javax.swing.JComboBox<>();
         totalMensual = new javax.swing.JLabel();
         detallesMensual = new javax.swing.JToggleButton();
         mesMensual = new javax.swing.JComboBox<>();
         buscarMensual = new javax.swing.JToggleButton();
-        comisionesMensual = new javax.swing.JToggleButton();
+        comisionesMensualSocios = new javax.swing.JToggleButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaMensual = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
+        comisionesMensualTatuadores = new javax.swing.JToggleButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         anioAnual = new javax.swing.JComboBox<>();
         buscarAnual = new javax.swing.JToggleButton();
         detallesAnual = new javax.swing.JToggleButton();
-        comisionesAnual = new javax.swing.JToggleButton();
         jLabel11 = new javax.swing.JLabel();
         totalAnual = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tablaAnual = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
+        comisionesAnualTatuadores = new javax.swing.JToggleButton();
+        comisionesAnualSocios = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
@@ -196,9 +203,10 @@ public class Reportes extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Old English Text MT", 0, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Reportes");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Reportes de Ventas");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(380, 50, 178, 49);
+        jLabel4.setBounds(80, 50, 760, 49);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
@@ -269,15 +277,6 @@ public class Reportes extends javax.swing.JFrame {
         jPanel4.add(diaDiario);
         diaDiario.setBounds(190, 60, 50, 22);
 
-        comisionesDiario.setText("Comisiones");
-        comisionesDiario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comisionesDiarioActionPerformed(evt);
-            }
-        });
-        jPanel4.add(comisionesDiario);
-        comisionesDiario.setBounds(610, 280, 110, 40);
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("$");
@@ -294,6 +293,24 @@ public class Reportes extends javax.swing.JFrame {
         jLabel12.setText("Total:");
         jPanel4.add(jLabel12);
         jLabel12.setBounds(30, 290, 70, 22);
+
+        comisionesDiarioTatuadores.setText("Comisiones Tatuadores");
+        comisionesDiarioTatuadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesDiarioTatuadoresActionPerformed(evt);
+            }
+        });
+        jPanel4.add(comisionesDiarioTatuadores);
+        comisionesDiarioTatuadores.setBounds(560, 280, 160, 40);
+
+        comisionesDiarioSocios.setText("Comisiones Socios");
+        comisionesDiarioSocios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesDiarioSociosActionPerformed(evt);
+            }
+        });
+        jPanel4.add(comisionesDiarioSocios);
+        comisionesDiarioSocios.setBounds(380, 280, 160, 40);
 
         jTabbedPane1.addTab("Diario", jPanel4);
 
@@ -341,14 +358,14 @@ public class Reportes extends javax.swing.JFrame {
         jPanel5.add(buscarMensual);
         buscarMensual.setBounds(500, 60, 80, 23);
 
-        comisionesMensual.setText("Comisiones");
-        comisionesMensual.addActionListener(new java.awt.event.ActionListener() {
+        comisionesMensualSocios.setText("Comisiones Socios");
+        comisionesMensualSocios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comisionesMensualActionPerformed(evt);
+                comisionesMensualSociosActionPerformed(evt);
             }
         });
-        jPanel5.add(comisionesMensual);
-        comisionesMensual.setBounds(610, 280, 110, 40);
+        jPanel5.add(comisionesMensualSocios);
+        comisionesMensualSocios.setBounds(380, 280, 160, 40);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -383,6 +400,15 @@ public class Reportes extends javax.swing.JFrame {
         jLabel13.setText("$");
         jPanel5.add(jLabel13);
         jLabel13.setBounds(80, 290, 10, 22);
+
+        comisionesMensualTatuadores.setText("Comisiones Tatuadores");
+        comisionesMensualTatuadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesMensualTatuadoresActionPerformed(evt);
+            }
+        });
+        jPanel5.add(comisionesMensualTatuadores);
+        comisionesMensualTatuadores.setBounds(560, 280, 160, 40);
 
         jTabbedPane1.addTab("Mensual", jPanel5);
 
@@ -422,15 +448,6 @@ public class Reportes extends javax.swing.JFrame {
         jPanel6.add(detallesAnual);
         detallesAnual.setBounds(550, 60, 100, 23);
 
-        comisionesAnual.setText("Comisiones");
-        comisionesAnual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comisionesAnualActionPerformed(evt);
-            }
-        });
-        jPanel6.add(comisionesAnual);
-        comisionesAnual.setBounds(610, 280, 110, 40);
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Total:");
@@ -463,6 +480,24 @@ public class Reportes extends javax.swing.JFrame {
         jLabel14.setText("$");
         jPanel6.add(jLabel14);
         jLabel14.setBounds(80, 290, 10, 22);
+
+        comisionesAnualTatuadores.setText("Comisiones Tatuadores");
+        comisionesAnualTatuadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesAnualTatuadoresActionPerformed(evt);
+            }
+        });
+        jPanel6.add(comisionesAnualTatuadores);
+        comisionesAnualTatuadores.setBounds(560, 280, 160, 40);
+
+        comisionesAnualSocios.setText("Comisiones Socios");
+        comisionesAnualSocios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesAnualSociosActionPerformed(evt);
+            }
+        });
+        jPanel6.add(comisionesAnualSocios);
+        comisionesAnualSocios.setBounds(380, 280, 160, 40);
 
         jTabbedPane1.addTab("Anual", jPanel6);
 
@@ -561,32 +596,59 @@ public class Reportes extends javax.swing.JFrame {
         llenarDias();
     }//GEN-LAST:event_mesDiarioItemStateChanged
 
-    private void comisionesMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesMensualActionPerformed
+    private void comisionesMensualSociosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesMensualSociosActionPerformed
+        try{
+            new ComisionesSocios(0, mesMensual.getSelectedItem().toString(), Integer.parseInt(anioMensual.getSelectedItem().toString())).setVisible(true);
+            dispose();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+        }
+    }//GEN-LAST:event_comisionesMensualSociosActionPerformed
+
+    private void comisionesMensualTatuadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesMensualTatuadoresActionPerformed
         try{
             new Comisiones(0, mesMensual.getSelectedItem().toString(), Integer.parseInt(anioMensual.getSelectedItem().toString())).setVisible(true);
             dispose();
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Ocurrió un error");
         }
-    }//GEN-LAST:event_comisionesMensualActionPerformed
+    }//GEN-LAST:event_comisionesMensualTatuadoresActionPerformed
 
-    private void comisionesDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesDiarioActionPerformed
+    private void comisionesDiarioTatuadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesDiarioTatuadoresActionPerformed
         try{
-            new Comisiones(Integer.parseInt(diaDiario.getSelectedItem().toString()), mesDiario.getSelectedItem().toString(), Integer.parseInt(anioDiario.getSelectedItem().toString())).setVisible(true);
+            new Comisiones(Integer.parseInt(diaDiario.getSelectedItem().toString()), mesDiario.getSelectedItem().toString(), Integer.parseInt(anioMensual.getSelectedItem().toString())).setVisible(true);
             dispose();
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Ocurrió un error");
         }
-    }//GEN-LAST:event_comisionesDiarioActionPerformed
+    }//GEN-LAST:event_comisionesDiarioTatuadoresActionPerformed
 
-    private void comisionesAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesAnualActionPerformed
+    private void comisionesDiarioSociosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesDiarioSociosActionPerformed
         try{
-            new Comisiones(0, "", Integer.parseInt(anioAnual.getSelectedItem().toString())).setVisible(true);
+            new ComisionesSocios(Integer.parseInt(diaDiario.getSelectedItem().toString()), mesDiario.getSelectedItem().toString(), Integer.parseInt(anioDiario.getSelectedItem().toString())).setVisible(true);
             dispose();
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Ocurrió un error");
         }
-    }//GEN-LAST:event_comisionesAnualActionPerformed
+    }//GEN-LAST:event_comisionesDiarioSociosActionPerformed
+
+    private void comisionesAnualTatuadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesAnualTatuadoresActionPerformed
+        try{
+            new Comisiones(0, "", Integer.parseInt(anioMensual.getSelectedItem().toString())).setVisible(true);
+            dispose();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+        }
+    }//GEN-LAST:event_comisionesAnualTatuadoresActionPerformed
+
+    private void comisionesAnualSociosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesAnualSociosActionPerformed
+        try{
+            new ComisionesSocios(0, "", Integer.parseInt(anioAnual.getSelectedItem().toString())).setVisible(true);
+            dispose();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+        }
+    }//GEN-LAST:event_comisionesAnualSociosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -630,9 +692,12 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JToggleButton buscarAnual;
     private javax.swing.JToggleButton buscarDiario;
     private javax.swing.JToggleButton buscarMensual;
-    private javax.swing.JToggleButton comisionesAnual;
-    private javax.swing.JToggleButton comisionesDiario;
-    private javax.swing.JToggleButton comisionesMensual;
+    private javax.swing.JToggleButton comisionesAnualSocios;
+    private javax.swing.JToggleButton comisionesAnualTatuadores;
+    private javax.swing.JToggleButton comisionesDiarioSocios;
+    private javax.swing.JToggleButton comisionesDiarioTatuadores;
+    private javax.swing.JToggleButton comisionesMensualSocios;
+    private javax.swing.JToggleButton comisionesMensualTatuadores;
     private javax.swing.JToggleButton detallesAnual;
     private javax.swing.JToggleButton detallesDiario;
     private javax.swing.JToggleButton detallesMensual;
