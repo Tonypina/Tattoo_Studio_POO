@@ -90,7 +90,7 @@ public class Reportes extends javax.swing.JFrame {
                 }
 
                 if(t.getPerforador() != null){
-                    fila[3] = t.getPerforador().getNombre();
+                    fila[3] = t.getPerforador().getNombre().substring(0, t.getPerforador().getNombre().length()-2);
                 } else {
                     fila[3] = "";
                 }
