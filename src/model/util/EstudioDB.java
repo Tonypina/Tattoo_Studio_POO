@@ -103,17 +103,18 @@ public class EstudioDB {
     public static double getClip(){
         try{
             Connection cn = Conexion.getConnection();
-            PreparedStatement pst = cn.prepareStatement("SELECT clip FROM estudio WHERE idEstudio = 1");
+            PreparedStatement pst = cn.prepareStatement("SELECT clip FROM estudio");
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
+                double clip = rs.getDouble(1);
                 pst.close();
                 cn.close();
-                return rs.getDouble(1);
+                return clip;
             }
             pst.close();
             cn.close();
         }catch(SQLException e){
-            e.getMessage();
+            System.out.println(e);
         }
         return 0.0;
     }
@@ -129,5 +130,9 @@ public class EstudioDB {
         }catch(SQLException e){
             e.getMessage();
         }
+    }
+    
+    public static void main(String a[]){
+        System.out.println(getClip());
     }
 }
