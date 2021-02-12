@@ -203,7 +203,7 @@ public class Reportes extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        jTabbedPane1.setBackground(new java.awt.Color(204, 0, 0));
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel4.setBackground(new java.awt.Color(102, 0, 0));
         jPanel4.setLayout(null);
