@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 import java.util.*;
 import javax.swing.*;
@@ -13,17 +8,10 @@ import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import controller.Controller;
-//import java.lang.ModuleLayer.Controller;
-/**
- *
- * @author edera
- */
+
 public class Tickets extends javax.swing.JFrame {
     DefaultTableModel m;
     private Usuario u;
-    /**
-     * Creates new form Ticket
-     */
     public Tickets() {
         initComponents();
         this.u = new Usuario(0, null, null, null ,true, null, null);
@@ -58,7 +46,6 @@ public class Tickets extends javax.swing.JFrame {
         ArrayList<Producto> listp = Model.getProductos();
         LlenarTablaProd(listp);
         Proveedor pr = null;
-
         proveedores();
     }
 
@@ -146,11 +133,11 @@ public class Tickets extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
 
         jDialog1.setTitle("AGREGAR PRODUCTOS");
@@ -391,10 +378,7 @@ public class Tickets extends javax.swing.JFrame {
 
         productosTicket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Producto", "Cantidad", "Proveedor", "Precio Total"
@@ -619,11 +603,13 @@ public class Tickets extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 27, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
@@ -1005,10 +991,6 @@ public class Tickets extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
-        jLabel24.setText("jLabel1");
-
         jPanel6.setOpaque(false);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -1043,6 +1025,10 @@ public class Tickets extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoI.jpg"))); // NOI18N
+        jLabel24.setText("jLabel1");
 
         jLabel25.setFont(new java.awt.Font("Old English Text MT", 0, 48)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -1183,12 +1169,13 @@ public class Tickets extends javax.swing.JFrame {
                 r=true;
             }
             ArrayList<Producto> prod = new ArrayList<>();
-            double montPerf = 0.0;
+            double montPerf=0.0;
             String nomper = "";
             if(!jTextField1.getText().equals("")){    
                 montPerf = Double.parseDouble(jTextField1.getText());
                 nomper = jComboBox2.getSelectedItem().toString();
-                Producto per = new Producto("Perforacion","X",1,montPerf,Model.buscarProveedor(nomper+"-P"),0,true);
+                System.out.print("Este es el monto"+montPerf);
+                Producto per = new Producto("","Perforacion",1,montPerf,Model.buscarProveedor(nomper+"-P"),0,true);
                 prod.add(per);
             }
             double montTatuaje = 0.0;
@@ -1217,7 +1204,7 @@ public class Tickets extends javax.swing.JFrame {
                 totalfinal = Controller.sumaTodo(montTatuaje, Controller.sumaProd(prod));   
             }               
             Ticket t = new Ticket(x,r,montTatuaje,montPerf,totalfinal,Model.buscarTatuador(idT),Model.buscarProveedor(jComboBox2.getSelectedItem().toString()+"-P"),f,prod);
-            Controller.procesoPago(t);
+            t = Controller.procesoPago(t);
             Controller.procesoGanancias();
             total1.setText(Double.toString(totalfinal));
             subtotalTatuaje.setText(Double.toString(montTatuaje));
@@ -1226,6 +1213,7 @@ public class Tickets extends javax.swing.JFrame {
             perforador.setText(nomper);
             comisionT.setText(Double.toString(t.getPagoTatuador()));
             comisionP.setText(Double.toString(t.getPagoPerforador()));
+            //llenarTablaProductos(prod);
         }catch(NumberFormatException e){
             System.out.println("Error de casteo");
         }
