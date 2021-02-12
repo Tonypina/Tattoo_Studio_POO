@@ -34,7 +34,7 @@ CREATE TABLE `cita` (
   `minutos` int DEFAULT NULL,
   `idTatuadorCita` int DEFAULT NULL,
   PRIMARY KEY (`idCita`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,6 @@ CREATE TABLE `cita` (
 
 LOCK TABLES `cita` WRITE;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
-INSERT INTO `cita` VALUES (1,'Andrea',4,3,2021,14,30,2);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +91,7 @@ CREATE TABLE `producto` (
   `idProveedorProducto` int DEFAULT NULL,
   `eliminado` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +100,6 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'BLK001','CHAMARRA',9,500,200,0,2,0),(2,'BLK002','CAMISA',8,300,150,0,2,0),(3,'ATK001','GORRA',5,200,100,0,3,0);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +117,7 @@ CREATE TABLE `proveedor` (
   `total` double DEFAULT NULL,
   `eliminado` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +126,6 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1,'Ricardo Rodriguez Hernandez-P','ric@contacto.com',0,0),(2,'BLK','BLK@contacto.com',0,0),(3,'Artekivranto','ATK@contacto.com',0,0);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +143,7 @@ CREATE TABLE `socio` (
   `rango` tinyint NOT NULL,
   `total` double DEFAULT NULL,
   PRIMARY KEY (`idSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +152,6 @@ CREATE TABLE `socio` (
 
 LOCK TABLES `socio` WRITE;
 /*!40000 ALTER TABLE `socio` DISABLE KEYS */;
-INSERT INTO `socio` VALUES (1,'Socio 1    ','socio1@contacto.com',0,0),(2,'socio2    ','socio2@contacto.com',1,0),(3,'socio3    ','socio3@contacto.com',1,0),(4,'socio4    ','socio4@contacto.com ',1,0);
 /*!40000 ALTER TABLE `socio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +172,7 @@ CREATE TABLE `tatuador` (
   `total` double DEFAULT NULL,
   `eliminado` tinyint DEFAULT '0',
   PRIMARY KEY (`idTatuador`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +181,6 @@ CREATE TABLE `tatuador` (
 
 LOCK TABLES `tatuador` WRITE;
 /*!40000 ALTER TABLE `tatuador` DISABLE KEYS */;
-INSERT INTO `tatuador` VALUES (1,'Rossette','Piña','Marco','marco@outlook.com',1,0,1),(2,'Alejandra','Erika','Rossette','ale@gmail.com',3,900,0);
 /*!40000 ALTER TABLE `tatuador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +207,7 @@ CREATE TABLE `ticket` (
   `idTatuadorTicket` int DEFAULT NULL,
   `idPerforadorTicket` int DEFAULT NULL,
   PRIMARY KEY (`idTicket`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +216,6 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-INSERT INTO `ticket` VALUES (1,1,1,1500,500,900,0,2708.42,1,12,2,2021,2,1);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +236,7 @@ CREATE TABLE `usuario` (
   `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +245,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'','','',1,'admin','admin'),(2,'Marco','Piña','Rossette',0,'pass','tony');
+INSERT INTO `usuario` VALUES (1,'','','',1,'admin','admin');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +264,7 @@ CREATE TABLE `venta` (
   `costoTotal` double DEFAULT NULL,
   `precioTotal` double DEFAULT NULL,
   PRIMARY KEY (`idVenta`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +273,6 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (1,2,2,1,158,600);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
