@@ -275,13 +275,14 @@ public class Reportes extends javax.swing.JFrame {
         diaDiario.setBounds(190, 60, 50, 22);
 
         comisionesDiario.setText("Comisiones");
+        comisionesDiario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         comisionesDiario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comisionesDiarioActionPerformed(evt);
             }
         });
         jPanel4.add(comisionesDiario);
-        comisionesDiario.setBounds(630, 280, 90, 30);
+        comisionesDiario.setBounds(620, 280, 100, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -359,13 +360,13 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel5.add(comisionesMensual);
-        comisionesMensual.setBounds(630, 280, 90, 30);
+        comisionesMensual.setBounds(620, 280, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Seleccione un mes:");
         jPanel5.add(jLabel7);
-        jLabel7.setBounds(30, 60, 156, 22);
+        jLabel7.setBounds(21, 60, 160, 22);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -410,7 +411,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Seleccione un año:");
         jPanel6.add(jLabel5);
-        jLabel5.setBounds(130, 60, 153, 22);
+        jLabel5.setBounds(118, 60, 160, 22);
 
         anioAnual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         anioAnual.addItemListener(new java.awt.event.ItemListener() {
@@ -446,7 +447,7 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
         jPanel6.add(comisionesAnual);
-        comisionesAnual.setBounds(630, 280, 90, 30);
+        comisionesAnual.setBounds(620, 280, 100, 30);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
