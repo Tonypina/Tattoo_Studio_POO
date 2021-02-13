@@ -91,7 +91,7 @@ CREATE TABLE `producto` (
   `idProveedorProducto` int DEFAULT NULL,
   `eliminado` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,6 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'','PERFORACION',NULL,0,0,1,0,0);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,6 +200,7 @@ CREATE TABLE `ticket` (
   `pagoTatuador` double DEFAULT NULL,
   `pagoPerforador` double DEFAULT NULL,
   `total` double DEFAULT NULL,
+  `totalClip` double DEFAULT '0',
   `visita` tinyint DEFAULT NULL,
   `dia` int DEFAULT NULL,
   `mes` int DEFAULT NULL,
@@ -208,7 +208,7 @@ CREATE TABLE `ticket` (
   `idTatuadorTicket` int DEFAULT NULL,
   `idPerforadorTicket` int DEFAULT NULL,
   PRIMARY KEY (`idTicket`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,20 +459,20 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_ganancias`(IN v_dia INT, IN v_mes INT, IN v_anio INT)
 BEGIN
 	IF v_dia = 0 AND v_mes = 0 THEN
-		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-SUM(V.costoTotal)ganancias
+		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-SUM(v.costoTotal)-SUM(t.totalClip)ganancias
 		FROM ticket t
 		INNER JOIN venta v
 		ON idTicket = idTicketVenta
 		WHERE anio = v_anio;
 			
 	ELSEIF v_dia = 0 AND v_mes <> 0 THEN
-		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-SUM(V.costoTotal)ganancias
+		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-SUM(v.costoTotal)-SUM(t.totalClip)ganancias
 		FROM ticket t
 		INNER JOIN venta v
 		ON idTicket = idTicketVenta
 		WHERE anio = v_anio AND mes = v_mes;
 	ELSE
-		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-SUM(V.costoTotal)ganancias
+		SELECT SUM(t.total)-SUM(t.pagoTatuador)-SUM(t.pagoPerforador)-SUM(v.costoTotal)-SUM(t.totalClip)ganancias
 		FROM ticket t
 		INNER JOIN venta v
 		ON idTicket = idTicketVenta
@@ -519,4 +519,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-12 17:04:11
+-- Dump completed on 2021-02-12 18:47:19
