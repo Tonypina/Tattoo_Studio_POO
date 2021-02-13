@@ -92,8 +92,13 @@ public class TicketDB {
             pst.setString(6, Double.toString(t.getPagoTatuador()));
             pst.setString(7, Double.toString(t.getPagoPerforador()));
             pst.setString(8, Double.toString(t.getTotal()));
-            pst.setString(9, Double.toString(t.getTotal()*Model.getClip()));
-
+            
+            if(t.isClip()){
+                pst.setString(9, Double.toString(t.getTotal()*Model.getClip()));
+            } else {
+                pst.setString(9, "0");
+            }
+                
             if(t.isVisita()){
                 pst.setString(10, "1");
             }else{
