@@ -13,7 +13,7 @@ import java.sql.*;
 public class Conexion {
     
     public static final String URL = "jdbc:mysql://localhost/tattoo_studio_db";
-    public static final String USERNAME = "root";
+    public static final String USERNAME = "babayaga";
     public static final String PASSWORD = "";
     
     public static Connection getConnection(){
