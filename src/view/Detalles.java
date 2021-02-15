@@ -40,7 +40,7 @@ public class Detalles extends javax.swing.JFrame {
         else
             perforador.setText("");
         comisionT.setText(Double.toString(t.getPagoTatuador()));
-        comisionP.setText(Double.toString(t.getPagoPerforador()));
+        comisionP.setText(Double.toString(t.getSubtotalPerforacion()*0.7));
         total.setText(Double.toString(t.getTotal()));
         llenarTablaProductos(t.getProductos());
     }
