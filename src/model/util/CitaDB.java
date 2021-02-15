@@ -43,7 +43,7 @@ public class CitaDB {
     
     public static ArrayList<Cita> get(){
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM cita");
 
             ResultSet rs = pst.executeQuery();
@@ -101,7 +101,7 @@ public class CitaDB {
     
     public static void insertar( Cita c ){
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("INSERT INTO cita VALUES(?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, c.getNombreCliente());

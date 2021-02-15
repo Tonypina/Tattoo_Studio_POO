@@ -39,7 +39,7 @@ public class TatuadorDB {
     
     public static void insertar( Tatuador t ){
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");            
+            Connection cn = Conexion.getConnection();            
             PreparedStatement pst = cn.prepareStatement("INSERT INTO tatuador VALUES(?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, t.getNombre());
@@ -60,7 +60,7 @@ public class TatuadorDB {
     
     public static Tatuador buscar( int id ){
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("SELECT * FROM tatuador WHERE idTatuador = ?");
             pst.setString(1, Integer.toString(id));
             ResultSet rs = pst.executeQuery();

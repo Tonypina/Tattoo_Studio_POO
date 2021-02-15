@@ -74,7 +74,7 @@ public class TicketDB {
         try{
             Calendar c = Calendar.getInstance();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/tattoo_studio_db", "root", "");
+            Connection cn = Conexion.getConnection();
             PreparedStatement pst = cn.prepareStatement("INSERT INTO ticket VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, "0");
             if(t.isClip()){
