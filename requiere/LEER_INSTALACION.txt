@@ -1,0 +1,18 @@
+Para instalar el Sistema
+
+1. Ejecutar el Archivo "BabaYagaStudioSetup.exe"
+
+Se iniciará un asistente, el cuál iniciará la instalación, así como de los complementos necesarios.
+
+Al momento de instalar MySQL Server, al usuario root, colocarle una contraseña, será el SUPER ADMIN de su BASE DE DATOS.
+
+2. Con el asistente de instalación del MySQL Server, crear un usuario adicional llamado:
+ "babayaga" que sea del tipo "ADMIN DB" y dejarlo sin contraseña 
+ 
+ Lo anterior, para facilitar la instalación de la BD
+
+3. Una vez terminada la Instalación, ejecutar el archivo "cargaBD.bat"
+
+4. Ejecutar la aplicación desde el Escritorio
+
+Saludos!!
